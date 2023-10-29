@@ -13,6 +13,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.8.9",
     "vitepress": "1.0.0-rc.24"
+  },
+  "dependencies": {
+    "tdesign-vue-next": "^1.6.5",
+    "vue": "^3.3.7"
   }
 }
