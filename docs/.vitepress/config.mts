@@ -29,6 +29,20 @@ export default defineConfig({
 		// socialLinks: [
 		//   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
 		// ]
+
+		notFound: {
+			title: '找不到页面( T﹏T )',
+			quote: '请检查您输入的网址是否正确。',
+			linkText: '返回首页',
+		},
+
+		docFooter: { prev: '上一篇', next: '下一篇' },
+
+		footer: {
+			message: 'my doc',
+			copyright:
+				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright &copy; 2023-present 湘ICP备2023023348号</a>',
+		},
 	},
 	markdown: {
 		theme: {
