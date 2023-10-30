@@ -12,7 +12,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./docs/.vitepress/*"],
-			"@theme/*": ["./docs/.vitepress/theme/*"]
+			"@theme/*": ["./docs/.vitepress/theme/*"],
+			"@hooks/*": ["./docs/.vitepress/utils/hooks/*"]
 		},
 		"types": ["node"]
 	},

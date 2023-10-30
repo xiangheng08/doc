@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive, ref } from 'vue';
-import tdesignDark_h from '@/utils/hooks/tdesignDark'
+import tdesignDark_h from '@hooks/tdesignDark'
 import { ImageViewer as TImageViewer } from 'tdesign-vue-next';
 
 tdesignDark_h()

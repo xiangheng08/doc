@@ -11,6 +11,10 @@ export default define<DefaultTheme.Sidebar>({
 			text: 'CSS',
 			items: [
 				{
+					text: 'CSS 效果',
+					link: '/frontend/css/effect',
+				},
+				{
 					text: '鼠标效果',
 					link: '/frontend/css/cursor',
 				},
