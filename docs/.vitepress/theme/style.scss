@@ -1,0 +1,38 @@
+html {
+	/* 平滑滚动 */
+	scroll-behavior: smooth;
+}
+
+.content-container {
+	img {
+		cursor: zoom-in;
+	}
+	.secondary {
+		color: var(--vp-c-text-3);
+	}
+	.no-select {
+		user-select: none;
+	}
+	code {
+		white-space: nowrap;
+	}
+}
+
+.VPSidebarItem.is-link {
+	.item > .link {
+		.text {
+			font-size: 13px;
+		}
+		&:hover {
+			.text {
+				color: #42b883 !important;
+			}
+		}
+	}
+	&.is-active {
+		.item .link > .text {
+			font-weight: 700;
+			color: #42b883 !important;
+		}
+	}
+}

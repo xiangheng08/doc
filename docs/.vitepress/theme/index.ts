@@ -2,7 +2,7 @@ import { h } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import { EnhanceAppContext } from 'vitepress';
 import './vars.css';
-import './style.css';
+import './style.scss';
 import imageViewer from './components/imageViewer.vue';
 // import demo from './components/demo.vue'
 
