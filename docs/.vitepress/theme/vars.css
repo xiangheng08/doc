@@ -148,25 +148,18 @@
  * 自定义颜色
  * -------------------------------------------------------------------------- */
 :root {
-	--sub-page-header-bg: #f6f6f7;
-  --sub-page-border-color: #e6e6e6;
-  --sub-page-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
-  --sub-page-radius: 8px;
-
 	--demo-bg: #f6f6f7;
-	--demo-header-bg: #f6f6f7;
+	--demo-header-bg: #ececed;
+	--demo-divider-line: var(--demo-border-color);
   --demo-border-color: #e6e6e6;
   --demo-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
   --demo-radius: 8px;
 }
 
 .dark {
-	--sub-page-header-bg: #292929;
-  --sub-page-border-color: #383838;
-  --sub-page-shadow: 0px 0px 12px rgba(0, 0, 0, 0.72);
-
 	--demo-bg: #1a1a1a;
 	--demo-header-bg: #292929;
+	--demo-divider-line: transparent;
   --demo-border-color: #383838;
   --demo-shadow: 0px 0px 12px rgba(0, 0, 0, 0.72);
 }

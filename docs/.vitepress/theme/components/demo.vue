@@ -25,7 +25,7 @@ const slots = defineSlots()
 const props = defineProps({
   title: {
     type: String,
-    default: '演示',
+    default: 'demo',
   },
   right: String,
   padding: {
@@ -61,6 +61,7 @@ const _padding = computed(() => formatCSSlength(props.padding))
 		align-items: center;
 		background-color: var(--demo-header-bg);
     font-size: smaller;
+    border-bottom: 1px solid var(--demo-divider-line);
 	}
 }
 </style>

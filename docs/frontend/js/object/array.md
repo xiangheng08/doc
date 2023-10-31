@@ -30,6 +30,7 @@ console.log(listA.length);
 console.log(listB.length);
 // 6
 
+// 不能设置大于2的32次方
 listB.length = 2 ** 32; // 4294967296
 // RangeError: Invalid array length
 
