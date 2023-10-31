@@ -1,6 +1,9 @@
 import { defineConfig } from 'vitepress';
 import sidebar from './config/sidebar';
 import path from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -13,6 +16,7 @@ export default defineConfig({
 	themeConfig: {
 		logo: '/vitepress-logo-mini.svg',
 		// https://vitepress.dev/reference/default-theme-config
+
 		nav: [
 			{ text: '主页', link: '/' },
 			{ text: '前端', link: '/frontend/' },
@@ -62,5 +66,28 @@ export default defineConfig({
 		server: {
 			port: 9527,
 		},
+
+		plugins: [
+			AutoImport({
+				imports: ['vue'],
+				include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
+				dts: '.vitepress/auto-imports.d.ts',
+				resolvers: [
+					TDesignResolver({
+						library: 'vue-next',
+					}),
+				],
+			}),
+			Components({
+				dirs: ['.vitepress/theme/components'],
+				dts: '.vitepress/components.d.ts',
+				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+				resolvers: [
+					TDesignResolver({
+						library: 'vue-next',
+					}),
+				],
+			}),
+		],
 	},
 });

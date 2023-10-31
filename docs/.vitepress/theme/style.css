@@ -1,16 +1,28 @@
 html {
-  /* 平滑滚动 */
-  scroll-behavior: smooth;
+	/* 平滑滚动 */
+	scroll-behavior: smooth;
 }
 
-.content-container img{
-  cursor: zoom-in;
+.content-container img {
+	cursor: zoom-in;
 }
 
-.content-container .secondary{
-  color: var(--vp-c-text-3);
+.content-container .secondary {
+	color: var(--vp-c-text-3);
 }
 
-.content-container .no-select{
-  user-select: none;
+.content-container .no-select {
+	user-select: none;
+}
+
+.content-container code {
+	white-space: nowrap;
+}
+
+.nav .group .text {
+	font-size: 13px;
+}
+
+.nav .group .is-active .text {
+	font-weight: 700;
 }

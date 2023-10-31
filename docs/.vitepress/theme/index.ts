@@ -4,6 +4,7 @@ import { EnhanceAppContext } from 'vitepress';
 import './vars.css';
 import './style.css';
 import imageViewer from './components/imageViewer.vue';
+// import demo from './components/demo.vue'
 
 // 引入组件库的少量全局样式变量
 import 'tdesign-vue-next/es/style/index.css';
@@ -16,6 +17,8 @@ export default {
 		});
 	},
 	enhanceApp(ctx: EnhanceAppContext) {
-		// const { app } = ctx;
+		const { app } = ctx;
+
+		// app.component('demo', demo);
 	},
 };

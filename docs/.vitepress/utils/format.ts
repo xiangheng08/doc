@@ -7,6 +7,8 @@ const pureNumberRegExp = /^[0-9]+$/;
  * 格式化 CSS 长度
  */
 export function formatCSSlength(val: number | string) {
+	if (val === '0' || val === 0) return val
+
 	if (typeof val === 'string' && !pureNumberRegExp.test(val)) {
 		return val;
 	}

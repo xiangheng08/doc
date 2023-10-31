@@ -106,26 +106,6 @@ vm.fn2();
 
 所有的生命周期钩子：
 
-<!-- | 钩子            | 说明   |
-| --------------- | ------ |
-| `beforeCreate`  | 创建前 |
-| `created`       | 创建后 |
-| `beforeMount`   | 挂载前 |
-| `mounted`       | 挂载后 |
-| `beforeUpdate`  | 更新前 |
-| `updated`       | 更新后 |
-| `beforeDestroy` | 销毁前 |
-| `destroyed`     | 销毁后 | --> 
-
-<!-- -   `beforeCreate`<blank l="2"/>创建前
--   `created`<blank l="7"/>创建后
--   `beforeMount`<blank l="3"/>挂载前
--   `mounted`<blank l="7"/>挂载后
--   `beforeUpdate`<blank l="2"/>更新前
--   `updated`<blank l="7"/>更新后
--   `beforeDestroy`<blank l="1"/>销毁前
--   `destroyed`<blank l="5"/>销毁后 -->
-
 -   `beforeCreate`<span class="secondary no-select">--</span>创建前
 -   `created`<span class="secondary no-select">-------</span>创建后
 -   `beforeMount`<span class="secondary no-select">---</span>挂载前

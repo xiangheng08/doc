@@ -1,11 +1,8 @@
 <template>
-	<div class="sub-page">
-		<div class="header">
-			<div class="title">{{ props.title }}</div>
-			<div class="link">
-        <a v-if="props.url" :href="props.url" target="_blank">打开页面</a>
-      </div>
-		</div>
+	<demo :title="props.title" padding="0" :shadow="props.shadow">
+		<template #right>
+			<a v-if="props.url" :href="props.url" target="_blank">打开页面</a>
+		</template>
 		<iframe
 			v-if="props.url"
 			:src="props.url"
@@ -13,7 +10,7 @@
 			:width="_width"
 			:height="_height"
 			frameborder="0"></iframe>
-	</div>
+	</demo>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +33,10 @@ const props = defineProps({
 		type: String,
 		default: '子页面',
 	},
+	shadow: {
+		type: Boolean,
+		default: true,
+	},
 	// 同源
 	sameOrigin: {
 		type: Boolean,
@@ -57,28 +58,7 @@ const sandbox = computed(() => _sandbox.join(' '));
 </script>
 
 <style scoped lang="scss">
-.sub-page {
-	position: relative;
-	border: 1px solid var(--sub-page-border-color);
-	border-radius: var(--sub-page-radius);
-  box-shadow: var(--sub-page-shadow);
-	overflow: hidden;
-	margin: 1rem 0;
-	box-sizing: border-box;
-	.header {
-		height: 2rem;
-		padding: 0 1rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: var(--sub-page-header-bg);
-    font-size: smaller;
-    .title{
-      color: var(--vp-c-text-1);
-    }
-	}
-	iframe {
-		max-width: 100%;
-	}
+iframe {
+	max-width: 100%;
 }
 </style>
