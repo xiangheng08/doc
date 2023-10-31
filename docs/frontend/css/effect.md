@@ -102,7 +102,9 @@ const result = str.split('').reverse().join('');
 <script>
 export default { data(){ return { str: 'Aliquip est nulla ex ullamco velit ad irure.' } } }
 
-document.addEventListener('copy', (e) => {
+const myDocument = globalThis.document
+
+myDocument?.addEventListener('copy', (e) => {
   // 判断目标元素是否包含 data-reverse-copy-text 属性，从而判断是否需要执行反转操作
 	if(e.target && e.target.hasAttribute('data-reverse-copy-text')){
     // 是否复制成功
