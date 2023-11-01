@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "My Doc"
-  text: "逆水行舟 不进则退"
-  tagline: 宝剑锋从磨砺出，梅花香自苦寒来
+  text: "留下学习的足迹"
+  tagline: 且将新火试新茶，诗酒趁年华
   actions:
     - theme: brand
       text: Markdown Examples

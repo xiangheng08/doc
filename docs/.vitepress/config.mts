@@ -20,7 +20,12 @@ export default defineConfig({
 		nav: [
 			{ text: '主页', link: '/' },
 			{ text: '前端', link: '/frontend/' },
+			{ text: '后端', link: '/backend/' },
 			{ text: 'Git', link: '/git/commandList' },
+			{
+				text: '其他', items: [
+					{ text: '小技巧', link: '/other/tips/'}
+			] },
 		],
 
 		sidebar,
@@ -47,6 +52,10 @@ export default defineConfig({
 			copyright:
 				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright &copy; 2023-present 湘ICP备2023023348号</a>',
 		},
+
+		lastUpdated: {
+			text: '上次更新',
+		}
 	},
 	markdown: {
 		theme: {

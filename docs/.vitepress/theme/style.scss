@@ -1,3 +1,8 @@
+:root {
+	--vp-home-hero-name-color: transparent;
+	--vp-home-hero-name-background: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+}
+
 html {
 	/* 平滑滚动 */
 	scroll-behavior: smooth;
@@ -38,5 +43,5 @@ html {
 }
 
 li::marker {
-  color: var(--list-marker);
+	color: var(--list-marker);
 }
