@@ -8,3 +8,5 @@ docs/.vitepress/.temp
 .vitepress/.temp
 
 copylocation
+
+config.mts.timestamp*.*
