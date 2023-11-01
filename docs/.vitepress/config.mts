@@ -23,9 +23,9 @@ export default defineConfig({
 			{ text: '后端', link: '/backend/' },
 			{ text: 'Git', link: '/git/commandList' },
 			{
-				text: '其他', items: [
-					{ text: '小技巧', link: '/other/tips/'}
-			] },
+				text: '其他',
+				items: [{ text: '小技巧', link: '/other/tips/' }],
+			},
 		],
 
 		sidebar,
@@ -38,6 +38,29 @@ export default defineConfig({
 		// socialLinks: [
 		//   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
 		// ]
+
+		search: {
+			provider: 'local', // 本地搜索
+			options: {
+				translations: {
+					button: {
+						buttonText: '搜索文档',
+						buttonAriaLabel: '搜索文档',
+					},
+					modal: {
+						noResultsText: '无法找到相关结果',
+						resetButtonTitle: '清除查询条件',
+						displayDetails: '显示详细列表',
+						backButtonTitle: '清除查询条件',
+						footer: {
+							selectText: '选择',
+							navigateText: '切换',
+							closeText: '关闭',
+						},
+					},
+				},
+			},
+		},
 
 		notFound: {
 			title: '找不到页面( T﹏T )',
@@ -55,7 +78,7 @@ export default defineConfig({
 
 		lastUpdated: {
 			text: '上次更新',
-		}
+		},
 	},
 	markdown: {
 		theme: {

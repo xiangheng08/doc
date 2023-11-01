@@ -1,6 +1,6 @@
 export default [
 	{
-		text: 'vscode',
+		text: 'VScode',
 		link: '/other/tips/vscode',
 	},
 ];

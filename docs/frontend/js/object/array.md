@@ -1,44 +1,44 @@
 # Array
 
-- ~~length~~
-- at
-- concat
-- copyWithin
-- entries
-- every
-- fill
-- filter
-- find
-- findIndex
-- findLast
-- findLastIndex
-- flat
-- flatMap
-- forEach
-- includes
-- ~~indexof~~
-- join
-- keys
-- lastIndexof
-- ~~map~~
-- ~~pop~~
-- ~~push~~
-- reduce
-- reduceRight
-- ~~reverse~~
-- shift
-- slice
-- some
-- ~~sort~~
-- ~~splice~~
-- toLocalestring
-- toReversed
-- ~~toSorted~~
-- toSpliced
-- tostring
-- ~~unshift~~
-- values
-- with
+-   ~~length~~
+-   at
+-   concat
+-   copyWithin
+-   entries
+-   every
+-   fill
+-   filter
+-   find
+-   findIndex
+-   findLast
+-   findLastIndex
+-   flat
+-   flatMap
+-   forEach
+-   includes
+-   ~~indexof~~
+-   join
+-   keys
+-   lastIndexof
+-   ~~map~~
+-   ~~pop~~
+-   ~~push~~
+-   reduce
+-   reduceRight
+-   ~~reverse~~
+-   shift
+-   slice
+-   some
+-   ~~sort~~
+-   ~~splice~~
+-   toLocalestring
+-   toReversed
+-   ~~toSorted~~
+-   toSpliced
+-   tostring
+-   ~~unshift~~
+-   values
+-   with
 
 ## 属性
 
@@ -85,7 +85,6 @@ const listC = new Array(-100); // 负数是不允许的
 -   将 `length` 设置为无效值（例如负数或非整数）会引发 `RangeError` 异常。
 
 当 `length` 被设置为比当前长度更大的值时，数组通过添加[空槽](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#稀疏数组)来扩展，而不是实际的 `undefined` 值。空槽与数组方法有一些特殊的交互作用；详见[数组方法和空槽](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array#数组方法和空槽)。
-
 
 ```js
 const arr = [1, 2];
@@ -315,7 +314,7 @@ const data = arr.indexOf(1, 2); // 从下标为 2 元素查找
 console.log(data); // -1
 ```
 
-### map 遍历
+### map 创建新数组
 
 `map()` 方法创建一个新数组，这个新的数组由原数组中的每个元素都调用一次提供的函数后的返回值组成。
 
@@ -337,78 +336,102 @@ const map1 = arr.map((item) => item * 2);
 console.log(map1); // [ 2, 8, 18, 32 ]
 ```
 
-### forEach 方法（遍历）
+### forEach 遍历
 
--   forEach() 方法按顺序为数组中的每个元素调用一次函数。
+forEach() 方法对数组的每个元素执行一次给定的函数。
 
--   使用后不影响原数组
+语法：`forEach(callbackFn [, thisArg])`
 
--   forEach() 方法没有返回值
-
--   对空数组不执行
-
--   接受一个函数，函数有三个参数(item, index, arr)
-
-    -   `item`：必须，当前循环元素的值。
-
-    -   `index`：可选，当前循环元素的索引值。
-
-    -   `arr`：可选，当前循环数组的本身
+-   `callbackFn`：为数组中每个元素执行的函数，该函数接收三个参数
+    -   `item`：数组中正在处理的当前元素。
+    -   `index`：数组中正在处理的当前元素的索引。
+    -   `arr`：调用 forEach() 的数组。
+-   `thisArg`：可选的。执行回调函数时用作 this 的值。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-arr.forEach(function (item, index, arr) {
-	item - index; // 对数据的操作，不会影响原数组
-	arr[index] = item * index; // 可在数据内操作原数组，以达到改变原数组的目的
-});
-console.log(arr); // 输出：[0, 2, 6, 12, 20]
+const arr = ['a', 'b', 'c'];
+
+arr.forEach((item) => console.log(item));
+// 输出
+// a
+// b
+// c
 ```
 
-### concat 方法（拼接数组）
+### concat 拼接数组
 
-拼接多个组数，参数是一个或多个数组，拼接完成返回一个新的数组
+concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
 
-使用后不影响原数组
+语法：`concat(array1, array2, ..., arrayN)`
+
+-   `arrayN`：数组或值，`arrayN` 如果是数组会对数组做一个浅拷贝，将被合并到一个新的数组中。如果没有参数，则 `concat` 会返回调用此方法的现存数组的一个浅拷贝。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const arr2 = [6, 7, 8, 9, 10];
-const arr3 = [11, 12, 13, 14, 15];
-const nweArr = arr.concat(arr2, arr3);
-console.log(nweArr); // 输出：[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const arr1 = ['a', 'b', 'c'];
+const arr2 = ['d', 'e', 'f'];
+// 参数可以是数组或值
+const arr3 = arr1.concat(arr2, 'h', { i: 'i' }, () => 'j');
+
+console.log(arr3); // ['a', 'b', 'c', 'd', 'e', 'f', 'h', {…}, ƒ]
 ```
 
-​ 同一变量出现多次只会拼接一次
+### slice 截取
+
+`slice()` 方法返回一个新的数组对象，这一对象是一个由 `start` 和 `end` 决定的原数组的浅拷贝（包括 `start`，不包括 `end`），其中 `start` 和 `end` 代表了数组元素的索引。原始数组不会被改变。
+
+语法：`slice(start[, end])`
+
+-   `start`: 提取起始处的索引，会转换为整数。
+    -   如果索引是负数，则从数组末尾开始计算——如果 `start < 0`，则使用 `start + array.length`。
+    -   如果 `start < -array.length` 或者省略了 `start`，则使用 `0`。
+    -   如果 `start >= array.length`，则不提取任何元素。
+-   `end`: 提取终止处的索引，会转换为整数。`slice()` 会提取到但不包括 `end` 的位置。
+    -   如果索引是负数，则从数组末尾开始计算——如果 `end < 0`，则使用 `end + array.length`。
+    -   如果 `end < -array.length`，则使用 `0`。
+    -   如果 `end >= array.length` 或者省略了 `end，则使用` `array.length`，提取所有元素直到末尾。
+    -   如果 `end` 在规范化后小于或等于 `start`，则不提取任何元素。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const arr2 = [6, 7, 8, 9, 10];
-const nweArr = arr.concat(arr2, arr2);
-console.log(nweArr); // 输出：[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+// 从索引 2 开始截取之后的全部元素
+console.log(animals.slice(2)); // ["camel", "duck", "elephant"]
+
+// 截取从索引 2 开始到索引 4 的元素（不包括索引 4 的元素）
+console.log(animals.slice(2, 4)); // ["camel", "duck"]
+
+console.log(animals.slice(1, 5)); // ["bison", "camel", "duck", "elephant"]
+
+// 从倒数第二个元素开始截取
+console.log(animals.slice(-2)); // ["duck", "elephant"]
+
+// 从第二个元素开始截取
+console.log(animals.slice(2, -1)); // ["camel", "duck"]
+
+// 截取整个数组
+console.log(animals.slice()); // ["ant", "bison", "camel", "duck", "elephant"]
 ```
 
-### slice 方法（返回指定元素）
+### join 拼接为字符串
 
-`slice()` 方法以新的数组对象，返回数组中被选中的元素。
+join() 方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串，用逗号（默认）或指定的分隔符字符串分隔。如果数组只有一个元素，那么将返回该元素而不使用分隔符。
 
-`slice()` 方法选择从给定的 _start_ 参数开始的元素，并在给定的 _end_ 参数处结束，但不包括 _end_ 参数位置的元素
+语法：`join([separator])`
 
-```js
-const arr = [1, 2, 3, 4, 5];
-const arr2 = arr.slice(1, 3);
-console.log(arr2); // 输出：[2,3]
-```
+-   `separator`：指定一个字符串来分隔数组的每个元素。如果需要，将分隔符转换为字符串。如果省略，数组元素用逗号（,）分隔。如果 separator 是空字符串（""），则所有元素之间都没有任何字符。
 
-### join 方法（将数组以字符串返回）
+返回一个所有数组元素连接的字符串。如果 `arr.length` 为 `0`，则返回空字符串。
 
--   `join()` 方法将数组以指定字符将数组每个元素分隔成字符串返回。
--   元素将由指定的分隔符分隔。默认分隔符是逗号 ","。
--   注意：join() 方法会对每个元素使用 toString() 方法，所以数组内的元素不能有对象，对象将会装换为"[object Object]"，如果元素为数组则会将数组内的元素提取出来进行拼接
+所有数组元素被转**换成字符串**并连接到一个字符串中。如果一个元素是 `undefined` 或 `null`，它将被转换为空字符串，而不是字符串 `"undefined"` 或 `"null"`。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const arr2 = arr.join('|');
-console.log(arr2); // 输出："1|2|3|4|5"
+const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join()); // "Fire,Air,Water"
+
+console.log(elements.join('')); // "FireAirWater"
+
+console.log(elements.join('-')); // "Fire-Air-Water"
 ```
 
 ### some 方法（校验数组）

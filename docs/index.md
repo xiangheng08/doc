@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "My Doc"
-  text: "留下学习的足迹"
-  tagline: 且将新火试新茶，诗酒趁年华
+  text: "我的笔记"
+  tagline: 在这里，留下学习的足迹
   actions:
     - theme: brand
       text: Markdown Examples
