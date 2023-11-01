@@ -1,5 +1,45 @@
 # Array
 
+- ~~length~~
+- at
+- concat
+- copyWithin
+- entries
+- every
+- fill
+- filter
+- find
+- findIndex
+- findLast
+- findLastIndex
+- flat
+- flatMap
+- forEach
+- includes
+- ~~indexof~~
+- join
+- keys
+- lastIndexof
+- ~~map~~
+- ~~pop~~
+- ~~push~~
+- reduce
+- reduceRight
+- ~~reverse~~
+- shift
+- slice
+- some
+- ~~sort~~
+- ~~splice~~
+- toLocalestring
+- toReversed
+- ~~toSorted~~
+- toSpliced
+- tostring
+- ~~unshift~~
+- values
+- with
+
 ## 属性
 
 ### length
@@ -495,3 +535,5 @@ const arr = [1, 2, 3, 4, 5];
 const arr2 = arr.at(-1);
 console.log(arr2); // 输出：5
 ```
+
+### includes

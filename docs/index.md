@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "My Doc"
-  text: "My Doc"
-  tagline: My great project tagline
+  text: "逆水行舟 不进则退"
+  tagline: 宝剑锋从磨砺出，梅花香自苦寒来
   actions:
     - theme: brand
       text: Markdown Examples

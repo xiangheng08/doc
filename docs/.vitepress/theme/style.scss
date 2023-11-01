@@ -36,3 +36,7 @@ html {
 		}
 	}
 }
+
+li::marker {
+  color: var(--list-marker);
+}

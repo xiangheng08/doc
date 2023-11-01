@@ -21,7 +21,7 @@ import subPage from '@theme/components/subPage.vue'
 
 <sub-page url="/examples/iframe/css/smoothScroll.html" height="360" title="效果"/>
 
-[scroll-behavior属性 MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/scroll-behavior)
+[scroll-behavior 属性 MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/scroll-behavior)
 
 ## 超出文字省略
 
@@ -190,3 +190,30 @@ document.addEventListener('copy', (e) => {
 <demo>
   <span style="user-select: none;">这行文字不能选中</span>
 </demo>
+
+## 内容适应宽度
+
+```css
+.fit-width {
+	width: fit-content;
+	width: -moz-fit-content;
+	width: -webkit-fit-content;
+}
+```
+
+```html
+<div class="fit-width">这行文字会根据内容自动适应宽度</div>
+```
+
+<demo>
+  <div class="fit-width">这行文字会根据内容自动适应宽度</div>
+</demo>
+
+<style>
+.fit-width {
+	width: fit-content;
+	width: -moz-fit-content;
+	width: -webkit-fit-content;
+	border: 1px solid pink;
+}
+</style>

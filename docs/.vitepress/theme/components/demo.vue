@@ -44,7 +44,7 @@ const _padding = computed(() => formatCSSlength(props.padding))
 <style scoped lang="scss">
 .sub-page {
 	position: relative;
-	border: 1px solid var(--demo-border-color);
+	border: 1px solid var(--demo-border);
 	border-radius: var(--demo-radius);
 	overflow: hidden;
 	margin: 1rem 0;

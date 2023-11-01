@@ -11,5 +11,6 @@ declare module 'vue' {
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']
     TButton: typeof import('tdesign-vue-next')['Button']
+    Version: typeof import('./theme/components/version.vue')['default']
   }
 }

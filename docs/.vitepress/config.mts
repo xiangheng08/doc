@@ -27,7 +27,7 @@ export default defineConfig({
 
 		outline: {
 			label: '本页目录',
-			level: 'deep', // 层级
+			level: [2, 4], // 层级
 		},
 
 		// socialLinks: [
@@ -43,7 +43,7 @@ export default defineConfig({
 		docFooter: { prev: '上一篇', next: '下一篇' },
 
 		footer: {
-			message: 'my doc',
+			// message: 'my doc',
 			copyright:
 				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright &copy; 2023-present 湘ICP备2023023348号</a>',
 		},
