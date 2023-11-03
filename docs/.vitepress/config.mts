@@ -73,7 +73,7 @@ export default defineConfig({
 		footer: {
 			// message: 'my doc',
 			copyright:
-				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright &copy; 2023-present 湘ICP备2023023348号</a>',
+				'Copyright © 2022-present <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">湘ICP备2023023348号</a>',
 		},
 
 		lastUpdated: {

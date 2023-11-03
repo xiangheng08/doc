@@ -103,4 +103,13 @@ ssh-keygen -t rsa -C 设置的邮箱
 
 # 取消git的版本控制（此操作将删除以前的提交记录）
 find . -name ".git" | xargs rm -Rf 
+
+# 查看当前项目大小写忽略状态
+git config --get core.ignorecase
+git config --global --get core.ignorecase
+
+# 开启大小写敏感
+git config core.ignorecase false
+git config --global core.ignorecase false
+
 ```

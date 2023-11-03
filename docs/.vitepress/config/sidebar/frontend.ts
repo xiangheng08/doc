@@ -75,9 +75,13 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'vitepress',
 		items: [
 			{
+				text: '效果',
+				link: '/frontend/vitepress/effect',
+			},
+			{
 				text: '遇到的错误',
 				link: '/frontend/vitepress/error',
-			}
+			},
 		]
 	},
 ]);

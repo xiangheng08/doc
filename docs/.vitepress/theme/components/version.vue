@@ -24,8 +24,6 @@ const props = defineProps({
 	color: var(--vp-c-indigo-1);
 	white-space: nowrap;
   margin: 1em 0;
-  // width: -moz-fit-content;
-  // width: fit-content;
   display: inline-block;
 }
 </style>
