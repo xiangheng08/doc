@@ -60,6 +60,14 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '模板语法',
 						link: '/frontend/vue/basic/syntax',
 					},
+					{
+						text: '计算属性和侦听器',
+						link: '/frontend/vue/basic/computed-watch',
+					},
+					{
+						text: 'class 与 style 绑定',
+						link: '/frontend/vue/basic/class-style',
+					},
 				],
 			},
 			{
