@@ -1,5 +1,5 @@
-import { define } from '../../utils'
-import { DefaultTheme } from 'vitepress'
+import { define } from '../../utils';
+import { DefaultTheme } from 'vitepress';
 
 export default define<DefaultTheme.SidebarItem[]>([
 	{
@@ -10,11 +10,11 @@ export default define<DefaultTheme.SidebarItem[]>([
 		items: [
 			{
 				text: '选择器',
-				link: '/frontend/css/selector'
+				link: '/frontend/css/selector',
 			},
 			{
 				text: '值与单位',
-				link: '/frontend/css/values-and-units'
+				link: '/frontend/css/values-and-units',
 			},
 			{
 				text: '效果',
@@ -35,11 +35,25 @@ export default define<DefaultTheme.SidebarItem[]>([
 				items: [
 					{
 						text: 'Array',
-						link: '/frontend/js/object/array'
-					}
-				]
-			}
-		]
+						link: '/frontend/js/object/array',
+					},
+				],
+			},
+			{
+				text: 'JS 高阶语法',
+				collapsed: true,
+				items: [
+					{
+						text: 'Primise',
+						link: '/frontend/js/advanced/syntax/promise',
+					},
+				],
+			},
+			{
+				text: 'JS 高阶函数',
+				items: [],
+			},
+		],
 	},
 	{
 		text: 'Vue',
@@ -98,6 +112,6 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '遇到的错误',
 				link: '/frontend/vitepress/error',
 			},
-		]
+		],
 	},
 ]);

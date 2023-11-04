@@ -90,6 +90,17 @@ git pull 别名 | 远程库地址 分支名
 
 # 强制覆盖本地的分支
 git pull --force 别名 | 远程库地址 分支名
+
+# 配置默认的推送远程地址
+git push --set-upstream 远程名 分支名
+# 例如
+git push --set-upstream origin main
+
+# 配置默认的拉取远程地址
+git branch --set-upstream-to=远程名/分支名 本地分支名
+# 例如，将 origin 的 main 分支设置为默认的拉取地址
+git branch --set-upstream-to=origin/main main
+
 ```
 
 ## 其他
