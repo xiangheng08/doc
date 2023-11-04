@@ -157,6 +157,8 @@
   --demo-radius: 8px;
 
 	--list-marker: #318bd6;
+
+	--version: #318bd6;
 }
 
 .dark {
@@ -167,12 +169,14 @@
   --demo-shadow: 0px 0px 12px rgba(0, 0, 0, 0.72);
 
 	--list-marker: #569cd6;
+
+	--version: #569cd6;
 }
 
 /**
  * 侧栏滚动条颜色
  * -------------------------------------------------------------------------- */
 :root {
-	--aside-scroll: rgba(194, 194, 194, 0.2);
-	--aside-scroll-hover: rgba(194, 194, 194, 0.64);
+	--aside-scroll: rgba(194, 194, 194, 0.1);
+	--aside-scroll-hover: rgba(194, 194, 194, 0.3);
 }

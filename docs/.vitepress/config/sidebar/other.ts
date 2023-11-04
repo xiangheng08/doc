@@ -9,6 +9,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: 'VScode',
 				link: '/other/tips/vscode',
 			},
+			{
+				text: 'Windows',
+				link: '/other/tips/windows',
+			},
 		],
 	},
 ]);

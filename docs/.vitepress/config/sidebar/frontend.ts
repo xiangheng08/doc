@@ -68,6 +68,14 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: 'class 与 style 绑定',
 						link: '/frontend/vue/basic/class-style',
 					},
+					{
+						text: '条件渲染',
+						link: '/frontend/vue/basic/conditional',
+					},
+					{
+						text: '列表渲染',
+						link: '/frontend/vue/basic/list',
+					},
 				],
 			},
 			{
