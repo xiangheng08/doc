@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const dayjs = require('dayjs')
 
 // 输出目录
 const distPath = path.join(__dirname, '../docs/.vitepress/dist');
@@ -102,6 +103,6 @@ if (fs.existsSync(readPath)) {
 
 		copyDirectoryContents(distPath, res.path, false);
 
-		console.log(`复制完成`);
+		console.log(`复制完成 ${dayjs().format('YYYY-MM-DD HH:mm:ss')}`);
 	}
 }
