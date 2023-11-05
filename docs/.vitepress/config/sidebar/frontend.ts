@@ -4,9 +4,11 @@ import { DefaultTheme } from 'vitepress';
 export default define<DefaultTheme.SidebarItem[]>([
 	{
 		text: 'HTML',
+		collapsed: false,
 	},
 	{
 		text: 'CSS',
+		collapsed: false,
 		items: [
 			{
 				text: '选择器',
@@ -28,6 +30,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 	},
 	{
 		text: 'JavaScript',
+		collapsed: false,
 		items: [
 			{
 				text: '对象',
@@ -51,12 +54,19 @@ export default define<DefaultTheme.SidebarItem[]>([
 			},
 			{
 				text: 'JS 高阶函数',
-				items: [],
+				collapsed: true,
+				items: [
+					{
+						text: '并发执行任务',
+						link: '/frontend/js/advanced/function/paralle-task',
+					}
+				],
 			},
 		],
 	},
 	{
 		text: 'Vue',
+		collapsed: false,
 		items: [
 			{
 				text: 'Vue 基础',
@@ -67,12 +77,20 @@ export default define<DefaultTheme.SidebarItem[]>([
 						link: '/frontend/vue/basic/install',
 					},
 					{
+						text: 'Vue 开发者工具',
+						link: '/frontend/vue/basic/devtools',
+					},
+					{
 						text: 'Vue 实例',
 						link: '/frontend/vue/basic/instance',
 					},
 					{
 						text: '模板语法',
 						link: '/frontend/vue/basic/syntax',
+					},
+					{
+						text: '指令',
+						link: '/frontend/vue/basic/directives',
 					},
 					{
 						text: '计算属性和侦听器',
@@ -90,6 +108,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '列表渲染',
 						link: '/frontend/vue/basic/list',
 					},
+					{
+						text: '响应式原理',
+						link: '/frontend/vue/basic/reactivity',
+					},
 				],
 			},
 			{
@@ -100,9 +122,11 @@ export default define<DefaultTheme.SidebarItem[]>([
 	},
 	{
 		text: 'vite',
+		collapsed: false,
 	},
 	{
 		text: 'vitepress',
+		collapsed: false,
 		items: [
 			{
 				text: '效果',

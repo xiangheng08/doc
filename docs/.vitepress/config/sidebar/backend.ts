@@ -1,17 +1,21 @@
-import { define } from '../../utils'
-import { DefaultTheme } from 'vitepress'
+import { define } from '../../utils';
+import { DefaultTheme } from 'vitepress';
 
 export default define<DefaultTheme.SidebarItem[]>([
-  {
-    text: '后端', items: [
-      {
+	{
+    text: '后端',
+    collapsed: false,
+		items: [
+			{
         text: 'MySql',
-        items: [
-          {
-            text: '错误',
-            link: '/backend/mysql/error'
-          }
-        ]
-      }
-  ] }
+        collapsed: true,
+				items: [
+					{
+						text: '错误',
+						link: '/backend/mysql/error',
+					},
+				],
+			},
+		],
+	},
 ]);
