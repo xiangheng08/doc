@@ -1,97 +1,5 @@
 # Git 命令大全
 
-## git 配置
-
-## 本地
-
-```sh
-# 看本地库状态
-git status
-
-# 添加到暂存区
-git add 文件名 | 目录名 | *
-
-# 提交本地库
-git commit -m "日志信息" 文件名 | 目录名 | * | 不写
-
-# 查看历史记录
-git reflog
-
-# 查看详细历史记录
-git log
-
-# 版本穿梭
-git reset 版本号
-```
-
-## 分支
-
-```sh
-# 创建分支
-git branch 分支名
-
-# 切换分支
-git checkout 分支名
-
-# 查看分支
-git branch -v
-
-# 把指定的分支合并到当前分支上
-git merge 分支名
-
-# 删除本地分支
-git branch -d 分支名
-
-# 删除远程分支
-git push 别名 | 远程地址 --d 分支名
-
-# 创建空白分支，记得在这个分支提交一下，不然使用 git branch -v 看不到
-git checkout --orphan 分支名
-```
-
-::: warning 注意
-删除本地分支时，不能删除当前分支，需要切换分支再删除。
-:::
-
-## 远程
-
-```sh
-# 添加远程库
-git remote add 别名 远程地址
-
-# 查看远程库
-git remote -v
-
-# 修改远程库
-git remote rename 旧别名 新别名
-
-# 删除远程库
-git remote rm 别名
-
-# 推送到远程库
-git push 别名 | 远程库地址 分支名
-
-# 克隆远程到仓库到本地
-git clone 别名 | 远程地址
-
-# 拉取远程库
-git pull 别名 | 远程库地址 分支名
-
-# 强制覆盖本地的分支
-git pull --force 别名 | 远程库地址 分支名
-
-# 配置默认的推送远程地址
-git push --set-upstream 远程名 分支名
-# 例如
-git push --set-upstream origin main
-
-# 配置默认的拉取远程地址
-git branch --set-upstream-to=远程名/分支名 本地分支名
-# 例如，将 origin 的 main 分支设置为默认的拉取地址
-git branch --set-upstream-to=origin/main main
-
-```
-
 ## 创建和克隆仓库
 
 -   `git init`: 在当前目录初始化一个新的 Git 仓库。
@@ -115,16 +23,23 @@ git branch --set-upstream-to=origin/main main
 -   `git branch <branch_name>`: 创建新分支。
 -   `git checkout <branch_name>`: 切换到指定分支。
 -   `git merge <branch_name>`: 合并指定分支到当前分支。
--   `git branch -d <branch_name>`: 删除本地分支。
--   `git push origin --delete <branch_name>`: 删除远程分支。
+-   `git branch -d <branch_name>`: 删除本地分支，不能删除当前分支，需要切换分支再删除。。
+-   `git push <remote> --delete <branch_name>`: 删除远程分支。
+-   `git branch -r`: 显示远程分支列表。
 
 ## 远程操作
 
 -   `git remote -v`: 显示远程仓库列表。
 -   `git remote add <name> <repository_url>`: 添加远程仓库。
+-   `git remote rename <old_name> <new_name>`: 修改远程库名称
+-   `git remote rm <name>`: 删除远程库
 -   `git pull <remote> <branch>`: 从远程仓库拉取最新代码。
+-   `git pull --force <remote> <branch>`: 强制拉取远程仓库最新代码，覆盖本地。
 -   `git push <remote> <branch>`: 推送本地分支到远程仓库。
 -   `git fetch <remote>`: 获取远程仓库的最新信息，但不合并。
+-   `git clone <remote>`: 克隆远程仓库到本地。
+-   `git push 别名 | 远程地址 --d 分支名`
+-   `git push <remote> --delete <branch_name>`: 删除远程分支。
 
 ## 查看状态和历史
 
@@ -141,6 +56,7 @@ git branch --set-upstream-to=origin/main main
 -   `git reset`: 取消对所有文件的暂存。
 -   `git reset --hard <commit>`: 重置 HEAD 到指定的提交，丢弃所有改动。
 -   `git checkout <file>`: 恢复文件到最近一次提交的状态。
+-   `git reset --hard HEAD`：将当前分支重置为最新的提交，删除工作目录中未提交的更改。
 
 ## 标签
 
@@ -151,13 +67,34 @@ git branch --set-upstream-to=origin/main main
 
 ## 其他
 
+-   `git --version`: 显示 git 版本。
 -   `git stash`: 暂存当前的工作，将修改保存到一个栈中。
 -   `git stash pop`: 恢复最近一次暂存的工作。
 -   `git clean -n`: 预览并清除工作区的未跟踪文件。
 -   `git clean -f`: 清除工作区的未跟踪文件（慎用）。
--   `git --version`: 显示 git 版本。
--   `ssh-keygen -t rsa -C "youremail@example.com"`: 生成.ssh 秘钥目录（注意：这里-C 这个参数是大写的 C）
--   `find . -name ".git" | xargs rm -Rf`: 取消 git 的版本控制（此操作将删除以前的提交记录，慎用）
+
+## 命令集
+
+### 配置默认的推送远程地址
+
+`git push --set-upstream <remote> <branch>`
+
+此操作会推送一次，`<branch>` 为本地分支名，一般为当前分支
+
+例如
+```sh
+git push --set-upstream origin main
+
+```
+
+### 配置默认的拉取远程地址
+
+`git branch --set-upstream-to=<remote>/<remote_branch> <branch>`
+
+```sh
+# 例如，将 origin 的 main 分支默认拉取到本地的 main分支
+git branch --set-upstream-to=origin/main main
+```
 
 ### 开启大小写敏感
 
@@ -185,6 +122,25 @@ cat .git/config
 git config core.filemode false
 ```
 
+### 创建空白分支
+
+记得在这个分支提交一下，不然使用 `git branch` 看不到
+
+`git checkout --orphan <branch_name>`
+
+### 生成.ssh 秘钥目录
+
+`ssh-keygen -t rsa -C "youremail@example.com"`
+
+注意：这里-C 这个参数是大写的 C）
+
+### 取消 git 的版本控制
+
+`find . -name ".git" | xargs rm -Rf`
+
+此操作将删除以前的提交记录（慎用）
+
 ## 关键词
 
 -   `--global`: 全局
+-   `--force`: 强制
