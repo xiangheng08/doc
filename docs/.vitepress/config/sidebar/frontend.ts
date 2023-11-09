@@ -112,6 +112,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '响应式原理',
 						link: '/frontend/vue/basic/reactivity',
 					},
+					{
+						text: '事件处理',
+						link: '/frontend/vue/basic/events',
+					},
 				],
 			},
 			{
@@ -130,7 +134,18 @@ export default define<DefaultTheme.SidebarItem[]>([
 		items: [
 			{
 				text: '效果',
-				link: '/frontend/vitepress/effect',
+				
+				collapsed: true,
+				items: [
+					{
+						text: '平滑滚动',
+						link: '/frontend/vitepress/effect/smooth-scroll',
+					},
+					{
+						text: '侧栏大纲自动滚动',
+						link: '/frontend/vitepress/effect/outline-auto-scroll',
+					},
+				]
 			},
 			{
 				text: '遇到的错误',

@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Demo: typeof import('./theme/components/demo.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
+    OutlineAutoScroll: typeof import('./theme/components/outlineAutoScroll.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']
     TButton: typeof import('tdesign-vue-next')['Button']
     Version: typeof import('./theme/components/version.vue')['default']
