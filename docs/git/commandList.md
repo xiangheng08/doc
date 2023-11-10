@@ -46,6 +46,8 @@
 -   `git status`: 显示工作区和暂存区的状态。
 -   `git log`: 查看提交历史。
 -   `git log --oneline`: 查看简化的提交历史。
+-   `git log -2`: 查看最近两条的提交历史。
+-   `git tag -l "v*"`: 显示以 "v" 开头的标签
 -   `git diff`: 查看工作区和暂存区的差异。
 -   `git diff <commit1> <commit2>`: 查看两个提交之间的差异。
 -   `git reflog`: 查看操作历史。
@@ -60,10 +62,13 @@
 
 ## 标签
 
--   `git tag <tag_name>`: 创建标签。
--   `git tag -a <tag_name> -m "Tag message"`: 创建带注释的标签。
+-   `git tag <tag_name> [<commit_hash>]`: 创建标签（默认当前分支最新提交）。
+-   `git tag`: 查看所有标签
+-   `git tag -a <tag_name> -m "Tag message" [<commit_hash>]`: 创建带注释的标签。
 -   `git push --tags`: 推送所有标签到远程仓库。
 -   `git show <tag_name>`: 查看标签信息。
+-   `git tag -d <tag_name>`: 删除标签。
+-   `git ls-remote --tags <remote>`: 列出远程仓库的标签。
 
 ## 其他
 

@@ -62,6 +62,18 @@ li::marker {
 	background-color: var(--aside-scroll-hover);
 }
 
-.aside-container{
+.aside-container {
 	scroll-behavior: smooth;
+}
+
+table{
+	&.stretch {
+		width: 100%;
+		display: table;
+	}
+	&.title-center{
+		th{
+			text-align: center;
+		}
+	}
 }

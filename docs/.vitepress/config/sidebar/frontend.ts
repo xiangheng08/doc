@@ -33,6 +33,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 		collapsed: false,
 		items: [
 			{
+				text: '语法',
+				link: '/frontend/js/syntax',
+			},
+			{
 				text: '对象',
 				collapsed: true,
 				items: [
