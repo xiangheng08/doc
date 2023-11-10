@@ -195,3 +195,26 @@ Vue.config.keyCodes.f1 = 112;
 ::: danger 注意
 请注意修饰键与常规按键不同，在和 `keyup` 事件一起用时，事件触发时修饰键必须处于按下状态。换句话说，只有在按住 `ctrl` 的情况下释放其它按键，才能触发 `keyup.ctrl`。而单单释放 `ctrl` 也不会触发事件。如果你想要这样的行为，请为 `ctrl` 换用 `keyCode`：`keyup.17`。
 :::
+
+### `.exact` 修饰符 <version text="2.5.0+"/>
+
+`.exact` 修饰符允许你控制由精确的系统修饰符组合触发的事件。
+
+```html
+<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+<button v-on:click.ctrl="onClick">A</button>
+
+<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+<button v-on:click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- 没有任何系统修饰符被按下的时候才触发 -->
+<button v-on:click.exact="onClick">A</button>
+```
+
+### 鼠标按钮修饰符
+
+-  `.left` 左键
+-  `.right` 右键
+-  `.middle` 中键
+
+这些修饰符会限制处理函数仅响应特定的鼠标按钮。
