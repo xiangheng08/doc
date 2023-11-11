@@ -37,6 +37,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/js/syntax',
 			},
 			{
+				text: '常用函数',
+				link: '/frontend/js/func-list',
+			},
+			{
 				text: '对象',
 				collapsed: true,
 				items: [
@@ -63,10 +67,24 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{
 						text: '并发执行任务',
 						link: '/frontend/js/advanced/function/paralle-task',
+					},
+					{
+						text: '惰性函数',
+						link: '/frontend/js/advanced/function/lazy',
 					}
 				],
 			},
 		],
+	},
+	{
+		text: '布局',
+		collapsed: false,
+		items: [
+			{
+				text: '瀑布流布局',
+				link: '/frontend/layout/waterfall',
+			}
+		]
 	},
 	{
 		text: 'Vue',
