@@ -19,7 +19,7 @@
 				min-width: 500px;
 				margin: 20px auto;
 				border: 1px solid #ccc;
-        border-radius: 6px;
+				border-radius: 6px;
 			}
 
 			.container > div {
@@ -41,7 +41,7 @@
 			const container = document.querySelector('.container');
 			const columnWidth = 200; // 列宽
 			const sideSpacing = true; // 两侧是否需要间距
-      const minSpace = 10; // 最小间距
+			const minSpace = 10; // 最小间距
 
 			// 随机颜色
 			function randomColor() {
@@ -85,8 +85,8 @@
 				let remainder = target - columnWidth * result.columns; // 容器剩余宽度
 				let spaceCount = sideSpacing ? result.columns + 1 : result.columns - 1; // 间距数量
 				result.space = remainder / spaceCount; // 计算间距
-        
-        // 计算的间距小于最小间距时，重新计算
+
+				// 计算的间距小于最小间距时，重新计算
 				if (result.space < minSpace && result.columns > 1) {
 					result.columns -= 1;
 
@@ -108,7 +108,7 @@
 				const columnInfo = cal(container, columnWidth, sideSpacing, minSpace); // 列数信息
 				const children = container.children;
 				const nextTops = new Array(columnInfo.columns); // 每一列的 top 值
-        nextTops.fill(sideSpacing ? columnInfo.space : 0); // 填充初始值
+				nextTops.fill(sideSpacing ? columnInfo.space : 0); // 填充初始值
 
 				for (let i = 0; i < children.length; i++) {
 					const element = children[i];
@@ -116,17 +116,17 @@
 					const minIndex = nextTops.indexOf(min); // 最小高度的索引
 					const temp = sideSpacing ? 1 : 0;
 
-          // 设置元素位置
+					// 设置元素位置
 					element.style.top = min + 'px';
 					element.style.left = columnWidth * minIndex + columnInfo.space * (minIndex + temp) + 'px';
 
-          // 更新 nextTops
+					// 更新 nextTops
 					nextTops[minIndex] += element.clientHeight + columnInfo.space;
 				}
 
-        // 更新容器高度
+				// 更新容器高度
 				let max = Math.max.apply(null, nextTops);
-        if(!sideSpacing) max -= columnInfo.space;
+				if (!sideSpacing) max -= columnInfo.space;
 				container.style.height = max + 'px';
 			}
 
@@ -137,11 +137,11 @@
 			let timer;
 
 			window.addEventListener('resize', () => {
-        clearTimeout(timer);
+				clearTimeout(timer);
 				timer = setTimeout(() => setPosition(container, columnWidth, sideSpacing), 500);
 			});
 
-      // 计算位置出现滚动条时，重新计算位置
+			// 计算位置出现滚动条时，重新计算位置
 			if (document.body.scrollHeight > window.innerHeight) {
 				setPosition(container, columnWidth, sideSpacing);
 			}
@@ -152,4 +152,27 @@
 
 ## 效果
 
-[效果](/examples/frontend/layout/waterfall.html)
+<a href="/examples/frontend/layout/waterfall.html" target="_blank">效果</a>
+
+## 实现原理
+
+首先，我们要知道瀑布流布局的特点：
+
+1. 每个元素的宽度是固定的
+2. 每个元素的高度是动态的
+
+既然宽度是固定的，那么列数的就可以确定下来
+
+列数计算公式：容器的宽度 / 元素的宽度在向下取整
+
+间距计算公式：容器的宽度 - 元素的宽度 * 列数 + 1（使用 “列数 - 1” 就是没有两边的间距）
+
+在代码中使用了 `cal` 函数来计算列数和间距。
+
+知道列数了，我们就可以定义一个数组，数组的长度就是列数，数组中的元素就是每列的高度，开始填充 0 作为初始值。
+
+然后循环容器的子元素，获取每个元素的高度，然后找到数组中的最小值，作为元素的 y 轴，然后把数组中对应位置的值加上这个元素的高度和间距。
+
+更新容器的样式，设置高度为数组中的最大值。
+
+最后给添加 `resize` 事件，当大小发生变化时，重新计算位置，记得做一下防抖。
