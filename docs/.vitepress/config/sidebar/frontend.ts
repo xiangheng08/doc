@@ -5,6 +5,16 @@ export default define<DefaultTheme.SidebarItem[]>([
 	{
 		text: 'HTML',
 		collapsed: false,
+		items: [
+			{
+				text: '起步',
+				link: '/frontend/html/index',
+			},
+			{
+				text: '标签',
+				link: '/frontend/html/tag',
+			},
+		],
 	},
 	{
 		text: 'CSS',
@@ -71,7 +81,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{
 						text: '惰性函数',
 						link: '/frontend/js/advanced/function/lazy',
-					}
+					},
 				],
 			},
 		],
@@ -83,8 +93,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '瀑布流布局',
 				link: '/frontend/layout/waterfall',
-			}
-		]
+			},
+		],
 	},
 	{
 		text: 'Vue',
@@ -156,7 +166,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 		items: [
 			{
 				text: '效果',
-				
+
 				collapsed: true,
 				items: [
 					{
@@ -167,7 +177,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '侧栏大纲自动滚动',
 						link: '/frontend/vitepress/effect/outline-auto-scroll',
 					},
-				]
+				],
 			},
 			{
 				text: '遇到的错误',
