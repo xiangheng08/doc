@@ -39,7 +39,7 @@ vm.b = 2;
 Vue.set(vm.someObject, 'b', 2);
 ```
 
-您还可以使用 `vm.$set` 实例方法，这也是全局 `Vue.set` 方法的别名：
+您还可以使用 [`vm.$set`](#vm-set) 实例方法，这也是全局 `Vue.set` 方法的别名：
 
 ```js
 this.$set(this.someObject, 'b', 2);
@@ -80,7 +80,7 @@ Vue.set(vm.items, indexOfItem, newValue);
 vm.items.splice(indexOfItem, 1, newValue);
 ```
 
-你也可以使用 [`vm.$set`](https://v2.cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
+你也可以使用 [`vm.$set`](#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
 
 ```js
 vm.$set(vm.items, indexOfItem, newValue);
@@ -167,3 +167,45 @@ methods: {
   }
 }
 ```
+
+## vm.$set
+
+这是全局 Vue.set 的别名。
+
+`vm.$set( target, propertyName/index, value )`
+
+-   参数：
+
+    -   `{Object | Array} target`
+    -   `{string | number} propertyName/index`
+    -   `{any} value`
+
+-   返回值：设置的值。
+
+-   用法：
+    向响应式对象中添加一个 property，并确保这个新 property 同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新 property，因为 Vue 无法探测普通的新增 property (比如 `this.myObject.newProperty = 'hi'`)
+    ::: danger
+    注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。
+    :::
+
+## vm.$delete
+
+这是全局 Vue.delete 的别名。
+
+`vm.$delete( target, propertyName/index )`
+
+-	参数：
+
+	-	`{Object | Array} target`
+	-	`{string | number} propertyName/index`
+
+-	用法：
+
+	删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制，但是你应该很少会使用它。
+
+	::: tip
+	在 2.2.0+ 中同样支持在数组上工作。
+	:::
+	::: danger
+	目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。
+	:::
