@@ -29,6 +29,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/css/values-and-units',
 			},
 			{
+				text: '背景样式',
+				link: '/frontend/css/style/background',
+			},
+			{
 				text: '效果',
 				link: '/frontend/css/effect',
 			},
