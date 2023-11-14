@@ -5,6 +5,8 @@
 		</template>
 		<iframe
 			v-if="props.url"
+			ref="iframeRef"
+			@load="onLoad"
 			:src="props.url"
 			:sandbox="sandbox"
 			:width="_width"
@@ -14,8 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, reactive, watch, nextTick } from 'vue';
 import { formatCSSlength } from '@/utils/format';
+import { useData } from 'vitepress';
+
+const { isDark } = useData();
 
 const _sandbox = reactive<string[]>([]);
 
@@ -40,7 +45,7 @@ const props = defineProps({
 	// 同源
 	sameOrigin: {
 		type: Boolean,
-		default: false,
+		default: true,
 	},
 	scripts: {
 		type: Boolean,
@@ -55,6 +60,28 @@ if (props.scripts) _sandbox.push('allow-scripts');
 const _width = computed(() => formatCSSlength(props.width));
 const _height = computed(() => formatCSSlength(props.height));
 const sandbox = computed(() => _sandbox.join(' '));
+
+const iframeRef = ref<HTMLIFrameElement | null>(null);
+
+const subWindow = ref<Window | null>(null);
+const subDocument = ref<Document | null>(null);
+
+const onLoad = () => {
+	if (props.sameOrigin && iframeRef.value && iframeRef.value.contentWindow) {
+		subWindow.value = iframeRef.value.contentWindow;
+		subDocument.value = iframeRef.value.contentWindow.document;
+
+		nextTick(toggleSubPageMode)
+	}
+};
+
+const toggleSubPageMode = () => {
+	if (subDocument.value) {
+		subDocument.value.documentElement.style.colorScheme = isDark.value ? 'dark' : 'light';
+	}
+};
+
+watch(isDark, toggleSubPageMode);
 </script>
 
 <style scoped lang="scss">

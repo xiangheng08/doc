@@ -19,7 +19,7 @@ html {
 import subPage from '@theme/components/subPage.vue'
 </script>
 
-<sub-page url="/examples/frontend/iframe/css/smoothScroll.html" height="360" title="效果"/>
+<sub-page url="/examples/frontend/iframe/css/smoothScroll.html" height="360" title="效果" :same-origin="false"/>
 
 [scroll-behavior 属性 MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/scroll-behavior)
 

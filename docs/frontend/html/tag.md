@@ -204,7 +204,7 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 
 ### `<big>` 大号
 
-<big>大号</big>
+<div v-pre><big>大号</big></div>
 
 ### `<q>` 引用
 
