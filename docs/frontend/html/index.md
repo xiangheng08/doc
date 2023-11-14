@@ -83,3 +83,22 @@ HTML 被用于创建网页的基本结构，它定义了页面的标题、段落
 - `peak-result.png` -> `https://www.baidu.com/doc/html/peak-result.png`
 
 
+## 标签属性
+
+对于属性类型为 boolean 的属性，写了就是 true（无关乎值是什么），没写就是 false。
+
+```html
+<!-- true -->
+<input type="checkbox" name="1" checked>
+<!-- true -->
+<input type="checkbox" name="1" checked="true">
+<!-- true -->
+<input type="checkbox" name="1" checked="false">
+<!-- false -->
+<input type="checkbox" name="1">
+```
+
+
+<sub-page>
+<p>12121</p>
+</sub-page>

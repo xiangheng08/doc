@@ -500,7 +500,7 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 
 表格头部单元格，一般包含多个表格头部单元格。
 
-### `<td>` 表格主体单元格
+### `<td>` 表格单元格
 
 表格主体单元格，一般包含多个表格主体单元格。
 
@@ -560,14 +560,14 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 
 这些属性要写到标签 table 中
 
-| 属性名      | 属性值              | 描述                                             |
-| ----------- | ------------------- | ------------------------------------------------ |
-| align       | left、center、right | 规定表格相对周围元素的对齐方式                   |
-| border      | “1"或”"             | 规定表格单元是否拥有边框，默认为""，表示没有边框 |
-| cellpadding | 像素值              | 规定单元边沿与其内容之间的空白，默认 1 像素      |
-| cellspacing | 像素值              | 规定单元格之间的空白，默认 2 像素                |
-| width       | 像素值或百分比      | 规定表格的宽度                                   |
-| height      | 像素值或百分比      | 规定表格的高度                                   |
+| 属性名      | 属性值              | 描述                                    |
+| ----------- | ------------------- | --------------------------------------- |
+| align       | left、center、right | 表格相对周围元素的对齐方式              |
+| border      | 像素值 或 不写      | 表格边框大小，默认为不写，表示没有边框  |
+| cellpadding | 像素值              | 单元边沿与其内容之间的空白，默认 1 像素 |
+| cellspacing | 像素值              | 单元格之间的间距，默认 2 像素           |
+| width       | 像素值或百分比      | 表格的宽度                              |
+| height      | 像素值或百分比      | 表格的高度                              |
 
 ```html
 <table align="center" border="1" cellpadding="10" cellspacing="0">
@@ -590,7 +590,7 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 </table>
 ```
 
-<sub-page url="/examples/frontend/iframe/html/tag/table-property.html" height="160px" />
+<sub-page url="/examples/frontend/iframe/html/tag/table-attribute.html" height="160px" />
 
 ## 表单元素
 
@@ -614,9 +614,7 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 | method | get/post | 用于设置表单数据的提交方式，其取值为 get 或 post。  |
 | name   | 名称     | 用于指定表单的名称，以区分同一个页面中的多个表单。  |
 
-### 表单控件
-
-#### input 控件
+### input 控件
 
 ```html
 <input type="属性值" value="你好" />
@@ -632,12 +630,16 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 	</thead>
 	<tbody>
 		<tr>
-			<td rowspan="9">type</td>
+			<td rowspan="13">type</td>
 			<td>text</td>
 			<td>单行文本输入框</td>
 		</tr>
 		<tr>
 			<td>password</td>
+			<td>密码输入框</td>
+		</tr>
+		<tr>
+			<td>email</td>
 			<td>密码输入框</td>
 		</tr>
 		<tr>
@@ -653,12 +655,12 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 			<td>普通按钮</td>
 		</tr>
 		<tr>
-			<td>submit</td>
-			<td>提交按钮</td>
+			<td>reset</td>
+			<td>表单重置按钮</td>
 		</tr>
 		<tr>
-			<td>reset</td>
-			<td>重置按钮</td>
+			<td>submit</td>
+			<td>提交按钮</td>
 		</tr>
 		<tr>
 			<td>image</td>
@@ -669,38 +671,171 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 			<td>文件域</td>
 		</tr>
 		<tr>
+			<td>date</td>
+			<td>日期选择</td>
+		</tr>
+		<tr>
+			<td>color</td>
+			<td>拾色器</td>
+		</tr>
+		<tr>
+			<td>hidden</td>
+			<td>隐藏域</td>
+		</tr>
+		<!-- ------ -->
+		<tr>
 			<td>name</td>
-			<td>由用户自定义</td>
+			<td>string</td>
 			<td>控件的名称</td>
 		</tr>
 		<tr>
 			<td>value</td>
-			<td>由用户自定义</td>
-			<td>input控件中的默认文本值</td>
+			<td>any</td>
+			<td>默认值</td>
+		</tr>
+		<tr>
+			<td>placeholder</td>
+			<td>string</td>
+			<td>输入框占位提示</td>
 		</tr>
 		<tr>
 			<td>size</td>
 			<td>正整数</td>
-			<td>input控件在页面中的显示宽度</td>
-		</tr>
-		<tr>
-			<td>checked</td>
-			<td>boolean</td>
-			<td>定义选择控件默认被选中的项</td>
+			<td>input 控件在页面中的显示宽度</td>
 		</tr>
 		<tr>
 			<td>maxlength</td>
 			<td>正整数</td>
-			<td>控件允许输入的最多字符数</td>
+			<td>允许输入的最多字符数</td>
 		</tr>
 		<tr>
 			<td>minlength</td>
 			<td>正整数</td>
-			<td>控件允许输入的最小字符数</td>
+			<td>允许输入的最小字符数</td>
+		</tr>
+		<tr>
+			<td>checked</td>
+			<td>boolean</td>
+			<td>type 为复选框和单选框时是否默认被选中</td>
+		</tr>
+		<tr>
+			<td>required</td>
+			<td>boolean</td>
+			<td>是否必填</td>
+		</tr>
+		<tr>
+			<td>readonly</td>
+			<td>boolean</td>
+			<td>是否只读</td>
+		</tr>
+		<tr>
+			<td>disabled</td>
+			<td>boolean</td>
+			<td>是否禁用</td>
+		</tr>
+		<tr>
+			<td>pattern</td>
+			<td>string</td>
+			<td>正则表达式验证</td>
+		</tr>
+		<tr>
+			<td>list</td>
+			<td>datalist 标签的下拉选项</td>
+			<td>datalist 标签的下拉选项</td>
+		</tr>
+		<tr>
+			<td>min, max, step</td>
+			<td>number</td>
+			<td>最小值, 最大值, 步长</td>
+		</tr>
+		<tr>
+			<td>multiple</td>
+			<td>boolean</td>
+			<td>可以选择多个文件</td>
 		</tr>
 	</tbody>
 </table>
 
+#### input 属性
+
+```html
+<input type="text" name="username" placeholder="请输入用户名" required maxlength="10" size="80" />
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-attribute.html" height="60px"/>
+
+#### input readonly 只读
+
+```html
+<input type="text" readonly value="123" />
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-readonly.html" height="60px"/>
+
+#### input disabled 禁用
+
+```html
+<input type="text" disabled value="123" />
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-disabled.html" height="60px"/>
+
+#### input number 数字输入框限制，最小值，最大值，步长
+
+```html
+<input type="number" step="2" min="1" max="20"/>
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-number.html" height="60px"/>
+
+#### input file 选择文件
+
+```html
+<p>
+  <label for="file1">选择多文件</label>
+  <input type="file" multiple id="file1"/>
+</p>
+
+<p>
+  <label for="file2">限制为图片</label>
+  <input type="file" multiple id="file2" accept="image/*"/>
+</p>
+
+<p>
+  <label for="file3">限制后缀为 png，jpg 的图片</label>
+  <input type="file" multiple id="file3" accept=".png, .jpg"/>
+</p>
+```
+
+`accept` 属性可以限制文件类型，多个用逗号分隔。每个值为文件的后缀或文件的 MIME 类型。但是这只是的进行了一下了过滤，并不能真正的阻止用户选择不符合要求的文件，真正的限制类型的还是需要自行判断。
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-file.html" height="140px"/>
+
+```html
+
+---multiple---
+多文件上传: <input type="file" name="img" multiple />
+
+---pattern---
+<form method="post">
+	验证：<input type="text" name="country_code" pattern="[A-Za-z]{3}" title="只能输入3个字母" />
+	<input type="submit" value="提交" />
+</form>
 
 
+---list---
+<form method="post">
+	<input list="browsers" name="browser" />
+	
+	<datalist id="browsers">
+	  <option value="Internet Explorer">
+	  <option value="Firefox">
+	  <option value="Chrome">
+	  <option value="Opera">
+	  <option value="Safari">
+	</datalist>
+	
+	<input type="submit" value="提交" />
+</form>
 
+```

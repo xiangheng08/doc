@@ -33,12 +33,12 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/css/style/background',
 			},
 			{
-				text: '效果',
-				link: '/frontend/css/effect',
+				text: '鼠标样式',
+				link: '/frontend/css/style/cursor',
 			},
 			{
-				text: '鼠标效果',
-				link: '/frontend/css/cursor',
+				text: '效果',
+				link: '/frontend/css/effect',
 			},
 		],
 	},
@@ -51,8 +51,18 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/js/syntax',
 			},
 			{
-				text: '常用函数',
-				link: '/frontend/js/func-list',
+				text: 'DOM',
+				collapsed: true,
+				items: [
+					{
+						text: '概述',
+						link: '/frontend/js/dom/index',
+					},
+					{
+						text: '选择元素',
+						link: '/frontend/js/dom/select',
+					},
+				]
 			},
 			{
 				text: '对象',
@@ -63,6 +73,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 						link: '/frontend/js/object/array',
 					},
 				],
+			},
+			{
+				text: '常用函数',
+				link: '/frontend/js/func-list',
 			},
 			{
 				text: 'JS 高阶语法',
