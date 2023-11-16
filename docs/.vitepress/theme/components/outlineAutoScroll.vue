@@ -12,7 +12,7 @@ let timer: NodeJS.Timeout;
 const myDocument = globalThis.document;
 
 function onScroll() {
-	clearTimeout(timer);
+	if (timer) clearTimeout(timer);
 	if (!showOutline.value) return;
 	// 防抖
 	timer = setTimeout(() => {
@@ -29,7 +29,10 @@ function onScroll() {
 		if (scrollHeight > height) {
 			const y = offsetTop - contentHeight / 2 + markerHeight + 28; // 计算需要滚动的距离
 
-			asideContainerDom.value.scrollTo(0, y);
+			asideContainerDom.value.scrollTo({
+				behavior: 'smooth',
+				top: y,
+			});
 		}
 	}, 50);
 }
