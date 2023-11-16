@@ -1,12 +1,22 @@
-import { defineConfig } from 'vitepress';
+import './utils/env'
+import { defineConfig, UserConfig, DefaultTheme } from 'vitepress';
 import sidebar from './config/sidebar';
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 
+// 附加配置
+const append: UserConfig<DefaultTheme.Config> = {}
+
+if (process.env.BASE) {
+	append.base = process.env.BASE;
+}
+
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+	...append,
 	title: 'My Doc',
 	description: 'My Doc',
 	lang: 'zh-CN',
