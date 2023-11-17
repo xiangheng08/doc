@@ -608,11 +608,20 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 
 ### 表单属性
 
-| 属性   | 属性值   | 作用                                                |
-| ------ | -------- | --------------------------------------------------- |
-| action | url 地址 | 用于指定接收并处理表单数据的服务器程序的 url 地址。 |
-| method | get/post | 用于设置表单数据的提交方式，其取值为 get 或 post。  |
-| name   | 名称     | 用于指定表单的名称，以区分同一个页面中的多个表单。  |
+| 属性    | 说明                                                |
+| ------- | --------------------------------------------------- |
+| action  | 用于指定接收并处理表单数据的服务器程序的 url 地址。 |
+| method  | 用于设置表单数据的提交方式，其取值为 get 或 post。  |
+| name    | 用于指定表单的名称，以区分同一个页面中的多个表单。  |
+| enctype | 提交数据的 `MIME` 类型                              |
+
+enctype 常用类型
+
+| 值                                | 说明                                             |
+| --------------------------------- | ------------------------------------------------ |
+| application/x-www-form-urlencoded | 查询字符串（默认）                               |
+| multipart/form-data               | 可以同时容纳二进制和文本数据（通常用于文件上传） |
+| text/plain                        | 纯文本                                           |
 
 ### input 控件
 
@@ -620,170 +629,71 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 <input type="属性值" value="你好" />
 ```
 
-<table>
-	<thead>
-		<tr>
-			<th>属性</th>
-			<th>属性值</th>
-			<th>说明</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td rowspan="13">type</td>
-			<td>text</td>
-			<td>单行文本输入框</td>
-		</tr>
-		<tr>
-			<td>password</td>
-			<td>密码输入框</td>
-		</tr>
-		<tr>
-			<td>email</td>
-			<td>密码输入框</td>
-		</tr>
-		<tr>
-			<td>radio</td>
-			<td>单选按钮</td>
-		</tr>
-		<tr>
-			<td>checkbox</td>
-			<td>复选框</td>
-		</tr>
-		<tr>
-			<td>button</td>
-			<td>普通按钮</td>
-		</tr>
-		<tr>
-			<td>reset</td>
-			<td>表单重置按钮</td>
-		</tr>
-		<tr>
-			<td>submit</td>
-			<td>提交按钮</td>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>图像形式的提交按钮</td>
-		</tr>
-		<tr>
-			<td>file</td>
-			<td>文件域</td>
-		</tr>
-		<tr>
-			<td>date</td>
-			<td>日期选择</td>
-		</tr>
-		<tr>
-			<td>color</td>
-			<td>拾色器</td>
-		</tr>
-		<tr>
-			<td>hidden</td>
-			<td>隐藏域</td>
-		</tr>
-		<!-- ------ -->
-		<tr>
-			<td>name</td>
-			<td>string</td>
-			<td>控件的名称</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>any</td>
-			<td>默认值</td>
-		</tr>
-		<tr>
-			<td>placeholder</td>
-			<td>string</td>
-			<td>输入框占位提示</td>
-		</tr>
-		<tr>
-			<td>size</td>
-			<td>正整数</td>
-			<td>input 控件在页面中的显示宽度</td>
-		</tr>
-		<tr>
-			<td>maxlength</td>
-			<td>正整数</td>
-			<td>允许输入的最多字符数</td>
-		</tr>
-		<tr>
-			<td>minlength</td>
-			<td>正整数</td>
-			<td>允许输入的最小字符数</td>
-		</tr>
-		<tr>
-			<td>checked</td>
-			<td>boolean</td>
-			<td>type 为复选框和单选框时是否默认被选中</td>
-		</tr>
-		<tr>
-			<td>required</td>
-			<td>boolean</td>
-			<td>是否必填</td>
-		</tr>
-		<tr>
-			<td>readonly</td>
-			<td>boolean</td>
-			<td>是否只读</td>
-		</tr>
-		<tr>
-			<td>disabled</td>
-			<td>boolean</td>
-			<td>是否禁用</td>
-		</tr>
-		<tr>
-			<td>pattern</td>
-			<td>string</td>
-			<td>正则表达式验证</td>
-		</tr>
-		<tr>
-			<td>list</td>
-			<td>datalist 标签的下拉选项</td>
-			<td>datalist 标签的下拉选项</td>
-		</tr>
-		<tr>
-			<td>min, max, step</td>
-			<td>number</td>
-			<td>最小值, 最大值, 步长</td>
-		</tr>
-		<tr>
-			<td>multiple</td>
-			<td>boolean</td>
-			<td>可以选择多个文件</td>
-		</tr>
-	</tbody>
-</table>
+#### input 类型
+
+| 属性值           | 说明                                                           |
+| ---------------- | -------------------------------------------------------------- |
+| `text`           | 单行的文本输入框                                               |
+| `password`       | 密码输入框                                                     |
+| `email`          | 邮箱输入框                                                     |
+| `number`         | 数字输入框                                                     |
+| `tel`            | 电话号码输入框                                                 |
+| `url`            | URL 输入框                                                     |
+| `hidden`         | 隐藏域                                                         |
+| `radio`          | 单选按钮                                                       |
+| `checkbox`       | 复选框                                                         |
+| `button`         | 按钮                                                           |
+| `image`          | 图像形式的提交按钮，将提交到 action 属性所指定的地址。         |
+| `reset`          | 重置按钮，重置按钮会清除表单中的所有数据。                     |
+| `submit`         | 提交按钮，提交按钮会把表单数据发送到 action 属性所指定的地址。 |
+| `file`           | 输入框用于上传文件                                             |
+| `date`           | 日期选择器                                                     |
+| `color`          | 颜色选择/拾色器                                                |
+| `datetime-local` | 日期和时间的输入控件                                           |
+| `month`          | 月份的输入控件                                                 |
+| `time`           | 时间的输入控件                                                 |
+| `week`           | 周的输入控件                                                   |
+| `range`          | 滑块（firefox 不兼容）                                         |
 
 #### input 属性
 
-```html
-<input type="text" name="username" placeholder="请输入用户名" required maxlength="10" size="80" />
-```
+| 属性名           | 属性说明                                    | 可用类型                                                |
+| ---------------- | ------------------------------------------- | ------------------------------------------------------- |
+| `type`           | 规定输入字段的类型                          | 共有                                                    |
+| `placeholder`    | 提示用户在输入字段中输入什么                | `text`, `search`, `url` 等输入类型                      |
+| `readonly`       | 规定输入字段只读                            | 共有                                                    |
+| `disabled`       | 规定输入字段被禁用                          | 共有                                                    |
+| `accept`         | 规定文件上传的 MIME 类型                    | `file`                                                  |
+| `required`       | 规定输入字段必须被填写                      | 共有                                                    |
+| `autofocus`      | 规定在页面加载时输入字段应该自动获得焦点    | 共有                                                    |
+| `maxlength`      | 规定输入字段的最大长度                      | `text`, `search`, `url` 等输入类型                      |
+| `minlength`      | 规定输入字段的最小长度                      | `text`, `search`, `url` 等输入类型                      |
+| `value`          | 规定输入字段的初始值                        | 共有                                                    |
+| `max`            | 规定输入字段的最大合法值                    | `number`, `date`, `time`, `datetime-local`              |
+| `min`            | 规定输入字段的最小合法值                    | `number`, `date`, `time`, `datetime-local`              |
+| `alt`            | 规定图像的替代文本                          | `image`                                                 |
+| `size`           | 规定输入字段多少个字符宽度                  | `text`, `search`, `url` 等输入类型                      |
+| `autocomplete`   | 规定是否启用输入字段的自动完成功能          | `text`, `search`, `url` 等输入类型                      |
+| `checked`        | 规定默认情况下输入字段应该被选中            | `checkbox`, `radio`                                     |
+| `formaction`     | 提交表单时覆盖表单的 action 属性            | `submit`, `image`                                       |
+| `formenctype`    | 提交表单时覆盖表单的 enctype 属性           | `submit`, `image`                                       |
+| `formmethod`     | 提交表单时覆盖表单的 method 属性            | `submit`, `image`                                       |
+| `formnovalidate` | 提交表单时不应该验证输入字段                | `submit`, `image`                                       |
+| `formtarget`     | 提交表单时覆盖表单的 target 属性            | `submit`, `image`                                       |
+| `height`         | 规定图像的高度                              | `image`                                                 |
+| `list`           | 规定与输入字段关联的 `<datalist>` 元素的 id | `text`, `search`, `url` 等输入类型                      |
+| `multiple`       | 规定用户是否可多选文件                      | `file`, `email`（是否可以输入多个邮箱地址，由逗号分隔） |
+| `pattern`        | 规定输入字段的模式（正则表达式）            | `text`, `search`, `url` 等输入类型                      |
+| `src`            | 规定图像的 URL                              | `image`                                                 |
+| `step`           | 规定输入字段的合法数字间隔（步长）          | `number`, `date`, `time`, `datetime-local`              |
+| `width`          | 规定图像的宽度                              | `image`                                                 |
 
-<sub-page url="/examples/frontend/iframe/html/tag/input-attribute.html" height="60px"/>
-
-#### input readonly 只读
-
-```html
-<input type="text" readonly value="123" />
-```
-
-<sub-page url="/examples/frontend/iframe/html/tag/input-readonly.html" height="60px"/>
-
-#### input disabled 禁用
-
-```html
-<input type="text" disabled value="123" />
-```
-
-<sub-page url="/examples/frontend/iframe/html/tag/input-disabled.html" height="60px"/>
+以上表格并不全面，具体的还需查看官方文档
 
 #### input number 数字输入框限制，最小值，最大值，步长
 
 ```html
-<input type="number" step="2" min="1" max="20"/>
+<input type="number" step="2" min="1" max="20" />
 ```
 
 <sub-page url="/examples/frontend/iframe/html/tag/input-number.html" height="60px"/>
@@ -792,18 +702,18 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 
 ```html
 <p>
-  <label for="file1">选择多文件</label>
-  <input type="file" multiple id="file1"/>
+	<label for="file1">选择多文件</label>
+	<input type="file" multiple id="file1" />
 </p>
 
 <p>
-  <label for="file2">限制为图片</label>
-  <input type="file" multiple id="file2" accept="image/*"/>
+	<label for="file2">限制为图片</label>
+	<input type="file" multiple id="file2" accept="image/*" />
 </p>
 
 <p>
-  <label for="file3">限制后缀为 png，jpg 的图片</label>
-  <input type="file" multiple id="file3" accept=".png, .jpg"/>
+	<label for="file3">限制后缀为 png，jpg 的图片</label>
+	<input type="file" multiple id="file3" accept=".png, .jpg" />
 </p>
 ```
 
@@ -812,9 +722,7 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 <sub-page url="/examples/frontend/iframe/html/tag/input-file.html" height="140px"/>
 
 ```html
-
----multiple---
-多文件上传: <input type="file" name="img" multiple />
+---multiple--- 多文件上传: <input type="file" name="img" multiple />
 
 ---pattern---
 <form method="post">
@@ -822,20 +730,18 @@ image 的缩写，单标签，src 是 `<img>` 标签的必须属性，他用于�
 	<input type="submit" value="提交" />
 </form>
 
-
 ---list---
 <form method="post">
 	<input list="browsers" name="browser" />
-	
+
 	<datalist id="browsers">
-	  <option value="Internet Explorer">
-	  <option value="Firefox">
-	  <option value="Chrome">
-	  <option value="Opera">
-	  <option value="Safari">
+		<option value="Internet Explorer"></option>
+		<option value="Firefox"></option>
+		<option value="Chrome"></option>
+		<option value="Opera"></option>
+		<option value="Safari"></option>
 	</datalist>
-	
+
 	<input type="submit" value="提交" />
 </form>
-
 ```
