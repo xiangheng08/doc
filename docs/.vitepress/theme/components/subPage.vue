@@ -1,13 +1,13 @@
 <template>
 	<demo :title="props.title" padding="0" :shadow="props.shadow">
 		<template #right>
-			<a v-if="props.url" :href="props.url" target="_blank">打开页面</a>
+			<a v-if="url" :href="url" target="_blank">打开页面</a>
 		</template>
 		<iframe
-			v-if="props.url"
+			v-if="url"
 			ref="iframeRef"
 			@load="onLoad"
-			:src="props.url"
+			:src="url"
 			:sandbox="sandbox"
 			:width="_width"
 			:height="_height"
@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { computed, reactive, watch, nextTick } from 'vue';
 import { formatCSSlength } from '@/utils/format';
-import { useData } from 'vitepress';
+import { useData, withBase } from 'vitepress';
 
 const { isDark } = useData();
 
@@ -53,6 +53,8 @@ const props = defineProps({
 	},
 });
 
+const url = computed(() => (props.url ? withBase(props.url) : ''));
+
 // 沙盒属性
 if (props.sameOrigin) _sandbox.push('allow-same-origin');
 if (props.scripts) _sandbox.push('allow-scripts');
@@ -71,7 +73,7 @@ const onLoad = () => {
 		subWindow.value = iframeRef.value.contentWindow;
 		subDocument.value = iframeRef.value.contentWindow.document;
 
-		nextTick(toggleSubPageMode)
+		nextTick(toggleSubPageMode);
 	}
 };
 
