@@ -655,38 +655,38 @@ enctype 常用类型
 | `week`           | 周的输入控件                                                   |
 | `range`          | 滑块（firefox 不兼容）                                         |
 
-#### input 属性
+#### input （表单元素）属性
 
-| 属性名           | 属性说明                                    | 可用类型                                                |
-| ---------------- | ------------------------------------------- | ------------------------------------------------------- |
-| `type`           | 规定输入字段的类型                          | 共有                                                    |
-| `placeholder`    | 提示用户在输入字段中输入什么                | `text`, `search`, `url` 等输入类型                      |
-| `readonly`       | 规定输入字段只读                            | 共有                                                    |
-| `disabled`       | 规定输入字段被禁用                          | 共有                                                    |
-| `accept`         | 规定文件上传的 MIME 类型                    | `file`                                                  |
-| `required`       | 规定输入字段必须被填写                      | 共有                                                    |
-| `autofocus`      | 规定在页面加载时输入字段应该自动获得焦点    | 共有                                                    |
-| `maxlength`      | 规定输入字段的最大长度                      | `text`, `search`, `url` 等输入类型                      |
-| `minlength`      | 规定输入字段的最小长度                      | `text`, `search`, `url` 等输入类型                      |
-| `value`          | 规定输入字段的初始值                        | 共有                                                    |
-| `max`            | 规定输入字段的最大合法值                    | `number`, `date`, `time`, `datetime-local`              |
-| `min`            | 规定输入字段的最小合法值                    | `number`, `date`, `time`, `datetime-local`              |
-| `alt`            | 规定图像的替代文本                          | `image`                                                 |
-| `size`           | 规定输入字段多少个字符宽度                  | `text`, `search`, `url` 等输入类型                      |
-| `autocomplete`   | 规定是否启用输入字段的自动完成功能          | `text`, `search`, `url` 等输入类型                      |
-| `checked`        | 规定默认情况下输入字段应该被选中            | `checkbox`, `radio`                                     |
-| `formaction`     | 提交表单时覆盖表单的 action 属性            | `submit`, `image`                                       |
-| `formenctype`    | 提交表单时覆盖表单的 enctype 属性           | `submit`, `image`                                       |
-| `formmethod`     | 提交表单时覆盖表单的 method 属性            | `submit`, `image`                                       |
-| `formnovalidate` | 提交表单时不应该验证输入字段                | `submit`, `image`                                       |
-| `formtarget`     | 提交表单时覆盖表单的 target 属性            | `submit`, `image`                                       |
-| `height`         | 规定图像的高度                              | `image`                                                 |
-| `list`           | 规定与输入字段关联的 `<datalist>` 元素的 id | `text`, `search`, `url` 等输入类型                      |
-| `multiple`       | 规定用户是否可多选文件                      | `file`, `email`（是否可以输入多个邮箱地址，由逗号分隔） |
-| `pattern`        | 规定输入字段的模式（正则表达式）            | `text`, `search`, `url` 等输入类型                      |
-| `src`            | 规定图像的 URL                              | `image`                                                 |
-| `step`           | 规定输入字段的合法数字间隔（步长）          | `number`, `date`, `time`, `datetime-local`              |
-| `width`          | 规定图像的宽度                              | `image`                                                 |
+| 属性名           | 属性说明                                                                                 | 可用类型                                                |
+| ---------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `type`           | 规定输入字段的类型                                                                       | 共有                                                    |
+| `placeholder`    | 提示用户在输入字段中输入什么                                                             | `text`, `search`, `url` 等输入类型                      |
+| `readonly`       | 规定输入字段只读                                                                         | 共有                                                    |
+| `disabled`       | 规定输入字段被禁用                                                                       | 共有                                                    |
+| `accept`         | 规定文件上传的 MIME 类型                                                                 | `file`                                                  |
+| `required`       | 规定输入字段必须被填写                                                                   | 共有                                                    |
+| `autofocus`      | 规定在页面加载时输入字段应该自动获得焦点                                                 | 共有                                                    |
+| `maxlength`      | 规定输入字段的最大长度                                                                   | `text`, `search`, `url` 等输入类型                      |
+| `minlength`      | 规定输入字段的最小长度                                                                   | `text`, `search`, `url` 等输入类型                      |
+| `value`          | 规定输入字段的初始值                                                                     | 共有                                                    |
+| `max`            | 规定输入字段的最大合法值                                                                 | `number`, `date`, `time`, `datetime-local`              |
+| `min`            | 规定输入字段的最小合法值                                                                 | `number`, `date`, `time`, `datetime-local`              |
+| `alt`            | 规定图像的替代文本                                                                       | `image`                                                 |
+| `size`           | 规定输入字段多少个字符宽度                                                               | `text`, `search`, `url` 等输入类型                      |
+| `autocomplete`   | 规定是否启用输入字段的自动完成功能（比如浏览器的记忆功能自动填充文本），值：`off` / `on` | 共有                                                    |
+| `checked`        | 规定默认情况下输入字段应该被选中                                                         | `checkbox`, `radio`                                     |
+| `formaction`     | 提交表单时覆盖表单的 action 属性                                                         | `submit`, `image`                                       |
+| `formenctype`    | 提交表单时覆盖表单的 enctype 属性                                                        | `submit`, `image`                                       |
+| `formmethod`     | 提交表单时覆盖表单的 method 属性                                                         | `submit`, `image`                                       |
+| `formnovalidate` | 提交表单时不应该验证输入字段                                                             | `submit`, `image`                                       |
+| `formtarget`     | 提交表单时覆盖表单的 target 属性                                                         | `submit`, `image`                                       |
+| `height`         | 规定图像的高度                                                                           | `image`                                                 |
+| `list`           | 规定与输入字段关联的 `<datalist>` 元素的 id                                              | `text`, `search`, `url` 等输入类型                      |
+| `multiple`       | 规定用户是否可多选文件                                                                   | `file`, `email`（是否可以输入多个邮箱地址，由逗号分隔） |
+| `pattern`        | 规定输入字段的模式（正则表达式）                                                         | `text`, `search`, `url` 等输入类型                      |
+| `src`            | 规定图像的 URL                                                                           | `image`                                                 |
+| `step`           | 规定输入字段的合法数字间隔（步长）                                                       | `number`, `date`, `time`, `datetime-local`              |
+| `width`          | 规定图像的宽度                                                                           | `image`                                                 |
 
 以上表格并不全面，具体的还需查看官方文档
 
@@ -721,16 +721,71 @@ enctype 常用类型
 
 <sub-page url="/examples/frontend/iframe/html/tag/input-file.html" height="140px"/>
 
+#### pattern 正则表达式
+
 ```html
----multiple--- 多文件上传: <input type="file" name="img" multiple />
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>input-pattern</title>
+		<style>
+			label {
+				display: block;
+				margin-top: 1em;
+			}
 
----pattern---
-<form method="post">
-	验证：<input type="text" name="country_code" pattern="[A-Za-z]{3}" title="只能输入3个字母" />
-	<input type="submit" value="提交" />
-</form>
+			input:valid {
+				background-color: palegreen;
+			}
 
----list---
+			input:invalid {
+				background-color: lightpink;
+			}
+		</style>
+	</head>
+	<body>
+		<form id="my_form">
+			<label for="username">Username: (3-16 characters)</label>
+			<input name="username" type="text" value="Sasha" pattern="\w{3,16}" required />
+
+			<label for="pin">PIN: (4 digits)</label>
+			<input name="pin" type="password" pattern="\d{4,4}" required />
+
+			<br />
+			<br />
+
+			<button type="submit">submit</button>
+		</form>
+
+		<script>
+			const form = document.getElementById('my_form');
+			const password = document.querySelector('input[type="password"]');
+
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+
+				console.log('submit');
+			});
+
+			password.addEventListener('invalid', (event) => {
+				console.log('password invalid');
+			});
+		</script>
+	</body>
+</html>
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-pattern.html" height="200px"/>
+
+对于设置了验证规则的表单元素，如果验证失败，那么整个表单的 `submit` 事件就不会触发，而验证失败的表单元素会触发 `invalid` 事件。
+
+同时，验证通过的表单元素，可以通过 `:valid` 伪类选择器来设置样式。而没有验证通过的表单元素则可以通过 `:invalid` 伪类选择器来设置样式。
+
+#### inout 结合 datalist
+
+```html
 <form method="post">
 	<input list="browsers" name="browser" />
 
@@ -744,4 +799,86 @@ enctype 常用类型
 
 	<input type="submit" value="提交" />
 </form>
+```
+
+inout 结合 datalist 可以让用户通过下拉框来选择内容，同时带有一定的模糊搜索的功能。
+
+<sub-page url="/examples/frontend/iframe/html/tag/input-datalist.html" height="200px"/>
+
+### textarea 多行文本输入框
+
+```html
+<textarea name="content" rows="5" cols="50"> </textarea>
+```
+
+|  属性  |                描述                 |
+| :----: | :---------------------------------: |
+| `cols` | 文本域的可视宽度，默认为 20 (HTML5) |
+| `rows` | 元素的输入文本的行数（显示的高度）  |
+
+同时对于其他属性比如：`name`、`readonly`、`maxlength` 等，都是可以使用的。
+
+### select 下拉列表框
+
+`select` 属性
+
+|    属性    |   描述   |
+| :--------: | :------: |
+| `multiple` | 是否多选 |
+
+`option` 属性
+
+|    属性    |                         描述                         |
+| :--------: | :--------------------------------------------------: |
+|  `value`   |                       选项的值                       |
+| `selected` | 设置默认选中的选项（没有设置的情况下第一个默认选中） |
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>select</title>
+	</head>
+	<body>
+		<select name="city">
+			<option value="0">请选择</option>
+			<option value="bj">北京</option>
+			<option value="sh">上海</option>
+			<option value="gz">广州</option>
+		</select>
+	</body>
+</html>
+```
+
+<sub-page url="/examples/frontend/iframe/html/tag/select.html" height="200px"/>
+
+#### 多选
+
+声明这个属性后，大多数浏览器都会显示一个可滚动的列表框，而非一个下拉菜单。
+
+注意：设置了多选，通过 `select` 元素的 `value` 属性来获取选中的选项的值，是不准确的，应该使用 `select` 元素的 `options` 属性，`options` 属性是一个伪数组，数组中的每个元素都是一个 `option` 元素，通过 `option` 元素的 `selected` 属性来判断是否选中，再通过 `option` 元素的 `value` 属性来获取选项的值。
+
+<sub-page url="/examples/frontend/iframe/html/tag/select-multiple.html" height="200px"/>
+
+#### 默认选中
+
+<sub-page url="/examples/frontend/iframe/html/tag/select-selected.html" height="200px"/>
+
+### label 元素说明
+
+`label` 元素表示用户界面中某个元素的说明。可以通过 `for` 属性来指定关联元素的 id，当点击 `label` 元素时，浏览器就会自动将焦点转到与 `for` 属性相符的元素上。
+
+比如：`label` 关联 `type` 等于 `checkbox` 的 `input` 元素，当点击 `label` 元素时关联的 `checkbox` 就会选中/取消选中。
+
+<sub-page url="/examples/frontend/iframe/html/tag/label.html" height="200px"/>
+
+另外，你也可以将元素直接放在 `<label>` 里，此时则不需要 `for` 和 `id` 属性，因为关联已隐式存在
+
+```html
+<label>
+	复选框
+	<input type="checkbox" name="peas" />
+</label>
 ```
