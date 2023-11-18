@@ -1,18 +1,18 @@
-import './utils/env'
+import './utils/env';
 import { defineConfig, UserConfig, DefaultTheme } from 'vitepress';
 import sidebar from './config/sidebar';
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
+import copyright from './config/copyright';
 
 // 附加配置
-const append: UserConfig<DefaultTheme.Config> = {}
+const append: UserConfig<DefaultTheme.Config> = {};
 
 if (process.env.BASE) {
 	append.base = process.env.BASE;
 }
-
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -82,8 +82,7 @@ export default defineConfig({
 
 		footer: {
 			// message: 'my doc',
-			copyright:
-				'Copyright © 2022-present <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">湘ICP备2023023348号</a>',
+			copyright: copyright,
 		},
 
 		lastUpdated: {
