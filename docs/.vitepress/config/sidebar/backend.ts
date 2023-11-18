@@ -3,18 +3,12 @@ import { DefaultTheme } from 'vitepress';
 
 export default define<DefaultTheme.SidebarItem[]>([
 	{
-    text: '后端',
-    collapsed: false,
+		text: 'MySql',
+		collapsed: false,
 		items: [
 			{
-        text: 'MySql',
-        collapsed: true,
-				items: [
-					{
-						text: '错误',
-						link: '/backend/mysql/error',
-					},
-				],
+				text: '错误',
+				link: '/backend/mysql/error',
 			},
 		],
 	},
