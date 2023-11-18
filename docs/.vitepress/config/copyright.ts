@@ -7,11 +7,14 @@ let copyright
 
 switch (process.env.LOAD_ENV?.trim()) {
 	case 'gitee_page':
-		copyright = gitee;
+    copyright = gitee;
+    break
 	case 'github_page':
-		copyright = github;
+    copyright = github;
+    break
 	default:
-		copyright = _default;
+    copyright = _default;
+    break
 }
 
 export default 'Copyright © 2022-present ' + copyright;
