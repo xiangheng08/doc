@@ -9,6 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     Demo: typeof import('./theme/components/demo.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
+    Link: typeof import('./theme/components/link.vue')['default']
+    Mlink: typeof import('./theme/components/mlink.vue')['default']
+    Mylink: typeof import('./theme/components/mylink.vue')['default']
     OutlineAutoScroll: typeof import('./theme/components/outlineAutoScroll.vue')['default']
     Run: typeof import('./theme/components/run.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']

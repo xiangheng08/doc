@@ -10,3 +10,13 @@
 2. 文本编辑器(文本编辑器)
 3. 建议(Suggestions)
 4. 将 Accept Suggestion  On Commit Character 取消勾选
+
+或者使用[重新加载窗口](#重新加载窗口)
+
+## 重新加载窗口
+
+在 vscode 里，有时候会某些功能失效（比如：类型提示没有了），可以通过重新加载窗口来解决。
+
+- 使用 ctrl + shift + p 打开命令面板（或者在帮助->显示所有命令）
+- 输入 reload
+- 选择 Reload Window（重新加载窗口）

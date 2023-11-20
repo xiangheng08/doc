@@ -1,0 +1,43 @@
+{
+	"code group": {
+		"prefix": "code group",
+		"body": [
+			"::: code-group",
+			"",
+			"```${1:lang} [${2:name}]",
+			"${3:code}",
+			"```",
+			"",
+			"```${4:lang} [${5:name}]",
+			"${6:code}",
+			"```",
+			"",
+			":::"
+		],
+		"description": "code group"
+	},
+	// 链接（新窗口打开）
+	"link components": {
+		"prefix": "link components",
+		"body": [
+			"<mylink href=\"${1:url}\">${2:text}</mylink>"
+		],
+		"description": "link components"
+	},
+	// 链接（顶级窗口打开）
+	"link components top": {
+		"prefix": "link components top",
+		"body": [
+			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
+		],
+		"description": "link components top"
+	},
+	// 链接（父级窗口打开）
+	"link components parent": {
+		"prefix": "link components parent",
+		"body": [
+			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
+		],
+		"description": "link components parent"
+	}
+}

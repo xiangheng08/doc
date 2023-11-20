@@ -47,6 +47,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 		collapsed: false,
 		items: [
 			{
+				text: '起步',
+				link: '/frontend/js/index',
+			},
+			{
 				text: '语法',
 				link: '/frontend/js/syntax',
 			},
@@ -112,6 +116,22 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '瀑布流布局',
 				link: '/frontend/layout/waterfall',
 			},
+		],
+	},
+	{
+		text: 'Node.JS',
+		collapsed: false,
+		items: [
+			{
+				text: '项目开发',
+				collapsed: true,
+				items: [
+					{
+						text: '环境变量',
+						link: '/frontend/nodejs/project/env',
+					}
+				],
+			}
 		],
 	},
 	{
