@@ -87,7 +87,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 				collapsed: true,
 				items: [
 					{
-						text: 'Primise',
+						text: 'Promise',
 						link: '/frontend/js/advanced/syntax/promise',
 					},
 				],
