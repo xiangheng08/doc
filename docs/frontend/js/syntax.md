@@ -1,5 +1,63 @@
 # JavaString 语法
 
+## 输出
+
+在了解 JavaString 语法前，应该先了解下 JavaString 的输出方式，毕竟没有输出，就看不来到效果。
+
+### console 对象
+
+#### log
+
+输出日志（这应该是用的最多的了）。
+
+```js
+console.log(message1, message2, ..., messageN)
+```
+
+#### info
+
+输出通知信息（和 log 差不多，在某些浏览器可能样式会不一样）。
+
+```js
+console.log(message1, message2, ..., messageN)
+```
+
+#### warn
+
+输出警告信息（信息文字颜色为黄色）。
+
+```js
+console.log(message1, message2, ..., messageN)
+```
+
+#### error
+
+输出错误信息（信息文字颜色为红色）。
+
+```js
+console.log(message1, message2, ..., messageN)
+```
+
+#### dir
+
+输出对象的结构（在输出元素时 dir 比 log 要好用些，dir 可看到元素对象的结构，而 log 看不到）。
+
+```js
+console.dir(object);
+```
+
+
+
+
+
+
+
+
+
+
+这个对象学过的应该很熟悉，但是又不太熟悉，为什么呢？因为除了 `console.log` 还有很多的方法，比如 `console.info`、`console.warn`、`console.error` 等，这些方法都是用来输出信息的，但是输出的格式不一样，这些方法用的不多，可能不太熟悉，但是 `console.log` 应该很熟悉，因为平时开发中，我们经常用它来输出信息。
+
+
 <table class="stretch title-center">
 	<thead>
 		<tr>
