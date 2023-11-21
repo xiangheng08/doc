@@ -39,6 +39,10 @@ export default defineConfig({
 		],
 
 		sidebar,
+		
+		sidebarMenuLabel: '目录',
+
+		darkModeSwitchLabel: '暗黑模式',
 
 		outline: {
 			label: '本页目录',
