@@ -1,12 +1,17 @@
 # 背景样式
 
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background)
+
 ### background-color 背景颜色
 
-`background-color` 属性用于设置元素的背景色，属性的值为颜色值或关键字"transparent"二者选其一
+`background-color` 属性用于设置元素的背景色，属性的值为颜色值或关键字 `transparent` 二者选其一
 
 ```css
 .box {
-	/* 关键字值 */
+	/* 透明（默认值） */
+	background-color: transparent;
+
+	/* 颜色关键字值 */
 	background-color: red;
 
 	/* 十六进制值 */
@@ -20,15 +25,8 @@
 
 	/* 当前文本颜色，currentcolor 关键字表示元素的 color 属性的值 */
 	background-color: currentcolor;
-
-	/* 透明 */
-	background-color: transparent;
 }
 ```
-
-参考：
-
--   [MDN background-color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-color)
 
 ### background-image 背景图片
 
@@ -52,11 +50,6 @@
 	background-image: linear-gradient(to bottom, red, blue), url('./images/catfront.png');
 }
 ```
-
-参考：
-
--   [background-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-image)
-
 ### background-repeat 背景重复
 
 **`background-repeat`** 属性定义背景图像的重复方式。背景图像可以沿着水平轴，垂直轴，两个轴重复，或者不重复
@@ -64,10 +57,6 @@
 默认情况下，重复的图像被剪裁为元素的大小，但它们可以缩放 (使用 `round`) 或者均匀地分布 (使用 `space`)
 
 ```css
-/* 单值语法 */
-background-repeat: repeat-x;
-background-repeat: repeat-y;
-
 .box {
 	/* 水平垂直方向都重复 */
 	background-repeat: repeat;
@@ -94,6 +83,8 @@ background-repeat: repeat-y;
 | `round`     | 随着允许的空间在尺寸上的增长，被重复的图像将会伸展 (没有空隙), 直到有足够的空间来添加一个图像。当下一个图像被添加后，所有的当前的图像会被压缩来腾出空间。例如，一个图像原始大小是 260px, 重复三次之后，可能会被伸展到 300px, 直到另一个图像被加进来。这样他们就可能被压缩到 225px.译者注：关键是浏览器怎么计算什么时候应该添加一个图像进来，而不是继续伸展。 |
 | `no-repeat` | 图像不会被重复 (因为背景图像所在的区域将可能没有完全被覆盖). 那个没有被重复的背景图像的位置是由[`background-position`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-position)属性来决定。                                                                                                                                                     |
 
+> 是不是感觉看不懂，看不懂就对了，我也看不懂。上面的代码会比较通俗易懂点，但是不全面，也可以去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-repeat) 看看，哪里有 demo
+
 单值语法是完整的双值语法的简写：
 
 | **单值**    | **等价于双值**        |
@@ -113,138 +104,135 @@ background-repeat: repeat-y;
 
 ### background-attachment 背景附着
 
-设置背景图像是否随着页面滚动。
-
-可选值:
-
--   `fixed`
-
-    此关键属性值表示背景相对于视口固定。即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动。
-
--   `local`
-
-    此关键属性值表示背景相对于元素的内容固定。如果一个元素拥有滚动机制，背景将会随着元素的内容滚动，并且背景的绘制区域和定位区域是相对于可滚动的区域而不是包含他们的边框。
-
--   `scroll`
-
-    此关键属性值表示背景相对于元素本身固定，而不是随着它的内容滚动（对元素边框是有效的）。
+设置背景图像是否随着滚动。
 
 ```css
-.box {
-	/* 关键 属性值 */
+.box{
+	/* 背景相对于元素本身固定，而不是随着它的内容滚动（默认值） */
 	background-attachment: scroll;
+	/* 背景相对于视口固定 */
 	background-attachment: fixed;
+	/* 背景随着元素的内容滚动 */
 	background-attachment: local;
-	/* 多值，用于控制多个背景 */
-	background-attachment: local, scroll;
-	background-attachment: scroll, local;
+
+	/* 多值，如果设置多个背景图片，每个值对应按照 background-image 设置的值一一对应 */
+	background-attachment: fixed, local;
 }
 ```
 
-### background-blend-mode
-
-[`background-blend-mode`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-blend-mode) CSS 属性定义该元素的背景图片，以及背景色如何混合。
-
-```css
-background-attachment: scroll, local;
-```
-
-### background-clip 背景裁剪
-
-`background-clip` 设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面。
-
-```css
-background-clip: border-box;
-background-clip: padding-box;
-background-clip: content-box;
-background-clip: text;
-```
-
-可选值：
-
--   `border-box`: 背景延伸至边框外沿（但是在边框下层）。
--   `padding-box`: 背景延伸至内边距（padding）外沿。不会绘制到边框处。
--   `content-box`: 背景被裁剪至内容区（content box）外沿。
--   `text`(实验性): 背景被裁剪成文字的前景色。
-
-### background-origin
+### background-origin 原点位置
 
 `background-origin` 规定了指定背景图片`background-image`属性的原点位置的背景相对区域。
 
-注意：当使用 `background-attachment` 为 fixed 时，该属性将被忽略不起作用。
-
-可选值：
-
--   `border-box`: 背景图片的摆放以 border 区域为参考
--   `padding-box`: 背景图片的摆放以 padding 区域为参考
--   `content-box`: 背景图片的摆放以 content 区域为参考
+::: tip 注意
+当使用 `background-attachment` 为 fixed 时，该属性将被忽略不起作用。
+:::
 
 ```css
-/* 关键字值 */
-background-position: top;
-background-position: bottom;
-background-position: left;
-background-position: right;
-background-position: center;
-
-/* 百分比值 */
-background-position: 25% 75%;
-
-/* 长度值 */
-background-position: 0 0;
-background-position: 1cm 2cm;
-background-position: 10ch 8em;
-
-/* 多个图片 */
-background-position: 0 0, center;
-
-/* 边缘偏移值 */
-background-position: bottom 10px right 20px;
-background-position: right 3em bottom 10px;
-background-position: bottom 10px right;
-background-position: top right 10px;
+.box{
+	/* 背景图片的位置以 border 区域为参考 */
+	background-origin: border-box;
+	/* 背景图片的位置以 padding 区域为参考（默认值） */
+	background-origin: padding-box;
+	/* 背景图片的位置以 content 区域为参考 */
+	background-origin: content-box;
+}
 ```
 
-### background-position-x
+### background-position 背景图初始位置
 
-**`background-position-x`** 属性用于设置背景图片在水平方向上的位置，取值和`background-position`一样
+设置背景图片设置初始位置。位置相对于由 `background-origin` 指定区域。
 
-### background-position-y
+```css
+.box{
+	
+	background-position: top; /* 贴着顶部，左右居中 */
+	background-position: bottom; /* 贴着底部，左右居中 */
+	background-position: left; /* 贴着左边，上下居中 */
+	background-position: right; /* 贴着右边，上下居中 */
+	background-position: center; /* 上下左右居中 */
 
-**`background-position-y`** 属性用于设置背景图片在垂直方向上的位置，取值和`background-position`一样
+	/* 百分比 x 轴相对于宽度，y 轴相对于高度 */
+	background-position: 25% 75%;
+
+	/* 长度单位 */
+	background-position: 0 0;
+	background-position: 1cm 2cm;
+	background-position: 10ch 8em;
+
+	/* 多值就是设置多张背景图，每个值对应按照 background-image 设置的值一一对应 */
+	background-position: 0 0, center;
+
+	/* 距离底部 10px，距离右边 20px */
+	background-position: bottom 10px right 20px;
+	background-position: right 3em bottom 10px;
+	/* 距离底部 10px，贴着右边 */
+	background-position: bottom 10px right;
+	background-position: top right 10px;
+}
+```
+
+也可以使用 `background-position-x` 和 `background-position-y` 分别（单独）设置 x 轴和 y 轴的位置。
+
+### background-blend-mode 混合
+
+定义该元素的背景图片，以及背景色如何混合。
+
+取值：[`<blend-mode>`](/frontend/css/types/blend-mode)
+
+```css
+.box {
+  background-blend-mode: multiply;
+}
+```
+
+### background-clip 绘制区域
+
+`background-clip` 用于指定背景的绘制区域，即决定背景是绘制在元素的哪个区域。
+
+```css
+.box{
+	/* 背景将绘制在元素的边框框的区域，包括内边距框和边框（默认值） */
+	background-clip: border-box;
+
+	/* 背景将绘制在元素的内边距框的区域，不包括边框 */
+	background-clip: padding-box;
+	
+	/* 背景将绘制在元素的内容框的区域，不包括内边距和边框 */
+	background-clip: content-box;
+	
+	/* 背景被裁剪成文字的前景色（实验性） */
+	background-clip: text;
+}
+```
 
 ### background-size
 
 `background-size` 设置背景图片大小。图片可以保有其原有的尺寸，或者拉伸到新的尺寸，或者在保持其原有比例的同时缩放到元素的可用空间的尺寸
 
 ```css
-/* 关键字 */
-background-size: cover
-background-size: contain
+.box{
+	/* 原始大小（默认值） */
+	background-size: auto;
+	/* 缩放到覆盖整个背景区域，可能会裁剪部分图像 */
+	background-size: cover;
+	/* 缩放到整个图像都完全显示在背景区域内，可能会留有空白 */
+	background-size: contain;
 
-/* 一个值：这个值指定图片的宽度，图片的高度隐式的为 auto */
-background-size: 50%
-background-size: 3em
-background-size: 12px
-background-size: auto
+	/* 单值，同时设置宽高 */
+	background-size: 50%;
+	background-size: 3em;
+	background-size: 12px;
 
-/* 两个值 */
-/* 第一个值指定图片的宽度，第二个值指定图片的高度 */
-background-size: 50% auto
-background-size: 3em 25%
-background-size: auto 6px
-background-size: auto auto
+	/* 双值，宽和高 */
+	background-size: 50% auto;
+	background-size: 3em 25%;
+	background-size: auto 6px;
+	background-size: auto auto;
 
-/* 逗号分隔的多个值：设置多重背景 */
-background-size: auto, auto     /* 不同于 background-size: auto auto */
-background-size: 50%, 25%, 25%
-background-size: 6px, auto, contain
+	/* 设置多个背景图像，使用逗号分隔 */
+	background-size: auto, auto;
+	background-size: 50%, 25%, 25%;
+	background-size: 6px, auto, contain;
+}
 ```
-
-可选值：
-
--   `<length>`: 指定背景图片大小，不能为负值。
--   `<percentage>`(百分比): 指定背景图片相对背景区（background positioning area）的百分比。背景区由[`background-origin`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-origin)设置，默认为盒模型的内容区与内边距，也可设置为只有内容区，或者还包括边框。如果[`attachment`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-attachment) 为`fixed`，背景区为浏览器可视区（即视口），不包括滚动条。不能为负值。
--   `auto` : 以背景图片的比例缩放背景图片。
--   `cover`: 缩放背景图片以完全覆盖背景区，可能背景图片部分看不见。和 `contain` 值相反，`cover` 值尽可能大的缩放背景图像并保持图像的宽高比例（图像不会被压扁）。该背景图以它的全部宽或者高覆盖所在容器。当容器和背景图大小不同时，背景图的 左/右 或者 上/下 部分会被裁剪。
--   `contain`: 缩放背景图片以完全装入背景区，可能背景区部分空白。`contain` 尽可能的缩放背景并保持图像的宽高比例（图像不会被压缩）。该背景图会填充所在的容器。当背景图和容器的大小的不同时，容器的空白区域（上/下或者左/右）会显示由 background-color 设置的背景颜色。

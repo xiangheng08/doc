@@ -25,10 +25,6 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/css/selector',
 			},
 			{
-				text: '值与单位',
-				link: '/frontend/css/values-and-units',
-			},
-			{
 				text: '背景样式',
 				link: '/frontend/css/style/background',
 			},
@@ -39,6 +35,26 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '效果',
 				link: '/frontend/css/effect',
+			},
+			{
+				text: '其他',
+				collapsed: true,
+				items: [
+					{
+						text: '值与单位',
+						link: '/frontend/css/values-and-units',
+					},
+					{
+						text: '数据类型',
+						collapsed: true,
+						items: [
+							{
+								text: '&lt;blend-mode&gt;',
+								link: '/frontend/css/types/blend-mode',
+							}
+						],
+					},
+				],
 			},
 		],
 	},
