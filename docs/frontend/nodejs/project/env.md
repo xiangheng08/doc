@@ -38,7 +38,7 @@ set NODE_ENV=development
     // 单个
     "dev": "set NODE_ENV=production && node index.js",
     // 多个
-    "dev2": "set NODE_ENV=production && LOAD_DEV=app-plus && node index.js"
+    "dev2": "set NODE_ENV=production && set LOAD_DEV=app-plus && node index.js"
   }
 }
 ```
@@ -52,23 +52,37 @@ set NODE_ENV=development
 比如要读取刚刚设置的环境变量，可以使用以下代码
 
 ```js
-const NODE_ENV = process.env.NODE_ENV.trim();
+console.log(process.env.NODE_ENV);
 
-// 注意每个环境变量的值都是 string，如果需要不同类型的值，需要自己转换
-console.log(NODE_ENV);
+/*
+  注意注意！
+  读取环境变量是后面一定加上 `.trim()`，因为设置环境变量时为了区分，
+  可能会使用空格分隔，这就导致了读取的环境变量会有空格，如果不加 `.trim()`，
+  到时候时间就容易出错。
+ */
+/* 
+  防止环境变量为空，最好给个默认值，一般的话为生产环境的值，这样生产环境忘记设了，
+  也不会出错。
+*/
+
+// 使用 可选链可选链运算符 + 空值合并运算符
+const NODE_ENV = process.env.NODE_ENV?.trim() ?? 'production';
+
+// 三元表达式
+const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'production';
 ```
-
-一般来说，环境变量都是常量，所以一般为全大写，下划线分隔单词，如 `NODE_ENV`，当然了自己的项目想咋取就咋取，只要不跟系统环境变量冲突就行。
 
 既然有了环境变量，区分项目不同的行为，就非常简单了，写一些分支语句就行了。
 
-注意注意！读取环境变量是后面一定加上 `.trim()`，因为设置环境变量时为了区分，可能会使用空格分隔，这就导致了读取的环境变量会有空格，如果不加 `.trim()`，到时候时间就容易出错。
+一般来说，环境变量都是常量，所以一般为全大写，下划线分隔单词，如 `NODE_ENV`，当然了自己的项目想咋取就咋取，只要不跟系统环境变量冲突就行。
 
-还有，防止环境变量为空，最好给个默认值，一般的话会给生产环境的值
+::: warning 注意
+注意每个环境变量的值的类型都是 string，如果需要不同类型的值，需要自己转换
+:::
 
 ## 使用 cross-env 设置环境变量
 
-你可能发现了，在 Linux 和 Windows 中设置环境变量的方式不一样，一个是 `export`，一个是 `set`，要是再服务器上，没有注意，那又得一顿排查，所以我们需要一个统一的设置环境变量的方式。
+你可能发现了，在 Linux 和 Windows 中设置环境变量的方式不一样，一个是 `export`，一个是 `set`，要是再服务器上，没有注意弄错了，那又得一顿排查，所以我们需要一个统一的设置环境变量的方式。
 
 这里使用 `cross-env` 这个库，它支持在 Linux 和 Windows 中设置环境变量。
 
