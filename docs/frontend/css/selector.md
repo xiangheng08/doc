@@ -221,7 +221,8 @@ p::first-letter {
 | `:link`              | 匹配未曾访问的链接。                                                                                                                                                                                            | [:link](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:link)                           |
 | `:local-link`        | 匹配指向和当前文档同一网站页面的链接。                                                                                                                                                                          | [:local-link (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/:local-link)       |
 | `:is()`              | 匹配传入的选择器列表中的任何选择器。                                                                                                                                                                            | [:is()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:is)                             |
-| `:not`               | 匹配作为值传入自身的选择器未匹配的物件。                                                                                                                                                                        | [:not](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:not)                             |
+| `:not()`             | 匹配作为值传入自身的选择器未匹配的物件。                                                                                                                                                                        | [:not()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:not)                           |
+| `:has()`             | 匹配参数传递的任何相对选择器在锚定到该元素时，至少匹配一个元素                                                                                                                                                  | [:has()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:has)                           |
 | `:nth-child`         | 匹配一列兄弟元素中的元素——兄弟元素按照*an+b*形式的式子进行匹配（比如 2n+1 匹配元素 1、3、5、7 等。即所有的奇数个）。                                                                                            | [:nth-child](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:nth-child)                 |
 | `:nth-of-type`       | 匹配某种类型的一列兄弟元素（比如，`<p>`元素）——兄弟元素按照*an+b*形式的式子进行匹配（比如 2n+1 匹配元素 1、3、5、7 等。即所有的奇数个）。                                                                       | [:nth-of-type](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:nth-of-type)             |
 | `:nth-last-child`    | 匹配一列兄弟元素，从后往前倒数。兄弟元素按照*an+b*形式的式子进行匹配（比如 2n+1 匹配按照顺序来的最后一个元素，然后往前两个，再往前两个，诸如此类。从后往前数的所有奇数个）。                                    | [:nth-last-child](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:nth-last-child)       |
@@ -240,7 +241,7 @@ p::first-letter {
 | `:right`             | 在[分页媒体](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_paged_media)中，匹配右手边的页。                                                                                                              | [:right](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:right)                         |
 | `:root`              | 匹配文档的根元素。                                                                                                                                                                                              | [:root](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root)                           |
 | `:scope`             | 匹配任何为参考点元素的的元素。                                                                                                                                                                                  | [:scope](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:scope)                         |
-| `:valid`             | 匹配诸如`<input>`元素的处于可用状态的元素。                                                                                                                                                                     | [:valid](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:valid)                         |
+| `:valid`             | 匹配内容验证正确的 `<input>` 或其他 `<form>` 元素。                                                                                                                                                             | [:valid](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:valid)                         |
 | `:target`            | 匹配当前 URL 目标的元素（例如如果它有一个匹配当前[URL 分段](https://en.wikipedia.org/wiki/Fragment_identifier)的元素）。                                                                                        | [:target](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:target)                       |
 | `:visited`           | 匹配已访问链接。                                                                                                                                                                                                | [:visited](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:visited)                     |
 
@@ -305,11 +306,15 @@ CSS 严格来说没有选择器权值的概念，而是选择器的**特定性**
 
     浏览器会依次比较的每一位的值，假如第一位就比较出来了大小，那么后面的就忽略。
     
-    > 星号选择器（\*）的特殊性为 0
+    ::: tip
+    星号选择器（\*）的特殊性为 0，所以选择器里面的星号，不会增加选择器的特殊性
+    :::
 
     ```css
     /* 0, 0, 0 */
     * {} 
+    /* 0, 1, 0 */
+    .bov > * {}
     /* 0, 0, 1 */
     body {} 
     /* 0, 1, 0 */
@@ -320,11 +325,13 @@ CSS 严格来说没有选择器权值的概念，而是选择器的**特定性**
     body #box .text:hover {} 
     ```
 
-    > 其实选择器的特殊性，在 vscode 中把鼠标放到选择器上就显示特殊性，浏览通同样适用（不能太老）
+    > 其实选择器的特殊性，在 vscode 中把鼠标放到选择器上就显示特殊性，浏览通同样适用（版本不能太老）
 
--   **原次序**：这个就是当重要性和特殊性一致时才会比较，即：书写的先后顺序，后写的生效
+-   **原次序**：这个就是当重要性和特殊性一致时才会比较，即：书写的先后顺序，**后写的生效**
 
-注意 `!important `它比较特殊，不属于选择器，一旦给某个属性设置了 `!important` 那就意味着这个属性一定生效，但若是多个 `!important` 同样会比较：重要性、特殊性、原次序
+::: tip  注意
+`!important` 它比较特殊，不属于选择器，一旦给某个属性设置了 `!important` 那就意味着这个属性一定生效，但若是同一样式有多个 `!important` 同样会比较：特殊性、原次序
+:::
 
 ## 常用选择器
 
@@ -337,3 +344,4 @@ CSS 严格来说没有选择器权值的概念，而是选择器的**特定性**
 -   选择除第一个和最后一个以外的其他元素：`div:not(:first-child, :last-child)`
 -   选择所有奇数元素：`div:nth-child(odd)`
 -   选择所有偶数元素：`div:nth-child(even)`
+-   里面的 input 是否聚焦：`div:has(input:focus)`

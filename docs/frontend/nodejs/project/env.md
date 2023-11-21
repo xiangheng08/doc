@@ -49,8 +49,6 @@ set NODE_ENV=development
 
 在 NodeJS 中有一个全局对象 `process`，它有一个属性 `env`，这个属性是一个对象，里面保存了所有的环境变量（也包括刚刚设置的环境变量）。
 
-比如要读取刚刚设置的环境变量，可以使用以下代码
-
 ```js
 console.log(process.env.NODE_ENV);
 
