@@ -20,3 +20,24 @@
 - 使用 ctrl + shift + p 打开命令面板（或者在帮助->显示所有命令）
 - 输入 reload
 - 选择 Reload Window（重新加载窗口）
+
+## 路径别名提示
+
+如果不是 ts 项目的情况下，在 vue.config.js 或者是其他打包工具中配置了路径别名，但是 vscode 没有提示，这时候需要在项目根目录新建 jsconfig.json 内容如下。
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+其中 paths 属性中就是路径别名，需要其他的别名，可以按照以上格式修改。
+
+如果是 ts 项目，配置内容是一样的，只是在 tsconfig.json 中配置
+
