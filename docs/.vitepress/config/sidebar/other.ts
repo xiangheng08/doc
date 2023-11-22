@@ -16,4 +16,14 @@ export default define<DefaultTheme.SidebarItem[]>([
 			},
 		],
 	},
+	{
+		text: '项目开发',
+		collapsed: false,
+		items: [
+			{
+				text: '版本后缀',
+				link: '/other/project/version-suffix',
+			}
+		],
+	},
 ]);

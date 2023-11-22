@@ -34,7 +34,10 @@ export default defineConfig({
 			{ text: 'Git', link: '/git/commandList' },
 			{
 				text: '其他',
-				items: [{ text: '小技巧', link: '/other/tips/' }],
+				items: [
+					{ text: '小技巧', link: '/other/tips/' },
+					{ text: '项目开发', link: '/other/project/' }
+				],
 			},
 		],
 
