@@ -7,6 +7,14 @@ export default define<DefaultTheme.SidebarItem[]>([
 		link: '/git/commandList',
 	},
 	{
+		text: '下载安装',
+		link: '/git/install',
+	},
+	{
+		text: '与 vscode 联动',
+		link: '/git/vscode',
+	},
+	{
 		text: '错误',
 		link: '/git/error/index',
 		collapsed: false,

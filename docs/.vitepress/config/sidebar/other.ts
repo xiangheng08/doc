@@ -26,4 +26,14 @@ export default define<DefaultTheme.SidebarItem[]>([
 			}
 		],
 	},
+	{
+		text: '应用/软件',
+		collapsed: false,
+		items: [
+			{
+				text: 'NVM',
+				link: '/other/app/nvm',
+			}
+		],
+	},
 ]);

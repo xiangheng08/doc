@@ -39,5 +39,13 @@
 			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
 		],
 		"description": "link components parent"
-	}
+	},
+	// 居中图片
+	"image center": {
+		"prefix": "pic center",
+		"body": [
+			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
+		],
+		"description": "image center"
+	},
 }
