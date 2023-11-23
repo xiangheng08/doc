@@ -36,4 +36,22 @@ export default define<DefaultTheme.SidebarItem[]>([
 			}
 		],
 	},
+	{
+		text: 'ChatGPT',
+		collapsed: false,
+		items: [
+			{
+				text: '角色',
+				link: '/other/chatgpt/role',
+			}
+		],
+	},
+	{
+		text: '常用单词',
+		link: '/other/common-words',
+	},
+	{
+		text: 'Emoji',
+		link: '/other/emoji',
+	},
 ]);

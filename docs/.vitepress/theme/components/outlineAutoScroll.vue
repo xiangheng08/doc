@@ -34,7 +34,7 @@ function onScroll() {
 				top: y,
 			});
 		}
-	}, 50);
+	}, 200);
 }
 
 function onResize() {

@@ -32,17 +32,12 @@ export default defineConfig({
 			{ text: '前端', link: '/frontend/' },
 			{ text: '后端', link: '/backend/' },
 			{ text: 'Git', link: '/git/commandList' },
-			{
-				text: '其他',
-				items: [
-					{ text: '小技巧', link: '/other/tips/' },
-					{ text: '项目开发', link: '/other/project/' }
-				],
-			},
+			{ text: '面试题', link: '/question/' },
+			{ text: '其他', link: '/other/' },
 		],
 
 		sidebar,
-		
+
 		sidebarMenuLabel: '目录',
 
 		darkModeSwitchLabel: '暗黑模式',
