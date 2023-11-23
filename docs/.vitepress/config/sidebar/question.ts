@@ -7,7 +7,7 @@ export default define<DefaultTheme.SidebarItem[]>([
     collapsed: false,
     items: [
       {
-        text: '未整理',
+        text: '1',
         link: '/question/unorganize/1'
       },
     ]
