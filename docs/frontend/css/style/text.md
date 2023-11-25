@@ -91,6 +91,17 @@ p {
 
 `text-decoration` 是 `text-decoration-line`、`text-decoration-color`、`text-decoration-style` 和较新的 `text-decoration-thickness` 属性的缩写。
 
+```css
+p {
+  text-decoration: none; /* 默认值，没有装饰线 */
+  text-decoration: underline; /* 文本下划线 */
+  text-decoration: overline; /* 文本上划线 */
+  text-decoration: line-through; /* 文本删除线 */
+  text-decoration: underline double red 0.2rem; /* 红色的下划双实线，宽度 0.2rem */
+
+}
+```
+
 
 ### text-decoration-color 修饰线颜色
 
@@ -122,7 +133,8 @@ p {
 
 <span style="text-decoration-line: underline;">文本的下方有一条修饰线</span>&nbsp;
 <span style="text-decoration-line: overline;">文本的上方有一条修饰线</span>&nbsp;
-<span style="text-decoration-line: line-through;">有一条贯穿文本中间的修饰线</span>
+<span style="text-decoration-line: line-through;">有一条贯穿文本中间的修饰线</span>&nbsp;
+<span style="text-decoration-line: underline overline;">两条装饰线</span>
 
 ### text-decoration-style 修饰线样式
 
@@ -148,7 +160,7 @@ p {
 ```css
 p {
   text-decoration-thickness: auto; /* 由浏览器为文本装饰线选择合适的粗细 */
-  text-decoration-thickness: from-font; /* 字体文件中包含了首选的厚度值，字体文件中没有，则效果和设置为 auto 一样 */
+  text-decoration-thickness: from-font; /* 字体文件中包含了首选的厚度值，如果字体文件中没有，则效果和设置为 auto 一样 */
   text-decoration-thickness: 0.1em;
   text-decoration-thickness: 3px;
   text-decoration-thickness: 10%;
