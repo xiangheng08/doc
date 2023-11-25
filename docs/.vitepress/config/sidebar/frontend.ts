@@ -29,6 +29,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/css/style/background',
 			},
 			{
+				text: '文本样式',
+				link: '/frontend/css/style/text',
+			},
+			{
 				text: '鼠标样式',
 				link: '/frontend/css/style/cursor',
 			},
