@@ -151,6 +151,16 @@ export default define<DefaultTheme.SidebarItem[]>([
 		],
 	},
 	{
+		text: '包管理工具',
+		collapsed: false,
+		items: [
+			{
+				text: '命令大全',
+				link: '/frontend/manager/command-list',
+			}
+		],
+	},
+	{
 		text: 'Vue',
 		collapsed: false,
 		items: [
