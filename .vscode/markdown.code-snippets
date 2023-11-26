@@ -48,4 +48,44 @@
 		],
 		"description": "image center"
 	},
+	"html code block": {
+		"prefix": "code html",
+		"body": [
+			"```html",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "html code block"
+	},
+	"css code block": {
+		"prefix": "code css",
+		"body": [
+			"```css",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "css code block"
+	},
+	"js code block": {
+		"prefix": "code js",
+		"body": [
+			"```js",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "js code block"
+	},
+	"ts code block": {
+		"prefix": "code ts",
+		"body": [
+			"```ts",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "ts code block"
+	},
 }
