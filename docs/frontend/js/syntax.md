@@ -350,9 +350,8 @@ const a = 1;
 		PI = 3.14159; // 错误，不能重新分配常量
 		```
 
+在现代 JavaScript 中应该使用 `let` 和 `const`，避免使用`var`，因为 `var` 它具有变量提升和挂载到 `window` 的特性，可能会出现变量冲突等问题。所以更加推荐使用 `let` 和 `const`。
 
-在现代 JavaScript 中使用 `let` 和 `const`，避免使用`var`，因为 `var` 它具有变量提升和挂载到 `window` 的特性，可能会出现变量冲突等问题。所以更加推荐使用 `let` 和 `const`。
-
-能使用 `const` 就使用 `const`，不行再用 `let`，再不行才用 `var`。
+能使用 `const` 就使用 `const`，不行再用 `let`，实在不行才用 `var`。
 
 所以使用的优先级：`const` > `let` > `var`
