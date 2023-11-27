@@ -106,24 +106,13 @@ var element = document.querySelector('body .box');
 
 ### querySelectorAll
 
-    ```javascript
-    var elements = document.querySelectorAll('yourCSSSelector');
-    ```
 
-1. **getElementsBySelector (custom function):**
+返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 [`NodeList`](https://developer.mozilla.org/zh-CN/docs/Web/API/NodeList) 。`NodeList` 不是动态的，不会和 `HTMLCollection` 一样随着元素的添加和删除而变化，因此，在每次调用 `querySelectorAll` 方法时，都会返回一个新的 `NodeList`。
 
-    ```javascript
-    function getElementsBySelector(selector) {
-    	return Array.from(document.querySelectorAll(selector));
-    }
+语法：`document.querySelectorAll('selectors')`
 
-    var elements = getElementsBySelector('yourCSSSelector');
-    ```
+- `selectors`: 一个有效的 CSS 选择器字符串
 
-2. **getElementsByTag and loop through them:**
-    ```javascript
-    var elements = document.getElementsByTagName('yourTagName');
-    for (var i = 0; i < elements.length; i++) {
-    	// Do something with elements[i]
-    }
-    ```
+```js
+const elements = document.querySelectorAll('yourCSSSelector');
+```

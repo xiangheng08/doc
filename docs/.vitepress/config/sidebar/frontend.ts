@@ -131,6 +131,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/js/index',
 			},
 			{
+				text: '输出',
+				link: '/frontend/js/output',
+			},
+			{
 				text: '语法',
 				link: '/frontend/js/syntax',
 			},

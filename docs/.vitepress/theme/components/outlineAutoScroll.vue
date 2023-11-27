@@ -3,21 +3,26 @@
 </template>
 
 <script setup lang="ts">
+const wait = 300; // 防抖时间
 const asideContainerDom = ref<HTMLDivElement | null>(null);
 const outlineMarkerDom = ref<HTMLDivElement | null>(null);
-const showOutline = ref(true);
+let showOutline = false; // 是否显示大纲
+let userScrollOutline = false; // 用户是否正在滚动大纲
 
 let timer: NodeJS.Timeout;
+let timer2: NodeJS.Timeout;
 // 防止打包报错
 const myDocument = globalThis.document;
 
+// window
 function onScroll() {
 	if (timer) clearTimeout(timer);
-	if (!showOutline.value) return;
+	if (!showOutline) return;
 	// 防抖
 	timer = setTimeout(() => {
 		if (!asideContainerDom.value) return;
 		if (!outlineMarkerDom.value) return;
+		if (!showOutline || userScrollOutline) return;
 
 		const scrollHeight = asideContainerDom.value.scrollHeight;
 		const height = asideContainerDom.value.clientHeight;
@@ -34,12 +39,24 @@ function onScroll() {
 				top: y,
 			});
 		}
-	}, 200);
+	}, wait);
 }
-
+// window
 function onResize() {
 	// vitepress 在屏幕小于 1280 时，会隐藏侧边栏，此时不需要自动滚动
-	showOutline.value = myDocument.body.clientWidth > 1280;
+	showOutline = myDocument.body.clientWidth > 1280;
+}
+// aside container
+function onWheel() {
+	// 当用户正在滚在大纲时阻止自动滚动
+	if (timer) clearTimeout(timer);
+	if (timer2) clearTimeout(timer2);
+
+	userScrollOutline = true;
+
+	timer2 = setTimeout(() => {
+		userScrollOutline = false;
+	}, wait);
 }
 
 onMounted(() => {
@@ -55,6 +72,10 @@ onMounted(() => {
 	// 监听滚动事件
 	window.addEventListener('scroll', onScroll, { passive: true });
 	window.addEventListener('resize', onResize);
+
+	if (asideContainerDom.value) {
+		asideContainerDom.value.addEventListener('wheel', onWheel, { passive: true });
+	}
 
 	onResize();
 });

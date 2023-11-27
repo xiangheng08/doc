@@ -3,7 +3,7 @@
 -   ~~length~~
 -   ~~at~~
 -   ~~concat~~
--   copyWithin
+-   ~~copyWithin~~
 -   entries
 -   ~~every~~
 -   fill
@@ -485,6 +485,37 @@ console.log(arr3); // ['a', 'b', 'c', 'd', 'e', 'f', 'h', {…}, ƒ]
 ### copyWithin 复制到自身
 
 `copyWithin()` 方法浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度。
+
+语法：`array.copyWithin(target, start, end);`
+
+- `target`：要复制到的目标位置的索引。
+- `start`：要复制的元素的起始位置的索引。
+- `end` (可选)：要复制的元素的结束位置的索引。如果省略，则默认为数组末尾。
+
+```js
+let array = [1, 2, 3, 4, 5];
+
+// 将索引为 0 的元素复制到索引为 3 的位置
+array.copyWithin(3, 0);
+
+console.log(array); // 输出 [1, 2, 3, 1, 2]
+```
+在这个例子中，`copyWithin` 将从索引为 0 的位置开始的元素 `[1, 2, 3]` 复制到索引为 3 的位置，覆盖了原来的 `[4, 5]`。这导致数组变为 `[1, 2, 3, 1, 2]`。
+
+`copyWithin` 还可以处理负数的索引，它会将负数索引视为从数组末尾开始计算的索引。例如：
+
+```js
+let array = [1, 2, 3, 4, 5];
+
+// 将索引为 -2 的元素复制到索引为 2 的位置
+array.copyWithin(2, -2, -1);
+
+console.log(array); // 输出 [1, 2, 4, 4, 5]
+```
+
+在这个例子中，`copyWithin` 将从索引为 -2 的位置开始的元素 `[4]` 复制到索引为 2 的位置，覆盖了原来的 `[3]`。这导致数组变为 `[1, 2, 4, 4, 5]`。
+
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
 
 ### slice 截取
 
