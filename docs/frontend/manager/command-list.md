@@ -106,7 +106,6 @@ npm config set registry https://registry.npm.taobao.org
 npm --registry https://registry.npm.taobao.org install axios
 ```
 
-
 ### 设置官方镜像源
 
 ```sh
@@ -117,6 +116,18 @@ npm config set registry https://registry.npmjs.org
 
 ```sh
 npm config get registry
+```
+
+### 本地包安装/卸载
+
+本地包安装/卸载与远程包安装/卸载基本一致，只要把包名**换成本地包路径**即可。
+
+```sh
+# 安装
+npm i local-path
+
+# 卸载
+npm un local-path
 ```
 
 ## Yarn
@@ -213,6 +224,17 @@ yarn config set registry https://registry.yarnpkg.com
 yarn config get registry
 ```
 
+### 本地包安装/卸载
+
+本地包安装/卸载与远程包安装/卸载基本一致，只要把包名**换成本地包路径**即可。
+
+```sh
+# 安装
+yarn add local-path
+
+# 卸载
+yarn remove local-path
+```
 
 ## pnpm
 
@@ -309,7 +331,7 @@ pnpm get registry
 ### 设置淘宝源
 
 ```sh
-pnpm config set registry 
+pnpm config set registry
 ```
 
 ### 临时修改淘宝源
@@ -326,10 +348,21 @@ pnpm --registry https://registry.npm.taobao.org install axios
 pnpm config set registry https://registry.npmjs.org
 ```
 
+### 本地包安装/卸载
+
+本地包安装/卸载与远程包安装/卸载基本一致，只要把包名**换成本地包路径**即可。
+
+```sh
+# 安装
+pnpm add local-path
+
+# 卸载
+pnpm remove local-path
+```
+
 ## 源
 
-- 阿里：`https://registry.npmmirror.com`
-- 淘宝：`https://registry.npm.taobao.org`
-- npm：`https://registry.npmjs.org`
-- yarn：`https://registry.yarnpkg.com`
-
+-   阿里：`https://registry.npmmirror.com`
+-   淘宝：`https://registry.npm.taobao.org`
+-   npm：`https://registry.npmjs.org`
+-   yarn：`https://registry.yarnpkg.com`

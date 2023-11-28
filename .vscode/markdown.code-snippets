@@ -88,4 +88,14 @@
 		],
 		"description": "ts code block"
 	},
+	"sh code block": {
+		"prefix": "code sh",
+		"body": [
+			"```sh",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "sh code block"
+	},
 }
