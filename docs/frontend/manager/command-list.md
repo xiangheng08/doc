@@ -1,4 +1,4 @@
-# 命令大全
+# npm / yarn / pnpm 命令大全
 
 ## npm (Node Package Manager)
 
@@ -128,6 +128,15 @@ npm i local-path
 
 # 卸载
 npm un local-path
+```
+
+### 查看全局包的安装路径
+
+```sh
+npm root -g
+
+# 不加 -g 就是当前项目 node_modules 的路径
+npm root
 ```
 
 ## Yarn
