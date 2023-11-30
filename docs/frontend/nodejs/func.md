@@ -37,7 +37,7 @@ function checkPort(port) {
 	});
 }
 
-// 用法示例
+// 使用示例
 checkPort(8080).then((res) => {
 	if (res instanceof Error) {
 		// 出现其他错误
@@ -83,7 +83,7 @@ function checkPort(port, callback) {
 	server.listen(port, 'localhost');
 }
 
-// 用户示例
+// 使用示例
 checkPort(8080, (res) => {
 	if (res instanceof Error) {
 		// 出现其他错误
