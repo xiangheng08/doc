@@ -45,6 +45,7 @@
 
 -   `git status`: 显示工作区和暂存区的状态。
 -   `git log`: 查看提交历史。
+-   `git log --all`: 查看全部提交历史。
 -   `git log --oneline`: 查看简化的提交历史。
 -   `git log -2`: 查看最近两条的提交历史。
 -   `git tag -l "v*"`: 显示以 "v" 开头的标签
@@ -70,6 +71,21 @@
 -   `git tag -d <tag_name>`: 删除标签。
 -   `git ls-remote --tags <remote>`: 列出远程仓库的标签。
 
+## 切换
+
+-   `git checkout <branch>`: 切换到特定分支。
+-   `git checkout <tag>`: 切换到特定标签。
+-   `git checkout commit_hash`: 切换到特定提交
+-   `git switch <branch> --detach`: 切换到特定分支。
+-   `git switch <tag> --detach`: 切换到特定标签。
+-   `git switch commit_hash --detach`: 切换到特定提交
+
+::: tip 注意
+`git switch` 需要 Git 2.23+
+
+如果切换后使用 `git log` 看不到之前的提交记录了，加上 `--all` 参数就行了
+:::
+
 ## 其他
 
 -   `git --version`: 显示 git 版本。
@@ -87,6 +103,7 @@
 此操作会推送一次，`<branch>` 为本地分支名，一般为当前分支
 
 例如
+
 ```sh
 git push --set-upstream origin main
 
