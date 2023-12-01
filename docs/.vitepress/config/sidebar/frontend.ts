@@ -293,6 +293,16 @@ export default define<DefaultTheme.SidebarItem[]>([
 		],
 	},
 	{
+		text: 'React',
+		collapsed: false,
+		items: [
+			{
+				text: '未整理',
+				link: '/frontend/react/raw',
+			}
+		]
+	},
+	{
 		text: 'vite',
 		collapsed: false,
 	},
