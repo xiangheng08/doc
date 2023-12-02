@@ -31,7 +31,7 @@ type ReplacePropertyType<T, K extends keyof T, N> = Omit<T, K> & { [key in K]: N
 `ReplacePropertyType` 可以将 T 的部分属性的类型替换成 N 类型。
 
 ```ts
-type Obj = { a: number, b: number, c: number }
+type Obj = { a: number; b: number; c: number };
 
 type A = ReplacePropertyType<Obj, 'a' | 'b', string>;
 
@@ -47,13 +47,24 @@ type MergeTypes<T, N> = Omit<T, keyof N> & N;
 `MergeTypes` 可以将两个类型合并成一个类型。跟直接使用 & 不同的是，`MergeTypes` 会把 T 中和 N 重复的属性移除。
 
 ```ts
-type Obj = { id: number, list: string | string[] };
+type Obj = { id: number; list: string | string[] };
 
 type A = MergeTypes<Obj, { list: string[] }>;
 
 // type A = { id: number, list: string[] }
 ```
 
+### 排除 undefined
+
+`ExcludeUndefined` 和 [`NonNullable`](#nonnullablet-排除-null-和-undefined) 不同的是 `ExcludeUndefined` 只会排除 `undefined`。
+
+```ts
+type ExcludeUndefined<T> = T extends undefined ? never : T;
+
+type A = ExcludeUndefined<string | null | undefined>;
+
+// type A = string | null
+```
 
 ## 内置的工具类型
 
@@ -122,7 +133,7 @@ type B = {
 从类型`T`中选取一组属性`K`。
 
 ```ts
-type Obj = { foo: number, bar: string, baz: boolean }
+type Obj = { foo: number; bar: string; baz: boolean };
 
 type A = Pick<Obj, 'foo' | 'bar'>;
 /* 
@@ -138,7 +149,7 @@ type A = {
 从类型`T`中移除一组属性`K`。
 
 ```ts
-type Obj = { foo: number, bar: string, baz: boolean }
+type Obj = { foo: number; bar: string; baz: boolean };
 
 type A = Omit<Obj, 'foo' | 'bar'>;
 
@@ -180,7 +191,7 @@ type A = Extract<Union, 'a' | 'd'>;
 ```ts
 type Union = string | number | null | undefined;
 
-type A = NonNullable<Union>
+type A = NonNullable<Union>;
 
 // type A = string | number
 ```
