@@ -1,4 +1,4 @@
-# 工具类型
+# TS 工具类型
 
 ## 自定义工具类型
 
@@ -56,7 +56,7 @@ type A = MergeTypes<Obj, { list: string[] }>;
 
 ### 排除 undefined
 
-`ExcludeUndefined` 和 [`NonNullable`](#nonnullablet-排除-null-和-undefined) 不同的是 `ExcludeUndefined` 只会排除 `undefined`。
+`ExcludeUndefined` 和 [`NonNullable`](#nonnullable-t-排除-null-和-undefined) 不同的是 `ExcludeUndefined` 只会排除 `undefined`。
 
 ```ts
 type ExcludeUndefined<T> = T extends undefined ? never : T;
