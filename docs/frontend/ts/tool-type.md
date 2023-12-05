@@ -70,7 +70,7 @@ type A = ExcludeUndefined<string | null | undefined>;
 
 ### `Partial<T>` 属性变可选
 
-用于将类型`T`中的所有属性设置为可选。
+用于将类型 `T` 中的所有属性设置为可选。
 
 ```ts
 type A = Partial<{ foo: number; bar: string }>;
@@ -80,7 +80,7 @@ type A = Partial<{ foo: number; bar: string }>;
 
 ### `Required<T>` 属性变必选
 
-与`Partial`相反，将类型`T`中的所有属性设置为必选。
+与 `Partial` 相反，将类型 `T` 中的所有属性设置为必选。
 
 ```ts
 type A = Required<{ foo?: number; bar?: string }>;
@@ -90,7 +90,7 @@ type A = Required<{ foo?: number; bar?: string }>;
 
 ### `Readonly<T>` 属性变只读
 
-将类型`T`中的所有属性设置为只读。
+将类型 `T` 中的所有属性设置为只读。
 
 -   示例： `Readonly<{ foo: number, bar: string }>` 将变成 `{ readonly foo: number, readonly bar: string }`。
 
@@ -107,7 +107,7 @@ type A = {
 
 ### `Record<K, T>`
 
-创建一个具有键类型`K`和值类型`T`的新对象类型。
+创建一个具有键类型 `K` 和值类型 `T` 的新对象类型。
 
 ```ts
 type A = Record<'foo' | 'bar', string>;
@@ -130,7 +130,7 @@ type B = {
 
 ### `Pick<T, K>` 提取属性
 
-从类型`T`中选取一组属性`K`。
+从类型 `T` 中选取一组属性 `K`。
 
 ```ts
 type Obj = { foo: number; bar: string; baz: boolean };
@@ -146,7 +146,7 @@ type A = {
 
 ### `Omit<T, K>` 去除属性
 
-从类型`T`中移除一组属性`K`。
+从类型 `T` 中移除一组属性 `K` 。
 
 ```ts
 type Obj = { foo: number; bar: string; baz: boolean };
@@ -162,7 +162,7 @@ type A = {
 
 ### `Exclude<T, U>` 排除
 
-从类型`T`中排除可以赋值给类型`U`的所有属性。
+从类型 `T` 中排除可以赋值给类型 `U` 的所有属性。
 
 ```ts
 type Union = 'a' | 'b' | 'c';
@@ -174,7 +174,7 @@ type A = Exclude<Union, 'a'>;
 
 ### `Extract<T, U>` 提取
 
-从类型`T`中提取可以赋值给类型`U`的所有属性。
+从类型 `T` 中提取可以赋值给类型 `U` 的所有属性。
 
 ```ts
 type Union = 'a' | 'b' | 'c' | 'd';
@@ -186,7 +186,7 @@ type A = Extract<Union, 'a' | 'd'>;
 
 ### `NonNullable<T>` 排除 `null` 和 `undefined`
 
-从类型`T`中排除`null`和`undefined`。
+从类型 `T` 中排除 `null` 和 `undefined`。
 
 ```ts
 type Union = string | number | null | undefined;
@@ -198,7 +198,7 @@ type A = NonNullable<Union>;
 
 ### `ReturnType<T>` 获取函数类型返回值类型
 
-获取函数类型`T`的返回类型。
+获取函数类型 `T` 的返回类型。
 
 ```ts
 type Fn = () => number;
@@ -206,4 +206,80 @@ type Fn = () => number;
 type A = ReturnType<Fn>;
 
 // type A = number
+```
+
+### `Parameters<T>` 获取函数类型参数类型元组
+
+获取函数类型 `T` 的参数类型元组。
+
+```ts
+type Fn = (a: number, b: string) => void;
+
+type A = Parameters<Fn>;
+
+// type A = [a: number, b: string]
+```
+
+### `ConstructorParameters<T>` 获取构造函数参数类型元组
+
+获取构造函数类型 `T` 的参数类型组成的元组类型。
+
+```ts
+class C {
+	constructor(a: number, b: string) {}
+}
+
+type A = ConstructorParameters<typeof C>;
+
+// type A = [a: number, b: string]
+```
+
+### `InstanceType<T>` 获取构造函数类型实例类型
+
+获取构造函数类型 `T` 的实例类型。
+
+```ts
+class Person {
+	constructor(name: string, age: number) {}
+}
+
+type A = InstanceType<typeof Person>;
+
+// type A = Person
+```
+
+### `Uppercase<T>` 转大写
+
+将字符串类型 `T` 中的所有字符转换为大写。
+
+```ts
+type S = 'hello';
+type A = Uppercase<S>; // 'HELLO'
+```
+
+### `Lowercase<T>` 转小写
+
+将字符串类型 `T` 中的所有字符转换为小写。
+
+```ts
+type S = 'HELLO';
+type A = Lowercase<S>; // 'hello'
+```
+
+### `Capitalize<T>` 首字符大写
+
+将字符串类型 `T` 的第一个字符转换为大写。
+
+```ts
+type S = 'hello';
+type A = Capitalize<S>; // 'Hello'
+```
+
+### `Uncapitalize<T>` 首字符小写
+
+将字符串类型 `T` 的第一个字符转换为小写。
+
+```ts
+type S = 'Hello';
+type A = Uncapitalize<S>; // 'hello'
 ```
