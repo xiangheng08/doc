@@ -53,6 +53,10 @@
 -   `git diff <commit1> <commit2>`: 查看两个提交之间的差异。
 -   `git reflog`: 查看操作历史。
 
+::: tip
+在使用 `git log` 命令查看 Git 提交历史时，可以按下 q 键来退出查看状态。
+:::
+
 ## 撤销和重置
 
 -   `git reset <file>`: 取消对文件的暂存。

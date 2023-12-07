@@ -98,4 +98,49 @@
 		],
 		"description": "sh code block"
 	},
+	"info containers": {
+		"prefix": "info containers",
+		"body": [
+			"::: info $1",
+			"$2",
+			":::",
+		],
+		"description": "信息容器"
+	},
+	"tip containers": {
+		"prefix": "tip containers",
+		"body": [
+			"::: tip $1",
+			"$2",
+			":::",
+		],
+		"description": "提示容器"
+	},
+	"warning containers": {
+		"prefix": "warning containers",
+		"body": [
+			"::: warning $1",
+			"$2",
+			":::",
+		],
+		"description": "警告容器"
+	},
+	"danger containers": {
+		"prefix": "danger containers",
+		"body": [
+			"::: danger $1",
+			"$2",
+			":::",
+		],
+		"description": "危险容器"
+	},
+	"details containers": {
+		"prefix": "details containers",
+		"body": [
+			"::: details $1",
+			"$2",
+			":::",
+		],
+		"description": "可展开/详情容器"
+	},
 }
