@@ -54,4 +54,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'Emoji',
 		link: '/other/emoji',
 	},
+	{
+		text: 'VScode 快捷键',
+		link: '/other/vscode-shortcut',
+	},
 ]);
