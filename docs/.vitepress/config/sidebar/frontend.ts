@@ -284,6 +284,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '事件处理',
 						link: '/frontend/vue/basic/events',
 					},
+					{
+						text: '表单数据收集',
+						link: '/frontend/vue/basic/forms',
+					},
 				],
 			},
 			{
