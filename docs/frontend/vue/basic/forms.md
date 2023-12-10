@@ -1,5 +1,9 @@
 # 表单数据收集
 
+<script>
+	
+</script>
+
 ## v-model
 
 `v-model` 指令在表单 `<input>`、`<textarea>` 及 `<select>` 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。

@@ -115,7 +115,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 							{
 								text: '&lt;blend-mode&gt;',
 								link: '/frontend/css/types/blend-mode',
-							}
+							},
 						],
 					},
 				],
@@ -150,7 +150,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: '选择元素',
 						link: '/frontend/js/dom/select',
 					},
-				]
+				],
 			},
 			{
 				text: '对象',
@@ -217,9 +217,9 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{
 						text: '环境变量',
 						link: '/frontend/nodejs/project/env',
-					}
+					},
 				],
-			}
+			},
 		],
 	},
 	{
@@ -229,7 +229,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '命令大全',
 				link: '/frontend/manager/command-list',
-			}
+			},
 		],
 	},
 	{
@@ -303,8 +303,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '未整理',
 				link: '/frontend/react/raw',
-			}
-		]
+			},
+		],
 	},
 	{
 		text: 'vite',
@@ -317,7 +317,11 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '工具类型',
 				link: '/frontend/ts/tool-type',
-			}
+			},
+			{
+				text: 'TS 小技巧',
+				link: '/frontend/ts/tips',
+			},
 		],
 	},
 	{
