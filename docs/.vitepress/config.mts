@@ -21,7 +21,7 @@ export default defineConfig({
 	description: 'My Doc',
 	lang: 'zh-CN',
 
-	head: [['link', { rel: 'icon', href: '/vitepress-logo-mini.svg' }]],
+	head: [['link', { rel: 'icon', href: (append.base ? append.base : '') + '/vitepress-logo-mini.svg' }]],
 
 	themeConfig: {
 		logo: '/vitepress-logo-mini.svg',

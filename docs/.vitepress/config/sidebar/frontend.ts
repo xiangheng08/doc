@@ -21,6 +21,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 		collapsed: false,
 		items: [
 			{
+				text: '起步',
+				link: '/frontend/css/index',
+			},
+			{
 				text: '选择器',
 				link: '/frontend/css/selector',
 			},
