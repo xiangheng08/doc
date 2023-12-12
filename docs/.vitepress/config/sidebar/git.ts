@@ -15,6 +15,16 @@ export default define<DefaultTheme.SidebarItem[]>([
 		link: '/git/vscode',
 	},
 	{
+		text: '脚本',
+		collapsed: false,
+		items: [
+			{
+				text: '自动推送',
+				link: '/git/script/auto_push',
+			}
+		],
+	},
+	{
 		text: '错误',
 		link: '/git/error/index',
 		collapsed: false,

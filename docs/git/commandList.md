@@ -5,7 +5,7 @@
 -   `git init`: 在当前目录初始化一个新的 Git 仓库。
 -   `git clone <repository_url>`: 克隆远程仓库到本地。
 
-## 基本配置
+## 配置
 
 -   `git config --global user.name "Your Name"`: 配置全局用户名。
 -   `git config --global user.email "youremail@example.com"`: 配置全局邮箱地址。
@@ -38,7 +38,7 @@
 -   `git push <remote> <branch>`: 推送本地分支到远程仓库。
 -   `git fetch <remote>`: 获取远程仓库的最新信息，但不合并。
 -   `git clone <remote>`: 克隆远程仓库到本地。
--   `git push 别名 | 远程地址 --d 分支名`
+-   `git clone <remote> -b <branch>`: 克隆远程仓库中指定的分支到本地。
 -   `git push <remote> --delete <branch_name>`: 删除远程分支。
 
 ## 查看状态和历史
