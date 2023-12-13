@@ -158,14 +158,16 @@ Vue.component('example', {
 因为 `$nextTick()` 返回一个 `Promise` 对象，所以你可以使用新的 [ES2017 async/await](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 语法完成相同的事情：
 
 ```js
-methods: {
-  updateMessage: async function () {
-    this.message = '已更新'
-    console.log(this.$el.textContent) // => '未更新'
-    await this.$nextTick()
-    console.log(this.$el.textContent) // => '已更新'
-  }
-}
+new Vue({
+	methods: {
+		async updateMessage() {
+			this.message = '已更新';
+			console.log(this.$el.textContent); // => '未更新'
+			await this.$nextTick();
+			console.log(this.$el.textContent); // => '已更新'
+		},
+	},
+});
 ```
 
 ## vm.$set
@@ -194,18 +196,45 @@ methods: {
 
 `vm.$delete( target, propertyName/index )`
 
--	参数：
+-   参数：
 
-	-	`{Object | Array} target`
-	-	`{string | number} propertyName/index`
+    -   `{Object | Array} target`
+    -   `{string | number} propertyName/index`
 
--	用法：
+-   用法：
 
-	删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制，但是你应该很少会使用它。
+    删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制，但是你应该很少会使用它。
 
-	::: tip
-	在 2.2.0+ 中同样支持在数组上工作。
-	:::
-	::: danger
-	目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。
-	:::
+    ::: tip
+    在 2.2.0+ 中同样支持在数组上工作。
+    :::
+    ::: danger
+    目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。
+    :::
+
+## 7 个数组方法的重写
+
+因为 Vue（Vue2）使用的是 `Object.defineProperty` 检测属性的变化，对于数组，直接使用索性和使用数组的一些方法操作数组，这些都无法被 `Object.defineProperty` 检测到。既然检测不到，这也就违背了 Vue 响应式数据的理念，因此对于不能检测的到的数组方法，Vue 重写了这些方法，以达到检测到数组的变化。
+
+重写的方法如下：
+
+-   `push`
+-   `pop`
+-   `shift`
+-   `unshift`
+-   `splice`
+-   `sort`
+-   `reverse`
+
+::: tip 为什么是这些方法？
+因为这个方法都会改变原数组，其他操作数组的方法，大多都是返回一个新的数组。
+:::
+
+对于直接使用索引操作数组，也可以使用 [`vm.$set`](#vm-set) 代替
+
+除了数组的这些操作检测不到，像对象的属性的新增，使用 delete 删除属性，这些操作同样无法被检测到。所以对象的这些操作同样需要使用 [`vm.$set`](#vm-set) 和 [`vm.$delete`](#vm-delete) 代替。
+
+我们在定义和操作数据时，要尽量让数据保持响应式。
+
+-   对于数组，尽量使用以上重写的 7 个方法，需要使用索引操作数组时，使用 `vm.$set` 代替
+-   对于对象，尽量使用 `vm.$set` 添加新属性，使用 `vm.$delete` 删除属性，在定义属性时，尽量把所有可能用到的属性都事先定义好。
