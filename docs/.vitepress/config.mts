@@ -1,7 +1,7 @@
 import './utils/env';
+import path from 'path';
 import { defineConfig, UserConfig, DefaultTheme } from 'vitepress';
 import sidebar from './config/sidebar';
-import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
@@ -21,7 +21,7 @@ export default defineConfig({
 	description: 'My Doc',
 	lang: 'zh-CN',
 
-	head: [['link', { rel: 'icon', href: (append.base ? append.base : '') + '/vitepress-logo-mini.svg' }]],
+	head: [['link', { rel: 'icon', href: _withBase('/vitepress-logo-mini.svg') }]],
 
 	themeConfig: {
 		logo: '/vitepress-logo-mini.svg',
@@ -134,3 +134,15 @@ export default defineConfig({
 		],
 	},
 });
+
+function _withBase(path: string) {
+	let base = append.base;
+	path = /^\//.test(path) ? path : '/' + path;
+
+	if (base) {
+		base = base.replace(/\/$/, '');
+		return base + path;
+	} else {
+		return path;
+	}
+}
