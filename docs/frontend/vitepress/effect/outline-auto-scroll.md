@@ -2,7 +2,7 @@
 
 ## 效果
 
-![](/public/images/frontend/vitepress/outline-auto-scroll-demo.gif)
+![](/images/frontend/vitepress/outline-auto-scroll-demo.gif)
 
 ## 实现
 
