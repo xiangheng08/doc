@@ -156,3 +156,38 @@ console.log(isSubPath(parentPath, childPath2)); // false
 console.log(isSubPath(parentPath, parentPath)); // false
 console.log(isSubPath(parentPath, parentPath, false)); // true
 ```
+
+## 判断两个路径是否指向同一位置
+
+```js
+const path = require('path');
+
+/**
+ * 判断两个路径是否指向同一位置
+ * @param {string} path1 路径1
+ * @param {string} path2 路径2
+ * @param {boolean} p 是否在路径格式（相对路径、绝对路径）不一致返回 false
+ * @param {string} root 根路径
+ */
+function arePathsEqual(path1, path2, p = true, root) {
+	// 格式不一致时返回 false
+	if (p && path.isAbsolute(path1) !== path.isAbsolute(path2)) {
+		return false;
+	}
+
+	const paths1 = [path1];
+	const paths2 = [path2];
+
+	if (root && !path.isAbsolute(path1)) {
+		paths1.unshift(root);
+	}
+	if (root && !path.isAbsolute(path2)) {
+		paths2.unshift(root);
+	}
+
+	const p1 = path.resolve(...paths1);
+	const p2 = path.resolve(...paths2);
+
+	return p1 === p2;
+}
+```
