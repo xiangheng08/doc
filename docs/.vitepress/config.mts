@@ -1,5 +1,6 @@
 import './utils/env';
 import path from 'path';
+import fs from 'fs';
 import { defineConfig, UserConfig, DefaultTheme } from 'vitepress';
 import sidebar from './config/sidebar';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -9,6 +10,8 @@ import copyright from './config/copyright';
 
 // 附加配置
 const append: UserConfig<DefaultTheme.Config> = {};
+
+const examplePath = path.join(__dirname, './examples')
 
 if (process.env.BASE) {
 	append.base = process.env.BASE;
@@ -97,6 +100,7 @@ export default defineConfig({
 			light: 'light-plus',
 		},
 		lineNumbers: true, // 启用行号
+		math: true, // 启用数学公式
 	},
 	vite: {
 		resolve: {
@@ -122,7 +126,7 @@ export default defineConfig({
 				],
 			}),
 			Components({
-				dirs: ['.vitepress/theme/components'],
+				dirs: ['.vitepress/theme/components', ...examplePaths(examplePath)],
 				dts: '.vitepress/components.d.ts',
 				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 				resolvers: [
@@ -146,3 +150,21 @@ function _withBase(path: string) {
 		return path;
 	}
 }
+
+
+// 获取 examples 的所有目录路径
+function examplePaths(_path: string) {
+	const arr: string[] = [_path];
+
+	if (fs.existsSync(_path)) {
+		fs.readdirSync(_path).forEach((file) => {
+			const curPath = path.join(_path, file);
+			if (fs.lstatSync(curPath).isDirectory()) {
+				arr.push(...examplePaths(curPath));
+			}
+		});
+	}
+
+	return arr
+}
+

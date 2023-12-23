@@ -24,20 +24,27 @@ html {
 }
 
 .VPSidebarItem.is-link {
-	.item > .link {
-		.text {
-			font-size: 13px;
-		}
-		&:hover {
+	.item {
+		.link {
 			.text {
-				color: #42b883 !important;
+				font-size: 13px;
+			}
+			&:hover {
+				.text {
+					color: #42b883 !important;
+				}
 			}
 		}
 	}
 	&.is-active {
-		.item .link > .text {
-			font-weight: 700;
-			color: #42b883 !important;
+		.item {
+			.indicator {
+				background-color: #42b883 !important;
+			}
+			.link > .text {
+				font-weight: 700;
+				color: #42b883 !important;
+			}
 		}
 	}
 }
@@ -62,13 +69,13 @@ li::marker {
 	background-color: var(--aside-scroll-hover);
 }
 
-table{
+table {
 	&.stretch {
 		width: 100%;
 		display: table;
 	}
-	&.title-center{
-		th{
+	&.title-center {
+		th {
 			text-align: center;
 		}
 	}

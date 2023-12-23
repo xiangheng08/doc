@@ -2,6 +2,26 @@
 
 所有的 CSS 声明都包括一个“属性/值”对。由于属性不同，对应的值可能是单个整数或关键字，也可能是一串包含或不包含单位的关键字和值的集合。CSS 属性接受一组共同的数据类型（属性的值和对应的单位）。
 
+## 全局值
+
+-   `inherit`: 继承父元素该属性的值。
+-   `initial`: 属性的初始值。
+-   `unset`: 表示如果属性有继承值，则使用继承值；否则，使用初始值。
+-   `revert`: 重置属性为用户代理样式表的默认值。
+
+```css
+p {
+	color: inherit;
+	color: initial;
+	color: unset;
+	color: revert;
+}
+```
+
+::: warning
+并非所有属性都支持所有的全局值。
+:::
+
 ## 文本数据类型
 
 -   `<custom-ident>` [mdn](https://developer.mozilla.org/zh-CN/docs/Web/CSS/custom-ident)
