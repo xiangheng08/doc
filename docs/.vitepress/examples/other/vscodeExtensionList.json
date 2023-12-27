@@ -1,0 +1,74 @@
+[
+	{
+			"name": "Chinese (Simplified)",
+			"desc": "vscode 简体中文语言包",
+			"logo": "/images/other/vscode-extension-logo/lang.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans"
+	},
+	{
+			"name": "Code Translate",
+			"desc": "一款纯粹的 vscode 滑词翻译插件（非常好用，在遇到陌生代码，可以根据单词意思知道作用）",
+			"logo": "/images/other/vscode-extension-logo/code-translate.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=w88975.code-translate"
+	},
+	{
+			"name": "CodeGeeX",
+			"desc": "非常好用的 AI 的编码助手，建议代码、添加注释、代码解释、代码测试等功能",
+			"logo": "/images/other/vscode-extension-logo/code-geex.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=aminer.codegeex"
+	},
+	{
+			"name": "indent-rainbow",
+			"desc": "使用不同颜色区分代码的不同等级",
+			"logo": "/images/other/vscode-extension-logo/indent-rainbow.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow"
+	},
+	{
+			"name": "Live Server",
+			"desc": "快速开启一个开发服务器，具有热更新",
+			"logo": "/images/other/vscode-extension-logo/live-server.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+	},
+	{
+			"name": "Path Intellisense",
+			"desc": "路径自动补全，虽然这个功能 vscode 自带但是有时候不会生效",
+			"logo": "/images/other/vscode-extension-logo/path-intellisense.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense"
+	},
+	{
+			"name": "Prettier - Code formatter",
+			"desc": "代码格式化，可以很好的保证代码风格的一致性",
+			"logo": "/images/other/vscode-extension-logo/prettier.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
+	},
+	{
+			"name": "Polacode",
+			"desc": "将代码转为图片",
+			"logo": "/images/other/vscode-extension-logo/polacode.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=pnp.polacode"
+	},
+	{
+			"name": "Vetur",
+			"desc": "vue2 的官方扩展",
+			"logo": "/images/other/vscode-extension-logo/vue.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=octref.vetur"
+	},
+	{
+			"name": "Vue Language Features (Volar)",
+			"desc": "vue3 的官方扩展",
+			"logo": "/images/other/vscode-extension-logo/vue.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=Vue.volar"
+	},
+	{
+			"name": "TypeScript Vue Plugin (Volar)",
+			"desc": "vue3 的 ts 扩展，主要用于提供 .vue 文件 ts 类型",
+			"logo": "/images/other/vscode-extension-logo/vue-ts.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin"
+	},
+	{
+			"name": "Auto Rename Tag",
+			"desc": "html 标签自动补全",
+			"logo": "/images/other/vscode-extension-logo/auto-rename-tag.png",
+			"url": "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag"
+	}
+]

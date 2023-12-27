@@ -15,6 +15,11 @@ declare module 'vue' {
     Run: typeof import('./theme/components/run.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']
     TButton: typeof import('tdesign-vue-next')['Button']
+    TList: typeof import('tdesign-vue-next')['List']
+    TListItem: typeof import('tdesign-vue-next')['ListItem']
+    TListItemMeta: typeof import('tdesign-vue-next')['ListItemMeta']
+    TSpace: typeof import('tdesign-vue-next')['Space']
     Version: typeof import('./theme/components/version.vue')['default']
+    VscodeExtensionList: typeof import('./examples/other/vscodeExtensionList.vue')['default']
   }
 }

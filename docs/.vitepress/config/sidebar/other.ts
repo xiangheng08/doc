@@ -58,4 +58,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'VScode 快捷键',
 		link: '/other/vscode-shortcut',
 	},
+	{
+		text: 'vscode 扩展',
+		link: '/other/vscode-extension',
+	},
 ]);

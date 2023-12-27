@@ -37,3 +37,47 @@ function throttle(fn, delay) {
 	};
 }
 ```
+
+## 获取某个日期位于当年的第几天
+
+```js
+/**
+ * 获取某个日期位于当年的第几天
+ * @param {Date} date 日期
+ */
+function dayOfYear(date) {
+	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+}
+```
+
+## 将 rgb 颜色灰度化（基于光感加权平均）
+
+```js
+/**
+ * 将 rgb 颜色灰度化（基于光感加权平均）
+ * @param {number} r
+ * @param {number} g
+ * @param {number} b
+ * @returns
+ */
+function gray(r, g, b) {
+	return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+```
+
+## 随机 HEX 颜色
+
+```js
+/**
+ * 随机 HEX 颜色
+ * @returns
+ */
+function randomColor() {
+	return (
+		'#' +
+		Math.floor(Math.random() * 0xffffff)
+			.toString(16)
+			.padEnd(6, '0')
+	);
+}
+```
