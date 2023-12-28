@@ -139,6 +139,22 @@ npm root -g
 npm root
 ```
 
+### 查看包的所有版本
+
+```sh
+npm show package-name versions
+
+npm show axios versions
+```
+
+### 查看包的某个版本
+
+```sh
+npm show package-name@version
+
+npm show axios@1.6.0
+```
+
 ## Yarn
 
 ### 获取帮助信息

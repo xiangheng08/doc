@@ -10,3 +10,5 @@ docs/.vitepress/.temp
 copylocation
 
 config.mts.timestamp*.*
+
+PSA.send.config.js
