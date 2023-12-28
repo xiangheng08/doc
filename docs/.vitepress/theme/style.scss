@@ -9,7 +9,7 @@ html {
 }
 
 .content-container {
-	img {
+	img:not([load-error]) {
 		cursor: zoom-in;
 	}
 	.secondary {
