@@ -9,7 +9,9 @@ const ENV_KEYS: { [k in keyof ENV]: string } = {
 	outDir: 'OUT_DIR',
 };
 
-const defaultENV: ENV = {};
+const defaultENV: ENV = {
+	outDir: '/dist/build',
+};
 
 if (process.env.LOAD_ENV?.trim()) {
 	const filePath = path.join(loadPath, '.env.' + process.env.LOAD_ENV.trim());

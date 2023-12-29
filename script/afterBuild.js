@@ -3,7 +3,7 @@ const path = require('path');
 const dayjs = require('dayjs')
 
 // 输出目录
-const distPath = path.join(__dirname, '../docs/.vitepress/dist');
+const distPath = path.join(__dirname, '../docs/.vitepress/dist/build');
 // 移动文件名称
 const moveName = 'copylocation';
 // 读取路径
