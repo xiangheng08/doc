@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 
 call npm run docs:build:gitee
 
-cd docs\.vitepress\dist
+cd docs\.vitepress\dist\gitee
 
 call git init
 
@@ -16,6 +16,6 @@ call git push -f https://gitee.com/laowans/doc.git master:gh-pages
 
 rd /s /q .git
 
-cd ..\..\..\
+cd ..\..\..\..\
 
 endlocal

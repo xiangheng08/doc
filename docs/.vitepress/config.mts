@@ -1,20 +1,24 @@
-import './utils/env';
+import { ENV } from './utils/env';
 import path from 'path';
-import fs from 'fs';
 import { defineConfig, UserConfig, DefaultTheme } from 'vitepress';
 import sidebar from './config/sidebar';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 import copyright from './config/copyright';
+import { _withBase, getDirPaths } from './utils';
+import { gitee_icon } from './theme/icons';
 
 // 附加配置
 const append: UserConfig<DefaultTheme.Config> = {};
+// 例子路径
+const examplePath = path.join(__dirname, './examples');
 
-const examplePath = path.join(__dirname, './examples')
-
-if (process.env.BASE) {
-	append.base = process.env.BASE;
+if (ENV.base) {
+	append.base = ENV.base;
+}
+if (ENV.outDir) {
+	append.outDir = ENV.outDir;
 }
 
 // https://vitepress.dev/reference/site-config
@@ -42,7 +46,6 @@ export default defineConfig({
 		sidebar,
 
 		sidebarMenuLabel: '目录',
-
 		darkModeSwitchLabel: '暗黑模式',
 
 		outline: {
@@ -50,9 +53,10 @@ export default defineConfig({
 			level: [2, 4], // 层级
 		},
 
-		// socialLinks: [
-		//   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-		// ]
+		socialLinks: [
+			{ icon: 'github', link: 'https://github.com/laowans' },
+			{ icon: { svg: gitee_icon }, link: 'https://gitee.com/laowans' },
+		],
 
 		search: {
 			provider: 'local', // 本地搜索
@@ -126,7 +130,7 @@ export default defineConfig({
 				],
 			}),
 			Components({
-				dirs: ['.vitepress/theme/components', ...examplePaths(examplePath)],
+				dirs: ['.vitepress/theme/components', ...getDirPaths(examplePath)],
 				dts: '.vitepress/components.d.ts',
 				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 				resolvers: [
@@ -138,33 +142,3 @@ export default defineConfig({
 		],
 	},
 });
-
-function _withBase(path: string) {
-	let base = append.base;
-	path = /^\//.test(path) ? path : '/' + path;
-
-	if (base) {
-		base = base.replace(/\/$/, '');
-		return base + path;
-	} else {
-		return path;
-	}
-}
-
-
-// 获取 examples 的所有目录路径
-function examplePaths(_path: string) {
-	const arr: string[] = [_path];
-
-	if (fs.existsSync(_path)) {
-		fs.readdirSync(_path).forEach((file) => {
-			const curPath = path.join(_path, file);
-			if (fs.lstatSync(curPath).isDirectory()) {
-				arr.push(...examplePaths(curPath));
-			}
-		});
-	}
-
-	return arr
-}
-
