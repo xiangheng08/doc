@@ -2,7 +2,7 @@
 	<t-space direction="vertical" size="large" style="width: 100%" class="container">
 		<t-list :split="true">
 			<t-list-item v-for="(item, index) in data" :key="index">
-				<t-list-item-meta :image="item.logo" :description="item.desc">
+				<t-list-item-meta :image="withBase(item.logo)" :description="item.desc">
 					<template #title>
 						<a class="title" :href="item.url" target="_blank">{{ item.name }}</a>
 					</template>
@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import data from './vscodeExtensionList.json';
 </script>
 

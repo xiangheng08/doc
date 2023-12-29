@@ -240,6 +240,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '命令大全',
 				link: '/frontend/manager/command-list',
 			},
+			{
+				text: '收集的包',
+				link: '/frontend/manager/collected-packages',
+			},
 		],
 	},
 	{

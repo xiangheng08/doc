@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CollectedPackages: typeof import('./examples/frontend/manager/collectedPackages.vue')['default']
+    CollectedPackagesList: typeof import('./examples/frontend/manager/collectedPackagesList.vue')['default']
     Demo: typeof import('./theme/components/demo.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
     ListStyleType: typeof import('./examples/frontend/css/listStyleType.vue')['default']
