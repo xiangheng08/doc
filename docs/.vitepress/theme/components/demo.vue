@@ -1,5 +1,5 @@
 <template>
-	<div class="sub-page" :class="{ shadow: shadow }">
+	<div class="demo" :class="{ shadow: shadow }">
 		<div class="header">
 			<div class="left">
         <slot name="left" v-if="slots.left"></slot>
@@ -42,7 +42,7 @@ const _padding = computed(() => formatCSSlength(props.padding))
 </script>
 
 <style scoped lang="scss">
-.sub-page {
+.demo {
 	position: relative;
 	border: 1px solid var(--demo-border);
 	border-radius: var(--demo-radius);

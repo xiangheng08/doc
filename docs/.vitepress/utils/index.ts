@@ -1,14 +1,14 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'fs';
+import path from 'path';
 
 // 基础路径
-const BASE = process.env.BASE
+const BASE = process.env.BASE;
 
 /**
  * 定义
  */
 export function define<T>(value: T): T {
-  return value;
+	return value;
 }
 
 export function _withBase(path: string) {
@@ -26,7 +26,7 @@ export function _withBase(path: string) {
 /**
  * 获取路径中所有目录路径
  */
-export  function getDirPaths(_path: string) {
+export function getDirPaths(_path: string) {
 	const arr: string[] = [_path];
 
 	if (fs.existsSync(_path)) {
@@ -38,5 +38,5 @@ export  function getDirPaths(_path: string) {
 		});
 	}
 
-	return arr
+	return arr;
 }

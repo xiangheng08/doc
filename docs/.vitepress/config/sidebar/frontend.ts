@@ -69,12 +69,12 @@ export default define<DefaultTheme.SidebarItem[]>([
 						link: '/frontend/css/style/display',
 					},
 					{
-						text: '鼠标样式',
-						link: '/frontend/css/style/cursor',
-					},
-					{
 						text: '边框样式',
 						link: '/frontend/css/style/border',
+					},
+					{
+						text: '鼠标样式',
+						link: '/frontend/css/style/cursor',
 					},
 					{
 						text: '定位',
@@ -99,10 +99,6 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{
 						text: '动画',
 						link: '/frontend/css/style/animation',
-					},
-					{
-						text: '表格样式',
-						link: '/frontend/css/style/table',
 					},
 				],
 			},

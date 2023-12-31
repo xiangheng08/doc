@@ -1,40 +1,24 @@
 <template>
-	<demo>
+	<css-demo
+		:values="types"
+		@change="change"
+		height="300"
+		property="list-style-type"
+		:column-mode-threshold="600"
+		:default="active">
 		<template #left>
 			demo (参考
-			<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style-type" target="_blank">
-				MDN
-			</a>
+			<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style-type" target="_blank"> MDN </a>
 			)
 		</template>
-		<div class="container" :class="{ dark: isDark }">
-			<div class="example">
-				<ul class="list" :style="{ listStyleType: active }">
-					<li v-for="item in 52" :key="item">Item {{ item }}</li>
-				</ul>
-			</div>
-			<div class="choice">
-				<div
-					class="item"
-					v-for="item in types"
-					:key="item"
-					:class="{ active: item === active }"
-					@click="change(item)">
-					<span class="key">list-style-type</span>
-					<span>: </span>
-					<span class="value">{{ item }}</span>
-					<span>;</span>
-				</div>
-			</div>
-		</div>
-	</demo>
+		<ul class="list" :style="{ listStyleType: active }">
+			<li v-for="item in 52" :key="item">Item {{ item }}</li>
+		</ul>
+	</css-demo>
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress';
-import { ref } from 'vue';
-
-const { isDark } = useData();
+import { ref, CSSProperties } from 'vue';
 
 const types = [
 	'disc',
@@ -99,69 +83,20 @@ const types = [
 
 const active = ref(types[0]);
 
-function change(type: string) {
-	active.value = type;
+function change(value: string | CSSProperties) {
+	active.value = value as string;
 }
 </script>
 
 <style scoped lang="scss">
-.container {
-	display: flex;
-	justify-content: space-between;
-	--key: #e50000;
-	--value: #0451a5;
-	height: 300px;
-	overflow: hidden;
-	&.dark {
-		--key: #9cdcfe;
-		--value: #ce9178;
-	}
-
-	.example {
-		flex: 1;
-		overflow-y: scroll;
-		border-right: 1px solid var(--vp-c-divider);
-		.list {
-			list-style-position: inside;
-			padding-left: 0;
-			padding-right: 10px;
-			li {
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-		}
-	}
-	.choice {
-		overflow-y: scroll;
-		.item {
-			background-color: var(--vp-code-block-bg);
-			padding: 8px 14px;
-			border-radius: 4px;
-			font-family: var(--vp-font-family-mono);
-			font-size: 14px;
-			cursor: pointer;
-			outline: solid 1px transparent;
-			margin: 10px;
-			outline: solid 1px var(--vp-c-divider);
-			.key {
-				color: var(--key);
-			}
-			.value {
-				color: var(--value);
-			}
-			&:hover {
-				outline: solid 1px rgba(250, 149, 80, 0.6);
-			}
-			&.active {
-				outline: solid 1.5px #fa9550;
-			}
-		}
-	}
-}
-@media screen and (max-width: 560px) {
-	.item span:not(.value) {
-		display: none;
+.list {
+	list-style-position: inside;
+	padding-left: 0;
+	padding-right: 10px;
+	li {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
 </style>
