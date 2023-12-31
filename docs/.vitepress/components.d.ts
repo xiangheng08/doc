@@ -8,9 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CollectedPackagesList: typeof import('./examples/frontend/manager/collectedPackagesList.vue')['default']
-    copy: typeof import('./examples/frontend/css/outlineWidth copy.vue')['default']
     CssDemo: typeof import('./theme/components/cssDemo.vue')['default']
     Demo: typeof import('./theme/components/demo.vue')['default']
+    FloatExamples: typeof import('./examples/frontend/css/floatExamples.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
     ListStyleType: typeof import('./examples/frontend/css/listStyleType.vue')['default']
     Mylink: typeof import('./theme/components/mylink.vue')['default']
@@ -19,6 +19,8 @@ declare module 'vue' {
     OutlineOffset: typeof import('./examples/frontend/css/outlineOffset.vue')['default']
     OutlineStyle: typeof import('./examples/frontend/css/outlineStyle.vue')['default']
     OutlineWidth: typeof import('./examples/frontend/css/outlineWidth.vue')['default']
+    OverflowWrap: typeof import('./examples/frontend/css/overflowWrap.vue')['default']
+    PositionExamples: typeof import('./examples/frontend/css/positionExamples.vue')['default']
     Run: typeof import('./theme/components/run.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']
     TButton: typeof import('tdesign-vue-next')['Button']

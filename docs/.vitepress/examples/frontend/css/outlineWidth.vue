@@ -4,8 +4,7 @@
 		@change="change"
 		height="300"
 		property="outline-width"
-		:column-mode-threshold="600"
-		:default="active">
+		:column-mode-threshold="600">
 		<div class="ct">
 			<div :style="{ outlineWidth: active, outlineStyle: 'solid' }"></div>
 		</div>

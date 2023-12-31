@@ -4,8 +4,7 @@
 		@change="change"
 		height="300"
 		property="outline-offset"
-		:column-mode-threshold="600"
-		:default="active">
+		:column-mode-threshold="600">
 		<div class="ct">
 			<div :style="styles"></div>
 		</div>

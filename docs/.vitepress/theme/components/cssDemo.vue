@@ -17,8 +17,8 @@
 						class="item"
 						v-for="(item, index) in values"
 						:key="index"
-						:class="{ active: item === active }"
-						@click="change(item)">
+						:class="{ active: index === active }"
+						@click="change(index)">
 						<div v-if="typeof item === 'string'">
 							<span class="key" v-if="property">{{ property }}</span>
 							<span v-if="property">: </span>
@@ -57,7 +57,10 @@ const props = defineProps({
 	},
 	property: String,
 	height: String,
-	default: [String, Object] as PropType<ValueType>,
+	default: {
+		type: Number,
+		default: 0,
+	},
 	columnModeThreshold: {
 		type: Number,
 		default: 580,
@@ -83,11 +86,11 @@ if (props.height) {
 }
 
 // 当前选择的值
-const active = ref(props.default ? props.default : props.values[0] ? props.values[0] : '');
+const active = ref(props.default);
 // 选择的值变化回调
-function change(value: ValueType) {
-	active.value = value;
-	emits('change', value);
+function change(index: number) {
+	active.value = index;
+	emits('change', props.values[index]);
 }
 
 watch(
@@ -102,9 +105,9 @@ watch(
 	{ immediate: true }
 );
 
-const onResize = () => (columnMode.value = window.innerWidth < props.columnModeThreshold);
-onMounted(() => window.addEventListener('resize', onResize));
-onUnmounted(() => window.removeEventListener('resize', onResize));
+const onResize = () => (columnMode.value = globalThis.innerWidth < props.columnModeThreshold);
+onMounted(() => globalThis.addEventListener('resize', onResize));
+onUnmounted(() => globalThis.removeEventListener('resize', onResize));
 
 onResize();
 </script>

@@ -4,8 +4,7 @@
 		@change="change"
 		height="300"
 		property="list-style-type"
-		:column-mode-threshold="600"
-		:default="active">
+		:column-mode-threshold="600">
 		<template #left>
 			demo (参考
 			<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style-type" target="_blank"> MDN </a>

@@ -77,16 +77,16 @@ export default define<DefaultTheme.SidebarItem[]>([
 						link: '/frontend/css/style/cursor',
 					},
 					{
-						text: '定位',
-						link: '/frontend/css/style/position',
-					},
-					{
 						text: '浮动',
 						link: '/frontend/css/style/float',
 					},
 					{
-						text: '滚动样式',
-						link: '/frontend/css/style/scroll',
+						text: '定位',
+						link: '/frontend/css/style/position',
+					},
+					{
+						text: '溢出处理与滚动样式',
+						link: '/frontend/css/style/overflow-scroll',
 					},
 					{
 						text: '变换',
