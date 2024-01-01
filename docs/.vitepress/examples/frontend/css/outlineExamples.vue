@@ -3,7 +3,7 @@
 		:values="values"
 		@change="change"
 		height="300"
-		property="outline-offset"
+		property="outline"
 		:column-mode-threshold="600">
 		<div class="ct">
 			<div :style="styles"></div>

@@ -19,6 +19,8 @@ declare module 'vue' {
     OutlineOffset: typeof import('./examples/frontend/css/outlineOffset.vue')['default']
     OutlineStyle: typeof import('./examples/frontend/css/outlineStyle.vue')['default']
     OutlineWidth: typeof import('./examples/frontend/css/outlineWidth.vue')['default']
+    OverflowClipMargin: typeof import('./examples/frontend/css/overflowClipMargin.vue')['default']
+    OverflowExamples: typeof import('./examples/frontend/css/overflowExamples.vue')['default']
     OverflowWrap: typeof import('./examples/frontend/css/overflowWrap.vue')['default']
     PositionExamples: typeof import('./examples/frontend/css/positionExamples.vue')['default']
     Run: typeof import('./theme/components/run.vue')['default']

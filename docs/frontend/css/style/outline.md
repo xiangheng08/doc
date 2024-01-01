@@ -10,6 +10,8 @@
 
 ## outline 轮廓
 
+<outline-examples />
+
 ```css
 div {
 	/* 样式 */
@@ -25,8 +27,6 @@ div {
 	outline: green solid 3px;
 }
 ```
-
-<outline-examples />
 
 ## outline-style 轮廓样式
 

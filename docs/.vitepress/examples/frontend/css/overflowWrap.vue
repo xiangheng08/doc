@@ -3,7 +3,7 @@
 		<div class="ct">
 			<div class="box">
 				Most words are short &amp; don't need to break. But
-				<strong class="word" :style="styles">Antidisestablishmentarianism</strong>
+				<span class="word" :style="styles">Antidisestablishmentarianism</span>
 				is long. The width is set to min-content, with a max-width of 11em.
 			</div>
 		</div>

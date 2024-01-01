@@ -2,6 +2,25 @@
 
 ## 溢出处理
 
+### overflow
+
+`overflow` 是一个简写属性，用于设置当内容在水平和/或垂直方向上不适应父元素框（溢出）时的行为。
+
+<overflow-examples />
+
+```css
+div {
+	/* 双值 x 和 y 一起设置 */
+	overflow: visible;
+	overflow: hidden;
+	overflow: clip;
+	overflow: scroll;
+	overflow: auto;
+	/* 双值 x y */
+	overflow: hidden visible;
+}
+```
+
 ### overflow-block
 
 `overflow-block` 属性用于设置当内容溢出盒的块首和块末侧时所显示的内容。可以不显示，或者显示滚动条或溢出内容。
@@ -10,6 +29,7 @@
 div {
 	overflow-block: visible; /* 溢出显示 */
 	overflow-block: hidden; /* 溢出隐藏 */
+	overflow-block: clip; /* 溢出裁剪 */
 	overflow-block: scroll; /* 溢出显示滚动条 */
 	overflow-block: auto; /* 内容溢出时为 scroll 没有溢出时为 visible*/
 }
@@ -20,6 +40,8 @@ div {
 -   `visible`: 不裁剪内容且可在内边距盒的块首和块末侧外渲染内容。
 
 -   `hidden`: 若内边距盒在块向尺度上无法容纳内容则裁剪内容。不提供滚动条。
+
+-   `clip`: 溢出内容在元素的溢出边缘进行裁剪，该边缘是使用 `overflow-clip-margin` 属性定义的。
 
 -   `scroll`: 若内边距盒在块向尺度上无法容纳内容则裁剪内容。无论内容是否被裁剪，浏览器均显示滚动条。（由此可阻止滚动条在内容变化时显示或消失。）打印机仍可能打印溢出内容。
 
@@ -94,3 +116,100 @@ div {
 ### overflow-clip-margin
 
 `overflow-clip-margin` 属性用于控制元素的溢出内容的显示方式。该属性决定了一个元素在具有 `overflow: clip;` 属性时，可以绘制到其边界外部的距离，超过这个距离就会被剪切掉。
+
+<overflow-clip-margin />
+
+```css
+div {
+	border: 3px solid;
+	width: 250px;
+	height: 100px;
+	overflow: clip;
+	overflow-clip-margin: 10px;
+
+	/* 负数无用 */
+	overflow-clip-margin: -10px;
+}
+```
+
+### overflow-x
+
+`overflow-x` 属性用于控制元素在水平（x）方向上的溢出行为。
+
+```css
+div {
+	overflow-x: visible;
+	overflow-x: hidden;
+	overflow-x: clip;
+	overflow-x: scroll;
+	overflow-x: auto;
+}
+```
+
+### overflow-y
+
+`overflow-y` 属性用于控制元素在垂直（y）方向上的溢出行为。
+
+```css
+div {
+	overflow-y: visible;
+	overflow-y: hidden;
+	overflow-y: clip;
+	overflow-y: scroll;
+	overflow-y: auto;
+}
+```
+
+## 滚动样式
+
+![](/images/frontend/css/scroll/scrollbar.png)
+
+属性介绍：
+
+```css
+/* 滚动条整体部分 */
+::-webkit-scrollbar {
+}
+/* 滚动条两端的按钮 */
+::-webkit-scrollbar-button {
+}
+/* 外层轨道 */
+::-webkit-scrollbar-track {
+}
+/* 内层轨道，滚动条中间部分（除去） */
+::-webkit-scrollbar-track-piece {
+}
+/* 滚动条里面可以拖动的那个 */
+::-webkit-scrollbar-thumb {
+}
+/* 边角 */
+::-webkit-scrollbar-corner {
+}
+/* 定义右下角拖动块的样式 */
+::-webkit-resizer {
+}
+```
+
+```css
+/*定义滚动条高宽及背景
+ 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+	width: 16px;
+	height: 16px;
+	background-color: #f5f5f5;
+}
+/*定义滚动条轨道
+ 内阴影+圆角*/
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+/*定义滑块
+ 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #555;
+}
+```

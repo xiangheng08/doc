@@ -8,7 +8,8 @@
     "docs:build": "vitepress build docs && node ./script/afterBuild.js",
     "docs:build:gitee": "cross-env LOAD_ENV=gitee_page vitepress build docs",
     "docs:build:server": "cross-env LOAD_ENV=server vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "push:server": "npm run docs:build:server && PSA send doc"
   },
   "keywords": [],
   "author": "",
