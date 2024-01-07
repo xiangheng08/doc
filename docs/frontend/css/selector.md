@@ -208,7 +208,7 @@ p::first-letter {
 | `:first-of-type`     | 匹配兄弟元素中第一个某种类型的元素。                                                                                                                                                                            | [:first-of-type](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:first-of-type)         |
 | `:focus`             | 当一个元素有焦点的时候匹配。                                                                                                                                                                                    | [:focus](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus)                         |
 | `:focus-visible`     | 当元素有焦点，且焦点对用户可见的时候匹配。                                                                                                                                                                      | [:focus-visible](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-visible)         |
-| `:focus-within`      | 匹配有焦点的元素，以及子代元素有焦点的元素。                                                                                                                                                                    | [:focus-within](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-within)           |
+| `:focus-within`      | 自己获取焦点或者后代元素获取焦点。                                                                                                                                                                              | [:focus-within](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-within)           |
 | `:future`            | 匹配当前元素之后的元素。                                                                                                                                                                                        | [:future (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/:future)               |
 | `:hover`             | 当用户悬浮到一个元素之上的时候匹配。                                                                                                                                                                            | [:hover](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover)                         |
 | `:indeterminate`     | 匹配未定态值的 UI 元素，通常为[复选框](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/checkbox)。                                                                                              | [:indeterminate](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:indeterminate)         |
@@ -305,31 +305,37 @@ CSS 严格来说没有选择器权值的概念，而是选择器的**特定性**
     特殊性一般只取**后三位**，因为内联样式严格来说不算一个选择器，而且内联样式有且只有一个，只要写了内联样式在特殊性上就一定大于其他的选择器特殊性，所以一般不需要考虑内联样式的特殊性
 
     浏览器会依次比较的每一位的值，假如第一位就比较出来了大小，那么后面的就忽略。
-    
+
     ::: tip
     星号选择器（\*）的特殊性为 0，所以选择器里面的星号，不会增加选择器的特殊性
     :::
 
     ```css
     /* 0, 0, 0 */
-    * {} 
+    * {
+    }
     /* 0, 1, 0 */
-    .bov > * {}
+    .bov > * {
+    }
     /* 0, 0, 1 */
-    body {} 
+    body {
+    }
     /* 0, 1, 0 */
-    .text {} 
+    .text {
+    }
     /* 1, 0, 0 */
-    #box {} 
+    #box {
+    }
     /* 1, 2, 1 */
-    body #box .text:hover {} 
+    body #box .text:hover {
+    }
     ```
 
     > 其实选择器的特殊性，在 vscode 中把鼠标放到选择器上就显示特殊性，浏览通同样适用（版本不能太老）
 
 -   **原次序**：这个就是当重要性和特殊性一致时才会比较，即：书写的先后顺序，**后写的生效**
 
-::: tip  注意
+::: tip 注意
 `!important` 它比较特殊，不属于选择器，一旦给某个属性设置了 `!important` 那就意味着这个属性一定生效，但若是同一样式有多个 `!important` 同样会比较：特殊性、原次序
 :::
 

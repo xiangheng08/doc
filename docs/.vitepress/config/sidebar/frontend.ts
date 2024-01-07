@@ -89,15 +89,15 @@ export default define<DefaultTheme.SidebarItem[]>([
 						link: '/frontend/css/style/overflow-scroll',
 					},
 					{
-						text: '变换',
+						text: 'transform 变换',
 						link: '/frontend/css/style/transform',
 					},
 					{
-						text: '过渡',
+						text: 'transition 过渡',
 						link: '/frontend/css/style/transition',
 					},
 					{
-						text: '动画',
+						text: 'animation 动画',
 						link: '/frontend/css/style/animation',
 					},
 				],

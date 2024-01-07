@@ -19,20 +19,24 @@
 						:key="index"
 						:class="{ active: index === active }"
 						@click="change(index)">
-						<div v-if="typeof item === 'string'">
-							<span class="key" v-if="property">{{ property }}</span>
-							<span v-if="property">: </span>
-							<span class="value">{{ item }}</span>
-							<span v-if="property">;</span>
-						</div>
-						<template v-else>
-							<div v-for="(value, key) in item" :key="key">
-								<span class="key">{{ camelToKebab(key) }}</span>
-								<span>: </span>
-								<span class="value">{{ value }}</span>
-								<span>;</span>
+						<div class="item-ct">
+							<!-- 单属性 -->
+							<div v-if="typeof item === 'string'">
+								<span class="key" v-if="property">{{ property }}</span>
+								<span v-if="property">: </span>
+								<span class="value">{{ item }}</span>
+								<span v-if="property">;</span>
 							</div>
-						</template>
+							<!-- 多属性 -->
+							<template v-else>
+								<div v-for="(value, key) in item" :key="key">
+									<span class="key">{{ camelToKebab(key) }}</span>
+									<span>: </span>
+									<span class="value">{{ value }}</span>
+									<span>;</span>
+								</div>
+							</template>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -44,7 +48,7 @@
 import type { PropType, CSSProperties } from 'vue';
 import { useData } from 'vitepress';
 import { ref, reactive, watch, onMounted, onUnmounted } from 'vue';
-import { camelToKebab } from '@/utils/run'
+import { camelToKebab } from '@/utils/run';
 
 const { isDark } = useData();
 
@@ -67,7 +71,7 @@ const props = defineProps({
 	},
 });
 const emits = defineEmits({
-	change: (value: ValueType) => true,
+	change: (value: ValueType, index: number) => true,
 });
 
 // 是否为竖向模式
@@ -90,7 +94,7 @@ const active = ref(props.default);
 // 选择的值变化回调
 function change(index: number) {
 	active.value = index;
-	emits('change', props.values[index]);
+	emits('change', props.values[index], index);
 }
 
 watch(
@@ -126,6 +130,7 @@ onResize();
 	&.column {
 		flex-direction: column-reverse;
 		.choice {
+			max-width: unset;
 			border-left: none;
 			padding-bottom: 10px;
 			margin-bottom: 10px;
@@ -145,6 +150,8 @@ onResize();
 		}
 	}
 	.choice {
+		max-width: 50%;
+		padding-left: 12px;
 		border-left: 1px solid var(--vp-c-divider);
 		.list {
 			overflow: auto;
@@ -157,6 +164,10 @@ onResize();
 				cursor: pointer;
 				margin: 10px;
 				outline: solid 1px var(--vp-c-divider);
+				.item-ct {
+					overflow: auto;
+					white-space: nowrap;
+				}
 				.key {
 					color: var(--key);
 				}
