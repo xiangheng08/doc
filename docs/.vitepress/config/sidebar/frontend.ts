@@ -100,6 +100,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 						text: 'animation 动画',
 						link: '/frontend/css/style/animation',
 					},
+					{
+						text: '多列布局',
+						link: '/frontend/css/style/multiple-column',
+					},
 				],
 			},
 			{
