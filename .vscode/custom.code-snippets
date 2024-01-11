@@ -1,0 +1,157 @@
+{
+	"code group": {
+		"scope": "markdown",
+		"prefix": "code group",
+		"body": [
+			"::: code-group",
+			"",
+			"```${1:lang} [${2:name}]",
+			"${3:code}",
+			"```",
+			"",
+			"```${4:lang} [${5:name}]",
+			"${6:code}",
+			"```",
+			"",
+			":::"
+		],
+		"description": "代码组"
+	},
+	"link components": {
+		"prefix": "link components",
+		"body": [
+			"<mylink href=\"${1:url}\">${2:text}</mylink>"
+		],
+		"description": "链接组件（新窗口打开）"
+	},
+	"link components top": {
+		"prefix": "link components top",
+		"body": [
+			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
+		],
+		"description": "链接组件（顶级窗口打开）"
+	},
+	"link components parent": {
+		"prefix": "link components parent",
+		"body": [
+			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
+		],
+		"description": "链接组件（父级窗口打开）"
+	},
+	"picture center": {
+		"prefix": ["pic center", "img center", "image center"],
+		"body": [
+			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
+		],
+		"description": "居中图片"
+	},
+	"html code block": {
+		"prefix": "code html",
+		"body": [
+			"```html",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "html 代码块"
+	},
+	"css code block": {
+		"prefix": "code css",
+		"body": [
+			"```css",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "css 代码块"
+	},
+	"js code block": {
+		"prefix": ["code js", "code javascript"],
+		"body": [
+			"```js",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "js 代码块"
+	},
+	"ts code block": {
+		"prefix": ["code ts", "code typescript"],
+		"body": [
+			"```ts",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "ts 代码块"
+	},
+	"sh code block": {
+		"prefix": ["code sh", "code shell"],
+		"body": [
+			"```sh",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "sh 代码块"
+	},
+	"info containers": {
+		"prefix": "info containers",
+		"body": [
+			"::: info $1",
+			"$2",
+			":::",
+		],
+		"description": "信息容器"
+	},
+	"tip containers": {
+		"prefix": "tip containers",
+		"body": [
+			"::: tip $1",
+			"$2",
+			":::",
+		],
+		"description": "提示容器"
+	},
+	"warning containers": {
+		"prefix": "warning containers",
+		"body": [
+			"::: warning $1",
+			"$2",
+			":::",
+		],
+		"description": "警告容器"
+	},
+	"danger containers": {
+		"prefix": "danger containers",
+		"body": [
+			"::: danger $1",
+			"$2",
+			":::",
+		],
+		"description": "危险容器"
+	},
+	"details containers": {
+		"prefix": "details containers",
+		"body": [
+			"::: details $1",
+			"$2",
+			":::",
+		],
+		"description": "可展开/详情容器"
+	},
+	"参考": {
+		"prefix": ["参考", "cankao"],
+		"body": [
+			"[参考]($1)",
+		],
+		"description": "可展开/详情容器"
+	},
+	"TOC": {
+		"prefix": "toc",
+		"body": [
+			"[[toc]]",
+		],
+		"description": "目录表"
+	}
+}

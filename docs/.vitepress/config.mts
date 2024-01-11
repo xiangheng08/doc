@@ -105,6 +105,9 @@ export default defineConfig({
 		},
 		lineNumbers: true, // 启用行号
 		math: true, // 启用数学公式
+		image: {
+			lazyLoading: true, // 启用图片懒加载
+		},
 	},
 	vite: {
 		resolve: {

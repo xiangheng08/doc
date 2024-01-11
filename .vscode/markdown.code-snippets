@@ -1,153 +1,198 @@
 {
-	"code group": {
-		"prefix": "code group",
+	"H1": {
+		"prefix": "h1",
 		"body": [
-			"::: code-group",
+			"# ${1:H1}",
+			"${0}"
+		],
+		"description": "标题一"
+	},
+	"H2": {
+		"prefix": "h2",
+		"body": [
+			"## ${1:H2}",
+			"${0}"
+		],
+		"description": "标题二"
+	},
+	"H3": {
+		"prefix": "h3",
+		"body": [
+			"### ${1:H3}",
+			"${0}"
+		],
+		"description": "标题三"
+	},
+	"H4": {
+		"prefix": "h4",
+		"body": [
+			"#### ${1:H4}",
+			"${0}"
+		],
+		"description": "标题四"
+	},
+	"H5": {
+		"prefix": "h5",
+		"body": [
+			"##### ${1:H5}",
+			"${0}"
+		],
+		"description": "标题五"
+	},
+	"H6": {
+		"prefix": "h6",
+		"body": [
+			"###### ${1:H6}",
+			"${0}"
+		],
+		"description": "标题六"
+	},
+	"picture": {
+		"prefix": ["pic", "img", "image"],
+		"body": [
+			"![](${1:link})",
+			"${0}"
+		],
+		"description": "图片"
+	},
+	"code block": {
+		"prefix": "code",
+		"body": [
+			"```${1:lang}",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "代码块"
+	},
+	"code": {
+		"prefix": "code inline",
+		"body": [
+			"`${1:code}`"
+		],
+		"description": "内联代码"
+	},
+	"split line": {
+		"prefix": "line",
+		"body": [
 			"",
-			"```${1:lang} [${2:name}]",
-			"${3:code}",
-			"```",
+			"---",
 			"",
-			"```${4:lang} [${5:name}]",
-			"${6:code}",
-			"```",
-			"",
-			":::"
-		],
-		"description": "code group"
-	},
-	// 链接（新窗口打开）
-	"link components": {
-		"prefix": "link components",
-		"body": [
-			"<mylink href=\"${1:url}\">${2:text}</mylink>"
-		],
-		"description": "link components"
-	},
-	// 链接（顶级窗口打开）
-	"link components top": {
-		"prefix": "link components top",
-		"body": [
-			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
-		],
-		"description": "link components top"
-	},
-	// 链接（父级窗口打开）
-	"link components parent": {
-		"prefix": "link components parent",
-		"body": [
-			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
-		],
-		"description": "link components parent"
-	},
-	// 居中图片
-	"image center": {
-		"prefix": "pic center",
-		"body": [
-			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
-		],
-		"description": "image center"
-	},
-	"html code block": {
-		"prefix": "code html",
-		"body": [
-			"```html",
-			"${2:code}",
-			"```",
 			"${0}"
 		],
-		"description": "html code block"
+		"description": "分隔线"
 	},
-	"css code block": {
-		"prefix": "code css",
+	"bold font": {
+		"prefix": "bo",
 		"body": [
-			"```css",
-			"${2:code}",
-			"```",
+			"**${1:content}**${0}"
+		],
+		"description": "加粗"
+	},
+	"italic font": {
+		"prefix": "ita",
+		"body": [
+			"*${1:content}*${0}"
+		],
+		"description": "倾斜"
+	},
+	"bold italic font": {
+		"prefix": "bi",
+		"body": [
+			"***${1:content}***${0}"
+		],
+		"description": "加粗倾斜"
+	},
+	"slashed font": {
+		"prefix": "sla",
+		"body": [
+			"~~${1:content}~~${0}"
+		],
+		"description": "删除线"
+	},
+	"underline": {
+		"prefix": "u",
+		"body": [
+			"<u>${1:content}</u>${0}"
+		],
+		"description": "下划线"
+	},
+	"inline content": {
+		"prefix": "ili",
+		"body": [
+			"`${1:content}`${0}"
+		],
+		"description": "内联内容"
+	},
+	"inline math": {
+		"prefix": "ima",
+		"body": [
+			"$${1:math}$${0}"
+		],
+		"description": "内联数学公式"
+	},
+	"blocked math": {
+		"prefix": "bma",
+		"body": [
+			"$$",
+			"${1:math}",
+			"$$",
 			"${0}"
 		],
-		"description": "css code block"
+		"description": "块级数学公式"
 	},
-	"js code block": {
-		"prefix": "code js",
+	"link": {
+		"prefix": ["a", "link"],
 		"body": [
-			"```js",
-			"${2:code}",
-			"```",
+			"[${1:title}](${2:link})${0}"
+		],
+		"description": "链接"
+	},
+	"checked block": {
+		"prefix": "che",
+		"body": [
+			"- [x] ${1:content}${0}"
+		],
+		"description": "复选框（选中）"
+	},
+	"unchecked block": {
+		"prefix": "uch",
+		"body": [
+			"- [ ] ${1:content}${0}"
+		],
+		"description": "复选框（未选中）"
+	},
+	"centered picture": {
+		"prefix": "cpic",
+		"body": [
+			"<div align=center><img src=\"${1:link}\"></div>",
 			"${0}"
 		],
-		"description": "js code block"
+		"description": "居中图片"
 	},
-	"ts code block": {
-		"prefix": "code ts",
+	"Insert a simple table with 2 columns": {
+		"prefix": "table 3x2",
 		"body": [
-			"```ts",
-			"${2:code}",
-			"```",
-			"${0}"
+			"|${0:title} |  |",
+			"| - | - |",
+			"|   |   |"
 		],
-		"description": "ts code block"
+		"description": "表格 3x2"
 	},
-	"sh code block": {
-		"prefix": "code sh",
+	"Insert a simple table with 3 columns": {
+		"prefix": "table 4x2",
 		"body": [
-			"```sh",
-			"${2:code}",
-			"```",
-			"${0}"
+			"|${0:title} |  |  |",
+			"| - | - | - | ",
+			"|   |   |   | "
 		],
-		"description": "sh code block"
+		"description": "表格 4x2"
 	},
-	"info containers": {
-		"prefix": "info containers",
+	"text color": {
+		"prefix": "color",
 		"body": [
-			"::: info $1",
-			"$2",
-			":::",
+			"<span style=\"color: ${1:red};\">${2:content}</span>${0}"
 		],
-		"description": "信息容器"
-	},
-	"tip containers": {
-		"prefix": "tip containers",
-		"body": [
-			"::: tip $1",
-			"$2",
-			":::",
-		],
-		"description": "提示容器"
-	},
-	"warning containers": {
-		"prefix": "warning containers",
-		"body": [
-			"::: warning $1",
-			"$2",
-			":::",
-		],
-		"description": "警告容器"
-	},
-	"danger containers": {
-		"prefix": "danger containers",
-		"body": [
-			"::: danger $1",
-			"$2",
-			":::",
-		],
-		"description": "危险容器"
-	},
-	"details containers": {
-		"prefix": "details containers",
-		"body": [
-			"::: details $1",
-			"$2",
-			":::",
-		],
-		"description": "可展开/详情容器"
-	},
-	"参考": {
-		"prefix": ["参考", "cankao"],
-		"body": [
-			"[参考]($1)",
-		],
-		"description": "可展开/详情容器"
-	},
+		"description": "复选框（选中）"
+	}
 }
