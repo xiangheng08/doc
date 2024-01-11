@@ -35,6 +35,10 @@ declare module 'vue' {
     PositionExamples: typeof import('./examples/frontend/css/positionExamples.vue')['default']
     Run: typeof import('./theme/components/run.vue')['default']
     SubPage: typeof import('./theme/components/subPage.vue')['default']
+    TButton: typeof import('tdesign-vue-next')['Button']
+    TList: typeof import('tdesign-vue-next')['List']
+    TListItem: typeof import('tdesign-vue-next')['ListItem']
+    TListItemMeta: typeof import('tdesign-vue-next')['ListItemMeta']
     TransformMatrix: typeof import('./examples/frontend/css/transformMatrix.vue')['default']
     TransformOrigin: typeof import('./examples/frontend/css/transformOrigin.vue')['default']
     TransformRotate: typeof import('./examples/frontend/css/transformRotate.vue')['default']
@@ -43,6 +47,7 @@ declare module 'vue' {
     TransformStyle: typeof import('./examples/frontend/css/transformStyle.vue')['default']
     TransformTranslate: typeof import('./examples/frontend/css/transformTranslate.vue')['default']
     TransitionExamples: typeof import('./examples/frontend/css/transitionExamples.vue')['default']
+    TSpace: typeof import('tdesign-vue-next')['Space']
     Version: typeof import('./theme/components/version.vue')['default']
     VscodeExtensionList: typeof import('./examples/other/vscodeExtensionList.vue')['default']
   }

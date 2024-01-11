@@ -11,7 +11,10 @@
 7.  alert 提醒
 8.  add 加
 9.  append 添加
-10.  after 之后
+10. after 之后
+11. action 操作
+12. array 数组
+13. attribute 属性
 
 ## **B**
 
@@ -24,24 +27,24 @@
 7.  blur 失焦
 8.  bind 绑定
 9.  background 背景
-10.  border 边框
-11.  banner 页面上的一个横条
-12.  both 二者都是clear 属性的一个属性值
-13.  black 黑色 bottom 底部，是一个CSS 属性
-14.  blink 闪烁
-15.  box 盒子
-16.  block 块
-17.  br 换行标记
-18.  blue 蓝色
-19.  bug 软件程序中的错误
-20.  body 主体，一个HTML 标记
-21.  building 建立
-22.  bold 粗体
-23.  button 按钮
-24.  break 中断
-25.  bool 布尔
-26.  boolean 布尔
-27.  bubble 冒泡
+10. border 边框
+11. banner 页面上的一个横条
+12. both 二者都是 clear 属性的一个属性值
+13. black 黑色 bottom 底部，是一个 CSS 属性
+14. blink 闪烁
+15. box 盒子
+16. block 块
+17. br 换行标记
+18. blue 蓝色
+19. bug 软件程序中的错误
+20. body 主体，一个 HTML 标记
+21. building 建立
+22. bold 粗体
+23. button 按钮
+24. break 中断
+25. bool 布尔
+26. boolean 布尔
+27. bubble 冒泡
 
 ## **C**
 
@@ -54,36 +57,36 @@
 7.  click 点击事件
 8.  change 内容发生改变，并失焦后才触发该事件
 9.  close 关闭当前页面
-10.  confirm 输入框
-11.  clientWidth 获取元素宽度
-12.  clientHeight 获取元素的高度
-13.  childNodes 获取所有子节点
-14.  children 返回子元素
-15.  cloneNode 复制节点
-16.  Clone 克隆、复制
-17.  chekbox 复选框
-18.  cell 表格的单元格
-19.  color 颜色
-20.  center 中间，居中
-21.  connected 连接的
-22.  contact 联系
-23.  child 孩子
-24.  content 内容
-25.  circle 圆圈
-26.  crosshair 十字叉丝
-27.  class 类别
-28.  css 层叠样式表
-29.  clear 清除
-30.  cursor 鼠标指针
-31.  continue 继续
-32.  close 关闭
-33.  ceil 向上取整
-34.  charAt 获取某位置字符
-35.  classify 分类
+10. confirm 输入框
+11. clientWidth 获取元素宽度
+12. clientHeight 获取元素的高度
+13. childNodes 获取所有子节点
+14. children 返回子元素
+15. cloneNode 复制节点
+16. Clone 克隆、复制
+17. chekbox 复选框
+18. cell 表格的单元格
+19. color 颜色
+20. center 中间，居中
+21. connected 连接的
+22. contact 联系
+23. child 孩子
+24. content 内容
+25. circle 圆圈
+26. crosshair 十字叉丝
+27. class 类别
+28. css 层叠样式表
+29. clear 清除
+30. cursor 鼠标指针
+31. continue 继续
+32. close 关闭
+33. ceil 向上取整
+34. charAt 获取某位置字符
+35. classify 分类
 
 ## **D**
 
-1.  DOM 全称Document
+1.  DOM 全称 Document
 2.  Object Model 文档对象模型
 3.  default 不执行
 4.  document 文件，文档 dbclick 双击
@@ -92,13 +95,13 @@
 7.  decimal 十进制
 8.  division 分区，
 9.  decoration 装饰
-10.  document 文档
-11.  default 默认的
-12.  definition 定义
-13.  dotted 点线
-14.  double 双线
-15.  design 设计
-16.  do 做
+10. document 文档
+11. default 默认的
+12. definition 定义
+13. dotted 点线
+14. double 双线
+15. design 设计
+16. do 做
 
 ## **E**
 
@@ -120,8 +123,8 @@
 7.  fadeIn 淡入
 8.  fadeOut 淡出
 9.  find 查找
-10.  fixed 固定的
-11.  function函数，功能
+10. fixed 固定的
+11. function 函数，功能
 
 ## **G**
 
@@ -138,16 +141,16 @@
 3.  height 高度
 4.  hover 盘旋
 5.  hidden() 隐藏
-6.  hack 常用于CSS 中的一些招数
+6.  hack 常用于 CSS 中的一些招数
 7.  here 这里
 8.  hand 手
 9.  hidden 被隐藏
-10.  head 头部
-11.  home 首页
-12.  height 高度
-13.  horizontal 水平的
-14.  help 帮助
-15.  hover 鼠标指针经过时的效果，或称为“悬停状态”
+10. head 头部
+11. home 首页
+12. height 高度
+13. horizontal 水平的
+14. help 帮助
+15. hover 鼠标指针经过时的效果，或称为“悬停状态”
 
 ## **I**
 
@@ -160,8 +163,8 @@
 7.  inline 行内
 8.  important 重要的
 9.  inner 内部的
-10.  if 如果
-11.  int：整数
+10. if 如果
+11. int：整数
 
 ## **J**
 
@@ -185,11 +188,11 @@
 7.  link 链接
 8.  left 左边
 9.  list 列表
-10.  length 长度
-11.  leave 出去
-12.  lowercase 小写
-13.  level 级别
-14.  localStorage 本地存储
+10. length 长度
+11. leave 出去
+12. lowercase 小写
+13. level 级别
+14. localStorage 本地存储
 
 ## **M**
 
@@ -222,9 +225,9 @@
 7.  overflow 溢出
 8.  open 打开
 9.  outline 外轮廓
-10.  origin 原点
-11.  object 对象
-12.  opacity 透明度
+10. origin 原点
+11. object 对象
+12. opacity 透明度
 
 ## **P**
 
@@ -255,8 +258,8 @@
 7.  radial 放射状的
 8.  running 运行
 9.  resize 改变大小
-10.  remove 移除
-11.  ready 准备好
+10. remove 移除
+11. ready 准备好
 
 ## **S**
 
@@ -269,18 +272,18 @@
 7.  square 方块
 8.  solid 固体，实线
 9.  static 静态的
-10.  solution 方案
-11.  strong 强壮，加粗的
-12.  style 样式
-13.  span 一个HTML 标记
-14.  switch 切换
-15.  split 分割
-16.  substr 截取字符串
-17.  sqrt 取开方
-18.  status 状态
-19.  sort 排序
-20.  slice 切片，划分
-21.  splice 铰接，粘接
+10. solution 方案
+11. strong 强壮，加粗的
+12. style 样式
+13. span 一个 HTML 标记
+14. switch 切换
+15. split 分割
+16. substr 截取字符串
+17. sqrt 取开方
+18. status 状态
+19. sort 排序
+20. slice 切片，划分
+21. splice 铰接，粘接
 
 ## **T**
 
@@ -293,9 +296,9 @@
 7.  transparent 透明的
 8.  transition 过渡
 9.  transform 变形
-10.  translate 转换
-11.  this 这个
-12.  toggle 切换
+10. translate 转换
+11. this 这个
+12. toggle 切换
 
 ## **U**
 
@@ -320,6 +323,6 @@
 3.  width 宽度
 4.  write 写入
 5.  watch 监控
-6.  week 星期 获取需要day
+6.  week 星期 获取需要 day
 7.  weight 加重
 8.  window 窗口
