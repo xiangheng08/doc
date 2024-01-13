@@ -1,52 +1,56 @@
 :root {
-	--vp-home-hero-name-color: transparent;
-	--vp-home-hero-name-background: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(
+    to right,
+    #92fe9d 0%,
+    #00c9ff 100%
+  );
 }
 
 html {
-	/* 平滑滚动 */
-	scroll-behavior: smooth;
+  /* 平滑滚动 */
+  scroll-behavior: smooth;
 }
 
 .content-container {
-	img:not([load-error]) {
-		cursor: zoom-in;
-	}
-	.secondary {
-		color: var(--vp-c-text-3);
-	}
-	.no-select {
-		user-select: none;
-	}
-	code {
-		white-space: nowrap;
-	}
+  img:not([load-error]) {
+    cursor: zoom-in;
+  }
+  .secondary {
+    color: var(--vp-c-text-3);
+  }
+  .no-select {
+    user-select: none;
+  }
+  code {
+    white-space: nowrap;
+  }
 }
 
 .VPSidebarItem.is-link {
-	.item {
-		.link {
-			.text {
-				font-size: 13px;
-			}
-			&:hover {
-				.text {
-					color: #42b883 !important;
-				}
-			}
-		}
-	}
-	&.is-active {
-		.item {
-			.indicator {
-				background-color: #42b883 !important;
-			}
-			.link > .text {
-				font-weight: 700;
-				color: #42b883 !important;
-			}
-		}
-	}
+  .item {
+    .link {
+      .text {
+        font-size: 13px;
+      }
+      &:hover {
+        .text {
+          color: #42b883 !important;
+        }
+      }
+    }
+  }
+  &.is-active {
+    .item {
+      .indicator {
+        background-color: #42b883 !important;
+      }
+      .link > .text {
+        font-weight: 700;
+        color: #42b883 !important;
+      }
+    }
+  }
 }
 
 // .VPDoc.has-aside .content .content-container{
@@ -54,36 +58,44 @@ html {
 // }
 
 li::marker {
-	color: var(--list-marker);
+  color: var(--list-marker);
 }
 
 .VPSidebar::-webkit-scrollbar {
-	width: 6px;
+  width: 6px;
 }
 
 .VPSidebar::-webkit-scrollbar-thumb {
-	background-color: var(--aside-scroll);
+  background-color: var(--aside-scroll);
 }
 
 .VPSidebar::-webkit-scrollbar-thumb:hover {
-	background-color: var(--aside-scroll-hover);
+  background-color: var(--aside-scroll-hover);
 }
 
 table {
-	&.stretch {
-		width: 100%;
-		display: table;
-	}
-	&.title-center {
-		th {
-			text-align: center;
-		}
-	}
+  &.stretch {
+    width: 100%;
+    display: table;
+  }
+  &.title-center {
+    th {
+      text-align: center;
+    }
+  }
 }
 
 // flex 居中
 .flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 版权链接
+.VPFooter a.copyright-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }

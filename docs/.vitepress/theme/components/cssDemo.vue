@@ -129,6 +129,9 @@ onResize();
 	}
 	&.column {
 		flex-direction: column-reverse;
+		.example{
+			margin-right: unset;
+		}
 		.choice {
 			max-width: unset;
 			border-left: none;
@@ -145,6 +148,7 @@ onResize();
 	.example {
 		flex: 1;
 		overflow: auto;
+		margin-right: 24px;
 		&.not-height {
 			min-height: 200px;
 		}
