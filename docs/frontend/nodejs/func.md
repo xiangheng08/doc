@@ -191,3 +191,194 @@ function arePathsEqual(path1, path2, p = true, root) {
 	return p1 === p2;
 }
 ```
+
+## 格式化文件大小
+
+```js
+/**
+ * 格式化文件大小
+ * @param size file bytes
+ */
+function formatFileSize(size) {
+	const map = ['', 'K', 'M', 'G', 'T'];
+
+	let i = 0;
+	while (size > 1024) {
+		size = size / 1024;
+		i++;
+	}
+
+	return `${size.toFixed(2).replace(/\.?0+$/, '')}${map[i]}B`;
+}
+```
+
+## 随机 buffer 数据
+
+```js
+const crypto = require('crypto');
+
+/**
+ * 随机 buffer 数据
+ * @param size 大小
+ */
+function randomBuffer(size: number) {
+	return crypto.randomBytes(size);
+}
+```
+
+## 解析路径
+
+```js
+const path = require('path');
+
+/**
+ * 解析路径
+ * @param root 根路径
+ * @param _path 路径
+ */
+function resolvePath(root: string, _path: string) {
+	if (path.isAbsolute(_path)) {
+		return _path;
+	} else {
+		return path.join(root, _path);
+	}
+}
+```
+
+## 加密相关
+
+```js
+const crypto = require('crypto');
+
+/**
+ * 生成 EC 密钥对
+ */
+function generateEcKeyPair() {
+	const { privateKey, publicKey } = crypto.generateKeyPairSync('ec', {
+		namedCurve: 'secp256k1',
+		publicKeyEncoding: { type: 'spki', format: 'pem' },
+		privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+	});
+
+	return { privateKey, publicKey };
+}
+
+/**
+ * 对数据签名（ES）
+ * @param data 数据
+ * @param privateKey 私钥
+ */
+function signWithEC(data: string | Buffer, privateKey: string) {
+	const sign = crypto.createSign('SHA256');
+	sign.update(data);
+	return sign.sign(privateKey, 'base64');
+}
+
+/**
+ * 验证签名（ES）
+ * @param data 数据
+ * @param sign 签名
+ * @param publicKey 公钥
+ */
+function verifySignWithEC(data: string | Buffer, sign: string, publicKey: string) {
+	const verify = crypto.createVerify('SHA256');
+	verify.update(data);
+	return verify.verify(publicKey, sign, 'base64');
+}
+
+/**
+ * 生成 RSA 密钥对（承载数据 245 byte）
+ */
+function generateRSAKeyPair() {
+	const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
+		modulusLength: 2048,
+		publicKeyEncoding: { type: 'spki', format: 'pem' },
+		privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+	});
+
+	return { privateKey, publicKey };
+}
+
+/**
+ * 使用 RSA 算法加密
+ * @param data 数据
+ * @param publicKey 公钥
+ */
+function encryptWithRSA(data: Buffer, publicKey: string) {
+	return crypto.publicEncrypt(publicKey, data);
+}
+
+/**
+ * 使用 RSA 算法解密
+ * @param data 加密的数据
+ * @param privateKey 私钥
+ */
+function decryptWithRSA(encryptedData: Buffer, privateKey: string) {
+	return crypto.privateDecrypt(privateKey, encryptedData);
+}
+
+/**
+ * 使用 AES-GCM 算法加密
+ * @param data 数据
+ * @param encryptionKey 密钥（hex 32 byte）
+ */
+function encryptWithAESGCM(data: Buffer, encryptionKey: string) {
+	const iv = crypto.randomBytes(12); // 生成随机的Initialization Vector (IV)，通常是12字节
+	const cipher = crypto.createCipheriv('aes-256-gcm', Buffer.from(encryptionKey, 'hex'), iv);
+
+	const encryptedBuffers = [iv];
+	encryptedBuffers.push(cipher.update(data));
+	encryptedBuffers.push(cipher.final());
+
+	// 获取加密后的数据
+	const encryptedData = Buffer.concat(encryptedBuffers);
+
+	// 获取认证标签 (authentication tag)
+	const tag = cipher.getAuthTag();
+
+	return {
+		tag: tag.toString('hex'),
+		encryptedData,
+	};
+}
+
+/**
+ * 使用 AES-GCM 算法解密
+ * @param encryptedData 加密的数据
+ * @param encryptionKey 密钥（hex 32 byte）
+ * @param iv 初始向量
+ * @param tag 认证标签
+ */
+function decryptWithAESGCM(encryptedData: Buffer, encryptionKey: string, tag: string) {
+	const iv = encryptedData.subarray(0, 12);
+	const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(encryptionKey, 'hex'), iv);
+	decipher.setAuthTag(Buffer.from(tag, 'hex'));
+
+	const decryptedBuffers = [];
+	decryptedBuffers.push(decipher.update(encryptedData.subarray(12)));
+	decryptedBuffers.push(decipher.final());
+
+	// 获取解密后的数据
+	const decryptedData = Buffer.concat(decryptedBuffers);
+
+	return decryptedData;
+}
+```
+
+## 数字转 buffer
+
+```js
+/**
+ * 数字转 buffer
+ * @param num 数
+ * @param len buffer 长度
+ */
+function numberToBuffer(num: number, len: number) {
+	const buf = Buffer.alloc(len);
+	for (let i = 0; i < len; i++) {
+		buf[i] = num & 0xff;
+		num = num >> 8;
+	}
+	return buf;
+}
+```

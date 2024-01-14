@@ -96,7 +96,15 @@ export default defineConfig({
 
 		lastUpdated: {
 			text: '上次更新',
+			formatOptions: {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+			},
 		},
+
+		darkModeSwitchTitle: '切换到深色模式',
+		lightModeSwitchTitle: '切换到浅色模式',
 	},
 	markdown: {
 		theme: {

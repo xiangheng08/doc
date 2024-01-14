@@ -16,7 +16,6 @@ declare module 'vue' {
     BorderStyle: typeof import('./examples/frontend/css/borderStyle.vue')['default']
     BorderWidth: typeof import('./examples/frontend/css/borderWidth.vue')['default']
     CollectedPackagesList: typeof import('./examples/frontend/manager/collectedPackagesList.vue')['default']
-    copy: typeof import('./examples/frontend/css/flex-basis copy.vue')['default']
     CssDemo: typeof import('./theme/components/cssDemo.vue')['default']
     Demo: typeof import('./theme/components/demo.vue')['default']
     FlexBasis: typeof import('./examples/frontend/css/flex-basis.vue')['default']
