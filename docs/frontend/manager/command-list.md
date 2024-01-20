@@ -356,7 +356,7 @@ pnpm get registry
 ### 设置淘宝源
 
 ```sh
-pnpm config set registry
+pnpm config set registry https://registry.npm.taobao.org
 ```
 
 ### 临时修改淘宝源
