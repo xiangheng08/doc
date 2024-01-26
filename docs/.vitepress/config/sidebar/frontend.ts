@@ -362,6 +362,10 @@ export default define<DefaultTheme.SidebarItem[]>([
         text: 'TS 小技巧',
         link: '/frontend/ts/tips',
       },
+      {
+        text: '类型标注模板',
+        link: '/frontend/ts/type-annotation-template',
+      },
     ],
   },
   {
