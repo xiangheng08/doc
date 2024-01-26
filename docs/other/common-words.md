@@ -196,7 +196,7 @@
 11. leave 出去
 12. lowercase 小写
 13. level 级别
-14. localStorage 本地存储
+14. localStorage 本地存储高度
 
 ## **M**
 
@@ -303,6 +303,7 @@
 10. translate 转换
 11. this 这个
 12. toggle 切换
+13. threshold 阈值
 
 ## **U**
 
