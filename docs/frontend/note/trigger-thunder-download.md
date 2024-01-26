@@ -25,9 +25,7 @@ const base64 = btoa('AA' + 'https://www.baidu.com' + 'ZZ');
 
 console.log(base64); // QUFodHRwczovL3d3dy5iYWlkdS5jb21aWg==
 
-/* 
-  使用 thunder:// 协议前缀，然后把 base64 编码后的地址拼接到协议后面就行了
-*/
+// 使用 thunder:// 协议前缀，然后把 base64 编码后的地址拼接到协议后面就行了
 const url = 'thunder://' + base64;
 
 console.log(url); // thunder://QUFodHRwczovL3d3dy5iYWlkdS5jb21aWg==
