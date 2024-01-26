@@ -1,5 +1,5 @@
 <template>
-	<demo height="200px">
+	<demo>
 		<div class="container">
 			<div class="animation-box flex-center">
 				<div class="box flex-center" ref="boxRef">text</div>
@@ -27,6 +27,7 @@ onMounted(calc);
 <style scoped lang="scss">
 .container {
 	.animation-box {
+		margin-top: 20px;
 		height: 100px;
 		.box {
 			background-color: plum;
@@ -48,7 +49,7 @@ onMounted(calc);
 		transform: translate(-100px, 0) rotate(0deg) scale(1);
 	}
 	50% {
-		transform: translate(0px, -30px) rotate(180deg) scale(1.5);
+		transform: translate(0px, -20px) rotate(180deg) scale(1.5);
 	}
 	100% {
 		transform: translate(100px, 0) rotate(360deg) scale(1);
