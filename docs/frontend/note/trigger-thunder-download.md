@@ -7,7 +7,7 @@
   
   const url = location.origin + withBase('/images/other/vscode-extension-logo/vue.png');
 
-  onMounted(()=>setThunderDownload());
+  onMounted(()=>convertThunderDownload());
 </script>
 
 <a :href="url" download>普通下载</a>
