@@ -389,4 +389,17 @@ export default define<DefaultTheme.SidebarItem[]>([
       },
     ],
   },
+  {
+    text: '笔记',
+    items: [
+      {
+        text: '触发迅雷下载',
+        link: '/frontend/note/trigger-thunder-download',
+      },
+      {
+        text: '利用延迟实现复杂动画',
+        link: '/frontend/note/delayed-animation',
+      },
+    ],
+  }
 ]);

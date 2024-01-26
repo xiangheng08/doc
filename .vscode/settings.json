@@ -5,5 +5,9 @@
       "comments": "on",
       "strings": "on"
     }
-  }
+  },
+  "cSpell.words": [
+    "instanceof",
+    "typeof"
+  ]
 }

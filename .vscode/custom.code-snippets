@@ -1,7 +1,7 @@
 {
 	"code group": {
-		"scope": "markdown",
 		"prefix": "code group",
+		"scope": "markdown",
 		"body": [
 			"::: code-group",
 			"",
@@ -19,6 +19,7 @@
 	},
 	"link components": {
 		"prefix": "link components",
+		"scope": "markdown",
 		"body": [
 			"<mylink href=\"${1:url}\">${2:text}</mylink>"
 		],
@@ -26,6 +27,7 @@
 	},
 	"link components top": {
 		"prefix": "link components top",
+		"scope": "markdown",
 		"body": [
 			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
 		],
@@ -33,13 +35,23 @@
 	},
 	"link components parent": {
 		"prefix": "link components parent",
+		"scope": "markdown",
 		"body": [
 			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
 		],
 		"description": "链接组件（父级窗口打开）"
 	},
+	"link anchor tag": {
+		"prefix": "link anchor tag",
+		"scope": "markdown",
+		"body": [
+			"<a target=\"_blank\" href=\"${1:url}\">${2:text}</a>"
+		],
+		"description": "a 标签链接"
+	},
 	"picture center": {
 		"prefix": ["pic center", "img center", "image center"],
+		"scope": "markdown",
 		"body": [
 			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
 		],
@@ -47,6 +59,7 @@
 	},
 	"html code block": {
 		"prefix": "code html",
+		"scope": "markdown",
 		"body": [
 			"```html",
 			"$1",
@@ -57,6 +70,7 @@
 	},
 	"css code block": {
 		"prefix": "code css",
+		"scope": "markdown",
 		"body": [
 			"```css",
 			"$1",
@@ -67,6 +81,7 @@
 	},
 	"js code block": {
 		"prefix": ["code js", "code javascript"],
+		"scope": "markdown",
 		"body": [
 			"```js",
 			"$1",
@@ -77,6 +92,7 @@
 	},
 	"ts code block": {
 		"prefix": ["code ts", "code typescript"],
+		"scope": "markdown",
 		"body": [
 			"```ts",
 			"$1",
@@ -87,6 +103,7 @@
 	},
 	"sh code block": {
 		"prefix": ["code sh", "code shell"],
+		"scope": "markdown",
 		"body": [
 			"```sh",
 			"$1",
@@ -97,6 +114,7 @@
 	},
 	"info containers": {
 		"prefix": "info containers",
+		"scope": "markdown",
 		"body": [
 			"::: info $1",
 			"$2",
@@ -106,6 +124,7 @@
 	},
 	"tip containers": {
 		"prefix": "tip containers",
+		"scope": "markdown",
 		"body": [
 			"::: tip $1",
 			"$2",
@@ -115,6 +134,7 @@
 	},
 	"warning containers": {
 		"prefix": "warning containers",
+		"scope": "markdown",
 		"body": [
 			"::: warning $1",
 			"$2",
@@ -124,6 +144,7 @@
 	},
 	"danger containers": {
 		"prefix": "danger containers",
+		"scope": "markdown",
 		"body": [
 			"::: danger $1",
 			"$2",
@@ -133,6 +154,7 @@
 	},
 	"details containers": {
 		"prefix": "details containers",
+		"scope": "markdown",
 		"body": [
 			"::: details $1",
 			"$2",
@@ -142,6 +164,7 @@
 	},
 	"参考": {
 		"prefix": ["参考", "cankao"],
+		"scope": "markdown",
 		"body": [
 			"[参考]($1)",
 		],
@@ -149,6 +172,7 @@
 	},
 	"TOC": {
 		"prefix": "toc",
+		"scope": "markdown",
 		"body": [
 			"[[toc]]",
 		],

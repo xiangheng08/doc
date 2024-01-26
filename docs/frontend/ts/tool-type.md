@@ -66,6 +66,17 @@ type A = ExcludeUndefined<string | null | undefined>;
 // type A = string | null
 ```
 
+### 联合类型转交叉类型
+
+```ts
+type UnionToIntersection<T> = (T extends any ? (x: T) => any : never) extends (x: infer R) => any ? R : never;
+
+type Test = { a: string } | { b: number } | { c: boolean };
+
+type Test2 = UnionToIntersection<Test>;
+// type Test2 = { a: string } & { b: number } & { c: boolean };
+```
+
 ## 内置的工具类型
 
 ### `Partial<T>` 属性变可选

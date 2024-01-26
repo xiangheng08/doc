@@ -1,6 +1,7 @@
 {
 	"H1": {
 		"prefix": "h1",
+		"scope": "markdown",
 		"body": [
 			"# ${1:H1}",
 			"${0}"
@@ -9,6 +10,7 @@
 	},
 	"H2": {
 		"prefix": "h2",
+		"scope": "markdown",
 		"body": [
 			"## ${1:H2}",
 			"${0}"
@@ -17,6 +19,7 @@
 	},
 	"H3": {
 		"prefix": "h3",
+		"scope": "markdown",
 		"body": [
 			"### ${1:H3}",
 			"${0}"
@@ -25,6 +28,7 @@
 	},
 	"H4": {
 		"prefix": "h4",
+		"scope": "markdown",
 		"body": [
 			"#### ${1:H4}",
 			"${0}"
@@ -33,6 +37,7 @@
 	},
 	"H5": {
 		"prefix": "h5",
+		"scope": "markdown",
 		"body": [
 			"##### ${1:H5}",
 			"${0}"
@@ -41,6 +46,7 @@
 	},
 	"H6": {
 		"prefix": "h6",
+		"scope": "markdown",
 		"body": [
 			"###### ${1:H6}",
 			"${0}"
@@ -49,6 +55,7 @@
 	},
 	"picture": {
 		"prefix": ["pic", "img", "image"],
+		"scope": "markdown",
 		"body": [
 			"![](${1:link})",
 			"${0}"
@@ -57,6 +64,7 @@
 	},
 	"code block": {
 		"prefix": "code",
+		"scope": "markdown",
 		"body": [
 			"```${1:lang}",
 			"${2:code}",
@@ -67,6 +75,7 @@
 	},
 	"code": {
 		"prefix": "code inline",
+		"scope": "markdown",
 		"body": [
 			"`${1:code}`"
 		],
@@ -74,6 +83,7 @@
 	},
 	"split line": {
 		"prefix": "line",
+		"scope": "markdown",
 		"body": [
 			"",
 			"---",
@@ -84,6 +94,7 @@
 	},
 	"bold font": {
 		"prefix": "bo",
+		"scope": "markdown",
 		"body": [
 			"**${1:content}**${0}"
 		],
@@ -91,6 +102,7 @@
 	},
 	"italic font": {
 		"prefix": "ita",
+		"scope": "markdown",
 		"body": [
 			"*${1:content}*${0}"
 		],
@@ -98,6 +110,7 @@
 	},
 	"bold italic font": {
 		"prefix": "bi",
+		"scope": "markdown",
 		"body": [
 			"***${1:content}***${0}"
 		],
@@ -105,6 +118,7 @@
 	},
 	"slashed font": {
 		"prefix": "sla",
+		"scope": "markdown",
 		"body": [
 			"~~${1:content}~~${0}"
 		],
@@ -112,6 +126,7 @@
 	},
 	"underline": {
 		"prefix": "u",
+		"scope": "markdown",
 		"body": [
 			"<u>${1:content}</u>${0}"
 		],
@@ -119,6 +134,7 @@
 	},
 	"inline content": {
 		"prefix": "ili",
+		"scope": "markdown",
 		"body": [
 			"`${1:content}`${0}"
 		],
@@ -126,6 +142,7 @@
 	},
 	"inline math": {
 		"prefix": "ima",
+		"scope": "markdown",
 		"body": [
 			"$${1:math}$${0}"
 		],
@@ -133,6 +150,7 @@
 	},
 	"blocked math": {
 		"prefix": "bma",
+		"scope": "markdown",
 		"body": [
 			"$$",
 			"${1:math}",
@@ -143,6 +161,7 @@
 	},
 	"link": {
 		"prefix": ["a", "link"],
+		"scope": "markdown",
 		"body": [
 			"[${1:title}](${2:link})${0}"
 		],
@@ -150,6 +169,7 @@
 	},
 	"checked block": {
 		"prefix": "che",
+		"scope": "markdown",
 		"body": [
 			"- [x] ${1:content}${0}"
 		],
@@ -157,6 +177,7 @@
 	},
 	"unchecked block": {
 		"prefix": "uch",
+		"scope": "markdown",
 		"body": [
 			"- [ ] ${1:content}${0}"
 		],
@@ -164,6 +185,7 @@
 	},
 	"centered picture": {
 		"prefix": "cpic",
+		"scope": "markdown",
 		"body": [
 			"<div align=center><img src=\"${1:link}\"></div>",
 			"${0}"
@@ -172,6 +194,7 @@
 	},
 	"Insert a simple table with 2 columns": {
 		"prefix": "table 3x2",
+		"scope": "markdown",
 		"body": [
 			"|${0:title} |  |",
 			"| - | - |",
@@ -181,6 +204,7 @@
 	},
 	"Insert a simple table with 3 columns": {
 		"prefix": "table 4x2",
+		"scope": "markdown",
 		"body": [
 			"|${0:title} |  |  |",
 			"| - | - | - | ",
@@ -190,6 +214,7 @@
 	},
 	"text color": {
 		"prefix": "color",
+		"scope": "markdown",
 		"body": [
 			"<span style=\"color: ${1:red};\">${2:content}</span>${0}"
 		],

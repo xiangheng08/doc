@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AlignItems: typeof import('./examples/frontend/css/align-items.vue')['default']
+    AlignSelf: typeof import('./examples/frontend/css/align-self.vue')['default']
     BackfaceVisibility: typeof import('./examples/frontend/css/backfaceVisibility.vue')['default']
     BorderBlock: typeof import('./examples/frontend/css/borderBlock.vue')['default']
     BorderCollapse: typeof import('./examples/frontend/css/borderCollapse.vue')['default']
@@ -17,6 +19,7 @@ declare module 'vue' {
     BorderWidth: typeof import('./examples/frontend/css/borderWidth.vue')['default']
     CollectedPackagesList: typeof import('./examples/frontend/manager/collectedPackagesList.vue')['default']
     CssDemo: typeof import('./theme/components/cssDemo.vue')['default']
+    DelayedAnimationExample: typeof import('./examples/frontend/note/delayedAnimationExample.vue')['default']
     Demo: typeof import('./theme/components/demo.vue')['default']
     FlexBasis: typeof import('./examples/frontend/css/flex-basis.vue')['default']
     FlexDirection: typeof import('./examples/frontend/css/flex-direction.vue')['default']
@@ -24,6 +27,7 @@ declare module 'vue' {
     FlexWrap: typeof import('./examples/frontend/css/flex-wrap.vue')['default']
     FloatExamples: typeof import('./examples/frontend/css/floatExamples.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
+    JustifyContent: typeof import('./examples/frontend/css/justify-content.vue')['default']
     ListStyleType: typeof import('./examples/frontend/css/listStyleType.vue')['default']
     Mylink: typeof import('./theme/components/mylink.vue')['default']
     OutlineAutoScroll: typeof import('./theme/components/outlineAutoScroll.vue')['default']
