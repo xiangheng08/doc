@@ -102,6 +102,8 @@
 14. double 双线
 15. design 设计
 16. do 做
+17. duration 持续时间，动画的持续时间
+18. delay 延迟
 
 ## **E**
 
@@ -146,11 +148,12 @@
 8.  hand 手
 9.  hidden 被隐藏
 10. head 头部
-11. home 首页
-12. height 高度
-13. horizontal 水平的
-14. help 帮助
-15. hover 鼠标指针经过时的效果，或称为“悬停状态”
+11. header 头部
+12. home 首页
+13. height 高度
+14. horizontal 水平的
+15. help 帮助
+16. hover 鼠标指针经过时的效果，或称为“悬停状态”
 
 ## **I**
 
@@ -165,6 +168,7 @@
 9.  inner 内部的
 10. if 如果
 11. int：整数
+12. instance 实例
 
 ## **J**
 
@@ -192,7 +196,7 @@
 11. leave 出去
 12. lowercase 小写
 13. level 级别
-14. localStorage 本地存储
+14. localStorage 本地存储高度
 
 ## **M**
 
@@ -299,6 +303,7 @@
 10. translate 转换
 11. this 这个
 12. toggle 切换
+13. threshold 阈值
 
 ## **U**
 
@@ -326,3 +331,4 @@
 6.  week 星期 获取需要 day
 7.  weight 加重
 8.  window 窗口
+9.  wrapper 包装

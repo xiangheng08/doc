@@ -177,5 +177,12 @@
 			"[[toc]]",
 		],
 		"description": "目录表"
+	},
+	"prettier-ignore": {
+		"prefix": ["prettier-ignore", "prettier ignore", "ignore prettier"],
+		"body": [
+			"<!-- prettier-ignore -->",
+		],
+		"description": "忽略格式化"
 	}
 }
