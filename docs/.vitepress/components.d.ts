@@ -26,6 +26,7 @@ declare module 'vue' {
     FlexGrow: typeof import('./examples/frontend/css/flex-grow.vue')['default']
     FlexWrap: typeof import('./examples/frontend/css/flex-wrap.vue')['default']
     FloatExamples: typeof import('./examples/frontend/css/floatExamples.vue')['default']
+    GridAutoFlow: typeof import('./examples/frontend/css/grid-auto-flow.vue')['default']
     ImageViewer: typeof import('./theme/components/imageViewer.vue')['default']
     JustifyContent: typeof import('./examples/frontend/css/justify-content.vue')['default']
     ListStyleType: typeof import('./examples/frontend/css/listStyleType.vue')['default']

@@ -9,7 +9,7 @@
 1. 设置
 2. 文本编辑器(文本编辑器)
 3. 建议(Suggestions)
-4. 将 Accept Suggestion  On Commit Character 取消勾选
+4. 将 Accept Suggestion On Commit Character 取消勾选
 
 或者使用[重新加载窗口](#重新加载窗口)
 
@@ -17,9 +17,9 @@
 
 在 vscode 里，有时候会某些功能失效（比如：类型提示没有了），可以通过重新加载窗口来解决。
 
-- 使用 ctrl + shift + p 打开命令面板（或者在帮助->显示所有命令）
-- 输入 reload
-- 选择 Reload Window（重新加载窗口）
+-   使用 ctrl + shift + p 打开命令面板（或者在帮助->显示所有命令）
+-   输入 reload
+-   选择 Reload Window（重新加载窗口）
 
 ## 路径别名提示
 
@@ -27,13 +27,13 @@
 
 ```json
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"exclude": ["node_modules", "dist"]
 }
 ```
 
@@ -41,3 +41,9 @@
 
 如果是 ts 项目，配置内容是一样的，只是在 tsconfig.json 中配置
 
+## vscode 复制相对路径时是反斜杠\，改为正斜杠/
+
+1. 打开 vscode 设置
+2. 在搜索框中输入 explorer.copyRelativePathSeparator
+
+![](/images/other/tips/vscode/copyRelativePathSeparator.png)

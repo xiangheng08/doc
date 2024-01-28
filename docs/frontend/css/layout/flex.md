@@ -49,7 +49,10 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 ```css
 .box {
-	flex-direction: row | row-reverse | column | column-reverse;
+	flex-direction: row;
+	flex-direction: row-reverse;
+	flex-direction: column;
+	flex-direction: column-reverse;
 }
 ```
 
@@ -72,7 +75,9 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 ```css
 .box {
-	flex-wrap: nowrap | wrap | wrap-reverse;
+	flex-wrap: nowrap;
+	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
 }
 ```
 
@@ -105,7 +110,11 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 ```css
 .box {
-	justify-content: flex-start | flex-end | center | space-between | space-around;
+	justify-content: flex-start;
+	justify-content: flex-end;
+	justify-content: center;
+	justify-content: space-between;
+	justify-content: space-around;
 }
 ```
 
@@ -127,7 +136,11 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 ```css
 .box {
-	align-items: flex-start | flex-end | center | baseline | stretch;
+	align-items: flex-start;
+	align-items: flex-end;
+	align-items: center;
+	align-items: baseline;
+	align-items: stretch;
 }
 ```
 
@@ -149,7 +162,12 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 ```css
 .box {
-	align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+	align-content: flex-start;
+	align-content: flex-end;
+	align-content: center;
+	align-content: space-between;
+	align-content: space-around;
+	align-content: stretch;
 }
 ```
 
@@ -244,13 +262,22 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 
 建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
 
+使用 `flex: 1;` 可以很简单的实现撑满剩下的空间。
+
+<sub-page url="/examples/frontend/iframe/css/layout/flex1.html" height="100px" />
+
 ### align-self
 
 `align-self` 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 `align-items` 属性。默认值为 `auto`，表示继承父元素的 `align-items` 属性，如果没有父元素，则等同于 `stretch`。
 
 ```css
 .item {
-	align-self: auto | flex-start | flex-end | center | baseline | stretch;
+	align-self: auto;
+	align-self: flex-start;
+	align-self: flex-end;
+	align-self: center;
+	align-self: baseline;
+	align-self: stretch;
 }
 ```
 

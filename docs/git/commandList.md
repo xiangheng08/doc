@@ -40,6 +40,7 @@
 -   `git clone <remote>`: 克隆远程仓库到本地。
 -   `git clone <remote> -b <branch>`: 克隆远程仓库中指定的分支到本地。
 -   `git push <remote> --delete <branch_name>`: 删除远程分支。
+-   `git push <remote_name> <local_branch>:<remote_branch>`: 推送到指定分支。
 
 ## 查看状态和历史
 

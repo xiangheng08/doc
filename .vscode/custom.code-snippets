@@ -179,10 +179,19 @@
 		"description": "目录表"
 	},
 	"prettier-ignore": {
-		"prefix": ["prettier-ignore", "prettier ignore", "ignore prettier"],
+		"prefix": ["prettier-ignore", "ignore-prettier"],
+		"scope": "markdown",
 		"body": [
 			"<!-- prettier-ignore -->",
 		],
 		"description": "忽略格式化"
+	},
+	"sub-page": {
+		"prefix": "sub-page",
+		"scope": "markdown",
+		"body": [
+			"<sub-page url=\"$1\" height=\"100px\" />",
+		],
+		"description": "子页面"
 	}
 }
