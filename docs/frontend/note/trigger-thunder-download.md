@@ -5,7 +5,7 @@
   import { withBase } from 'vitepress';
   import { convertThunderDownload } from '@/utils/run/convertThunderDownload.js';
   
-  const url = location.origin + withBase('/images/other/vscode-extension-logo/vue.png');
+  const url = globalThis?.location?.origin + withBase('/images/other/vscode-extension-logo/vue.png');
 
   onMounted(()=>convertThunderDownload());
 </script>
