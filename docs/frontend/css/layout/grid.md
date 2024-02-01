@@ -359,4 +359,58 @@ div {
 
 <sub-page url="/examples/frontend/iframe/css/layout/grid-auto-flow-item-row.html" height="406px" />
 
+上图中，1 号项目后面的位置是空的，这是因为 3 号项目默认跟着 2 号项目，所以会排在 2 号项目后面。
+
+现在修改设置，设为 `row dense`，表示"先行后列"，并且尽可能紧密填满，尽量不出现空格。
+
+```css
+div {
+	grid-auto-flow: row dense;
+}
+```
+
+上面代码的效果如下。
+
+<sub-page url="/examples/frontend/iframe/css/layout/grid-auto-flow-item-row-dense.html" height="410px" />
+
+上图会先填满第一行，再填满第二行，所以 3 号项目就会紧跟在 1 号项目的后面。8 号项目和 9 号项目就会排到第四行。
+
+如果将设置改为 `column dense`，表示"先列后行"，并且尽量填满空格。
+
+```css
+div {
+	grid-auto-flow: column dense;
+}
+```
+
+上面代码的效果如下。
+
+<sub-page url="/examples/frontend/iframe/css/layout/grid-auto-flow-item-column-dense.html" height="400px" />
+
+上图会先填满第一列，再填满第 2 列，所以 3 号项目在第一列，4 号项目在第二列。8 号项目和 9 号项目被挤到了第四列。
+
+### justify-items 和 align-items 和 place-items 属性
+
+`justify-items` 属性设置单元格内容的水平位置（左中右），`align-items` 属性设置单元格内容的垂直位置（上中下）。
+
+```css
+.container {
+	justify-items: start | end | center | stretch;
+	align-items: start | end | center | stretch;
+}
+```
+
+这两个属性的写法完全相同，都可以取下面这些值。
+
+-   `start`：对齐单元格的起始边缘。
+-   `end`：对齐单元格的结束边缘。
+-   `center`：单元格内部居中。
+-   `stretch`：拉伸，占满单元格的整个宽度（默认值）。
+
+```css
+.container {
+	justify-items: start;
+}
+```
+
 [参考: CSS Grid 网格布局教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
