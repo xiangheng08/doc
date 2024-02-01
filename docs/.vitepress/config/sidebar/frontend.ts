@@ -218,11 +218,15 @@ export default define<DefaultTheme.SidebarItem[]>([
         items: [
           {
             text: '并发执行任务',
-            link: '/frontend/js/advanced/function/paralle-task',
+            link: '/frontend/js/advanced/function/parallel-task',
           },
           {
             text: '惰性函数',
             link: '/frontend/js/advanced/function/lazy',
+          },
+          {
+            text: '任务队列',
+            link: '/frontend/js/advanced/function/task-queue',
           },
         ],
       },
