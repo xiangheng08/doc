@@ -89,10 +89,10 @@ function randomHexColor() {
  * @returns {string}
  */
 function randomRGBColor() {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    return `rgb(${red}, ${green}, ${blue})`;
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  return `rgb(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -103,10 +103,10 @@ function randomRGBColor() {
  */
 function randomHSLColor(saturation, lightness) {
   const hue = Math.floor(Math.random() * 360);
-  if (saturation === void 0){
+  if (saturation === void 0) {
     saturation = Math.floor(Math.random() * 101); // 0-100
   }
-  if (lightness === void 0){
+  if (lightness === void 0) {
     lightness = Math.floor(Math.random() * 101); // 0-100
   }
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
@@ -159,5 +159,110 @@ function isMillisecondTimestamp(timestamp) {
 export function isMillisecondTimestamp(timestamp) {
   const date = new Date(timestamp);
   return date.getSeconds() === 0;
+}
+```
+
+## 格式化距离时间
+
+```js
+/**
+ * 格式化消息距离时间
+ * @param {number | string} timestamp 时间戳或时间字符串
+ */
+export function formatDistanceTime(timestamp) {
+  const now = new Date();
+  const targetDate = new Date(timestamp);
+  const timeDiff = now - targetDate;
+  const seconds = Math.floor(timeDiff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (seconds < 60) {
+    return '刚刚';
+  } else if (minutes < 60) {
+    return `${minutes}分钟前`;
+  } else if (hours < 24) {
+    return `${hours}小时前`;
+  } else if (days === 1) {
+    return '昨天';
+  } else if (days < 7) {
+    return `${days}天前`;
+  } else {
+    const year = targetDate.getFullYear();
+    const month = targetDate.getMonth() + 1;
+    const day = targetDate.getDate();
+    return `${year}/${month}/${day}`;
+  }
+}
+
+/**
+ * 格式化距离时间（微信消息时间样式）
+ * @param {number | string} timestamp 时间戳或时间字符串
+ */
+export function formatDistanceTime(timestamp) {
+  const now = new Date();
+  const date = new Date(timestamp);
+
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  let period;
+  if (hours < 5) {
+    period = '凌晨';
+  } else if (hours < 12) {
+    period = '上午';
+  } else if (hours < 18) {
+    period = '下午';
+  } else {
+    period = '下午';
+  }
+  let baseTime = `${period}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+  // 当天
+  if (
+    date.getDate() === now.getDate() &&
+    date.getMonth() === now.getMonth() &&
+    date.getFullYear() === now.getFullYear()
+  ) {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return baseTime;
+  }
+
+  // 昨天
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  if (
+    date.getDate() === yesterday.getDate() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getFullYear() === yesterday.getFullYear()
+  ) {
+    return '昨天 ' + baseTime;
+  }
+
+  // 本周内
+  if (
+    date.getFullYear() === now.getFullYear() &&
+    date.getMonth() === now.getMonth() &&
+    date.getDate() >= now.getDate() - now.getDay() &&
+    date.getDate() < now.getDate()
+  ) {
+    const dayOfWeek = date.getDay();
+    const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    return days[dayOfWeek] + ' ' + baseTime;
+  }
+
+  // 本年内
+  if (date.getFullYear() === now.getFullYear()) {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${month}月${day}日 ${baseTime}`;
+  }
+
+  // 不是本年
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日 ${baseTime}`;
 }
 ```
