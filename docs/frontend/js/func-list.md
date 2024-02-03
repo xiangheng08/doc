@@ -266,3 +266,16 @@ export function formatDistanceTime(timestamp) {
   return `${year}年${month}月${day}日 ${baseTime}`;
 }
 ```
+
+## 判断是否为文件协议
+
+```js
+/**
+ * 判断是否为文件协议
+ * @returns {boolean}
+ */
+export function isFileProtocol(url: string) {
+    return url.startsWith("file://");
+}
+```
+
