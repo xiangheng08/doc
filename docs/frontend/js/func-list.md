@@ -197,7 +197,7 @@ export function formatDistanceTime(timestamp) {
 }
 
 /**
- * 格式化距离时间（微信消息时间样式）
+ * 格式化消息距离时间（微信消息时间样式）
  * @param {number | string} timestamp 时间戳或时间字符串
  */
 export function formatDistanceTime(timestamp) {
@@ -207,14 +207,16 @@ export function formatDistanceTime(timestamp) {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   let period;
-  if (hours < 5) {
+  if (hours < 6) {
     period = '凌晨';
   } else if (hours < 12) {
     period = '上午';
+  } else if (hours < 13) {
+    period = '中午';
   } else if (hours < 18) {
     period = '下午';
   } else {
-    period = '下午';
+    period = '晚上';
   }
   let baseTime = `${period}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
 
@@ -275,7 +277,6 @@ export function formatDistanceTime(timestamp) {
  * @returns {boolean}
  */
 export function isFileProtocol(url: string) {
-    return url.startsWith("file://");
+  return url.startsWith('file://');
 }
 ```
-
