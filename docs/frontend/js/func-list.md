@@ -226,8 +226,6 @@ export function formatDistanceTime(timestamp) {
     date.getMonth() === now.getMonth() &&
     date.getFullYear() === now.getFullYear()
   ) {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
     return baseTime;
   }
 
