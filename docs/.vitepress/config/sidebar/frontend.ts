@@ -133,6 +133,10 @@ export default define<DefaultTheme.SidebarItem[]>([
         ],
       },
       {
+        text: '媒体查询',
+        link: '/frontend/css/media-query',
+      },
+      {
         text: '效果',
         link: '/frontend/css/effect',
       },
@@ -167,12 +171,38 @@ export default define<DefaultTheme.SidebarItem[]>([
         link: '/frontend/js/index',
       },
       {
-        text: '输出',
-        link: '/frontend/js/output',
+        text: '基本语法',
+        link: '/frontend/js/basic-syntax',
+      },
+      {
+        text: '新语法',
+        link: '/frontend/js/new-syntax',
       },
       {
         text: '语法',
         link: '/frontend/js/syntax',
+      },
+      {
+        text: '数据类型',
+        collapsed: true,
+        items: [
+          {
+            text: '概述',
+            link: '/frontend/js/types/general',
+          },
+          {
+            text: 'null 和 undefined',
+            link: '/frontend/js/types/null-undefined',
+          },
+          {
+            text: '布尔值',
+            link: '/frontend/js/types/boolean',
+          },
+          {
+            text: '数值',
+            link: '/frontend/js/types/number',
+          },
+        ],
       },
       {
         text: 'DOM',
@@ -230,6 +260,20 @@ export default define<DefaultTheme.SidebarItem[]>([
           },
         ],
       },
+      {
+        text: '其他',
+        collapsed: true,
+        items: [
+          {
+            text: '输出',
+            link: '/frontend/js/output',
+          },
+          {
+            text: '关键字、保留字、其他不建议使用的标识符',
+            link: '/frontend/js/other/identifier-list',
+          },
+        ],
+      }
     ],
   },
   {
