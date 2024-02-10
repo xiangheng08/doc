@@ -78,3 +78,5 @@ o.p; // undefined
 function f() {}
 f(); // undefined
 ```
+
+[参考: null, undefined 和布尔值 - JavaScript 教程 - 网道](https://wangdoc.com/javascript/types/null-undefined-boolean)

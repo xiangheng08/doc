@@ -202,6 +202,10 @@ export default define<DefaultTheme.SidebarItem[]>([
             text: '数值',
             link: '/frontend/js/types/number',
           },
+          {
+            text: '字符串',
+            link: '/frontend/js/types/string',
+          },
         ],
       },
       {
