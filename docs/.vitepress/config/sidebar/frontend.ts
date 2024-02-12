@@ -206,6 +206,18 @@ export default define<DefaultTheme.SidebarItem[]>([
             text: '字符串',
             link: '/frontend/js/types/string',
           },
+          {
+            text: '对象',
+            link: '/frontend/js/types/object',
+          },
+          {
+            text: '函数',
+            link: '/frontend/js/types/function',
+          },
+          {
+            text: '数组',
+            link: '/frontend/js/types/array',
+          },
         ],
       },
       {
