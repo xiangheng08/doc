@@ -19,11 +19,13 @@ const onScroll = () => {
 };
 
 const scrollToTop = () => {
-	window.scrollTo({ top: 0, behavior: 'smooth' });
+	window?.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-window.addEventListener('scroll', onScroll, { passive: true });
-onMounted(() => onScroll());
+onMounted(() => {
+	window?.addEventListener('scroll', onScroll, { passive: true });
+	onScroll()
+});
 </script>
 
 <style scoped lang="scss">
