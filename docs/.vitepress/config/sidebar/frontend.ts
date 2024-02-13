@@ -178,10 +178,10 @@ export default define<DefaultTheme.SidebarItem[]>([
         text: '新语法',
         link: '/frontend/js/new-syntax',
       },
-      {
-        text: '语法',
-        link: '/frontend/js/syntax',
-      },
+      // {
+      //   text: '语法',
+      //   link: '/frontend/js/syntax',
+      // },
       {
         text: '数据类型',
         collapsed: true,
@@ -218,6 +218,50 @@ export default define<DefaultTheme.SidebarItem[]>([
             text: '数组',
             link: '/frontend/js/types/array',
           },
+          {
+            text: 'Symbol',
+            link: '/frontend/js/types/symbol',
+          },
+          {
+            text: 'BigInt',
+            link: '/frontend/js/types/bigint',
+          },
+        ],
+      },
+      {
+        text: '运算符',
+        collapsed: true,
+        items: [
+          {
+            text: '算术运算符',
+            link: '/frontend/js/operators/arithmetic',
+          },
+          {
+            text: '比较运算符',
+            link: '/frontend/js/operators/comparison',
+          },
+          {
+            text: '布尔运算符',
+            link: '/frontend/js/operators/boolean',
+          },
+          {
+            text: '二进制位运算符',
+            link: '/frontend/js/operators/bit',
+          },
+          {
+            text: '其他运算符，运算顺序',
+            link: '/frontend/js/operators/priority',
+          },
+        ],
+      },
+      {
+        text: '内置对象',
+        collapsed: true,
+        items: [
+          {
+            text: 'Array',
+            link: '/frontend/js/object/array',
+          },
         ],
       },
       {
@@ -231,16 +275,6 @@ export default define<DefaultTheme.SidebarItem[]>([
           {
             text: '选择元素',
             link: '/frontend/js/dom/select',
-          },
-        ],
-      },
-      {
-        text: '对象',
-        collapsed: true,
-        items: [
-          {
-            text: 'Array',
-            link: '/frontend/js/object/array',
           },
         ],
       },
