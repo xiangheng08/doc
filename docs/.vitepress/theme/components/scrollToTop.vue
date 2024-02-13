@@ -22,7 +22,7 @@ const scrollToTop = () => {
 
 onMounted(() => {
 	window?.addEventListener('scroll', onScroll, { passive: true });
-	onScroll()
+	onScroll();
 });
 </script>
 
@@ -49,7 +49,7 @@ onMounted(() => {
 	}
 }
 html.dark {
-	.scroll-to-top{
+	.scroll-to-top {
 		background: rgb(52, 52, 52);
 		&:hover {
 			background: rgb(64, 64, 64);
@@ -58,5 +58,5 @@ html.dark {
 			fill: rgb(120, 120, 120);
 		}
 	}
-	}
+}
 </style>
