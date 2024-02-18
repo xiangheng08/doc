@@ -254,14 +254,28 @@ export default define<DefaultTheme.SidebarItem[]>([
           },
         ],
       },
+      // {
+      //   text: '内置对象',
+      //   collapsed: true,
+      //   items: [
+      //     {
+      //       text: 'Array',
+      //       link: '/frontend/js/object/array',
+      //     },
+      //   ],
+      // },
       {
-        text: '内置对象',
+        text: '标准库',
         collapsed: true,
         items: [
           {
-            text: 'Array',
-            link: '/frontend/js/object/array',
+            text: 'Array 对象',
+            link: '/frontend/js/stdlib/array',
           },
+          {
+            text: 'Math 对象',
+            link: '/frontend/js/stdlib/math',
+          }
         ],
       },
       {
