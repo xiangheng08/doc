@@ -12,12 +12,24 @@ function isDecimal(num) {
 ## 防抖
 
 ```js
+/**
+ * 防抖
+ *
+ * @param {Function} fn - 要防抖的函数。
+ * @param {number} delay - 延迟时间，以毫秒为单位。
+ * @returns {Function} - 防抖后的函数。
+ */
 function debounce(fn, delay) {
   let timer;
+
+  /**
+   * @param {...any} args - 传递给防抖函数的参数。
+   */
   return function (...args) {
     clearTimeout(timer);
     timer = setTimeout(() => {
       fn.apply(this, args);
+      fn.call(this, ...args);
     }, delay);
   };
 }
@@ -26,8 +38,19 @@ function debounce(fn, delay) {
 ## 节流
 
 ```js
+/**
+ * 节流
+ *
+ * @param {Function} fn - 要节流的函数。
+ * @param {number} delay - 两次调用之间的最小时间间隔，以毫秒为单位。
+ * @returns {Function} - 节流后的函数。
+ */
 function throttle(fn, delay) {
   let last;
+
+  /**
+   * @param {...any} args - 传递给节流函数的参数。
+   */
   return function (...args) {
     let now = Date.now();
     if (now - last > delay) {
