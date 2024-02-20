@@ -278,3 +278,33 @@ export function isFileProtocol(url: string) {
   return url.startsWith('file://');
 }
 ```
+
+## 字符串相关
+
+```js
+/**
+ * 删除字符串的某一段
+ * @param {string} str 原字符串
+ * @param {number} start 起始索引
+ * @param {number} end 结束索引（包括结束索引位置）
+ * @returns {string}
+ */
+function removeSubstring(str, start, end) {
+  return str.slice(0, start) + str.slice(end + 1);
+}
+
+/**
+ * 插入字符串
+ * @param {string} str 原字符串
+ * @param {string} insertion 要插入的字符串
+ * @param {number} start 起始索引
+ * @param {number} [end] 结束索引（不传就赋值为起始索引）
+ * @returns  {string}
+ */
+function insertSubstring(str, insertion, start, end) {
+  if (end === void 0) {
+    end = start;
+  }
+  return str.slice(0, start) + insertion + str.slice(end);
+}
+```
