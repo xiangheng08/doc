@@ -226,6 +226,10 @@ export default define<DefaultTheme.SidebarItem[]>([
             text: 'BigInt',
             link: '/frontend/js/types/bigint',
           },
+          {
+            text: '数据类型的转换',
+            link: '/frontend/js/types/conversion',
+          },
         ],
       },
       {
@@ -254,6 +258,10 @@ export default define<DefaultTheme.SidebarItem[]>([
           },
         ],
       },
+      {
+        text: '错误处理机制',
+        link: '/frontend/js/error',
+      },
       // {
       //   text: '内置对象',
       //   collapsed: true,
@@ -268,6 +276,10 @@ export default define<DefaultTheme.SidebarItem[]>([
         text: '标准库',
         collapsed: true,
         items: [
+          {
+            text: 'Object 对象',
+            link: '/frontend/js/stdlib/object',
+          },
           {
             text: 'Array 对象',
             link: '/frontend/js/stdlib/array',

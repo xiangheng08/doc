@@ -126,7 +126,7 @@ myDocument?.addEventListener('copy', (e) => {
 })
 </script>
 
-<style>
+<style scoped>
   .box{
     display: flex;
     align-items: center;

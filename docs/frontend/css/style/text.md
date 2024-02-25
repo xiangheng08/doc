@@ -289,13 +289,25 @@ p {
 
 ```css
 p {
-  word-spacing: normal; /* 正常的单词间距，取决于当前字体和浏览器 */
-  word-spacing: 4px;
-  word-spacing: -0.4ch;
-  word-spacing: 20%; /* 像对于字符宽度 */
+	word-spacing: normal; /* 正常的单词间距，取决于当前字体和浏览器 */
+	word-spacing: 4px;
+	word-spacing: -0.4ch;
+	word-spacing: 20%; /* 像对于字符宽度 */
 }
 ```
 
 <p>正常间距：<span>Lorem ipsum dolor sit amet, consectetur tempus aliquet, erat</span></p>
-<p>10px：<span style="word-spacing: 10px;">Lorem ipsum dolor sit amet, consectetur tempus aliquet, erat</span></p>
+<p>10px 间距：<span style="word-spacing: 10px;">Lorem ipsum dolor sit amet, consectetur tempus aliquet, erat</span></p>
 
+## word-break 单词换行
+
+`word-break` 属性用于设置如何处理单词内的断行。
+
+```css
+p {
+	word-break: normal; /* 默认，使用浏览器默认的换行规则 */
+	word-break: keep-all; /* 不允许单词内断行 */
+	word-break: break-all; /* 允许单词内断行 */
+	word-break: keep-word; /* 允许在单词内断行，但只允许在半角空格或连字符处断行（已弃用） */
+}
+```
