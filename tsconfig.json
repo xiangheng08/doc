@@ -17,6 +17,5 @@
 		},
 		"types": ["node"]
 	},
-	"include": ["env.d.ts", "./docs/.vitepress/**/*"],
-	"exclude": ["node_modules", "**/some_dir_like_node_modules/*"]
+	"exclude": ["node_modules"]
 }
