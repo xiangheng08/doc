@@ -8,6 +8,10 @@ import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 import copyright from './config/copyright';
 import { _withBase, getDirPaths } from './utils';
 import { gitee_icon } from './theme/icons';
+import sidebarAutoAddName from './build/sidebarAutoAddName';
+
+// 文档根路径
+const docsBasePath = path.resolve(__dirname, '../');
 
 // 附加配置
 const append: UserConfig<DefaultTheme.Config> = {};
@@ -43,7 +47,7 @@ export default defineConfig({
 			{ text: '其他', link: '/other/' },
 		],
 
-		sidebar,
+		sidebar: sidebarAutoAddName(docsBasePath, sidebar),
 
 		sidebarMenuLabel: '目录',
 		darkModeSwitchLabel: '暗黑模式',
