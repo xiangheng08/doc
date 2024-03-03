@@ -104,6 +104,8 @@
 16. do 做
 17. duration 持续时间，动画的持续时间
 18. delay 延迟
+19. delete 删除
+20. exclude 排除
 
 ## **E**
 
@@ -154,6 +156,7 @@
 14. horizontal 水平的
 15. help 帮助
 16. hover 鼠标指针经过时的效果，或称为“悬停状态”
+17. handler 处理者、操作者
 
 ## **I**
 
@@ -169,6 +172,7 @@
 10. if 如果
 11. int：整数
 12. instance 实例
+13. include 包含
 
 ## **J**
 
@@ -232,6 +236,9 @@
 10. origin 原点
 11. object 对象
 12. opacity 透明度
+13. option 选项
+14. overflow 溢出
+15. operate 操作
 
 ## **P**
 
@@ -288,6 +295,7 @@
 19. sort 排序
 20. slice 切片，划分
 21. splice 铰接，粘接
+22. strict 严格的
 
 ## **T**
 

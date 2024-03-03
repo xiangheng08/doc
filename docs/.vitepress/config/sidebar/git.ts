@@ -15,6 +15,9 @@ export default define<DefaultTheme.SidebarItem[]>([
 		link: '/git/vscode',
 	},
 	{
+		link: '/git/pagination-shortcut'
+	},
+	{
 		text: '脚本',
 		collapsed: false,
 		items: [

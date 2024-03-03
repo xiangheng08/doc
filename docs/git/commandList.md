@@ -167,6 +167,66 @@ git config core.filemode false
 
 此操作将删除以前的提交记录（慎用）
 
+### 设置默认推送远程
+
+`git push --set-upstream <remote-name> <branch-name>`
+
+`--set-upstream` 可以简化为 `-u`
+
+`git push -u <remote-name> <branch-name>`
+
+此命令在推送的同时，也会指定的远程和分支设置为默认的推送目标。
+
+### 设置默认推送分支
+
+`git config --global push.default <matching|simple|current|upstream|nothing>`
+
+-   `matching`: 推送所有本地分支与远程分支同名的分支。
+-   `simple`: 推送当前分支到远程分支，如果远程分支不存在，则创建同名远程分支。
+-   `current`: 推送当前分支到远程分支。
+-   `upstream`: 推送当前分支到上游分支（即通过 git pull 获取的分支）。
+-   `nothing`: 不推送任何分支。
+
+例如，要将当前分支设置为默认推送分支，你可以运行：
+
+```
+git config --global push.default current
+```
+
+请注意，如果你使用 `--global` 标志，这些配置将应用于你系统上所有的 Git 仓库。如果只想在当前仓库中设置默认推送远程和分支，可以省略 `--global` 标志。
+
+### 查看当前项目的 Git 配置
+
+要查看当前项目的 Git 配置，你可以使用以下命令
+
+```bash
+git config --local --list
+```
+
+这将显示当前 Git 仓库的本地配置。如果你想查看全局配置（即应用于用户的所有仓库），可以使用：
+
+```bash
+git config --global --list
+```
+
+如果要查看系统级别的配置（适用于整个系统的所有用户和仓库），可以使用：
+
+```bash
+git config --system --list
+```
+
+这些命令会列出所有相关级别上的配置项及其值。如果你只关心特定配置项，你可以使用 `grep` 命令来筛选结果，例如：
+
+```bash
+git config --local --list | grep user
+```
+
+上述命令将显示所有包含 `"user"` 的配置项及其值。根据需要，你可以根据不同的配置级别查看相应的配置信息。
+
+::: tip
+提示：如果配置比较多就会进入分页模式，可以按下 q 键退出分页模式。
+:::
+
 ## 关键词
 
 -   `--global`: 全局

@@ -7,11 +7,9 @@ export default define<DefaultTheme.SidebarItem[]>([
 		collapsed: false,
 		items: [
 			{
-				text: 'VScode',
 				link: '/other/tips/vscode',
 			},
 			{
-				text: 'Windows',
 				link: '/other/tips/windows',
 			},
 		],
@@ -23,7 +21,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '版本后缀',
 				link: '/other/project/version-suffix',
-			}
+			},
 		],
 	},
 	{
@@ -33,7 +31,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: 'NVM',
 				link: '/other/app/nvm',
-			}
+			},
 		],
 	},
 	{
@@ -43,7 +41,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '角色',
 				link: '/other/chatgpt/role',
-			}
+			},
 		],
 	},
 	{
