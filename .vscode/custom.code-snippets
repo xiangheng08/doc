@@ -112,6 +112,17 @@
 		],
 		"description": "sh 代码块"
 	},
+	"bash code block": {
+		"prefix": "bash",
+		"scope": "markdown",
+		"body": [
+			"```bash",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "sh 代码块"
+	},
 	"info containers": {
 		"prefix": "info containers",
 		"scope": "markdown",
