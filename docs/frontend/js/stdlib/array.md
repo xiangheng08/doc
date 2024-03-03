@@ -258,193 +258,710 @@ arr; // [1, 2]
 
 上面代码中，`3`是最后进入数组的，但是最早离开数组。
 
-### push 添加元素
+### shift()，unshift()
 
-添加一个元素或多个元素到数组末尾，并返回数组新的长度
+`shift()`方法用于删除数组的第一个元素，并返回该元素。
 
-::: warning 注意
-此方法会改变原数组
-:::
+> 注意，该方法会改变原数组。
 
 ```js
-const arr = [1, 2, 3];
-// 添加一个
-arr.push(4);
-console.log(arr); // [1, 2, 3, 4]
+var a = ['a', 'b', 'c'];
 
-// 添加多个
-arr.push(5, 6);
-console.log(arr); // [1, 2, 3, 4, 5, 6]
+a.shift(); // 'a'
+a; // ['b', 'c']
 ```
 
-### unshift 添加元素到首位
+上面代码中，使用`shift()`方法以后，原数组就变了。
 
-将一个或多个元素添加到数组 arr 的开头，并返回数组新的长度
-
-::: warning 注意
-此方法会改变原数组
-:::
+`shift()`方法可以遍历并清空一个数组。
 
 ```js
-const arr = [1, 2, 3];
-// 添加一个
-arr.unshift(4);
-console.log(arr); // [4, 1, 2, 3]
+var list = [1, 2, 3, 4];
+var item;
 
-// 添加多个
-arr.unshift(5, 6);
-console.log(arr); // [5, 6, 4, 1, 2, 3]
+while ((item = list.shift())) {
+	console.log(item);
+}
+
+list; // []
 ```
 
-### splice 删除添加元素
+上面代码通过`list.shift()`方法每次取出一个元素，从而遍历数组。它的前提是数组元素不能是`0`或任何布尔值等于`false`的元素，因此这样的遍历不是很可靠。
 
-删除数组指定元素 或 删除数组指定元素并在删除元素的索引值开始添加一个或多个元素，不影响删除元素后面的元素，并返回一个数组里面是删除的元素
+`push()`和`shift()`结合使用，就构成了“先进先出”的队列结构（queue）。
 
-::: warning 注意
-此方法会改变原数组
-:::
+`unshift()`方法用于在数组的第一个位置添加元素，并返回添加新元素后的数组长度。
 
-#### 删除指定元素
+> 注意，该方法会改变原数组。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const delarr = arr.splice(3, 1); // 从数组 arr 的下标 3，删除一个元素
-console.log(arr); // [1, 2, 3, 5]
-console.log(delarr); // [3]
+var a = ['a', 'b', 'c'];
+
+a.unshift('x'); // 4
+a; // ['x', 'a', 'b', 'c']
 ```
 
-#### 删除元素并在删除索引位置添加一个或多个元素
+`unshift()`方法可以接受多个参数，这些参数都会添加到目标数组头部。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const delarr = arr.splice(3, 1, 101, 102); //从数组 arr 的下标 3，删除一个元素，并添加两个元素
-console.log(arr); // [1, 2, 3, 101, 102, 5]
-console.log(delarr); // [4]
+var arr = ['c', 'd'];
+arr.unshift('a', 'b'); // 4
+arr; // [ 'a', 'b', 'c', 'd' ]
 ```
 
-#### 在指定位置添加元素
+### join()
+
+`join()`方法以指定参数作为分隔符，将所有数组成员连接为一个字符串返回。如果不提供参数，默认用逗号分隔。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const delarr = arr.splice(3, 0, 101, 102); //从数组 arr 的下标 3，并添加两个元素
-console.log(arr); // [1, 2, 3, 101, 102, 4, 5]
-console.log(delarr); // []
+var a = [1, 2, 3, 4];
+
+a.join(' '); // '1 2 3 4'
+a.join(' | '); // "1 | 2 | 3 | 4"
+a.join(); // "1,2,3,4"
 ```
 
-### pop 删除末尾元素
-
-删除数组最后一个元素，并返回删除的元素
-
-::: warning 注意
-此方法会改变原数组
-:::
+如果数组成员是`undefined`或`null`或空位，会被转成空字符串。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const delarr = arr.pop();
-console.log(arr); // [1, 2, 3, 4]
-console.log(delarr); // 5
+[undefined, null].join('#')
+// '#'
+
+['a',, 'b'].join('-')
+// 'a--b'
 ```
 
-### shift 删除开头元素
-
-删除数组第一个元素，并返回删除的元素
-
-::: warning 注意
-此方法会改变原数组
-:::
+通过`call`方法，这个方法也可以用于字符串或类似数组的对象。
 
 ```js
-const arr = [1, 2, 3, 4, 5];
-const delarr = arr.shift();
-console.log(arr); // [2, 3, 4, 5]
-console.log(delarr); // 1
+Array.prototype.join.call('hello', '-');
+// "h-e-l-l-o"
+
+var obj = { 0: 'a', 1: 'b', length: 2 };
+Array.prototype.join.call(obj, '-');
+// 'a-b'
 ```
 
-### reverse 倒序
+### concat()
 
-颠倒数组中元素的顺序，没有参数
-
-::: warning 注意
-此方法会改变原数组
-:::
+`concat`方法用于多个数组的合并。它将新数组的成员，添加到原数组成员的后部，然后返回一个新数组，原数组不变。
 
 ```js
-const arr2 = [1, 2, 3];
-arr2.reverse();
-console.log(arr2); // [3, 2, 1]
+['hello'].concat(['world'])
+// ["hello", "world"]
+
+['hello'].concat(['world'], ['!'])
+// ["hello", "world", "!"]
+
+[].concat({a: 1}, {b: 2})
+// [{ a: 1 }, { b: 2 }]
+
+[2].concat({a: 1})
+// [2, {a: 1}]
 ```
 
-### sort 排序
-
-​ 数组排列，根据每个字符的 Unicode 码位值进行排序
-
-::: warning 注意
-此方法会改变原数组
-:::
+除了数组作为参数，`concat`也接受其他类型的值作为参数，添加到目标数组尾部。
 
 ```js
-const arr3 = ['string', 'boolean', 'array', 'date'];
-arr3.sort();
-console.log(arr3); // 输出 ['array','boolean','date','string']
+[1, 2, 3].concat(4, 5, 6);
+// [1, 2, 3, 4, 5, 6]
 ```
 
-#### 数字排序
-
-​ 由于 sort() 方法是先根据首个元素，再根据第二个元素来排序，如果数字按照字符串来排序，则 `"25"` 大于 `"100"`，因为 `"2"` 大于 `"1"`。因此 `sort()` 方法在对数值排序时会产生不正确的结果。我们通过一个比值函数来修正此问题：`arr3.sort((a, b) => a - b)`;
+如果数组成员包括对象，`concat`方法返回当前数组的一个浅拷贝。所谓“浅拷贝”，指的是新数组拷贝的是对象的引用。
 
 ```js
-const arr = [1, 4, 3, 2];
-arr.sort();
-console.log(arr); // [1, 2, 3, 4]
+var obj = { a: 1 };
+var oldArray = [obj];
 
-const arr2 = ['10', '4', '30', '2', '100'];
-arr2.sort(); // 直接排序
-console.log(arr2); // ['10', '100', '2', '30', '4']
+var newArray = oldArray.concat();
 
-const arr3 = ['10', '4', '30', '2', '100'];
-arr3.sort((a, b) => a - b); // 使用比值函数
-console.log(arr3); // ['2', '4', '10', '30', '100']
+obj.a = 2;
+newArray[0].a; // 2
 ```
+
+上面代码中，原数组包含一个对象，`concat`方法生成的新数组包含这个对象的引用。所以，改变原对象以后，新数组跟着改变。
+
+### reverse()
+
+`reverse`方法用于颠倒排列数组元素，返回改变后的数组。
+
+> 注意，该方法将改变原数组。
+
+```js
+var a = ['a', 'b', 'c'];
+
+a.reverse(); // ["c", "b", "a"]
+a; // ["c", "b", "a"]
+```
+
+### slice()
+
+`slice()`方法用于提取目标数组的一部分，返回一个新数组，原数组不变。
+
+```js
+arr.slice(start, end);
+```
+
+它的第一个参数为起始位置（从 0 开始，会包括在返回的新数组之中），第二个参数为终止位置（但该位置的元素本身不包括在内）。如果省略第二个参数，则一直返回到原数组的最后一个成员。
+
+```js
+var a = ['a', 'b', 'c'];
+
+a.slice(0); // ["a", "b", "c"]
+a.slice(1); // ["b", "c"]
+a.slice(1, 2); // ["b"]
+a.slice(2, 6); // ["c"]
+a.slice(); // ["a", "b", "c"]
+```
+
+上面代码中，最后一个例子`slice()`没有参数，实际上等于返回一个原数组的拷贝。
+
+如果`slice()`方法的参数是负数，则表示倒数计算的位置。
+
+```js
+var a = ['a', 'b', 'c'];
+a.slice(-2); // ["b", "c"]
+a.slice(-2, -1); // ["b"]
+```
+
+上面代码中，`-2`表示倒数计算的第二个位置，`-1`表示倒数计算的第一个位置。
+
+如果第一个参数大于等于数组长度，或者第二个参数小于第一个参数，则返回空数组。
+
+```js
+var a = ['a', 'b', 'c'];
+a.slice(4); // []
+a.slice(2, 1); // []
+```
+
+`slice()`方法的一个重要应用，是将类似数组的对象转为真正的数组。
+
+```js
+Array.prototype.slice.call({ 0: 'a', 1: 'b', length: 2 });
+// ['a', 'b']
+
+Array.prototype.slice.call(document.querySelectorAll('div'));
+Array.prototype.slice.call(arguments);
+```
+
+上面代码的参数都不是数组，但是通过`call`方法，在它们上面调用`slice()`方法，就可以把它们转为真正的数组。
+
+### splice()
+
+`splice()`方法用于删除原数组的一部分成员，并可以在删除的位置添加新的数组成员，返回值是被删除的元素。
+
+> 注意，该方法会改变原数组。
+
+```js
+arr.splice(start, count, addElement1, addElement2, ...);
+```
+
+`splice`的第一个参数是删除的起始位置（从 0 开始），第二个参数是被删除的元素个数。如果后面还有更多的参数，则表示这些就是要被插入数组的新元素。
+
+```js
+var a = ['a', 'b', 'c', 'd', 'e', 'f'];
+a.splice(4, 2); // ["e", "f"]
+a; // ["a", "b", "c", "d"]
+```
+
+上面代码从原数组 4 号位置，删除了两个数组成员。
+
+```js
+var a = ['a', 'b', 'c', 'd', 'e', 'f'];
+a.splice(4, 2, 1, 2); // ["e", "f"]
+a; // ["a", "b", "c", "d", 1, 2]
+```
+
+上面代码除了删除成员，还插入了两个新成员。
+
+起始位置如果是负数，就表示从倒数位置开始删除。
+
+```js
+var a = ['a', 'b', 'c', 'd', 'e', 'f'];
+a.splice(-4, 2); // ["c", "d"]
+```
+
+上面代码表示，从倒数第四个位置`c`开始删除两个成员。
+
+如果只是单纯地插入元素，`splice`方法的第二个参数可以设为`0`。
+
+```js
+var a = [1, 1, 1];
+
+a.splice(1, 0, 2); // []
+a; // [1, 2, 1, 1]
+```
+
+如果只提供第一个参数，等同于将原数组在指定位置拆分成两个数组。
+
+```js
+var a = [1, 2, 3, 4];
+a.splice(2); // [3, 4]
+a; // [1, 2]
+```
+
+### sort()
+
+`sort`方法对数组成员进行排序，默认是将元素转换为字符串，然后按照编码顺序（UTF-16 码元值）升序排序。排序后，返回排序后的数组，同时原数组也将被改变。
+
+```js
+['d', 'c', 'b', 'a'].sort();
+// ['a', 'b', 'c', 'd']
+
+[4, 3, 2, 1].sort();
+// [1, 2, 3, 4]
+
+[11, 101].sort();
+// [101, 11]
+
+[10111, 1101, 111].sort();
+// [10111, 1101, 111]
+```
+
+上面代码的最后两个例子，需要特殊注意。`sort()`方法不是按照大小排序，而是按照编码顺序。也就是说，数值会被先转成字符串，再按照编码顺序进行比较，所以`101`排在`11`的前面。
+
+如果想让`sort`方法按照自定义方式排序，可以传入一个函数作为参数。
+
+```js
+[10111, 1101, 111].sort(function (a, b) {
+	return a - b;
+});
+// [111, 1101, 10111]
+```
+
+上面代码中，`sort`的参数函数本身接受两个参数，表示进行比较的两个数组成员。如果该函数的返回值大于`0`，表示第一个成员排在第二个成员后面；其他情况下，都是第一个元素排在第二个元素前面。
+
+```js
+[
+	{ name: '张三', age: 30 },
+	{ name: '李四', age: 24 },
+	{ name: '王五', age: 28 },
+].sort(function (o1, o2) {
+	return o1.age - o2.age;
+});
+// [
+//   { name: "李四", age: 24 },
+//   { name: "王五", age: 28  },
+//   { name: "张三", age: 30 }
+// ]
+```
+
+注意，自定义的排序函数应该返回数值，否则不同的浏览器可能有不同的实现，不能保证结果都一致。
+
+<!-- prettier-ignore -->
+```js
+// bad
+[1, 4, 2, 6, 0, 6, 2, 6].sort((a, b) => a > b);
+
+// good
+[1, 4, 2, 6, 0, 6, 2, 6].sort((a, b) => a - b);
+```
+
+上面代码中，前一种排序算法返回的是布尔值，这是不推荐使用的。后一种是数值，才是更好的写法。
 
 #### 随机排序
 
-```js
-const arr = [1, 4, 3, 2];
-arr.sort(() => 0.5 - Math.random());
-console.log(arr); // [2, 1, 3, 4]
-```
-
-#### 降序排序
-
-返回 a - b 就是升序，反之 b - a 就是降序
+`sort`方法可以接受一个随机排序的函数作为参数，我们可以将函数的返回值随机化，就可以实现随机排序。
 
 ```js
-const arr = [1, 4, 3, 2];
-arr.sort((a, b) => b - a);
-console.log(arr); // [4, 3, 2, 1]
+function compare(a, b) {
+	return Math.random() - 0.5;
+}
+
+[1, 2, 3, 4, 5].sort(compare); // [4, 1, 3, 5, 2]
 ```
 
-#### 对象数组排序
-
-对象数组只需在 a 和 b 后面加上对应的属性就好了
+#### 中文排序问题
 
 ```js
-const arr = [
-	{ name: '张三', age: 36 },
-	{ name: '李四', age: 45 },
-	{ name: '王五', age: 34 },
-];
-arr.sort((a, b) => b.age - a.age);
-console.log(arr);
-/* 结果
-	[
-		{ name: '李四', age: 45 },
-		{ name: '张三', age: 36 },
-		{ name: '王五', age: 34 }
-	]
-*/
+const names = ['叶良辰', '赵日天', '龙傲天', '福尔康'];
+
+names.sort(); // [ '叶良辰', '福尔康', '赵日天', '龙傲天' ]
 ```
+
+上面代码我们的预期是将`names`数组按照拼音升序排序，结果显然与我们的预期不一样，“福”反而排在了“叶”后面。
+
+这是因为 `sort()` 方法默认是按照字符的编码顺序来排的。而我们需要的按照字典顺序来排序。
+
+通过 `codePointAt` 可以拿到字符的编码，下面的代码就可以看出“叶”的编码比“福”小，所以排在了“福”前面。
+
+```js
+'叶'.codePointAt(); // 21494
+'福'.codePointAt(); // 31119
+```
+
+可以通过 `localeCompare` 方法比较字典顺序。
+
+```js
+'叶'.localeCompare('福'); // 1
+```
+
+上面就是比较“叶”和“福”的字典顺序，返回正数，表示“叶”排在“福”后面，返回负数则相反，返回`0`表示两个字符在同一位置。
+
+还是最开始的代码，我们通过 `localeCompare` 方法，将`names`数组按照字典顺序排序。
+
+```js
+const names = ['叶良辰', '赵日天', '龙傲天', '福尔康'];
+
+names.sort((a, b) => a.localeCompare(b)); // [ '福尔康', '龙傲天', '叶良辰', '赵日天' ]
+```
+
+还可以交换 a 和 b 的位置，实现按照字典顺序降序排序。
+
+```js
+const names = ['叶良辰', '赵日天', '龙傲天', '福尔康'];
+
+names.sort((a, b) => b.localeCompare(a)); // [ '赵日天', '叶良辰', '龙傲天', '福尔康' ]
+```
+
+### map()
+
+`map()`方法将数组的所有成员依次传入参数函数，然后把每一次的执行结果组成一个新数组返回。
+
+```js
+var numbers = [1, 2, 3];
+
+numbers.map(function (n) {
+	return n + 1;
+});
+// [2, 3, 4]
+
+numbers;
+// [1, 2, 3]
+```
+
+上面代码中，`numbers`数组的所有成员依次执行参数函数，运行结果组成一个新数组返回，原数组没有变化。
+
+`map()`方法接受一个函数作为参数。该函数调用时，`map()`方法向它传入三个参数：当前成员、当前位置和数组本身。
+
+```js
+[1, 2, 3].map(function (elem, index, arr) {
+	return elem * index;
+});
+// [0, 2, 6]
+```
+
+上面代码中，`map()`方法的回调函数有三个参数，`elem`为当前成员的值，`index`为当前成员的位置，`arr`为原数组（`[1, 2, 3]`）。
+
+`map()`方法还可以接受第二个参数，用来绑定回调函数内部的`this`变量（详见《this 变量》一章）。
+
+```js
+var arr = ['a', 'b', 'c'];
+
+[1, 2].map(function (e) {
+	return this[e];
+}, arr);
+// ['b', 'c']
+```
+
+上面代码通过`map()`方法的第二个参数，将回调函数内部的`this`对象，指向`arr`数组。
+
+如果数组有空位，`map()`方法的回调函数在这个位置不会执行，会跳过数组的空位。
+
+```js
+var f = function (n) { return 'a' };
+
+[1, undefined, 2].map(f) // ["a", "a", "a"]
+[1, null, 2].map(f) // ["a", "a", "a"]
+[1, , 2].map(f) // ["a", , "a"]
+```
+
+上面代码中，`map()`方法不会跳过`undefined`和`null`，但是会跳过空位。
+
+### forEach()
+
+`forEach()`方法与`map()`方法很相似，也是对数组的所有成员依次执行参数函数。但是，`forEach()`方法不返回值，只用来操作数据。这就是说，如果数组遍历的目的是为了得到返回值，那么使用`map()`方法，否则使用`forEach()`方法。
+
+`forEach()`的用法与`map()`方法一致，参数是一个函数，该函数同样接受三个参数：当前值、当前位置、整个数组。
+
+```js
+function log(element, index, array) {
+	console.log('[' + index + '] = ' + element);
+}
+
+[2, 5, 9].forEach(log);
+// [0] = 2
+// [1] = 5
+// [2] = 9
+```
+
+上面代码中，`forEach()`遍历数组不是为了得到返回值，而是为了在屏幕输出内容，所以不必使用`map()`方法。
+
+`forEach()`方法也可以接受第二个参数，绑定参数函数的`this`变量。
+
+```js
+var out = [];
+
+[1, 2, 3].forEach(function (elem) {
+	this.push(elem * elem);
+}, out);
+
+out; // [1, 4, 9]
+```
+
+上面代码中，空数组`out`是`forEach()`方法的第二个参数，结果，回调函数内部的`this`关键字就指向`out`。
+
+注意，`forEach()`方法无法中断执行，总是会将所有成员遍历完。如果希望符合某种条件时，就中断遍历，要使用`for`循环。
+
+```js
+var arr = [1, 2, 3];
+
+for (var i = 0; i < arr.length; i++) {
+	if (arr[i] === 2) break;
+	console.log(arr[i]);
+}
+// 1
+```
+
+上面代码中，执行到数组的第二个成员时，就会中断执行。`forEach()`方法做不到这一点。
+
+`forEach()`方法也会跳过数组的空位。
+
+```js
+var log = function (n) {
+  console.log(n + 1);
+};
+
+[1, undefined, 2].forEach(log)
+// 2
+// NaN
+// 3
+
+[1, null, 2].forEach(log)
+// 2
+// 1
+// 3
+
+[1, , 2].forEach(log)
+// 2
+// 3
+```
+
+上面代码中，`forEach()`方法不会跳过`undefined`和`null`，但会跳过空位。
+
+### filter()
+
+`filter()`方法用于过滤数组成员，满足条件的成员组成一个新数组返回。
+
+它的参数是一个函数，所有数组成员依次执行该函数，返回结果为`true`的成员组成一个新数组返回。该方法不会改变原数组。
+
+```js
+[1, 2, 3, 4, 5].filter(function (elem) {
+	return elem > 3;
+});
+// [4, 5]
+```
+
+上面代码将大于`3`的数组成员，作为一个新数组返回。
+
+```js
+var arr = [0, 1, 'a', false];
+
+arr.filter(Boolean);
+// [1, "a"]
+```
+
+上面代码中，`filter()`方法返回数组`arr`里面所有布尔值为`true`的成员。
+
+`filter()`方法的参数函数可以接受三个参数：当前成员，当前位置和整个数组。
+
+```js
+[1, 2, 3, 4, 5].filter(function (elem, index, arr) {
+	return index % 2 === 0;
+});
+// [1, 3, 5]
+```
+
+上面代码返回偶数位置的成员组成的新数组。
+
+`filter()`方法还可以接受第二个参数，用来绑定参数函数内部的`this`变量。
+
+```js
+var obj = { MAX: 3 };
+var myFilter = function (item) {
+	if (item > this.MAX) return true;
+};
+
+var arr = [2, 8, 3, 4, 1, 3, 2, 9];
+arr.filter(myFilter, obj); // [8, 4, 9]
+```
+
+上面代码中，过滤器`myFilter()`内部有`this`变量，它可以被`filter()`方法的第二个参数`obj`绑定，返回大于`3`的成员。
+
+### some()，every()
+
+这两个方法类似“断言”（assert），返回一个布尔值，表示判断数组成员是否符合某种条件。
+
+它们接受一个函数作为参数，所有数组成员依次执行该函数。该函数接受三个参数：当前成员、当前位置和整个数组，然后返回一个布尔值。
+
+`some`方法是只要一个成员的返回值是`true`，则整个`some`方法的返回值就是`true`，否则返回`false`。
+
+```js
+var arr = [1, 2, 3, 4, 5];
+arr.some(function (elem, index, arr) {
+	return elem >= 3;
+});
+// true
+```
+
+上面代码中，如果数组`arr`有一个成员大于等于 3，`some`方法就返回`true`。
+
+`every`方法是所有成员的返回值都是`true`，整个`every`方法才返回`true`，否则返回`false`。
+
+```js
+var arr = [1, 2, 3, 4, 5];
+arr.every(function (elem, index, arr) {
+	return elem >= 3;
+});
+// false
+```
+
+上面代码中，数组`arr`并非所有成员大于等于`3`，所以返回`false`。
+
+注意，对于空数组，`some`方法返回`false`，`every`方法返回`true`，回调函数都不会执行。
+
+```js
+function isEven(x) { return x % 2 === 0 }
+
+[].some(isEven) // false
+[].every(isEven) // true
+```
+
+`some`和`every`方法还可以接受第二个参数，用来绑定参数函数内部的`this`变量。
+
+### reduce()，reduceRight()
+
+`reduce()`方法和`reduceRight()`方法依次处理数组的每个成员，最终累计为一个值。它们的差别是，`reduce()`是从左到右处理（从第一个成员到最后一个成员），`reduceRight()`则是从右到左（从最后一个成员到第一个成员），其他完全一样。
+
+```js
+[1, 2, 3, 4, 5].reduce(function (a, b) {
+	console.log(a, b);
+	return a + b;
+});
+// 1 2
+// 3 3
+// 6 4
+// 10 5
+//最后结果：15
+```
+
+上面代码中，`reduce()`方法用来求出数组所有成员的和。`reduce()`的参数是一个函数，数组每个成员都会依次执行这个函数。如果数组有 n 个成员，这个参数函数就会执行 n - 1 次。
+
+-   第一次执行：`a`是数组的第一个成员`1`，`b`是数组的第二个成员`2`。
+-   第二次执行：`a`为上一轮的返回值`3`，`b`为第三个成员`3`。
+-   第三次执行：`a`为上一轮的返回值`6`，`b`为第四个成员`4`。
+-   第四次执行：`a`为上一轮返回值`10`，`b`为第五个成员`5`。至此所有成员遍历完成，整个方法的返回值就是最后一轮的返回值`15`。
+
+`reduce()`方法和`reduceRight()`方法的第一个参数都是一个函数。该函数接受以下四个参数。
+
+1. 累积变量。第一次执行时，默认为数组的第一个成员；以后每次执行时，都是上一轮的返回值。
+2. 当前变量。第一次执行时，默认为数组的第二个成员；以后每次执行时，都是下一个成员。
+3. 当前位置。一个整数，表示第二个参数（当前变量）的位置，默认为`1`。
+4. 原数组。
+
+这四个参数之中，只有前两个是必须的，后两个则是可选的。
+
+<!-- prettier-ignore -->
+```js
+[1, 2, 3, 4, 5].reduce(function (
+  a,   // 累积变量，必须
+  b,   // 当前变量，必须
+  i,   // 当前位置，可选
+  arr  // 原数组，可选
+) {
+  // ... ...
+```
+
+如果要对累积变量指定初值，可以把它放在`reduce()`方法和`reduceRight()`方法的第二个参数。
+
+```js
+[1, 2, 3, 4, 5].reduce(function (a, b) {
+	return a + b;
+}, 10);
+// 25
+```
+
+上面代码指定参数`a`的初值为 10，所以数组从 10 开始累加，最终结果为 25。注意，这时`b`是从数组的第一个成员开始遍历，参数函数会执行 5 次。
+
+建议总是加上第二个参数，这样比较符合直觉，每个数组成员都会依次执行`reduce()`方法的参数函数。另外，第二个参数可以防止空数组报错。
+
+```js
+function add(prev, cur) {
+  return prev + cur;
+}
+
+[].reduce(add)
+// TypeError: Reduce of empty array with no initial value
+[].reduce(add, 1)
+// 1
+```
+
+上面代码中，由于空数组取不到累积变量的初始值，`reduce()`方法会报错。这时，加上第二个参数，就能保证总是会返回一个值。
+
+下面是一个`reduceRight()`方法的例子。
+
+<!-- prettier-ignore -->
+```js
+function subtract(prev, cur) {
+  return prev - cur;
+}
+
+[3, 2, 1].reduce(subtract); // 0
+[3, 2, 1].reduceRight(subtract); // -4
+```
+
+上面代码中，`reduce()`方法相当于`3`减去`2`再减去`1`，`reduceRight`方法相当于`1`减去`2`再减去`3`。
+
+由于这两个方法会遍历数组，所以实际上可以用来做一些遍历相关的操作。比如，找出字符长度最长的数组成员。
+
+```js
+function findLongest(entries) {
+	return entries.reduce(function (longest, entry) {
+		return entry.length > longest.length ? entry : longest;
+	}, '');
+}
+
+findLongest(['aaa', 'bb', 'c']); // "aaa"
+```
+
+上面代码中，`reduce()`的参数函数会将字符长度较长的那个数组成员，作为累积值。这导致遍历所有成员之后，累积值就是字符长度最长的那个成员。
+
+### indexOf()，lastIndexOf()
+
+`indexOf`方法返回给定元素在数组中第一次出现的位置，如果没有出现则返回`-1`。
+
+```js
+var a = ['a', 'b', 'c'];
+
+a.indexOf('b'); // 1
+a.indexOf('y'); // -1
+```
+
+`indexOf`方法还可以接受第二个参数，表示搜索的开始位置。
+
+```js
+['a', 'b', 'c'].indexOf('a', 1); // -1
+```
+
+上面代码从 1 号位置开始搜索字符`a`，结果为`-1`，表示没有搜索到。
+
+`lastIndexOf`方法返回给定元素在数组中最后一次出现的位置，如果没有出现则返回`-1`。
+
+```js
+var a = [2, 5, 9, 2];
+a.lastIndexOf(2); // 3
+a.lastIndexOf(7); // -1
+```
+
+注意，这两个方法不能用来搜索`NaN`的位置，即它们无法确定数组成员是否包含`NaN`。
+
+```js
+[NaN]
+	.indexOf(NaN) // -1
+	[NaN].lastIndexOf(NaN); // -1
+```
+
+这是因为这两个方法内部，使用严格相等运算符（`===`）进行比较，而`NaN`是唯一一个不等于自身的值。
 
 ### toSorted 排序
 
@@ -469,34 +986,6 @@ console.log(arr.at(2)); // 8
 
 console.log(arr.at(-2)); // 130
 ```
-
-### indexOf 查找索引
-
-判断元素是否在数组内，在则返回它的下标，不在则返回 -1
-
-语法：`indexOf(searchElement[, fromIndex])`
-
--   `searchElement`: 需要查找的元素
--   `fromIndex`: 开始查找的位置，默认值是 0，可以省略
-    -   负索引从数组末尾开始计数——如果 `frommindex < 0`，使用 `frommindex + array.length`。注意，在这种情况下，仍然从前到后搜索数组。
-    -   如果 `fromIndex < -array.length` 或者省略了 `fromIndex` ，将使用 `0`，搜索整个数组。
-    -   如果 `fromIndex >= array.length`，数组不会继续搜索并返回 -1。
-
-```js
-const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
-
-console.log(beasts.indexOf('bison')); // 1
-
-console.log(beasts.indexOf('bison', 2)); //  4
-
-console.log(beasts.indexOf('giraffe')); // -1
-```
-
-### lastIndexOf 反向查找索引
-
-`lastIndexOf()` 方法返回数组中给定元素最后一次出现的索引，如果不存在则返回 -1。该方法从 fromIndex 开始向前搜索数组。
-
-用法参数参考：[indexOf](#indexof-查找索引)
 
 ### find 查找
 
@@ -551,7 +1040,7 @@ console.log(found2); // 50
 
 用法参数参考：[`find()`](#find-查找)
 
-### includes
+### includes 包含
 
 `includes()` 方法用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 `true`，否则返回 `false`。
 
@@ -576,67 +1065,6 @@ console.log(pets.includes('at')); // false
 ```
 
 `includes()` 方法使用[零值相等](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness#%E9%9B%B6%E5%80%BC%E7%9B%B8%E7%AD%89)算法将 `searchElement` 与数组中的元素进行比较。`0` 值都被认为是相等的，不管符号是什么。（即 `-0` 等于 `0`），但 `false` 不被认为与 `0` 相同。`NaN` 可以被正确搜索到。
-
-### map 创建新数组
-
-`map()` 方法创建一个新数组，这个新的数组由原数组中的每个元素都调用一次提供的函数后的返回值组成。
-
-语法：`map(callbackFn [, thisArg])`
-
--   `callbackFn`：为数组中的每个元素执行的函数。它的返回值作为一个元素被添加为新数组中。该函数被调用时将传入以下参数
-    -   `item`：数组中当前正在处理的元素。
-    -   `index`：正在处理的元素在数组中的索引。。
-    -   `arr`：调用了 map() 的数组本身。
--   `thisArg`：可选的。当执行 `callbackFn` 时，用作 this 的值。
-
-```js
-const arr = [1, 4, 9, 16];
-
-// 对数组的每个值乘2
-// 没有返回值 map 方法将返回一个全是 undefined 的组数
-const map1 = arr.map((item) => item * 2);
-
-console.log(map1); // [ 2, 8, 18, 32 ]
-```
-
-### forEach 遍历
-
-forEach() 方法对数组的每个元素执行一次给定的函数。
-
-语法：`forEach(callbackFn [, thisArg])`
-
--   `callbackFn`：为数组中每个元素执行的函数，该函数接收三个参数
-    -   `item`：数组中正在处理的当前元素。
-    -   `index`：数组中正在处理的当前元素的索引。
-    -   `arr`：调用 forEach() 的数组。
--   `thisArg`：可选的。执行回调函数时用作 this 的值。
-
-```js
-const arr = ['a', 'b', 'c'];
-
-arr.forEach((item) => console.log(item));
-// 输出
-// a
-// b
-// c
-```
-
-### concat 合并
-
-concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
-
-语法：`concat(array1, array2, ..., arrayN)`
-
--   `arrayN`：数组或值，`arrayN` 如果是数组会对数组做一个浅拷贝，将被合并到一个新的数组中。如果没有参数，则 `concat` 会返回调用此方法的现存数组的一个浅拷贝。
-
-```js
-const arr1 = ['a', 'b', 'c'];
-const arr2 = ['d', 'e', 'f'];
-// 参数可以是数组或值
-const arr3 = arr1.concat(arr2, 'h', { i: 'i' }, () => 'j');
-
-console.log(arr3); // ['a', 'b', 'c', 'd', 'e', 'f', 'h', {…}, ƒ]
-```
 
 ### copyWithin 复制到自身
 
@@ -673,199 +1101,6 @@ console.log(array); // 输出 [1, 2, 4, 4, 5]
 在这个例子中，`copyWithin` 将从索引为 -2 的位置开始的元素 `[4]` 复制到索引为 2 的位置，覆盖了原来的 `[3]`。这导致数组变为 `[1, 2, 4, 4, 5]`。
 
 [参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
-
-### slice 截取
-
-`slice()` 方法返回一个新的数组对象，这一对象是一个由 `start` 和 `end` 决定的原数组的浅拷贝（包括 `start`，不包括 `end`），其中 `start` 和 `end` 代表了数组元素的索引。原始数组不会被改变。
-
-语法：`slice(start[, end])`
-
--   `start`: 提取起始处的索引，会转换为整数。
-    -   如果索引是负数，则从数组末尾开始计算——如果 `start < 0`，则使用 `start + array.length`。
-    -   如果 `start < -array.length` 或者省略了 `start`，则使用 `0`。
-    -   如果 `start >= array.length`，则不提取任何元素。
--   `end`: 提取终止处的索引，会转换为整数。`slice()` 会提取到但不包括 `end` 的位置。
-    -   如果索引是负数，则从数组末尾开始计算——如果 `end < 0`，则使用 `end + array.length`。
-    -   如果 `end < -array.length`，则使用 `0`。
-    -   如果 `end >= array.length` 或者省略了 `end，则使用` `array.length`，提取所有元素直到末尾。
-    -   如果 `end` 在规范化后小于或等于 `start`，则不提取任何元素。
-
-```js
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-
-// 从索引 2 开始截取之后的全部元素
-console.log(animals.slice(2)); // ["camel", "duck", "elephant"]
-
-// 截取从索引 2 开始到索引 4 的元素（不包括索引 4 的元素）
-console.log(animals.slice(2, 4)); // ["camel", "duck"]
-
-console.log(animals.slice(1, 5)); // ["bison", "camel", "duck", "elephant"]
-
-// 从倒数第二个元素开始截取
-console.log(animals.slice(-2)); // ["duck", "elephant"]
-
-// 从第二个元素开始截取
-console.log(animals.slice(2, -1)); // ["camel", "duck"]
-
-// 截取整个数组
-console.log(animals.slice()); // ["ant", "bison", "camel", "duck", "elephant"]
-```
-
-### join 拼接为字符串
-
-join() 方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串，用逗号（默认）或指定的分隔符字符串分隔。如果数组只有一个元素，那么将返回该元素而不使用分隔符。
-
-语法：`join([separator])`
-
--   `separator`：指定一个字符串来分隔数组的每个元素。如果需要，将分隔符转换为字符串。如果省略，数组元素用逗号（,）分隔。如果 separator 是空字符串（""），则所有元素之间都没有任何字符。
-
-返回一个所有数组元素连接的字符串。如果 `arr.length` 为 `0`，则返回空字符串。
-
-所有数组元素被转**换成字符串**并连接到一个字符串中。如果一个元素是 `undefined` 或 `null`，它将被转换为空字符串，而不是字符串 `"undefined"` 或 `"null"`。
-
-```js
-const elements = ['Fire', 'Air', 'Water'];
-
-console.log(elements.join()); // "Fire,Air,Water"
-
-console.log(elements.join('')); // "FireAirWater"
-
-console.log(elements.join('-')); // "Fire-Air-Water"
-```
-
-### some 校验
-
-`some()` 方法测试数组中是否至少有一个元素通过了由提供的函数实现的测试。如果在数组中找到一个元素使得提供的函数返回 `true`，则返回 `true`；否则返回 `false`。它不会修改数组。
-
-语法：`some(callbackFn[, thisArg])`
-
--   `callbackFn`：为数组中的每个元素执行的函数。它应该返回一个真值以指示元素通过测试，否则返回一个假值。该函数被调用时将传入以下参数：
-    -   `element`：数组中正在处理的当前元素。
-    -   `index`：数组中正在处理的当前元素的索引。
-    -   `array`：调用 some() 的数组。
--   `thisArg`：可选，当执行回调函数 `callbackFn` 时，用作 `this` 的值。
-
-如果回调函数对数组中至少一个元素返回一个真值，则返回 `true`。否则返回 `false`。
-
-对于一个空数组，任何条件下它都返回 `false`。
-
-`callbackFn` 函数一旦返回真值 `some()` 方法将会立即返回 `true` 并停止遍历数组
-
-```js
-const array = [1, 2, 3, 4, 5];
-
-console.log(array.some((item) => item % 2 === 0)); // true
-
-console.log(array.some((item) => item > 6)); // false
-```
-
-### every 校验
-
-`every()` 方法测试一个数组内的所有元素是否都能通过指定函数的测试。它返回一个布尔值。
-
-语法：`every(callbackFn[, thisArg])`
-
--   `callbackFn`: 为数组中的每个元素执行的函数。它应该返回一个**真值**以指示元素通过测试，否则返回一个**假值**。该函数被调用时将传入以下参数：
-    -   `element`: 数组中正在处理的当前元素。
-    -   `index`: 数组中正在处理的当前元素的索引。
-    -   `array`: 调用 `every()` 的数组。
--   `thisArg`: 可选，当执行回调函数 `callbackFn` 时，用作 `this` 的值。
-
-如果 `callbackFn` 校验每个数组元素都返回**真值**，则为 true。否则为 false。如果 `callbackFn` 返回一个假值 `every()` 方法将会立即返回 `false` 并停止遍历数组。
-
-```js
-const array = [1, 30, 39, 29, 10, 13];
-
-console.log(array.every((v) => v < 40)); // true
-
-console.log(array.every((v) => v > 20)); // false
-```
-
-### filter 过滤
-
-`filter()` 方法创建给定数组一部分的浅拷贝，其包含通过所提供函数实现的测试的所有元素。
-
-语法：`filter(callbackFn[, thisArg])`
-
--   `callbackFn`: 为数组中的每个元素执行的函数。它应该返回一个真值以将元素保留在结果数组中，否则返回一个假值。该函数被调用时将传入以下参数：
-    -   `element`: 数组中正在处理的当前元素。
-    -   `index`: 数组中正在处理的当前元素的索引。
-    -   `array`: 调用 `filter()` 的数组。
--   `thisArg`: 可选，当执行回调函数 `callbackFn` 时，用作 `this` 的值。
-
-以浅拷贝的方式，返回通过过滤函数 `callbackFn` 测试的所有数组元素的新数组。如果没有元素通过测试，则返回一个空数组。
-
-```js
-const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.filter((word) => word.length > 6);
-
-console.log(result); // ["exuberant", "destruction", "present"]
-```
-
-### reduce
-
-`reduce()` 方法对数组中的每个元素按序执行一个提供的 `reducer` 函数，每一次运行 `reducer` 会将先前元素的计算结果作为参数传入，最后将其结果汇总为单个返回值。
-
-语法：`reduce(callbackFn[, initialValue])`
-
--   `callbackFn`: 为数组中每个元素执行的函数。其返回值将作为下一次调用 callbackFn 时的 accumulator 参数。对于最后一次调用，返回值将作为 reduce() 的返回值。该函数被调用时将传入以下参数：
-    -   `accumulator`: 上一次调用 `callbackFn` 的结果。在第一次调用时，如果指定了 `initialValue` 则为指定的值，否则为 `array[0]` 的值。
-    -   `currentValue`: 当前元素的值。在第一次调用时，如果指定了 `initialValue`，则为 `array[0]` 的值，否则为 `array[1]`。
-    -   `currentIndex`：`currentValue` 在数组中的索引位置。在第一次调用时，如果指定了 `initialValue` 则为 `0`，否则为 `1`。
-    -   `array`: 调用 `reduce()` 的数组。
--   `initialValue`: 作为第一次调用 `callbackFn` 时的第一个参数的值。如果没有提供初始值，则将使用数组中的第一个元素作为初始值，并从数组的第二个元素开始执行。如果在没有设置初始值的情况下在空数组上调用，则会抛出错误。
-
-### reduceRight
-
-`reduceRight()` 方法对数组的每个值（按反向的顺序）应用一个函数，最后汇总为单个值。
-
-`reduceRight()` 和 `reduce()` 之间的唯一区别是 `reduceRight()` 从数组的末尾开始执行回调。
-
-参数参考：[reduce](#reduce)
-
-```js
-const arr = [
-	[0, 1],
-	[2, 3],
-	[4, 5],
-];
-
-const result = arr.reduceRight((accumulator, currentValue) => accumulator.concat(currentValue));
-
-console.log(result); // [4, 5, 2, 3, 0, 1]
-```
-
-```js
-const arr = [1, 2, 3, 4];
-
-// 0 + 1 + 2 + 3 + 4
-const initialValue = 0;
-const sumWithInitial = arr.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
-
-console.log(sumWithInitial); // 10
-
-// 没有初始值，将第一个元素作为初始值，并从第二个元素开始执行
-arr.reduce((accumulator, currentValue) => {
-	console.log(accumulator, currentValue);
-
-	return accumulator + currentValue;
-});
-// 1 2
-// 3 3
-// 6 4
-
-// 设置初始值
-arr.reduce((accumulator, currentValue) => {
-	console.log(accumulator, currentValue);
-
-	return accumulator + currentValue;
-}, initialValue);
-// 0 1
-// 1 2
-// 3 3
-// 6 4
-```
 
 ### toString
 
