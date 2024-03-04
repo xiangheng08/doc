@@ -259,22 +259,11 @@ export default define<DefaultTheme.SidebarItem[]>([
 				],
 			},
 			{
-				text: '错误处理机制',
 				link: '/frontend/js/error',
 			},
 			{
 				link: '/frontend/js/console',
 			},
-			// {
-			//   text: '内置对象',
-			//   collapsed: true,
-			//   items: [
-			//     {
-			//       text: 'Array',
-			//       link: '/frontend/js/object/array',
-			//     },
-			//   ],
-			// },
 			{
 				text: '标准库',
 				collapsed: true,
@@ -290,25 +279,46 @@ export default define<DefaultTheme.SidebarItem[]>([
 					},
 					{
 						link: '/frontend/js/stdlib/wrapper',
-          },
-          {
-            link: '/frontend/js/stdlib/number'
-          },
-          {
-            link: '/frontend/js/stdlib/string'
-          },
-          {
-            link: '/frontend/js/stdlib/date'
-          },
+					},
+					{
+						link: '/frontend/js/stdlib/number',
+					},
+					{
+						link: '/frontend/js/stdlib/string',
+					},
+					{
+						link: '/frontend/js/stdlib/date',
+					},
 					{
 						link: '/frontend/js/stdlib/math',
+					},
+					{
+						link: '/frontend/js/stdlib/regexp',
+					},
+					{
+						link: '/frontend/js/stdlib/json',
+					},
+				],
+			},
+			{
+				text: '面向对象编程',
+				collapsed: true,
+				items: [
+					{
+						link: '/frontend/js/oop/new',
+					},
+					{
+						link: '/frontend/js/oop/this',
+					},
+					{
+						link: '/frontend/js/oop/prototype',
           },
           {
-            link: '/frontend/js/stdlib/regexp'
+						link: '/frontend/js/oop/object',
           },
           {
-            link: '/frontend/js/stdlib/json'
-          },
+						link: '/frontend/js/oop/strict',
+					},
 				],
 			},
 			{

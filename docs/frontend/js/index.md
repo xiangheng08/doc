@@ -9,7 +9,7 @@ JavaScript 是一个解释型，弱类型，面向对象，跨平台的编程语
 JavaScript 由 **ECMAScript** 和 **WebAPI** 组成
 
 -   ECMAScript: 这是 JavaScript 的核心，定义了语言的基本语法和数据类型。ECMAScript 规范由 Ecma 国际组织制定，它为 JavaScript 提供了基本的操作和控制结构，包括变量、函数、条件语句、循环语句等。
-    
+
     像我们说的 ES5、ES6 都是 ECMAScript 的版本，ES5 就是 ECMAScript 2015 版本，ES6 就是 ECMAScript 2016 版本。
 
 -   WebAPI: 这些 API 由运行环境提供，不同环境 API 也不同，一般 WebAPI 值浏览器环境提供的 API，比如 `DOM`（文档对象）、`BOM`（浏览器对象）、`XHR`（网络请求）等。
@@ -112,3 +112,7 @@ export function sayHello() {
 ```
 
 在开发中 “模块化加载” 用的不是很多，因为大部分的项目都需要做兼容，这种方式在一些老的浏览器是没有用的。
+
+## 参考
+
+js 相关笔记大部分来自于[MDN](https://developer.mozilla.org/zh-CN)、[网道](https://wangdoc.com)和网络。
