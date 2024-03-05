@@ -14,6 +14,15 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '标签',
 				link: '/frontend/html/tag',
 			},
+			{
+				text: '其他',
+				collapsed: true,
+				items: [
+					{
+						link: '/frontend/html/other/escape-character',
+					},
+				],
+			},
 		],
 	},
 	{
@@ -312,11 +321,11 @@ export default define<DefaultTheme.SidebarItem[]>([
 					},
 					{
 						link: '/frontend/js/oop/prototype',
-          },
-          {
+					},
+					{
 						link: '/frontend/js/oop/object',
-          },
-          {
+					},
+					{
 						link: '/frontend/js/oop/strict',
 					},
 				],
