@@ -22,12 +22,12 @@ function sidebarAutoAddName(basePath: string, sidebar: DefaultTheme.Sidebar): De
 function _sidebarAutoAddName(basePath: string, sidebarList: DefaultTheme.SidebarItem[]) {
 	for (const item of sidebarList) {
 		if (!item.text && item.link) {
-      const fullPath = path.join(basePath, item.link + '.md');
+			const fullPath = path.join(basePath, item.link + '.md');
 			if (fs.existsSync(fullPath)) {
 				const doc = fs.readFileSync(fullPath, 'utf-8');
 				const match = doc.match(/^# (.*)$/m);
 				if (match) {
-					item.text = match[1];
+					item.text = escapeHtml(match[1]);
 				}
 			}
 		}
@@ -36,6 +36,22 @@ function _sidebarAutoAddName(basePath: string, sidebarList: DefaultTheme.Sidebar
 			sidebarAutoAddName(basePath, item.items) as DefaultTheme.SidebarItem[];
 		}
 	}
+}
+
+function escapeHtml(input: string): string {
+	const map: { [key: string]: string } = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		"'": '&#x27;',
+		'/': '&#x2F;',
+		'`': '',
+	};
+
+	const regExp = /[&<>"'/`]/g;
+
+	return input.replace(regExp, (match) => map[match]);
 }
 
 export default sidebarAutoAddName;

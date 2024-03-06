@@ -11,8 +11,55 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/html/index',
 			},
 			{
-				text: '标签',
-				link: '/frontend/html/tag',
+				link: '/frontend/html/intro',
+			},
+			{
+				link: '/frontend/html/url',
+			},
+			{
+				link: '/frontend/html/attribute',
+			},
+			{
+				link: '/frontend/html/encode',
+			},
+			{
+				link: '/frontend/html/semantic',
+			},
+			{
+				link: '/frontend/html/list',
+			},
+			{
+				link: '/frontend/html/image',
+			},
+			{
+				link: '/frontend/html/a',
+			},
+			{
+				link: '/frontend/html/link',
+			},
+			{
+				link: '/frontend/html/meta',
+			},
+			{
+				link: '/frontend/html/script',
+			},
+			{
+				link: '/frontend/html/multimedia',
+			},
+			{
+				link: '/frontend/html/iframe',
+			},
+			{
+				link: '/frontend/html/table',
+			},
+			{
+				link: '/frontend/html/form',
+			},
+			{
+				link: '/frontend/html/elements',
+			},
+			{
+				link: '/frontend/html/tag-list',
 			},
 			{
 				text: '其他',
