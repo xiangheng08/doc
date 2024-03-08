@@ -211,7 +211,7 @@ meta 标签中 http-equiv 属性语法格式是：
 <meta http-equiv="refresh" content="2;url=https://www.baidu.com" />
 ```
 
-> 使用 refresh 浏览器可能提示：Timed refresh must not exist
+> 使用 refresh 浏览器可能提示：Timed refresh must not exist，但可以正常跳转。
 
 ### Set-Cookie cookie 设定
 

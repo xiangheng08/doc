@@ -26,41 +26,51 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/html/semantic',
 			},
 			{
-				link: '/frontend/html/list',
+				text: '标签',
+				collapsed: true,
+				items: [
+					{
+						link: '/frontend/html/tags/text',
+					},
+					{
+						link: '/frontend/html/tags/list',
+					},
+					{
+						link: '/frontend/html/tags/image',
+					},
+					{
+						link: '/frontend/html/tags/a',
+					},
+					{
+						link: '/frontend/html/tags/link',
+					},
+					{
+						link: '/frontend/html/tags/meta',
+					},
+					{
+						link: '/frontend/html/tags/script',
+					},
+					{
+						link: '/frontend/html/tags/multimedia',
+					},
+					{
+						link: '/frontend/html/tags/iframe',
+					},
+					{
+						link: '/frontend/html/tags/table',
+					},
+					{
+						link: '/frontend/html/tags/form',
+					},
+					{
+						link: '/frontend/html/tags/elements',
+					},
+					{
+						link: '/frontend/html/tags/tag-list',
+					},
+				],
 			},
-			{
-				link: '/frontend/html/image',
-			},
-			{
-				link: '/frontend/html/a',
-			},
-			{
-				link: '/frontend/html/link',
-			},
-			{
-				link: '/frontend/html/meta',
-			},
-			{
-				link: '/frontend/html/script',
-			},
-			{
-				link: '/frontend/html/multimedia',
-			},
-			{
-				link: '/frontend/html/iframe',
-			},
-			{
-				link: '/frontend/html/table',
-			},
-			{
-				link: '/frontend/html/form',
-			},
-			{
-				link: '/frontend/html/elements',
-			},
-			{
-				link: '/frontend/html/tag-list',
-			},
+
 			{
 				text: '其他',
 				collapsed: true,
