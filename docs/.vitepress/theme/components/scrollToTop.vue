@@ -1,10 +1,14 @@
 <template>
-	<button class="scroll-to-top" v-show="show" @click="scrollToTop" title="回到顶部">
-		<svg width="24" height="24" viewBox="0 0 24 24">
-			<path
-				d="M13.204 3.107a1.75 1.75 0 0 0-2.408 0L3.806 9.73c-1.148 1.088-.378 3.02 1.204 3.02h2.24V20c0 .966.784 1.75 1.75 1.75h6A1.75 1.75 0 0 0 16.75 20v-7.25h2.24c1.582 0 2.353-1.932 1.204-3.02l-6.99-6.623Z"></path>
-		</svg>
-	</button>
+	<transition>
+		<div class="animation" v-show="show">
+			<button class="scroll-to-top" @click="scrollToTop" title="回到顶部">
+				<svg width="24" height="24" viewBox="0 0 24 24">
+					<path
+						d="M13.204 3.107a1.75 1.75 0 0 0-2.408 0L3.806 9.73c-1.148 1.088-.378 3.02 1.204 3.02h2.24V20c0 .966.784 1.75 1.75 1.75h6A1.75 1.75 0 0 0 16.75 20v-7.25h2.24c1.582 0 2.353-1.932 1.204-3.02l-6.99-6.623Z"></path>
+				</svg>
+			</button>
+		</div>
+	</transition>
 </template>
 
 <script setup lang="ts">
@@ -27,6 +31,19 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+.animation {
+	height: 52px;
+	overflow: hidden;
+	&.v-enter-active,
+	&.v-leave-active {
+		transition: height 0.2s ease;
+	}
+
+	&.v-enter-from,
+	&.v-leave-to {
+		height: 0;
+	}
+}
 .scroll-to-top {
 	width: 40px;
 	height: 40px;

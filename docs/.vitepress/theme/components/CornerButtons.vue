@@ -11,7 +11,7 @@ import scrollToTop from './scrollToTop.vue'
 <style scoped lang="scss">
 .corner-buttons{
   position: fixed;
-  bottom: 12px;
+  bottom: 0;
   right: 12px;
 }
 </style>

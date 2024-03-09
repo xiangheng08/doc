@@ -6,10 +6,10 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'HTML',
 		collapsed: false,
 		items: [
-			{
-				text: '起步',
-				link: '/frontend/html/index',
-			},
+			// {
+			// 	text: '起步',
+			// 	link: '/frontend/html/index',
+			// },
 			{
 				link: '/frontend/html/intro',
 			},
