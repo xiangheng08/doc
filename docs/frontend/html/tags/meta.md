@@ -30,8 +30,8 @@ meta 标签共有多个属性，分别是：
 
 它一般是为定义与 http-equiv 或 name 属性相关的元信息，以文本的格式作为其内容。
 
-```xml
-<meta name="参数" content="这里面是对应 name 属性值的描述">。
+```html
+<meta name="参数" content="这里面是对应 name 属性值的描述" />。
 ```
 
 详细用法，请参考下面的 name 属性。
@@ -40,8 +40,8 @@ meta 标签共有多个属性，分别是：
 
 name 属性主要用于描述网页，比如网页的关键词、叙述等。与之对应的属性值为 content，content 中的内容是对 name 填入类型的具体描述，便于搜索引擎抓取。meta 标签中 name 属性语法格式是：
 
-```xml
-<meta name="参数" content="具体的描述">。
+```html
+<meta name="参数" content="具体的描述" />。
 ```
 
 其中 name 属性共有以下几种参数。(前 3 个为常用属性)
@@ -50,32 +50,30 @@ name 属性主要用于描述网页，比如网页的关键词、叙述等。与
 
 用于告诉搜索引擎，你网页的关键字。
 
-```xml
-<meta name="keywords" content="博客,前端,js">
+```html
+<meta name="keywords" content="博客,前端,js" />
 ```
 
 ### description 网站内容的描述
 
 用于告诉搜索引擎，你网站的主要内容。
 
-```xml
-<meta name="description" content="你好，这是本网站的描述~">
+```html
+<meta name="description" content="你好，这是本网站的描述~" />
 ```
 
 ### viewport 移动端的窗口
 
-这个概念较为复杂，具体的在我 [另一篇博文]() 中讲述。这个属性常用于设计移动端网页。在用 bootstrap，AmazeUI 等框架时候都需要用 viewport。
-
-```xml
-<meta name="viewport" content="width=device-width, initial-scale=1">
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 ```
 
 ### robots 定义搜索引擎爬虫的索引方式
 
 robots 用来告诉爬虫哪些页面需要使用索引，哪些页面不需要索引。content 的参数有 all、none、index、noindex、follow、nofollow，默认是 all。
 
-```xml
-<meta name="robots" content="none">
+```html
+<meta name="robots" content="none" />
 ```
 
 具体参数如下：
@@ -94,16 +92,16 @@ robots 用来告诉爬虫哪些页面需要使用索引，哪些页面不需要�
 
 用于标注网页作者
 
-```xml
-<meta name="author" content="stevechow,zhmnda@icloud.com">
+```html
+<meta name="author" content="stevechow,zhmnda@icloud.com" />
 ```
 
 ### generator 网页制作软件
 
 用以说明生成工具（如 dreamweaver）等
 
-```xml
-<meta name="generator" content="dreamweaver">
+```html
+<meta name="generator" content="dreamweaver" />
 ```
 
 ### copyright 版权
@@ -118,18 +116,21 @@ robots 用来告诉爬虫哪些页面需要使用索引，哪些页面不需要�
 
 如果页面不是经常更新，为了减轻搜索引擎爬虫对服务器带来的压力，可以设置一个爬虫的重访时间。如果重访时间过短，爬虫将按它们定义的默认时间来访问。
 
-```xml
-<meta name="revisit-after" content="7 days" >
+```html
+<meta name="revisit-after" content="7 days" />
 ```
 
 ### renderer 双核浏览器渲染方式
 
 说明：renderer 是为双核浏览器准备的，用于指定双核浏览器默认以何种方式渲染页面。比如说 360 浏览器。举例：
 
-```cpp
-<meta name="renderer" content="webkit"> //默认webkit内核
-<meta name="renderer" content="ie-comp"> //默认IE兼容模式
-<meta name="renderer" content="ie-stand"> //默认IE标准模式
+```html
+<!-- 默认webkit内核 -->
+<meta name="renderer" content="webkit" />
+<!-- 默认IE兼容模式 -->
+<meta name="renderer" content="ie-comp" />
+<!-- 默认IE标准模式 -->
+<meta name="renderer" content="ie-stand" />
 ```
 
 ## http-equiv 属性
@@ -138,8 +139,8 @@ robots 用来告诉爬虫哪些页面需要使用索引，哪些页面不需要�
 
 meta 标签中 http-equiv 属性语法格式是：
 
-```xml
-<meta http-equiv="参数" content="具体的描述">
+```html
+<meta http-equiv="参数" content="具体的描述" />
 ```
 
 其中 http-equiv 属性主要有以下几种参数：
@@ -148,32 +149,31 @@ meta 标签中 http-equiv 属性语法格式是：
 
 旧的 HTML 才这么使用，不推荐：
 
-```xml
-<meta http-equiv="content-Type" content="text/html;charset=utf-8">
+```html
+<meta http-equiv="content-Type" content="text/html;charset=utf-8" />
 ```
 
 推荐 HTML5 设定网页字符集的方式：
 
-```xml
-<meta charset="utf-8">
+```html
+<meta charset="utf-8" />
 ```
 
 ### X-UA-Compatible 浏览器采取何种版本渲染当前页面
 
 用于告知浏览器以何种版本来渲染页面。（一般都设置为最新模式，在各大框架中这个设置也很常见）
 
-```cpp
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> // 指定 IE 和 Chrome 使用最新版本渲染当前页面
+```html
+<!-- 指定 IE 和 Chrome 使用最新版本渲染当前页面 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 ```
 
 ### cache-control 指定请求和响应遵循的缓存机制
 
-￥
-
 #### 指导浏览器如何缓存某个响应以及缓存多长时间
 
-```xml
-<meta http-equiv="cache-control" content="no-cache">
+```html
+<meta http-equiv="cache-control" content="no-cache" />
 ```
 
 共有以下几种用法：
@@ -190,7 +190,7 @@ meta 标签中 http-equiv 属性语法格式是：
 
 用于禁止当前页面在移动端浏览时，被百度自动转码。虽然百度的本意是好的，但是转码效果很多时候却不尽人意。所以可以在 head 中加入下面例子中的这句话，就可以避免百度自动转码了。
 
-```xml
+```html
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 ```
 
@@ -198,7 +198,7 @@ meta 标签中 http-equiv 属性语法格式是：
 
 用于设定网页的到期时间，过期后网页必须到服务器上重新传输。
 
-```xml
+```html
 <meta http-equiv="expires" content="Sunday 26 October 2016 01:00 GMT" />
 ```
 
