@@ -17,12 +17,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 	{
 		text: '项目开发',
 		collapsed: false,
-		items: [
-			{
-				text: '版本后缀',
-				link: '/other/project/version-suffix',
-			},
-		],
+		items: [],
 	},
 	{
 		text: '应用/软件',
@@ -59,5 +54,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 	{
 		text: 'vscode 扩展',
 		link: '/other/vscode-extension',
+	},
+	{
+		link: '/other/sem-ver'
 	},
 ]);
