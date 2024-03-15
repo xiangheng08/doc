@@ -83,6 +83,7 @@
 33. ceil 向上取整
 34. charAt 获取某位置字符
 35. classify 分类
+36. current 当前的
 
 ## **D**
 
