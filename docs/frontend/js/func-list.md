@@ -70,9 +70,7 @@ function throttle(fn, delay) {
  * @returns {number}
  */
 function dayOfYear(date) {
-  return Math.floor(
-    (date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
-  );
+  return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
 }
 ```
 
@@ -179,7 +177,7 @@ function isMillisecondTimestamp(timestamp) {
  * @param timestamp
  * @returns {boolean}
  */
-export function isMillisecondTimestamp(timestamp) {
+function isMillisecondTimestamp(timestamp) {
   const date = new Date(timestamp);
   return date.getSeconds() === 0;
 }
@@ -192,7 +190,7 @@ export function isMillisecondTimestamp(timestamp) {
  * 格式化消息距离时间
  * @param {number | string} timestamp 时间戳或时间字符串
  */
-export function formatDistanceTime(timestamp) {
+function formatDistanceTime(timestamp) {
   const now = new Date();
   const targetDate = new Date(timestamp);
   const timeDiff = now - targetDate;
@@ -220,28 +218,17 @@ export function formatDistanceTime(timestamp) {
 }
 
 /**
- * 格式化消息距离时间（微信消息时间样式）
+ * 格式化消息距离时间（微信消息时间格式）
  * @param {number | string} timestamp 时间戳或时间字符串
  */
-export function formatDistanceTime(timestamp) {
+function formatDistanceTime(timestamp) {
   const now = new Date();
   const date = new Date(timestamp);
 
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  let period;
-  if (hours < 6) {
-    period = '凌晨';
-  } else if (hours < 12) {
-    period = '上午';
-  } else if (hours < 13) {
-    period = '中午';
-  } else if (hours < 18) {
-    period = '下午';
-  } else {
-    period = '晚上';
-  }
-  let baseTime = `${period}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  const period = hours < 6 ? '凌晨' : hours < 12 ? '上午' : hours < 13 ? '中午' : hours < 18 ? '下午' : '晚上';
+  const baseTime = `${period}${hours}:${minutes.toString().padStart(2, '0')}`;
 
   // 当天
   if (
@@ -270,23 +257,16 @@ export function formatDistanceTime(timestamp) {
     date.getDate() >= now.getDate() - now.getDay() &&
     date.getDate() < now.getDate()
   ) {
-    const dayOfWeek = date.getDay();
-    const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-    return days[dayOfWeek] + ' ' + baseTime;
+    return ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][date.getDay()] + ' ' + baseTime;
   }
 
   // 本年内
   if (date.getFullYear() === now.getFullYear()) {
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return `${month}月${day}日 ${baseTime}`;
+    return `${date.getMonth() + 1}月${date.getDate()}日 ${baseTime}`;
   }
 
   // 不是本年
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日 ${baseTime}`;
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${baseTime}`;
 }
 ```
 
@@ -297,7 +277,7 @@ export function formatDistanceTime(timestamp) {
  * 判断是否为文件协议
  * @returns {boolean}
  */
-export function isFileProtocol(url: string) {
+function isFileProtocol(url: string) {
   return url.startsWith('file://');
 }
 ```
