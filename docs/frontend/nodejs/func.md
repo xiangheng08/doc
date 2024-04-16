@@ -391,3 +391,18 @@ function bufferToNumber(buf: Buffer, len: number) {
   return buf.readIntLE(0, len);
 }
 ```
+
+## 创建目录
+
+```js
+/**
+ * 创建目录（如果不存在）
+ * @param {string} dirPath
+ */
+function mkdirIfNotExists(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath);
+  }
+}
+```
+

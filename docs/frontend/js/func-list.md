@@ -311,3 +311,91 @@ function insertSubstring(str, insertion, start, end) {
   return str.slice(0, start) + insertion + str.slice(end);
 }
 ```
+
+## 复制图片到剪贴板
+
+```js
+/**
+ * 复制图片到剪贴板
+ * @param {string} url 图片地址
+ */
+function copyImageToClipboard(url) {
+  return new Promise((resolve, reject) => {
+    if (navigator.clipboard) {
+      return reject(new Error('当前浏览器不支持剪贴板API'));
+    }
+    const image = new Image();
+    image.src = url;
+    image.crossOrigin = 'Anonymous'; // 设置跨域
+    image.onload = function () {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(image, 0, 0);
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            return reject(new Error('image to blob failed'));
+          }
+          const item = new ClipboardItem({ [blob.type]: blob });
+          navigator.clipboard.write([item]).then(resolve, reject);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    };
+    image.onerror = (err) => reject(err);
+  });
+}
+```
+
+## 触发全局自定义事件
+
+```js
+/**
+ * 触发全局自定义事件
+ * @param {string} event
+ * @param {any} [value]
+ */
+const emitGlobalCustomEvent = (event, value = null) => {
+  window.dispatchEvent(new CustomEvent(event, { detail: value }));
+};
+```
+
+## 下载
+
+```js
+/**
+ * 下载
+ * @param {string} url
+ * @param {string} [filename]
+ */
+function download(url, filename = 'download') {
+  const a = document.createElement('a');
+  a.style = 'display: none'; // 创建一个隐藏的a标签
+  a.download = filename;
+  a.href = url;
+  document.body.appendChild(a);
+  a.click(); // 触发a标签的click事件
+  document.body.removeChild(a);
+}
+```
+
+## 生成唯一ID
+
+```js
+/**
+ * 生成唯一ID
+ * @param {string} [template] 模板
+ * @returns {string} 唯一ID
+ */
+const getUuid = (template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx') => {
+  let d = new Date().getTime();
+  return template.replace(/[xy]/g, function (c) {
+    let r = (d + Math.random() * 16) % 16 | 0;
+    d = Math.floor(d / 16);
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+  });
+};
+```
