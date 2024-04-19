@@ -537,6 +537,9 @@ export default define<DefaultTheme.SidebarItem[]>([
 		collapsed: false,
 		items: [
 			{
+				link: '/frontend/nodejs/index',
+			},
+			{
 				text: '实用方法',
 				link: '/frontend/nodejs/func',
 			},

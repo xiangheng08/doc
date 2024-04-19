@@ -115,4 +115,4 @@ export function sayHello() {
 
 ## 参考
 
-js 相关笔记大部分来自于[MDN](https://developer.mozilla.org/zh-CN)、[网道](https://wangdoc.com)和网络。
+js 相关笔记绝大部分来自于[MDN](https://developer.mozilla.org/zh-CN)、[网道](https://wangdoc.com)和网络。
