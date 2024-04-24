@@ -691,6 +691,15 @@ export default define<DefaultTheme.SidebarItem[]>([
 		],
 	},
 	{
+		text: 'Electron',
+		collapsed: false,
+		items: [
+			{
+				link: '/frontend/electron/docsNav'
+			}
+		],
+	},
+	{
 		text: '笔记',
 		items: [
 			{
