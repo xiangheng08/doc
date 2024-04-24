@@ -402,6 +402,8 @@ const getUuid = (template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx') => {
 
 ## 版本
 
+[SemVer 规范](https://semver.org/lang/zh-CN/);
+
 ```js
 /**
  * 检查版本号是否符合 SemVer 规范。
