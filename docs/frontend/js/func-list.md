@@ -382,7 +382,7 @@ function download(url, filename = 'download') {
 }
 ```
 
-## 生成唯一ID
+## 生成唯一 ID
 
 ```js
 /**
@@ -398,4 +398,70 @@ const getUuid = (template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx') => {
     return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
   });
 };
+```
+
+## 版本
+
+```js
+/**
+ * 检查版本号是否符合 SemVer 规范。
+ * @param version 要检查的版本号
+ * @returns 如果版本号符合 SemVer 规范，则返回 true，否则返回 false。
+ */
+function isValidSemVer(version) {
+  const semverRegex = /^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/;
+  return semverRegex.test(version);
+}
+
+/**
+ * 比较两个版本号，并返回比较结果。
+ * @param currentVersion 当前版本号
+ * @param compareVersion 要比较的版本号
+ * @returns 返回值为 -1 表示 `compareVersion` 比 `currentVersion` 小，1 表示 `compareVersion` 比 `currentVersion` 大，0 表示两个版本号相同。
+ */
+function compareVersions(currentVersion, compareVersion): -1 | 0 | 1 {
+  // 去除元数据部分
+  const [currentVersionWithoutMeta] = currentVersion.split('+');
+  const [compareVersionWithoutMeta] = compareVersion.split('+');
+
+  // 分离版本号和预发布版本号
+  const [currentVersionNumber, currentPrerelease] = currentVersionWithoutMeta.split('-');
+  const [compareVersionNumber, comparePrerelease] = compareVersionWithoutMeta.split('-');
+
+  // 拆分版本号为数字数组
+  const currentVersionArray = currentVersionNumber.split('.').map(Number);
+  const compareVersionArray = compareVersionNumber.split('.').map(Number);
+
+  // 比较主要版本号
+  for (let i = 0; i < currentVersionArray.length; i++) {
+    if (currentVersionArray[i] < compareVersionArray[i]) {
+      return -1;
+    } else if (currentVersionArray[i] > compareVersionArray[i]) {
+      return 1;
+    }
+  }
+
+  // 如果主要版本号相同，则比较预发布版本号
+  if (currentPrerelease && !comparePrerelease) {
+    return -1;
+  } else if (!currentPrerelease && comparePrerelease) {
+    return 1;
+  } else if (currentPrerelease && comparePrerelease) {
+    const currentPrereleaseArray = currentPrerelease.split('.').map(Number);
+    const comparePrereleaseArray = comparePrerelease.split('.').map(Number);
+
+    for (let i = 0; i < Math.max(currentPrereleaseArray.length, comparePrereleaseArray.length); i++) {
+      const currentPart = currentPrereleaseArray[i] || 0;
+      const comparePart = comparePrereleaseArray[i] || 0;
+
+      if (currentPart < comparePart) {
+        return -1;
+      } else if (currentPart > comparePart) {
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
 ```
