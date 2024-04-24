@@ -165,7 +165,7 @@ pnpm add dotenv
 我们在项目的根目录新建的 `.env` 文件，在这个文件写对应的环境变量（[env 文件语法](#env-文件语法)），然在项目的入口文件的首行添加以下代码
 
 ```js
-require('dotenv').config()
+require('dotenv').config();
 ```
 
 `dotenv` 默认读取项目根目录 `.env` 文件中的环境变量。
@@ -175,8 +175,8 @@ require('dotenv').config()
 ### 读取指定文件
 
 ```js
-const path = require('path')
-const dotenv = require('dotenv')
+const path = require('path');
+const dotenv = require('dotenv');
 
 const config = dotenv.config({ path: path.join(__dirname, './env/.env') });
 
@@ -187,13 +187,13 @@ console.log(config);
 ### 自己读取文件
 
 ```js
-const fs = require('fs')
-const path = require('path')
-const dotenv = require('dotenv')
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
 
-const buf = fs.readFileSync(path.join(__dirname, './env/.env'))
+const buf = fs.readFileSync(path.join(__dirname, './env/.env'));
 
-const config = dotenv.parse(buf)
+const config = dotenv.parse(buf);
 
 console.log(config);
 ```
@@ -211,20 +211,20 @@ console.log(config);
 - 如果 `NODE_ENV` 等于 `production` 读取 `.env.production`。
 
 ```js
-const fs = require('fs')
-const path = require('path')
-const dotenv = require('dotenv')
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
 
 // 加载路径
 const loadPath = path.resolve(process.cwd(), 'env');
 
 // 根据 NODE_ENV 的值，读取不同的 env 文件
 if (process.env.NODE_ENV?.trim()) {
-	const filePath = path.join(loadPath, '.env.' + process.env.NODE_ENV.trim());
+  const filePath = path.join(loadPath, '.env.' + process.env.NODE_ENV.trim());
   // 判断文件是否存在
-	if (fs.existsSync(filePath)) {
-		dotenv.config({ path: filePath });
-	}
+  if (fs.existsSync(filePath)) {
+    dotenv.config({ path: filePath });
+  }
 }
 ```
 
@@ -240,7 +240,7 @@ if (process.env.NODE_ENV?.trim()) {
 KEY=VALUE
 ```
 
-### 注释 
+### 注释
 
 可以使用 `#` 符号添加注释。注释后面的内容将被忽略。例如：
 
@@ -273,7 +273,7 @@ API_KEY="my_secret_key"
 
 ```sh
 SPECIAL_CHAR=This\ is\ a\ value\ with\ spaces
-   ```
+```
 
 ### 换行符
 
