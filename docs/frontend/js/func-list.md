@@ -467,3 +467,59 @@ function compareVersions(currentVersion, compareVersion): -1 | 0 | 1 {
   return 0;
 }
 ```
+
+## 观察元素大小的变化
+
+```js
+// observer.js
+
+/**
+ * @type {ResizeObserver | null}
+ */
+let resizeObserverInstance = null;
+/**
+ * @type {WeakMap<HTMLElement, (result: any)=>void>}
+ */
+const resizeCallbackMap = new WeakMap();
+
+/**
+ * 观察元素大小的变化
+ * @param {HTMLElement} element
+ * @param {(result: {width: number, height: number, target: HTMLElement})=>void} callback
+ * @returns {()=>void} 取消观察的函数
+ */
+export function observeResize(element, callback) {
+  if (!resizeObserverInstance) {
+    resizeObserverInstance = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width, height } = entry.contentRect;
+        const target = entry.target;
+        const callbackFn = resizeCallbackMap.get(target);
+        if (callbackFn) {
+          callbackFn({ width, height, target });
+        }
+      }
+    });
+  }
+
+  resizeObserverInstance.observe(element);
+  resizeCallbackMap.set(element, callback);
+
+  // 返回一个取消观察的函数
+  return () => {
+    resizeObserverInstance.unobserve(element);
+    resizeCallbackMap.delete(element);
+  };
+}
+
+/**
+ * 停止观察元素大小的变化
+ * @param {HTMLElement} element
+ */
+export function unobserveResize(element) {
+  if (resizeObserverInstance) {
+    resizeObserverInstance.unobserve(element);
+    resizeCallbackMap.delete(element);
+  }
+}
+```
