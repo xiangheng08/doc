@@ -416,55 +416,62 @@ function isValidSemVer(version) {
 }
 
 /**
- * 比较两个版本号，并返回比较结果。
+ * 版本号比较
  * @param currentVersion 当前版本号
  * @param compareVersion 要比较的版本号
- * @returns 返回值为 -1 表示 `compareVersion` 比 `currentVersion` 小，1 表示 `compareVersion` 比 `currentVersion` 大，0 表示两个版本号相同。
+ * @returns 比较结果，如下
+ * - -1: `currentVersion` < `compareVersion`
+ * - 1: `currentVersion` > `compareVersion`
+ * - 0: `currentVersion` = `compareVersion`
  */
-function compareVersions(currentVersion, compareVersion): -1 | 0 | 1 {
+function compareVersions(currentVersion, compareVersion) {
   // 去除元数据部分
-  const [currentVersionWithoutMeta] = currentVersion.split('+');
-  const [compareVersionWithoutMeta] = compareVersion.split('+');
+  const [currentVersionWithoutMeta] = currentVersion.split('+')
+  const [compareVersionWithoutMeta] = compareVersion.split('+')
 
   // 分离版本号和预发布版本号
-  const [currentVersionNumber, currentPrerelease] = currentVersionWithoutMeta.split('-');
-  const [compareVersionNumber, comparePrerelease] = compareVersionWithoutMeta.split('-');
+  const [currentVersionNumber, currentPrerelease] = currentVersionWithoutMeta.split('-')
+  const [compareVersionNumber, comparePrerelease] = compareVersionWithoutMeta.split('-')
 
   // 拆分版本号为数字数组
-  const currentVersionArray = currentVersionNumber.split('.').map(Number);
-  const compareVersionArray = compareVersionNumber.split('.').map(Number);
+  const currentVersionArray = currentVersionNumber.split('.').map(Number)
+  const compareVersionArray = compareVersionNumber.split('.').map(Number)
 
   // 比较主要版本号
   for (let i = 0; i < currentVersionArray.length; i++) {
     if (currentVersionArray[i] < compareVersionArray[i]) {
-      return -1;
+      return -1
     } else if (currentVersionArray[i] > compareVersionArray[i]) {
-      return 1;
+      return 1
     }
   }
 
   // 如果主要版本号相同，则比较预发布版本号
   if (currentPrerelease && !comparePrerelease) {
-    return -1;
+    return -1
   } else if (!currentPrerelease && comparePrerelease) {
-    return 1;
+    return 1
   } else if (currentPrerelease && comparePrerelease) {
-    const currentPrereleaseArray = currentPrerelease.split('.').map(Number);
-    const comparePrereleaseArray = comparePrerelease.split('.').map(Number);
+    const currentPrereleaseArray = currentPrerelease.split('.').map(Number)
+    const comparePrereleaseArray = comparePrerelease.split('.').map(Number)
 
-    for (let i = 0; i < Math.max(currentPrereleaseArray.length, comparePrereleaseArray.length); i++) {
-      const currentPart = currentPrereleaseArray[i] || 0;
-      const comparePart = comparePrereleaseArray[i] || 0;
+    for (
+      let i = 0;
+      i < Math.max(currentPrereleaseArray.length, comparePrereleaseArray.length);
+      i++
+    ) {
+      const currentPart = currentPrereleaseArray[i] || 0
+      const comparePart = comparePrereleaseArray[i] || 0
 
       if (currentPart < comparePart) {
-        return -1;
+        return -1
       } else if (currentPart > comparePart) {
-        return 1;
+        return 1
       }
     }
   }
 
-  return 0;
+  return 0
 }
 ```
 
