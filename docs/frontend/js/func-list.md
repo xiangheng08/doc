@@ -530,3 +530,33 @@ export function unobserveResize(element) {
   }
 }
 ```
+
+## 检查对象是否包含循环引用
+
+```js
+/**
+ * 检查对象是否包含循环引用
+ * @param {object} obj 
+ * @returns {boolean}
+ */
+function hasCircularReference(obj) {
+  const seen = new WeakSet();
+
+  function detect(obj) {
+    if (typeof obj === 'object' && obj !== null) {
+      if (seen.has(obj)) {
+        return true;
+      }
+      seen.add(obj);
+      const values = Object.values(obj);
+      for (let i = 0; i < values.length; i++) {
+        if (detect(values[i])) return true;
+      }
+    }
+    return false;
+  }
+
+  return detect(obj);
+}
+```
+
