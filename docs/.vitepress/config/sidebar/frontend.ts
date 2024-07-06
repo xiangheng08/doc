@@ -475,6 +475,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '常用函数',
 				link: '/frontend/js/func-list',
 			},
+			{ link: '/frontend/js/tips' },
 			{
 				text: 'JS 高阶语法',
 				collapsed: true,
@@ -542,6 +543,13 @@ export default define<DefaultTheme.SidebarItem[]>([
 			{
 				text: '实用方法',
 				link: '/frontend/nodejs/func',
+			},
+			{
+				text: '子进程',
+				collapsed: true,
+				items: [
+					{ link: '/frontend/nodejs/child_process/scenarios' }
+				]
 			},
 			{
 				text: '项目开发',

@@ -456,3 +456,79 @@ getFileHash(filePath, algorithm)
     console.error('Error calculating hash:', error);
   });
 ```
+
+## 路径排序
+
+```js
+const path = require('path');
+
+/**
+ * 路径排序
+ * @param {string[]} paths
+ * @param {'asc' | 'desc'} order default: desc
+ * @returns {string[]}
+ */
+function sortPaths(paths, order = 'desc') {
+  return paths.sort((a, b) => {
+    const aParts = path.normalize(a).split(path.sep);
+    const bParts = path.normalize(b).split(path.sep);
+
+    for (let i = 0; i < Math.min(aParts.length, bParts.length); i++) {
+      if (aParts[i] !== bParts[i]) {
+        return aParts[i] < bParts[i] ? -1 : 1;
+      }
+    }
+
+    if (order === 'asc') {
+      return aParts.length - bParts.length;
+    } else {
+      return bParts.length - aParts.length;
+    }
+  });
+}
+```
+
+::: details 使用示例
+
+<!-- prettier-ignore -->
+```js
+const paths = [
+  "C:\\Windows\\System32",
+  "a/b",
+  "a/b/c",
+  "r/e",
+  "a",
+  "r",
+  "C:\\Windows"
+];
+
+// 适合删除文件
+console.log(sortPaths(paths));
+/* 
+[
+  'C:\\Windows\\System32',
+  'C:\\Windows',
+  'a/b/c',
+  'a/b',
+  'a',
+  'r/e',
+  'r'
+]
+*/
+
+// 适合创建文件
+console.log(sortPaths(paths, "asc"));
+/* 
+[
+  'C:\\Windows',
+  'C:\\Windows\\System32',
+  'a',
+  'a/b',
+  'a/b/c',
+  'r',
+  'r/e'
+]
+*/
+```
+
+:::
