@@ -23,7 +23,7 @@
 -   `git branch <branch_name>`: 创建新分支。
 -   `git checkout <branch_name>`: 切换到指定分支。
 -   `git merge <branch_name>`: 合并指定分支到当前分支。
--   `git branch -d <branch_name>`: 删除本地分支，不能删除当前分支，需要切换分支再删除。。
+-   `git branch -d <branch_name>`: 删除本地分支，不能删除当前分支，需要切换分支再删除。
 -   `git push <remote> --delete <branch_name>`: 删除远程分支。
 -   `git branch -r`: 显示远程分支列表。
 
