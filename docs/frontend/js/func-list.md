@@ -227,7 +227,8 @@ function formatDistanceTime(timestamp) {
 
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const period = hours < 6 ? '凌晨' : hours < 12 ? '上午' : hours < 13 ? '中午' : hours < 18 ? '下午' : '晚上';
+  const period =
+    hours < 6 ? '凌晨' : hours < 12 ? '上午' : hours < 13 ? '中午' : hours < 18 ? '下午' : '晚上';
   const baseTime = `${period}${hours}:${minutes.toString().padStart(2, '0')}`;
 
   // 当天
@@ -268,6 +269,49 @@ function formatDistanceTime(timestamp) {
   // 不是本年
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${baseTime}`;
 }
+```
+
+## 格式化用时
+
+```js
+/**
+ * 格式化用时
+ * @param {number} ms - 毫秒数
+ * @returns {string} - 格式化后的用时字符串
+ */
+export function formatDuration(ms) {
+  if (ms < 1000) {
+    return `${ms}ms`;
+  }
+
+  const seconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+
+  const displaySeconds = seconds % 60;
+  const displayMinutes = minutes % 60;
+  const displayHours = hours;
+
+  let result = '';
+
+  if (displayHours > 0) {
+    result += `${displayHours}h `;
+  }
+  if (displayMinutes > 0 || displayHours > 0) {
+    result += `${displayMinutes}m `;
+  }
+  if (displaySeconds > 0 || displayMinutes > 0 || displayHours > 0) {
+    result += `${displaySeconds}s`;
+  }
+
+  return result.trim();
+}
+
+// 返回值示例
+// 545ms
+// 45s
+// 1m 5s
+// 1h 2m 5s
 ```
 
 ## 判断是否为文件协议
@@ -411,7 +455,8 @@ const getUuid = (template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx') => {
  * @returns 如果版本号符合 SemVer 规范，则返回 true，否则返回 false。
  */
 function isValidSemVer(version) {
-  const semverRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/gm;
+  const semverRegex =
+    /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/gm;
   return semverRegex.test(version);
 }
 
@@ -426,52 +471,52 @@ function isValidSemVer(version) {
  */
 function compareVersions(currentVersion, compareVersion) {
   // 去除元数据部分
-  const [currentVersionWithoutMeta] = currentVersion.split('+')
-  const [compareVersionWithoutMeta] = compareVersion.split('+')
+  const [currentVersionWithoutMeta] = currentVersion.split('+');
+  const [compareVersionWithoutMeta] = compareVersion.split('+');
 
   // 分离版本号和预发布版本号
-  const [currentVersionNumber, currentPrerelease] = currentVersionWithoutMeta.split('-')
-  const [compareVersionNumber, comparePrerelease] = compareVersionWithoutMeta.split('-')
+  const [currentVersionNumber, currentPrerelease] = currentVersionWithoutMeta.split('-');
+  const [compareVersionNumber, comparePrerelease] = compareVersionWithoutMeta.split('-');
 
   // 拆分版本号为数字数组
-  const currentVersionArray = currentVersionNumber.split('.').map(Number)
-  const compareVersionArray = compareVersionNumber.split('.').map(Number)
+  const currentVersionArray = currentVersionNumber.split('.').map(Number);
+  const compareVersionArray = compareVersionNumber.split('.').map(Number);
 
   // 比较主要版本号
   for (let i = 0; i < currentVersionArray.length; i++) {
     if (currentVersionArray[i] < compareVersionArray[i]) {
-      return -1
+      return -1;
     } else if (currentVersionArray[i] > compareVersionArray[i]) {
-      return 1
+      return 1;
     }
   }
 
   // 如果主要版本号相同，则比较预发布版本号
   if (currentPrerelease && !comparePrerelease) {
-    return -1
+    return -1;
   } else if (!currentPrerelease && comparePrerelease) {
-    return 1
+    return 1;
   } else if (currentPrerelease && comparePrerelease) {
-    const currentPrereleaseArray = currentPrerelease.split('.').map(Number)
-    const comparePrereleaseArray = comparePrerelease.split('.').map(Number)
+    const currentPrereleaseArray = currentPrerelease.split('.').map(Number);
+    const comparePrereleaseArray = comparePrerelease.split('.').map(Number);
 
     for (
       let i = 0;
       i < Math.max(currentPrereleaseArray.length, comparePrereleaseArray.length);
       i++
     ) {
-      const currentPart = currentPrereleaseArray[i] || 0
-      const comparePart = comparePrereleaseArray[i] || 0
+      const currentPart = currentPrereleaseArray[i] || 0;
+      const comparePart = comparePrereleaseArray[i] || 0;
 
       if (currentPart < comparePart) {
-        return -1
+        return -1;
       } else if (currentPart > comparePart) {
-        return 1
+        return 1;
       }
     }
   }
 
-  return 0
+  return 0;
 }
 ```
 
@@ -536,7 +581,7 @@ export function unobserveResize(element) {
 ```js
 /**
  * 检查对象是否包含循环引用
- * @param {object} obj 
+ * @param {object} obj
  * @returns {boolean}
  */
 function hasCircularReference(obj) {
@@ -570,48 +615,46 @@ function hasCircularReference(obj) {
  * @returns {number[]} - 返回每个数据值对应的高度比例数组，范围 0-1。
  */
 function calculateHeightPercentages(arr) {
-    /**
-     * 确保浮点数计算的精度，忽略小的浮点数误差
-     * @param {number} num - 输入的浮点数
-     * @returns {number} - 处理后的浮点数
-     */
-    function fixedNum(num) {
-        if (("" + num).indexOf('.') >= 0) num = parseFloat(num.toFixed(8));
-        return num;
+  /**
+   * 确保浮点数计算的精度，忽略小的浮点数误差
+   * @param {number} num - 输入的浮点数
+   * @returns {number} - 处理后的浮点数
+   */
+  function fixedNum(num) {
+    if (('' + num).indexOf('.') >= 0) num = parseFloat(num.toFixed(8));
+    return num;
+  }
+
+  const magic = [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]; // 魔数数组
+  const splitNumber = 4; // 理想的刻度间隔段数
+  const max = Math.max(...arr); // 获取数据中的最大值
+  const min = Math.min(...arr); // 获取数据中的最小值
+
+  // 计算初始刻度间隔的大小
+  let tempGap = (max - min) / splitNumber;
+  // 计算缩放比例 multiple，使得 tempGap 落在魔数数组的区间内
+  let multiple = Math.floor(Math.log10(tempGap) - 1);
+  multiple = Math.pow(10, multiple);
+
+  // 计算映射后的间隔大小 tempStep
+  let tempStep = tempGap / multiple;
+  let estep; // 期望得到的最佳间隔
+
+  // 取出第一个大于 tempStep 的魔数，并乘以 multiple 作为期望得到的最佳间隔
+  for (let i = 0; i < magic.length; i++) {
+    if (magic[i] > tempStep) {
+      estep = magic[i] * multiple;
+      break;
     }
+  }
 
-    const magic = [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]; // 魔数数组
-    const splitNumber = 4; // 理想的刻度间隔段数
-    const max = Math.max(...arr); // 获取数据中的最大值
-    const min = Math.min(...arr); // 获取数据中的最小值
+  // 定义最大刻度和最小刻度
+  let maxi = parseInt(max / estep + 1) * estep;
+  let mini = parseInt(min / estep - 1) * estep;
+  maxi = fixedNum(maxi);
+  mini = fixedNum(mini);
 
-    // 计算初始刻度间隔的大小
-    let tempGap = (max - min) / splitNumber;
-    // 计算缩放比例 multiple，使得 tempGap 落在魔数数组的区间内
-    let multiple = Math.floor(Math.log10(tempGap) - 1);
-    multiple = Math.pow(10, multiple);
-
-    // 计算映射后的间隔大小 tempStep
-    let tempStep = tempGap / multiple;
-    let estep; // 期望得到的最佳间隔
-
-    // 取出第一个大于 tempStep 的魔数，并乘以 multiple 作为期望得到的最佳间隔
-    for (let i = 0; i < magic.length; i++) {
-        if (magic[i] > tempStep) {
-            estep = magic[i] * multiple;
-            break;
-        }
-    }
-
-    // 定义最大刻度和最小刻度
-    let maxi = parseInt(max / estep + 1) * estep;
-    let mini = parseInt(min / estep - 1) * estep;
-    maxi = fixedNum(maxi);
-    mini = fixedNum(mini);
-
-    // 返回每个数据值对应的高度比例
-    return arr.map(value => (value - mini) / (maxi - mini));
+  // 返回每个数据值对应的高度比例
+  return arr.map((value) => (value - mini) / (maxi - mini));
 }
 ```
-
-
