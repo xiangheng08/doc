@@ -2,11 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 
-const loadPath = path.resolve(process.cwd(), 'env');
-
 const ENV_KEYS: { [k in keyof ENV]: string } = {
 	base: 'BASE_URL',
 	outDir: 'OUT_DIR',
+	copyright: 'COPYRIGHT'
 };
 
 const defaultENV: ENV = {
@@ -14,12 +13,13 @@ const defaultENV: ENV = {
 };
 
 if (process.env.LOAD_ENV?.trim()) {
-	const filePath = path.join(loadPath, '.env.' + process.env.LOAD_ENV.trim());
+	const filePath = path.join(process.cwd(), '.env.' + process.env.LOAD_ENV.trim());
 
 	if (fs.existsSync(filePath)) {
 		dotenv.config({ path: filePath });
 	}
 }
+
 // 解析 env
 function parseENV() {
 	const env: ENV = {};
@@ -47,4 +47,5 @@ export const ENV = parseENV();
 type ENV = {
 	base?: string;
 	outDir?: string;
+	copyright?: string;
 };

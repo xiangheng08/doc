@@ -13,3 +13,5 @@ config.mts.timestamp*.*
 
 PSA.send.config.js
 fs.send.config.js
+
+.env.*
