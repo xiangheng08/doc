@@ -652,6 +652,19 @@ export default define<DefaultTheme.SidebarItem[]>([
 		],
 	},
 	{
+		text: 'React Native',
+		collapsed: false,
+		items: [
+			{
+				text: '自定义组件',
+				collapsed: true,
+				items: [
+					{ link: '/frontend/react-native/cc/slider' }
+				]
+			},
+		],
+	},
+	{
 		text: 'vite',
 		collapsed: false,
 	},
