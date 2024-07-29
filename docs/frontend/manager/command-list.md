@@ -155,6 +155,15 @@ npm show package-name@version
 npm show axios@1.6.0
 ```
 
+### 下载某个包的最新版本
+
+```sh
+npm install package-name@latest
+
+npm install axios@latest
+```
+
+
 ## Yarn
 
 ### 获取帮助信息
