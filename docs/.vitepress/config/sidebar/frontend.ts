@@ -456,6 +456,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{ link: '/frontend/js/bom/form' },
 					{ link: '/frontend/js/bom/indexeddb' },
 					{ link: '/frontend/js/bom/webworker' },
+					{ link: '/frontend/js/bom/fetch' },
 				],
 			},
 			{
