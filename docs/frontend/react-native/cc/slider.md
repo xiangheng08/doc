@@ -2,7 +2,7 @@
 
 ```tsx
 import React, { useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, PanResponder, Animated, StyleProp, TextStyle } from 'react-native';
+import { View, Text, StyleSheet, PanResponder, Animated, StyleProp, TextStyle, DimensionValue } from 'react-native';
 
 export interface VerticalSliderProps {
     width?: number;
@@ -18,6 +18,8 @@ export interface VerticalSliderProps {
     foregroundColor?: string;
     backgroundColor?: string;
     radius?: number;
+    textBottom?: DimensionValue;
+    disabled?: boolean;
 }
 
 export const VerticalSlider: React.FC<VerticalSliderProps> = ({
@@ -34,6 +36,8 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
     foregroundColor = '#000000',
     backgroundColor = '#e0e0e0',
     radius = 10,
+    textBottom = '8%',
+    disabled = false,
 }) => {
     const pan = useRef(new Animated.Value(0)).current;
     const lastValue = useRef(value);
@@ -42,6 +46,7 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
 
     useEffect(() => {
         pan.addListener((val) => {
+            if (disabled) return;
             const stepDiff = Math.round(val.value / stepHeight);
             onChange && onChange(Math.max(minValue, Math.min(maxValue, lastValue.current - stepDiff * step)));
         });
@@ -56,6 +61,7 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
             onStartShouldSetPanResponder: () => true,
             onPanResponderMove: Animated.event([null, { dy: pan }], { useNativeDriver: false }),
             onPanResponderRelease: (e, gestureState) => {
+                if (disabled) return;
                 const stepDiff = Math.round(gestureState.dy / stepHeight);
                 lastValue.current = Math.max(minValue, Math.min(maxValue, lastValue.current - stepDiff * step));
                 pan.setValue(0);
@@ -76,7 +82,7 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
         >
             <Animated.View style={[styles.part, { height: partHeight, width, backgroundColor: foregroundColor }]} />
             {showText && (
-                <View style={styles.textBox}>
+                <View style={[styles.textBox, { bottom: textBottom }]}>
                     <Text style={[styles.text, textStyle]}>
                         {value <= minValue && bottomText ? bottomText : Math.floor(value)}
                     </Text>
@@ -111,5 +117,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 });
-
 ```

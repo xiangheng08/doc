@@ -663,6 +663,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 					{ link: '/frontend/react-native/cc/slider' }
 				]
 			},
+			{ link: '/frontend/react-native/link' },
 		],
 	},
 	{
