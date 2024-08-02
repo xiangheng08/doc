@@ -717,9 +717,8 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'Electron',
 		collapsed: false,
 		items: [
-			{
-				link: '/frontend/electron/docsNav'
-			}
+			{ link: '/frontend/electron/docsNav' },
+			{ link: '/frontend/electron/qa' },
 		],
 	},
 	{
