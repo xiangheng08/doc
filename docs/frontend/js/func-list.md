@@ -658,3 +658,38 @@ function calculateHeightPercentages(arr) {
   return arr.map((value) => (value - mini) / (maxi - mini));
 }
 ```
+
+## 是否为今天
+
+```js
+function isToday(date) {
+  const now = new Date();
+  return (
+    date.getFullYear() === now.getFullYear() &&
+    date.getMonth() === now.getMonth() &&
+    date.getDate() === now.getDate()
+  );
+}
+```
+
+## 是否为昨天
+
+```js
+function isYesterday(date) {
+  const yesterday = new Date(new Date().getTime() - 864e5);
+  return (
+    date.getFullYear() === yesterday.getFullYear() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getDate() === yesterday.getDate()
+  );
+}
+
+// 第二种实现
+function isYesterday(date) {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const start = now.getTime() - 864e5;
+  const end = now.getTime() - 1;
+  return start <= date.getTime() && date.getTime() <= end;
+}
+```
