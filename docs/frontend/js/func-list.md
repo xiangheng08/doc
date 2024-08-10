@@ -41,11 +41,12 @@ function debounce(fn, delay) {
 /**
  * 节流
  *
- * @param {Function} fn - 要节流的函数。
- * @param {number} delay - 两次调用之间的最小时间间隔，以毫秒为单位。
- * @returns {Function} - 节流后的函数。
+ * @param {Function} fn 要节流的函数
+ * @param {number} delay 两次调用之间的最小时间间隔，以毫秒为单位
+ * @param {boolean} [start] 第一次是否执行
+ * @returns {Function} 节流后的函数
  */
-function throttle(fn, delay) {
+function throttle(fn, delay, start = true) {
   let last;
 
   /**
@@ -53,7 +54,7 @@ function throttle(fn, delay) {
    */
   return function (...args) {
     let now = Date.now();
-    if (now - last > delay) {
+    if ((start && !last) || now - last > delay) {
       fn.apply(this, args);
       last = now;
     }
