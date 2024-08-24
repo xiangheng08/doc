@@ -297,6 +297,7 @@
 20. slice 切片，划分
 21. splice 铰接，粘接
 22. strict 严格的
+23. sleep 睡眠
 
 ## **T**
 
