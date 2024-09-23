@@ -2,7 +2,17 @@
 
 ```tsx
 import React, { useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, PanResponder, Animated, StyleProp, TextStyle, DimensionValue } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    PanResponder,
+    Animated,
+    StyleProp,
+    TextStyle,
+    DimensionValue,
+    PanResponderInstance,
+} from 'react-native';
 
 export interface VerticalSliderProps {
     width?: number;
@@ -31,7 +41,7 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
     value,
     step = 1,
     showText = true,
-    onChange,
+    onChange = () => {},
     textStyle,
     foregroundColor = '#000000',
     backgroundColor = '#e0e0e0',
@@ -41,23 +51,14 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
 }) => {
     const pan = useRef(new Animated.Value(0)).current;
     const lastValue = useRef(value);
+    const isDrag = useRef(false);
 
     const stepHeight = height / ((maxValue - minValue) / step);
 
+    const panResponder = useRef<PanResponderInstance>();
+
     useEffect(() => {
-        pan.addListener((val) => {
-            if (disabled) return;
-            const stepDiff = Math.round(val.value / stepHeight);
-            onChange && onChange(Math.max(minValue, Math.min(maxValue, lastValue.current - stepDiff * step)));
-        });
-
-        return () => {
-            pan.removeAllListeners();
-        };
-    }, [height, maxValue, minValue, step, pan, stepHeight, onChange]);
-
-    const panResponder = useRef(
-        PanResponder.create({
+        panResponder.current = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onPanResponderMove: Animated.event([null, { dy: pan }], { useNativeDriver: false }),
             onPanResponderRelease: (e, gestureState) => {
@@ -66,19 +67,42 @@ export const VerticalSlider: React.FC<VerticalSliderProps> = ({
                 lastValue.current = Math.max(minValue, Math.min(maxValue, lastValue.current - stepDiff * step));
                 pan.setValue(0);
             },
-        })
-    ).current;
+            onPanResponderStart: () => {
+                isDrag.current = true;
+            },
+            onPanResponderEnd: () => {
+                isDrag.current = false;
+            },
+        });
+
+        pan.addListener((val) => {
+            if (disabled) return;
+            const stepDiff = Math.round(val.value / stepHeight);
+            onChange(Math.max(minValue, Math.min(maxValue, lastValue.current - stepDiff * step)));
+        });
+
+        if (value < minValue) {
+            onChange(minValue);
+        } else if (value > maxValue) {
+            onChange(maxValue);
+        }
+
+        return () => {
+            pan.removeAllListeners();
+        };
+    }, [height, maxValue, minValue, step, pan, stepHeight]);
 
     useEffect(() => {
+        if (isDrag.current) return;
         lastValue.current = value;
-    }, []);
+    }, [value]);
 
     const partHeight = (value / maxValue) * height;
 
     return (
         <View
             style={[styles.container, { width, height, backgroundColor, borderRadius: radius }]}
-            {...panResponder.panHandlers}
+            {...panResponder.current?.panHandlers}
         >
             <Animated.View style={[styles.part, { height: partHeight, width, backgroundColor: foregroundColor }]} />
             {showText && (
