@@ -477,6 +477,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 				link: '/frontend/js/func-list',
 			},
 			{ link: '/frontend/js/tips' },
+			{ link: '/frontend/js/regexp' },
 			{
 				text: 'JS 高阶语法',
 				collapsed: true,
