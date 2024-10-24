@@ -41,9 +41,16 @@
 
 如果是 ts 项目，配置内容是一样的，只是在 tsconfig.json 中配置
 
-## vscode 复制相对路径时是反斜杠\，改为正斜杠/
+## vscode 复制相对路径时将改为反斜杠\，改为正斜杠/
 
 1. 打开 vscode 设置
-2. 在搜索框中输入 explorer.copyRelativePathSeparator
+2. 在搜索框中输入 `explorer.copyRelativePathSeparator`
 
 ![](/images/other/tips/vscode/copyRelativePathSeparator.png)
+
+## vscode 设置悬浮提示相关设置
+
+1. 设置搜索 `editor.hover`
+
+- `editor.hover.hidingDelay` 悬浮提示消失时间
+- `editor.hover.delay` 悬浮提示出现时间
