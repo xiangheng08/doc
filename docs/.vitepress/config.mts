@@ -155,5 +155,13 @@ export default defineConfig({
 				],
 			}),
 		],
+
+		css: {
+			preprocessorOptions: {
+				css: {
+					api: 'modern-compiler'
+				}
+			}
+		}
 	},
 });
