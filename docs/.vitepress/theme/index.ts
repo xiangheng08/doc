@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme';
-import MyLayout from './components/MyLayout.vue'
+import Layout from './Layout.vue'
 import './vars.css';
 import './style.scss';
 
@@ -8,5 +8,5 @@ import 'tdesign-vue-next/es/style/index.css';
 
 export default {
 	...DefaultTheme,
-	Layout: MyLayout,
+	Layout: Layout,
 };

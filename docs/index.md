@@ -32,3 +32,8 @@ features:
     details: 小技巧……
     link: /other/
 ---
+
+```js
+console.log('Hello World!');
+```
+

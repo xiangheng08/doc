@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "pnpm docs:dev",
+    "build": "pnpm docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs && node ./script/afterBuild.js",
     "docs:build:gitee": "cross-env LOAD_ENV=gitee_page vitepress build docs",
