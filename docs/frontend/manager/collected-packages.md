@@ -15,6 +15,7 @@
 - [qs](https://www.npmjs.com/package/qs) 用于序列化和解析 URL 查询字符串的 JavaScript 库
 - [echarts](https://www.npmjs.com/package/echarts) 基于 JavaScript 的开源可视化图表库
 - [core-js](https://www.npmjs.com/package/core-js) JavaScript 标准库的模块化标准库，旨在为现代 JavaScript 引擎提供 ECMAScript 核心功能的特性，同时保持尽可能小的依赖关系
+- [nanoid](https://www.npmjs.com/package/nanoid) 用于生成唯一标识符
 
 ## Vue
 
@@ -26,12 +27,17 @@
 - [tdesign-vue-next](https://www.npmjs.com/package/tdesign-vue-next) TDesign 适配桌面端的组件库（Vue 3.x）
 - [unplugin-vue-components](https://www.npmjs.com/package/unplugin-vue-components) 自动导入 Vue 组件
 - [@element-plus/icons-vue](https://www.npmjs.com/package/@element-plus/icons-vue) @element-plus/icons-vue 是 Element Plus 提供的一个 Vue 3.x 版本的图标组件库
-- [nanoid](https://www.npmjs.com/package/nanoid) 用于生成唯一标识符
+
 
 ## Vite
 
 - [vite](https://www.npmjs.com/package/vite) 前端构建工具
 - [vitepress](https://www.npmjs.com/package/vitepress) 静态站点生成器
+
+## NodeJS
+
+- [fast](https://www.npmjs.com/package/fast) 快速文件系统遍历库
+- [fast-glob](https://www.npmjs.com/package/fast-glob) 快速文件系统遍历库
 
 ## rollup
 
