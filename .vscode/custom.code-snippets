@@ -181,6 +181,14 @@
 		],
 		"description": "可展开/详情容器"
 	},
+	"来源": {
+		"prefix": ["来源", "laiyuan"],
+		"scope": "markdown",
+		"body": [
+			"[来源]($1)",
+		],
+		"description": "可展开/详情容器"
+	},
 	"TOC": {
 		"prefix": "toc",
 		"scope": "markdown",

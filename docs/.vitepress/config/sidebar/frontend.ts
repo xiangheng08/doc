@@ -675,6 +675,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 		text: 'TypeScript',
 		collapsed: false,
 		items: [
+			{ link: '/frontend/ts/intro' },
 			{
 				text: '工具类型',
 				link: '/frontend/ts/tool-type',
