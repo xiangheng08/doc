@@ -688,6 +688,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 				text: '类型标注模板',
 				link: '/frontend/ts/type-annotation-template',
 			},
+			{ link: '/frontend/ts/build-qa' }
 		],
 	},
 	{
