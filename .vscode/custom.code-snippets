@@ -174,20 +174,28 @@
 		"description": "可展开/详情容器"
 	},
 	"参考": {
-		"prefix": ["参考", "cankao"],
+		"prefix": ["参考", "cankao", "ck"],
 		"scope": "markdown",
 		"body": [
 			"[参考]($1)",
 		],
-		"description": "可展开/详情容器"
+		"description": "参考链接"
 	},
 	"来源": {
-		"prefix": ["来源", "laiyuan"],
+		"prefix": ["来源", "laiyuan", "ly"],
 		"scope": "markdown",
 		"body": [
 			"[来源]($1)",
 		],
-		"description": "可展开/详情容器"
+		"description": "来源链接"
+	},
+	"官网": {
+		"prefix": ["官网", "guanwang", "gw"],
+		"scope": "markdown",
+		"body": [
+			"[官网]($1)",
+		],
+		"description": "官网链接"
 	},
 	"TOC": {
 		"prefix": "toc",

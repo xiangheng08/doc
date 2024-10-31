@@ -2,10 +2,14 @@ node_modules
 docs/.vitepress/cache
 docs/.vitepress/dist
 docs/.vitepress/.temp
+docs/.vitepress/auto-imports.d.ts
+docs/.vitepress/components.d.ts
 
 .vitepress/cache
 .vitepress/dist
 .vitepress/.temp
+.vitepress/auto-imports.d.ts
+.vitepress/components.d.ts
 
 copylocation
 
