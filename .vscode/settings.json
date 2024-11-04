@@ -10,9 +10,11 @@
     "gitee",
     "instanceof",
     "minmax",
+    "rgba",
     "tdesign",
     "typeof",
     "unplugin",
-    "vitepress"
+    "vitepress",
+    "vuex"
   ]
 }

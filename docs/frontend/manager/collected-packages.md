@@ -55,6 +55,7 @@
 - [typescript](https://www.npmjs.com/package/typescript) 开源的编程语言，是 JavaScript 的超集
 - [tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths) TypeScript 的插件，它允许你在项目中使用路径别名，以更方便地引用模块和文件
 - [tslib](https://www.npmjs.com/package/tslib) 一个 TypeScript 库，它提供了一组运行时的辅助函数，用于支持编译器生成的 JavaScript 代码
+- [tsc-alias](https://www.npmjs.com/package/tsc-alias) 在编译后，将路径别名替换为相对路径
 
 ## Electron
 
