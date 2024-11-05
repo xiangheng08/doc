@@ -67,4 +67,5 @@ export default define<DefaultTheme.SidebarItem[]>([
       },
     ],
   },
+  { link: '/other/clash' },
 ]);

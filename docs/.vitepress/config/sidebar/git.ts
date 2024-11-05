@@ -17,6 +17,7 @@ export default define<DefaultTheme.SidebarItem[]>([
 	{
 		link: '/git/pagination-shortcut'
 	},
+	{ link: '/git/tips' },
 	{
 		text: '脚本',
 		collapsed: false,
