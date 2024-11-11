@@ -16,5 +16,6 @@
     "unplugin",
     "vitepress",
     "vuex"
-  ]
+  ],
+  "editor.tabSize": 2,
 }
