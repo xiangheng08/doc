@@ -1,8 +1,10 @@
+import { SidebarItemExtend } from '@/types/theme';
 import { existsSync } from 'fs';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import type { Plugin, UserConfig } from 'vite';
 import { DefaultTheme, SiteConfig } from 'vitepress';
+import fg from 'fast-glob';
 // import { debounce } from '../utils';
 
 export const sidebarPlugin = (): Plugin => {
@@ -10,6 +12,7 @@ export const sidebarPlugin = (): Plugin => {
 
   const handleSidebar = async (sidebar: DefaultTheme.SidebarItem[], srcDir: string) => {
     for (const item of sidebar) {
+      // 自动获取文章标题
       if (!item.text && item.link) {
         const fullPath = path.join(srcDir, item.link + '.md');
         if (existsSync(fullPath)) {
@@ -23,7 +26,28 @@ export const sidebarPlugin = (): Plugin => {
         }
       }
 
-      if (item.items) {
+      const autoGenerate = (item as SidebarItemExtend).autoGenerate;
+
+      if (autoGenerate) {
+        const files = await fg(autoGenerate.glob, {
+          cwd: srcDir,
+          onlyFiles: true,
+          ignore: autoGenerate.ignore,
+        });
+
+        if (files.length === 0) continue;
+        item.items = [];
+        for (const file of files) {
+          const fullPath = path.join(srcDir, file);
+          if (!fullPath.endsWith('.md')) continue;
+          const meta = await getArticleMeta(fullPath);
+          cache.set(fullPath, meta);
+          item.items.push({
+            text: meta.text,
+            link: file.replace(/^\.?\//, '/').replace(/\.md$/, ''),
+          });
+        }
+      } else if (item.items) {
         await handleSidebar(item.items, srcDir);
       }
     }

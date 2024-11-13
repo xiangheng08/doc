@@ -34,7 +34,6 @@ export default define<DefaultTheme.SidebarItem[]>([
           { link: '/frontend/html/tags/tag-list' },
         ],
       },
-
       {
         text: '其他',
         collapsed: true,

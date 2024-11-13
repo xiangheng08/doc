@@ -8,11 +8,7 @@ import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 import copyright from './config/copyright';
 import { _withBase, getDirPaths } from './utils';
 import { gitee_icon } from './theme/icons';
-import sidebarAutoAddName from './build/sidebarAutoAddName';
 import sidebarPlugin from './plugins/sidebar';
-
-// 文档根路径
-const docsBasePath = path.resolve(__dirname, '../');
 
 // 附加配置
 const append: UserConfig<DefaultTheme.Config> = {};
@@ -41,7 +37,24 @@ export default defineConfig({
 
     nav: [
       { text: '主页', link: '/' },
-      { text: '前端', link: '/frontend/' },
+      {
+        text: '前端',
+        items: [
+          { text: 'HTML', link: '/frontend/html/' },
+          { text: 'CSS', link: '/frontend/css/' },
+          { text: 'JavaScript', link: '/frontend/js/' },
+          { text: '布局', link: '/frontend/layout/waterfall' },
+          { text: 'Node.JS', link: '/frontend/nodejs/' },
+          { text: '包管理工具', link: '/frontend/manager/command-list' },
+          { text: 'Vue', link: '/frontend/vue/basic/install' },
+          { text: 'React', link: '/frontend/react/raw' },
+          { text: 'React Native', link: '/frontend/react-native/cc/slider' },
+          { text: 'TypeScript', link: '/frontend/ts/intro' },
+          { text: 'vitepress', link: '/frontend/vitepress/effect/smooth-scroll' },
+          { text: 'Electron', link: '/frontend/electron/docsNav' },
+          { text: '笔记', link: '/frontend/note/trigger-thunder-download' },
+        ],
+      },
       { text: '后端', link: '/backend/' },
       { text: 'Git', link: '/git/commandList' },
       { text: '面试题', link: '/question/' },

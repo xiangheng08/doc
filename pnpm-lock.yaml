@@ -30,6 +30,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       markdown-it-mathjax3:
         specifier: ^4.3.2
         version: 4.3.2
@@ -825,8 +828,8 @@ packages:
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
-  fast-glob@3.3.1:
-    resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
+  fast-glob@3.3.2:
+    resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
     engines: {node: '>=8.6.0'}
 
   fastq@1.15.0:
@@ -2064,7 +2067,7 @@ snapshots:
 
   estree-walker@2.0.2: {}
 
-  fast-glob@3.3.1:
+  fast-glob@3.3.2:
     dependencies:
       '@nodelib/fs.stat': 2.0.5
       '@nodelib/fs.walk': 1.2.8
@@ -2464,7 +2467,7 @@ snapshots:
     dependencies:
       '@rollup/pluginutils': 5.0.5(rollup@4.24.0)
       escape-string-regexp: 5.0.0
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       local-pkg: 0.4.3
       magic-string: 0.30.5
       mlly: 1.4.2
@@ -2503,7 +2506,7 @@ snapshots:
     dependencies:
       '@antfu/utils': 0.7.6
       '@rollup/pluginutils': 5.0.5(rollup@4.24.0)
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       local-pkg: 0.5.0
       magic-string: 0.30.5
       minimatch: 9.0.3
@@ -2520,7 +2523,7 @@ snapshots:
       '@rollup/pluginutils': 5.0.5(rollup@4.24.0)
       chokidar: 3.5.3
       debug: 4.3.4
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       local-pkg: 0.4.3
       magic-string: 0.30.5
       minimatch: 9.0.3
