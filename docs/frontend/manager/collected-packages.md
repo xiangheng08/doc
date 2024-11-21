@@ -17,6 +17,7 @@
 - [core-js](https://www.npmjs.com/package/core-js) JavaScript 标准库的模块化标准库，旨在为现代 JavaScript 引擎提供 ECMAScript 核心功能的特性，同时保持尽可能小的依赖关系
 - [nanoid](https://www.npmjs.com/package/nanoid) 用于生成唯一标识符
 - [sortablejs](https://www.npmjs.com/package/sortablejs) 用于实现拖放排序的 JavaScript 库
+- [medium-zoom](https://www.npmjs.com/package/medium-zoom) 用于实现图片缩放效果的 JavaScript 库
 
 ## Vue
 
