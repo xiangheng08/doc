@@ -72,8 +72,8 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/laowans' },
-      { icon: { svg: gitee_icon }, link: 'https://gitee.com/laowans' },
+      { icon: 'github', link: 'https://github.com/xiangheng08' },
+      { icon: { svg: gitee_icon }, link: 'https://gitee.com/xiangheng08' },
     ],
 
     search: {
