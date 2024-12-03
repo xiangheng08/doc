@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "My doc"
-  text: "A VitePress Site"
+  name: 'My doc'
+  text: 'A VitePress Site'
   tagline: My great project tagline
   actions:
     - theme: brand
@@ -23,3 +23,6 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
+<script setup lang="ts">
+  console.log(import.meta.env);
+</script>

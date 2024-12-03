@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      dotenv:
+        specifier: ^16.4.6
+        version: 16.4.6
+      minimist:
+        specifier: ^1.2.8
+        version: 1.2.8
       vitepress:
         specifier: ^1.5.0
         version: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.10.1)(postcss@8.4.49)(search-insights@2.17.3)(typescript@5.7.2)
@@ -15,6 +21,9 @@ importers:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.7.2)
     devDependencies:
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@types/node':
         specifier: ^22.10.1
         version: 22.10.1
@@ -421,6 +430,9 @@ packages:
   '@types/mdurl@2.0.0':
     resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
 
+  '@types/minimist@1.2.5':
+    resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
+
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
 
@@ -593,6 +605,10 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
+  dotenv@16.4.6:
+    resolution: {integrity: sha512-JhcR/+KIjkkjiU8yEpaB/USlzVi3i5whwOjpIRNGi9svKEXZSe+Qp6IWAjFjv+2GViAoDRCUv/QLNziQxsLqDg==}
+    engines: {node: '>=12'}
+
   emoji-regex-xs@1.0.0:
     resolution: {integrity: sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==}
 
@@ -663,6 +679,9 @@ packages:
   minimatch@9.0.5:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
   minisearch@7.1.1:
     resolution: {integrity: sha512-b3YZEYCEH4EdCAtYP7OlDyx7FdPwNzuNwLQ34SfJpM9dlbBZzeXndGavTrC+VCiRWomL21SWfMc6SCKO/U2ZNw==}
@@ -1180,6 +1199,8 @@ snapshots:
 
   '@types/mdurl@2.0.0': {}
 
+  '@types/minimist@1.2.5': {}
+
   '@types/node@22.10.1':
     dependencies:
       undici-types: 6.20.0
@@ -1375,6 +1396,8 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
+  dotenv@16.4.6: {}
+
   emoji-regex-xs@1.0.0: {}
 
   entities@4.5.0: {}
@@ -1478,6 +1501,8 @@ snapshots:
   minimatch@9.0.5:
     dependencies:
       brace-expansion: 2.0.1
+
+  minimist@1.2.8: {}
 
   minisearch@7.1.1: {}
 

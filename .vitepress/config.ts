@@ -1,3 +1,4 @@
+import './env'
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vitepress'
@@ -9,9 +10,13 @@ export default defineConfig({
 
   srcDir: 'src',
 
-  head: [['link', { rel: 'icon', href: '/logo.svg' }]],
+  base: process.env.BASE_URL,
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
+    logo: '/logo.svg',
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
