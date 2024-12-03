@@ -6,7 +6,10 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'My doc',
   description: 'A VitePress Site',
+
   srcDir: 'src',
+
+  head: [['link', { rel: 'icon', href: '/logo.svg' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
