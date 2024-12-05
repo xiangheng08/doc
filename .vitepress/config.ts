@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vitepress'
 import sidebar from './sidebar'
 import { withBase } from './utils/url'
+import sidebarPlugin from './plugins/sidebar-plugin'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -22,28 +23,29 @@ export default defineConfig({
 
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Examples', link: '/markdown-examples' },
     ],
 
     sidebar,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+    ],
   },
 
   markdown: {
-    theme: 'github-dark'
+    theme: 'github-dark',
   },
 
   vite: {
     server: {
-      port: 9527
+      port: 9527,
     },
     resolve: {
       alias: {
-        '@theme': fileURLToPath(new URL('./theme', import.meta.url))
-      }
-    }
-  }
+        '@theme': fileURLToPath(new URL('./theme', import.meta.url)),
+      },
+    },
+    plugins: [sidebarPlugin()],
+  },
 })
