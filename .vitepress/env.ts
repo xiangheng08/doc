@@ -1,3 +1,6 @@
+/*
+  加载 env
+*/
 import dotenv from 'dotenv'
 import minimist from 'minimist'
 
@@ -12,19 +15,36 @@ const args: Args = minimist(process.argv.slice(2), {
   string: ['m']
 })
 
+const commandNodeEnvMap = {
+  dev: 'development',
+  build: 'production',
+  preview: 'production'
+}
+
+type Keys = keyof typeof commandNodeEnvMap
+
+const commandNodeEnv = commandNodeEnvMap[args._[0] as Keys]
+
+if (process.env.NODE_ENV === void 0 && commandNodeEnv) {
+  /*
+    如果 NODE_ENV 的值为 undefined，则设置 NODE_ENV 的值为 commandNodeEnv
+    保证 .env[NODE_ENV] 文件被加载
+  */
+  // @ts-ignore
+  process.env.NODE_ENV = commandNodeEnv
+}
+
 // 加载 .env 文件
 dotenv.config()
 
-// 根据环境变量加载 env 文件
+// 加载 .env[NODE_ENV] 文件
 if (process.env.NODE_ENV) {
-  console.log(1, process.env.BASE_URL);
   dotenv.config({
     path: `.env.${process.env.NODE_ENV}`
   })
-  console.log(2, process.env.BASE_URL);
 }
 
-// 根据模式加载 env 文件
+// 加载 .env[mode] 文件
 if (args.mode) {
   dotenv.config({
     path: `.env.${args.mode}`

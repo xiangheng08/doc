@@ -1,0 +1,224 @@
+{
+	"code group": {
+		"prefix": "code group",
+		"scope": "markdown",
+		"body": [
+			"::: code-group",
+			"",
+			"```${1:lang} [${2:name}]",
+			"${3:code}",
+			"```",
+			"",
+			"```${4:lang} [${5:name}]",
+			"${6:code}",
+			"```",
+			"",
+			":::"
+		],
+		"description": "代码组"
+	},
+	"link components": {
+		"prefix": "link components",
+		"scope": "markdown",
+		"body": [
+			"<mylink href=\"${1:url}\">${2:text}</mylink>"
+		],
+		"description": "链接组件（新窗口打开）"
+	},
+	"link components top": {
+		"prefix": "link components top",
+		"scope": "markdown",
+		"body": [
+			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
+		],
+		"description": "链接组件（顶级窗口打开）"
+	},
+	"link components parent": {
+		"prefix": "link components parent",
+		"scope": "markdown",
+		"body": [
+			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
+		],
+		"description": "链接组件（父级窗口打开）"
+	},
+	"link anchor tag": {
+		"prefix": "link anchor tag",
+		"scope": "markdown",
+		"body": [
+			"<a target=\"_blank\" href=\"${1:url}\">${2:text}</a>"
+		],
+		"description": "a 标签链接"
+	},
+	"picture center": {
+		"prefix": ["pic center", "img center", "image center"],
+		"scope": "markdown",
+		"body": [
+			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
+		],
+		"description": "居中图片"
+	},
+	"html code block": {
+		"prefix": "code html",
+		"scope": "markdown",
+		"body": [
+			"```html",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "html 代码块"
+	},
+	"css code block": {
+		"prefix": "code css",
+		"scope": "markdown",
+		"body": [
+			"```css",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "css 代码块"
+	},
+	"js code block": {
+		"prefix": ["code js", "code javascript"],
+		"scope": "markdown",
+		"body": [
+			"```js",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "js 代码块"
+	},
+	"ts code block": {
+		"prefix": ["code ts", "code typescript"],
+		"scope": "markdown",
+		"body": [
+			"```ts",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "ts 代码块"
+	},
+	"sh code block": {
+		"prefix": ["code sh", "code shell"],
+		"scope": "markdown",
+		"body": [
+			"```sh",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "sh 代码块"
+	},
+	"bash code block": {
+		"prefix": "bash",
+		"scope": "markdown",
+		"body": [
+			"```bash",
+			"$1",
+			"```",
+			"${0}"
+		],
+		"description": "sh 代码块"
+	},
+	"info containers": {
+		"prefix": "info containers",
+		"scope": "markdown",
+		"body": [
+			"::: info $1",
+			"$2",
+			":::",
+		],
+		"description": "信息容器"
+	},
+	"tip containers": {
+		"prefix": "tip containers",
+		"scope": "markdown",
+		"body": [
+			"::: tip $1",
+			"$2",
+			":::",
+		],
+		"description": "提示容器"
+	},
+	"warning containers": {
+		"prefix": "warning containers",
+		"scope": "markdown",
+		"body": [
+			"::: warning $1",
+			"$2",
+			":::",
+		],
+		"description": "警告容器"
+	},
+	"danger containers": {
+		"prefix": "danger containers",
+		"scope": "markdown",
+		"body": [
+			"::: danger $1",
+			"$2",
+			":::",
+		],
+		"description": "危险容器"
+	},
+	"details containers": {
+		"prefix": "details containers",
+		"scope": "markdown",
+		"body": [
+			"::: details $1",
+			"$2",
+			":::",
+		],
+		"description": "可展开/详情容器"
+	},
+	"参考": {
+		"prefix": ["参考", "cankao", "ck"],
+		"scope": "markdown",
+		"body": [
+			"[参考]($1)",
+		],
+		"description": "参考链接"
+	},
+	"来源": {
+		"prefix": ["来源", "laiyuan", "ly"],
+		"scope": "markdown",
+		"body": [
+			"[来源]($1)",
+		],
+		"description": "来源链接"
+	},
+	"官网": {
+		"prefix": ["官网", "guanwang", "gw"],
+		"scope": "markdown",
+		"body": [
+			"[官网]($1)",
+		],
+		"description": "官网链接"
+	},
+	"TOC": {
+		"prefix": "toc",
+		"scope": "markdown",
+		"body": [
+			"[[toc]]",
+		],
+		"description": "目录表"
+	},
+	"prettier-ignore": {
+		"prefix": ["prettier-ignore", "ignore-prettier"],
+		"scope": "markdown",
+		"body": [
+			"<!-- prettier-ignore -->",
+		],
+		"description": "忽略格式化"
+	},
+	"sub-page": {
+		"prefix": "sub-page",
+		"scope": "markdown",
+		"body": [
+			"<sub-page url=\"$1\" height=\"100px\" />",
+		],
+		"description": "子页面"
+	}
+}

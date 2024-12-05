@@ -1,0 +1,223 @@
+{
+	"H1": {
+		"prefix": "h1",
+		"scope": "markdown",
+		"body": [
+			"# ${1:H1}",
+			"${0}"
+		],
+		"description": "标题一"
+	},
+	"H2": {
+		"prefix": "h2",
+		"scope": "markdown",
+		"body": [
+			"## ${1:H2}",
+			"${0}"
+		],
+		"description": "标题二"
+	},
+	"H3": {
+		"prefix": "h3",
+		"scope": "markdown",
+		"body": [
+			"### ${1:H3}",
+			"${0}"
+		],
+		"description": "标题三"
+	},
+	"H4": {
+		"prefix": "h4",
+		"scope": "markdown",
+		"body": [
+			"#### ${1:H4}",
+			"${0}"
+		],
+		"description": "标题四"
+	},
+	"H5": {
+		"prefix": "h5",
+		"scope": "markdown",
+		"body": [
+			"##### ${1:H5}",
+			"${0}"
+		],
+		"description": "标题五"
+	},
+	"H6": {
+		"prefix": "h6",
+		"scope": "markdown",
+		"body": [
+			"###### ${1:H6}",
+			"${0}"
+		],
+		"description": "标题六"
+	},
+	"picture": {
+		"prefix": ["pic", "img", "image"],
+		"scope": "markdown",
+		"body": [
+			"![](${1:link})",
+			"${0}"
+		],
+		"description": "图片"
+	},
+	"code block": {
+		"prefix": "code",
+		"scope": "markdown",
+		"body": [
+			"```${1:lang}",
+			"${2:code}",
+			"```",
+			"${0}"
+		],
+		"description": "代码块"
+	},
+	"code": {
+		"prefix": "code inline",
+		"scope": "markdown",
+		"body": [
+			"`${1:code}`"
+		],
+		"description": "内联代码"
+	},
+	"split line": {
+		"prefix": "line",
+		"scope": "markdown",
+		"body": [
+			"",
+			"---",
+			"",
+			"${0}"
+		],
+		"description": "分隔线"
+	},
+	"bold font": {
+		"prefix": "bo",
+		"scope": "markdown",
+		"body": [
+			"**${1:content}**${0}"
+		],
+		"description": "加粗"
+	},
+	"italic font": {
+		"prefix": "ita",
+		"scope": "markdown",
+		"body": [
+			"*${1:content}*${0}"
+		],
+		"description": "倾斜"
+	},
+	"bold italic font": {
+		"prefix": "bi",
+		"scope": "markdown",
+		"body": [
+			"***${1:content}***${0}"
+		],
+		"description": "加粗倾斜"
+	},
+	"slashed font": {
+		"prefix": "sla",
+		"scope": "markdown",
+		"body": [
+			"~~${1:content}~~${0}"
+		],
+		"description": "删除线"
+	},
+	"underline": {
+		"prefix": "u",
+		"scope": "markdown",
+		"body": [
+			"<u>${1:content}</u>${0}"
+		],
+		"description": "下划线"
+	},
+	"inline content": {
+		"prefix": "ili",
+		"scope": "markdown",
+		"body": [
+			"`${1:content}`${0}"
+		],
+		"description": "内联内容"
+	},
+	"inline math": {
+		"prefix": "ima",
+		"scope": "markdown",
+		"body": [
+			"$${1:math}$${0}"
+		],
+		"description": "内联数学公式"
+	},
+	"blocked math": {
+		"prefix": "bma",
+		"scope": "markdown",
+		"body": [
+			"$$",
+			"${1:math}",
+			"$$",
+			"${0}"
+		],
+		"description": "块级数学公式"
+	},
+	"link": {
+		"prefix": ["a", "link"],
+		"scope": "markdown",
+		"body": [
+			"[${1:title}](${2:link})${0}"
+		],
+		"description": "链接"
+	},
+	"checked block": {
+		"prefix": "che",
+		"scope": "markdown",
+		"body": [
+			"- [x] ${1:content}${0}"
+		],
+		"description": "复选框（选中）"
+	},
+	"unchecked block": {
+		"prefix": "uch",
+		"scope": "markdown",
+		"body": [
+			"- [ ] ${1:content}${0}"
+		],
+		"description": "复选框（未选中）"
+	},
+	"centered picture": {
+		"prefix": "cpic",
+		"scope": "markdown",
+		"body": [
+			"<div align=center><img src=\"${1:link}\"></div>",
+			"${0}"
+		],
+		"description": "居中图片"
+	},
+	"Insert a simple table with 2 columns": {
+		"prefix": "table 3x2",
+		"scope": "markdown",
+		"body": [
+			"|${0:title} |  |",
+			"| - | - |",
+			"|   |   |"
+		],
+		"description": "表格 3x2"
+	},
+	"Insert a simple table with 3 columns": {
+		"prefix": "table 4x2",
+		"scope": "markdown",
+		"body": [
+			"|${0:title} |  |  |",
+			"| - | - | - | ",
+			"|   |   |   | "
+		],
+		"description": "表格 4x2"
+	},
+	"text color": {
+		"prefix": "color",
+		"scope": "markdown",
+		"body": [
+			"<span style=\"color: ${1:red};\">${2:content}</span>${0}"
+		],
+		"description": "复选框（选中）"
+	}
+}

@@ -2,6 +2,8 @@ import './env'
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vitepress'
+import sidebar from './sidebar'
+import { withBase } from './utils/url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -12,9 +14,10 @@ export default defineConfig({
 
   base: process.env.BASE_URL,
 
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+  head: [['link', { rel: 'icon', href: withBase('/logo.svg') }]],
 
+  // https://vitepress.dev/reference/default-theme-config
+  themeConfig: {
     logo: '/logo.svg',
 
     nav: [
@@ -22,15 +25,7 @@ export default defineConfig({
       { text: 'Examples', link: '/markdown-examples' }
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
