@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { Plugin, UserConfig } from 'vite'
 import { DefaultTheme, SiteConfig } from 'vitepress'
+import { debounce } from '.vitepress/utils/common'
 
 const isMultiSidebar = (
   sidebar: any,
@@ -46,31 +47,54 @@ const escapeHtml = (input: string) => {
   return input.replace(regExp, (match) => map[match])
 }
 
+// 比较两个 ArticleMeta 看是否需要重启服务
+const compareArticleMeta = (meta1: ArticleMeta, meta2: ArticleMeta) => {
+  return meta1.text !== meta2.text
+}
+
 interface VitePressUserConfig extends UserConfig {
   vitepress: SiteConfig<DefaultTheme.Config>
 }
 
-export default function sidebarPlugin(): Plugin {
-  const cache = new Map<string, ArticleMeta>()
+interface SidebarPluginOptions {
+  restartWait?: number
+}
+
+export default function sidebarPlugin({
+  restartWait = 200,
+}: SidebarPluginOptions = {}): Plugin {
+  const articleMetaCache = new Map<string, ArticleMeta>()
+  const sidebarTargetPathCache = new Set<string>()
+  const needUpdateTextPathCache = new Set<string>()
 
   const handleSidebar = async (
     sidebar: DefaultTheme.SidebarItem[],
     srcDir: string,
   ) => {
     for (const item of sidebar) {
-      // 设置 sidebar 的 text 属性
-      if (!item.text && item.link) {
+      if (item.link) {
+        if (item.link.endsWith('.md')) {
+          console.warn(`sidebar item link should not end with '.md'`)
+        }
+
         const fullPath = path.join(srcDir, item.link + '.md')
+        sidebarTargetPathCache.add(fullPath)
 
-        if (existsSync(fullPath)) {
-          try {
-            const meta = await getArticleMeta(fullPath)
-            item.text = meta.text
+        // 设置 sidebar 的 text 属性
+        if (!item.text || needUpdateTextPathCache.has(fullPath)) {
+          if (existsSync(fullPath)) {
+            try {
+              const meta = await getArticleMeta(fullPath)
 
-            cache.set(fullPath, meta)
-          } catch (error) {
-            console.error(error)
+              item.text = meta.text
+
+              articleMetaCache.set(fullPath, meta)
+            } catch (error) {
+              console.error(error)
+            }
           }
+
+          needUpdateTextPathCache.delete(fullPath)
         }
       }
 
@@ -104,9 +128,24 @@ export default function sidebarPlugin(): Plugin {
       return config
     },
     configureServer({ watcher, restart }) {
+      const _restart = debounce(() => restart(), restartWait)
       watcher.add('**/*.md').on('all', async (type, path, Stats) => {
-        if (!path.endsWith('.md')) return
-        console.log(path)
+        // 不是 .md 文件，或者没有 sidebar 指向这个文件，则忽略
+        if (!path.endsWith('.md') && !sidebarTargetPathCache.has(path)) {
+          return
+        }
+
+        if (type === 'add') {
+          _restart()
+        } else if (type === 'change') {
+          const meta = await getArticleMeta(path)
+          const oldMeta = articleMetaCache.get(path)
+          if (!oldMeta || compareArticleMeta(meta, oldMeta)) {
+            _restart()
+            articleMetaCache.set(path, meta)
+            needUpdateTextPathCache.add(path)
+          }
+        }
       })
     },
   }
