@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: 'My doc'
-  text: 'A VitePress Site'
-  tagline: My great project tagline
+  name: My doc
+  text: 我的笔记
+  tagline: 在这里，留下学习的痕迹
   actions:
     - theme: brand
       text: Markdown Examples
@@ -22,3 +22,7 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
+
+```js
+console.log('Hello World!')
+```
