@@ -14,6 +14,7 @@
   "dependencies": {
     "dotenv": "^16.4.6",
     "markdown-it-mathjax3": "^4.3.2",
+    "medium-zoom": "^1.1.0",
     "minimist": "^1.2.8",
     "vitepress": "^1.5.0",
     "vue": "^3.5.13"
