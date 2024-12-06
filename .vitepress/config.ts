@@ -118,8 +118,6 @@ export default defineConfig({
   metaChunk: true, // 将公共的js提取出来
 
   vite: {
-    base: process.env.BASE_URL,
-
     server: {
       port: 9527,
     },
