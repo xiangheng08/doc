@@ -57,8 +57,16 @@ export default defineConfig({
     sidebar,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/xiangheng08', ariaLabel: 'GitHub' },
-      { icon: 'gitee', link: 'https://gitee.com/xiangheng08', ariaLabel: 'Gitee' },
+      {
+        icon: 'github',
+        link: 'https://github.com/xiangheng08',
+        ariaLabel: 'GitHub',
+      },
+      {
+        icon: 'gitee',
+        link: 'https://gitee.com/xiangheng08',
+        ariaLabel: 'Gitee',
+      },
     ],
 
     sidebarMenuLabel: '目录',
