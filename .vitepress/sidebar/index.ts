@@ -1,12 +1,6 @@
 import { DefaultTheme } from 'vitepress'
+import git from './git'
 
-export default [
-  {
-    text: 'Examples',
-    items: [
-      { text: 'Markdown Examples', link: '/markdown-examples' },
-      { text: 'Runtime API Examples', link: '/api-examples' },
-      { link: '/test/test' },
-    ],
-  },
-] satisfies DefaultTheme.Sidebar
+export default {
+  '/git/': git,
+} satisfies DefaultTheme.Sidebar
