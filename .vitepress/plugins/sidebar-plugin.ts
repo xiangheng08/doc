@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { existsSync } from 'node:fs'
-import { readFile } from 'node:fs/promises'
+import { readFile, stat } from 'node:fs/promises'
 import { Plugin, UserConfig } from 'vite'
 import { DefaultTheme, SiteConfig } from 'vitepress'
 import { debounce } from '.vitepress/utils/common'
@@ -64,42 +64,56 @@ export default function sidebarPlugin({
   restartWait = 200,
 }: SidebarPluginOptions = {}): Plugin {
   const articleMetaCache = new Map<string, ArticleMeta>()
-  const sidebarTargetPathCache = new Set<string>()
-  const needUpdateTextPathCache = new Set<string>()
+  const sidebarTargetPathCache = new Set<string>() // 所有 sidebar 中指向的文件路径
+  const needUpdateTextPathCache = new Set<string>() // 需要更新 text 属性的路径
+  let srcDir = ''
 
-  const handleSidebar = async (
-    sidebar: DefaultTheme.SidebarItem[],
-    srcDir: string,
-  ) => {
-    for (const item of sidebar) {
-      if (item.link) {
-        if (item.link.endsWith('.md')) {
-          console.warn(`sidebar item link should not end with '.md'`)
-        }
+  const handleSidebarItem = async (item: DefaultTheme.SidebarItem) => {
+    if (!item.link) return
 
-        const fullPath = path.join(srcDir, item.link + '.md')
-        sidebarTargetPathCache.add(fullPath)
+    if (item.link.endsWith('.md')) {
+      console.warn(`sidebar item link should not end with '.md'`)
+    }
 
-        // 设置 sidebar 的 text 属性
-        if (!item.text || needUpdateTextPathCache.has(fullPath)) {
-          if (existsSync(fullPath)) {
-            try {
-              const meta = await getArticleMeta(fullPath)
+    let fullPath = path.join(srcDir, item.link + '.md')
 
-              item.text = meta.text
+    if (!existsSync(fullPath)) {
+      const dir = path.join(srcDir, item.link)
+      if (existsSync(dir) && (await stat(dir)).isDirectory()) {
+        // 如果 link 是目录，则指向目录下的 index.md
+        fullPath = path.join(dir, 'index.md')
+      } else {
+        // 如果 link 指向的文件不存在，则忽略
+        return
+      }
+    }
 
-              articleMetaCache.set(fullPath, meta)
-            } catch (error) {
-              console.error(error)
-            }
-          }
+    if (!existsSync(fullPath)) return
 
-          needUpdateTextPathCache.delete(fullPath)
-        }
+    sidebarTargetPathCache.add(fullPath)
+
+    // 设置 sidebar 的 text 属性
+    if (!item.text || needUpdateTextPathCache.has(fullPath)) {
+      try {
+        const meta = await getArticleMeta(fullPath)
+
+        item.text = meta.text
+
+        articleMetaCache.set(fullPath, meta)
+      } catch (error) {
+        console.error(error)
       }
 
+      needUpdateTextPathCache.delete(fullPath)
+    }
+  }
+
+  const handleSidebar = async (sidebar: DefaultTheme.SidebarItem[]) => {
+    for (const item of sidebar) {
+      await handleSidebarItem(item)
+
       if (item.items) {
-        await handleSidebar(item.items, srcDir)
+        await handleSidebar(item.items)
       }
     }
 
@@ -109,20 +123,23 @@ export default function sidebarPlugin({
   return {
     name: 'vitepress-sidebar-plugin',
     config: async (config) => {
+      sidebarTargetPathCache.clear()
+
+      srcDir = (config as VitePressUserConfig).vitepress.srcDir
+
       const sidebar = (config as VitePressUserConfig).vitepress.site
         .themeConfig.sidebar
-      const srcDir = (config as VitePressUserConfig).vitepress.srcDir
 
       if (isMultiSidebar(sidebar)) {
         for (const key in sidebar) {
           if (Array.isArray(sidebar[key])) {
-            await handleSidebar(sidebar[key], srcDir)
+            await handleSidebar(sidebar[key])
           } else {
-            await handleSidebar(sidebar[key].items, srcDir)
+            await handleSidebar(sidebar[key].items)
           }
         }
       } else if (sidebar) {
-        await handleSidebar(sidebar, srcDir)
+        await handleSidebar(sidebar)
       }
 
       return config
