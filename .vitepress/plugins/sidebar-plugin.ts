@@ -21,6 +21,7 @@ const getArticleTitle = (content: string) => {
 
 type ArticleMeta = {
   text?: string
+  needUpdate?: boolean
 }
 
 const getArticleMeta = async (fullPath: string): Promise<ArticleMeta> => {
@@ -64,8 +65,6 @@ export default function sidebarPlugin({
   restartWait = 200,
 }: SidebarPluginOptions = {}): Plugin {
   const articleMetaCache = new Map<string, ArticleMeta>()
-  const sidebarTargetPathCache = new Set<string>() // 所有 sidebar 中指向的文件路径
-  const needUpdateTextPathCache = new Set<string>() // 需要更新 text 属性的路径
   let srcDir = ''
 
   const handleSidebarItem = async (item: DefaultTheme.SidebarItem) => {
@@ -90,10 +89,12 @@ export default function sidebarPlugin({
 
     if (!existsSync(fullPath)) return
 
-    sidebarTargetPathCache.add(fullPath)
+    const oldMeta = articleMetaCache.get(fullPath)
 
-    // 设置 sidebar 的 text 属性
-    if (!item.text || needUpdateTextPathCache.has(fullPath)) {
+    if (oldMeta && oldMeta.needUpdate) {
+      item.text = oldMeta.text
+    } else if (!item.text) {
+      // 设置 sidebar 的 text 属性
       try {
         const meta = await getArticleMeta(fullPath)
 
@@ -103,8 +104,6 @@ export default function sidebarPlugin({
       } catch (error) {
         console.error(error)
       }
-
-      needUpdateTextPathCache.delete(fullPath)
     }
   }
 
@@ -123,8 +122,6 @@ export default function sidebarPlugin({
   return {
     name: 'vitepress-sidebar-plugin',
     config: async (config) => {
-      sidebarTargetPathCache.clear()
-
       srcDir = (config as VitePressUserConfig).vitepress.srcDir
 
       const sidebar = (config as VitePressUserConfig).vitepress.site
@@ -147,8 +144,8 @@ export default function sidebarPlugin({
     configureServer({ watcher, restart }) {
       const _restart = debounce(() => restart(), restartWait)
       watcher.add('**/*.md').on('all', async (type, path, Stats) => {
-        // 不是 .md 文件，或者没有 sidebar 指向这个文件，则忽略
-        if (!path.endsWith('.md') && !sidebarTargetPathCache.has(path)) {
+        // 不是 .md 文件，或者没有处理过这个文件，则忽略
+        if (!path.endsWith('.md') && !articleMetaCache.has(path)) {
           return
         }
 
@@ -158,10 +155,12 @@ export default function sidebarPlugin({
           const meta = await getArticleMeta(path)
           const oldMeta = articleMetaCache.get(path)
           if (!oldMeta || compareArticleMeta(meta, oldMeta)) {
-            _restart()
+            meta.needUpdate = true
             articleMetaCache.set(path, meta)
-            needUpdateTextPathCache.add(path)
+            _restart()
           }
+        } else if (type === 'unlink') {
+          articleMetaCache.delete(path)
         }
       })
     },
