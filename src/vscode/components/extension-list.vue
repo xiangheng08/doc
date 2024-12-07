@@ -8,7 +8,9 @@ import list from './extension-list.json'
     <div class="extension-item" v-for="item in list" :key="item.url">
       <img class="logo" :src="withBase(item.logo)" :alt="item.name" data-no-zoom />
       <div class="info">
-        <div class="title">{{ item.name }}</div>
+        <div class="title">
+          <a :href="item.name" target="_blank">{{ item.name }}</a>
+        </div>
         <div class="description">{{ item.desc }}</div>
       </div>
     </div>
