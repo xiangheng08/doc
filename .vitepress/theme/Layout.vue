@@ -3,6 +3,7 @@ import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide, onMounted, watch } from 'vue'
 import mediumZoom from "medium-zoom"
+import ScrollToTop from './components/scroll-to-top.vue'
 
 const { isDark } = useData()
 
@@ -54,7 +55,11 @@ watch(route, setupMediumZoom)
 </script>
 
 <template>
-  <DefaultTheme.Layout />
+  <DefaultTheme.Layout >
+    <template #layout-bottom>
+      <ScrollToTop />
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 <style>
