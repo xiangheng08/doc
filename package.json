@@ -6,7 +6,7 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev --mode dev",
+    "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
     "type-check": "vue-tsc --noEmit"
