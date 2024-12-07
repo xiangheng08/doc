@@ -42,7 +42,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 const setupMediumZoom = ()=>{
   nextTick(()=>{
     // 图片预览
-    mediumZoom(".main img", { background: "rgba(0, 0, 0, 0.7)" })
+    mediumZoom(".main img:not([data-no-zoom])", { background: "rgba(0, 0, 0, 0.7)" })
   })
 }
 
