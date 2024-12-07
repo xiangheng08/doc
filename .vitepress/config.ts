@@ -106,7 +106,7 @@ export default defineConfig({
   },
 
   markdown: {
-    theme: 'github-dark',
+    theme: { light: 'github-light', dark: 'github-dark' },
     lineNumbers: false, // 启用行号
     math: true, // 启用数学公式
     image: {
