@@ -9,6 +9,7 @@ import note from './note'
 import reactNative from './react-native'
 import ts from './ts'
 import react from './react'
+import html from './html'
 
 export default {
   '/git/': git,
@@ -21,4 +22,5 @@ export default {
   '/react-native/': reactNative,
   '/ts/': ts,
   '/react/': react,
+  '/html/': html,
 } satisfies DefaultTheme.Sidebar
