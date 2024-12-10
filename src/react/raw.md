@@ -20,7 +20,7 @@ React 可以克服原生 JS 的以下缺点：
 1. 采用组件化模式，声明式编码，提高开发效率及组件复用率;
 2. 在 React Native 中可以使用 React 语法进行*移动端开发*；
 3. 使用虚拟 DOM+优秀的 Diffing 算法，尽量减少与真实 DOM 的交互。
-   ![](/images/frontend/react/4191aa5e6f634f88ae28e6d95d96ee96.png)
+   ![](./images/raw/4191aa5e6f634f88ae28e6d95d96ee96.png)
    对比两次生成的虚拟 DOM，如果重复，直接用页面之前有的 DOM，而不是全部重绘真实 DOM
 
 ### 1.2 引入文件
@@ -37,9 +37,9 @@ React 可以克服原生 JS 的以下缺点：
 
 -   更加简单地创建虚拟 DOM
     （1）使用 JSX 创建虚拟 DOM
-    ![](/images/frontend/react/a753bcdddefb4cb484d83877a3d7676e.png)
+    ![](./images/raw/a753bcdddefb4cb484d83877a3d7676e.png)
     （2）使用 JS 创建虚拟 DOM（用原生 JS，不用 babel，开发中不使用）
-    ![](/images/frontend/react/9efa15b757c2409a83609479546a1725.png)
+    ![](./images/raw/9efa15b757c2409a83609479546a1725.png)
 -   JSX 创建虚拟 DOM 的方法是 JS 方法的语法糖
 
 #### 1.3.2 JSX 语法规则
@@ -707,7 +707,7 @@ saveFormData = (dataType,event)=>{
 
 #### 2.5.2 react 生命周期（旧）
 
-![](/images/frontend/react/7f0cb63171ec4bec981099ab2699fba1.png)
+![](./images/raw/7f0cb63171ec4bec981099ab2699fba1.png)
 三条线：
 
 1. 父组件`render`–>`componentWillReceiveProps`–>`shouldComponentUpdate`–>`componentWillUpdate`–>`render`–>`componentDidUpdate`–>`componentWillUnmount`
@@ -737,7 +737,7 @@ saveFormData = (dataType,event)=>{
 
 #### 2.5.3 react 生命周期（新）
 
-![](/images/frontend/react/2ac83916ade249abb385d3337ba0b192.png)
+![](./images/raw/2ac83916ade249abb385d3337ba0b192.png)
 
 -   17 及以上版本`componentWillMount`、`componentWillUpdate`、`componentWillReceiveProps`三个钩子使用前要加 UNSAFE\_前缀才能使用，以后可能会被彻底废弃，不建议使用。
 -   新的生命周期和旧的生命周期相比，除了即将废弃三个钩子，还添加了两个新的钩子`getDerivedStateFromProps`和`getSnapshotBeforeUpdate`
@@ -747,7 +747,7 @@ saveFormData = (dataType,event)=>{
 ### 2.6 虚拟 DOM 与 DOM Diffing 算法
 
 DOM Diffing 算法对比的最小粒度是标签，且逐层对比
-![](/images/frontend/react/61006241c0e84c988425222834cc1436.png)
+![](./images/raw/61006241c0e84c988425222834cc1436.png)
 
 #### 2.6.1 key 的作用
 
@@ -1492,7 +1492,7 @@ module.exports = override(
 
 #### 7.1.4 redux 工作流程
 
-![](/images/frontend/react/78faeb43ec024fb1b3465d0ea1f8591d.png)
+![](./images/raw/78faeb43ec024fb1b3465d0ea1f8591d.png)
 
 -   `dispatch(action)`是一个函数，`action`是一个对象
 -   Action Creators（服务员）
@@ -1622,7 +1622,7 @@ createIncrementAction = (data) => ({ type: INCREMENT, data });
 
 #### 7.4.4 求和案例\_react-redux 基本使用
 
-![](/images/frontend/react/ad0fdee8536045feae6ed88996cce5b1.png)
+![](./images/raw/ad0fdee8536045feae6ed88996cce5b1.png)
 
 1. 明确两个概念：
    1）UI 组件:不能使用任何 redux 的 api，只负责页面的呈现、交互等。
@@ -1673,7 +1673,7 @@ createIncrementAction = (data) => ({ type: INCREMENT, data });
 #### 7.4.7 求和案例\_react-redux 开发者工具的使用
 
 Redux DevTools
-![](/images/frontend/react/015e8868316f4197a9a4897d5961ffe2.png)
+![](./images/raw/015e8868316f4197a9a4897d5961ffe2.png)
 
 1. 引入库
 

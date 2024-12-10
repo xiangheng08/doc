@@ -8,6 +8,7 @@ import manager from './manager'
 import note from './note'
 import reactNative from './react-native'
 import ts from './ts'
+import react from './react'
 
 export default {
   '/git/': git,
@@ -18,5 +19,6 @@ export default {
   '/manager/': manager,
   '/note/': note,
   '/react-native/': reactNative,
-  '/ts/': ts
+  '/ts/': ts,
+  '/react/': react,
 } satisfies DefaultTheme.Sidebar

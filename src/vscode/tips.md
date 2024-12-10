@@ -48,7 +48,7 @@
 1. 打开 vscode 设置
 2. 在搜索框中输入 `explorer.copyRelativePathSeparator`
 
-![](/images/other/tips/vscode/copyRelativePathSeparator.png)
+![](./images/copyRelativePathSeparator.png)
 
 ## vscode 设置悬浮提示相关设置
 

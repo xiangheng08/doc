@@ -1,6 +1,6 @@
 # 问题
 
-# 忽略以下划线开头的变量和 try catch 的 catch 参数
+## 忽略以下划线开头的变量和 try catch 的 catch 参数
 
 在 eslint 配置文件里的 `rules` 里添加以下配置：
 
