@@ -6,6 +6,42 @@ import sidebar from './sidebar'
 import { withBase } from './utils/url'
 import sidebarPlugin from './plugins/sidebar-plugin'
 
+const nav: DefaultTheme.NavItem[] = [
+  { text: 'Home', link: '/' },
+  {
+    text: '技术栈',
+    items: [
+      { text: 'Electron', link: '/electron/docs-nav' },
+      { text: 'Element Plus', link: '/element-plus/issues' },
+      { text: 'Eslint', link: '/eslint/issues' },
+      { text: '布局', link: '/layout/waterfall' },
+      { text: 'React', link: '/react/raw' },
+      { text: 'React Native', link: '/react-native/link' },
+      { text: 'TypeScript', link: '/ts/intro' },
+      { text: 'VitePress', link: '/vitepress/error' },
+    ],
+  },
+  {
+    text: '工具',
+    items: [
+      { text: '包管理工具', link: '/manager/command-list' },
+      { text: 'NVM', link: '/nvm/index' },
+      { text: 'VSCode', link: '/vscode/tips' },
+      { text: 'Windows', link: '/windows/tips' },
+    ],
+  },
+  { text: 'Git', link: '/git/command-list' },
+  {
+    text: '其他',
+    items: [
+      { text: '面试题', link: '/interview/question/unorganize/1.md' },
+      { text: '常用单词', link: '/common-words' },
+      { text: 'Emoji', link: '/emoji' },
+      { text: '语义化版本规范', link: '/sem-ver' },
+    ],
+  },
+]
+
 const searchConfig: Pick<DefaultTheme.Config, 'search'> = {}
 
 if (isProd) {
@@ -49,10 +85,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
 
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-    ],
+    nav,
 
     sidebar,
 

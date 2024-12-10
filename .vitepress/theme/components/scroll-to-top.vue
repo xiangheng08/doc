@@ -47,6 +47,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  z-index: 999;
 
   background-color: var(--vp-button-alt-bg);
 
