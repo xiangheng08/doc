@@ -11,7 +11,8 @@ const nav: DefaultTheme.NavItem[] = [
     text: '技术栈',
     items: [
       { text: 'HTML', link: '/html/intro' },
-      { text: 'CSS', link: '/css' },
+      { text: 'CSS', link: '/css/index' },
+      { text: 'JavaScript', link: '/js/index' },
       { text: 'Electron', link: '/electron/docs-nav' },
       { text: 'Element Plus', link: '/element-plus/issues' },
       { text: 'Eslint', link: '/eslint/issues' },

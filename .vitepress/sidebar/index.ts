@@ -12,6 +12,7 @@ import react from './react'
 import html from './html'
 import css from './css'
 import vscode from './vscode'
+import js from './js'
 
 export default {
   '/git/': git,
@@ -27,4 +28,5 @@ export default {
   '/html/': html,
   '/css/': css,
   '/vscode/': vscode,
+  '/js/': js,
 } satisfies DefaultTheme.Sidebar
