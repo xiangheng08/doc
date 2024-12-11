@@ -2,6 +2,8 @@
 
 语义化版本规范（Semantic Versioning，简称 SemVer）是一种软件版本号命名约定，旨在提供一种简单而清晰的版本号格式，使开发者更容易理解软件版本之间的变化和兼容性。
 
+详细的标准可以在[semver.org](https://semver.org/lang/zh-CN/)查看
+
 ## 组成
 
 SemVer 的版本号由三个数字组成：主版本号、次版本号和修订版本号，形式为 "MAJOR.MINOR.PATCH"。
