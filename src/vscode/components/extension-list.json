@@ -60,7 +60,7 @@
 		"url": "https://marketplace.visualstudio.com/items?itemName=octref.vetur"
 	},
 	{
-		"name": "Vue Language Features (Volar)",
+		"name": "Vue - Official",
 		"desc": "vue3 的官方扩展",
 		"logo": "/vscode/images/extension-logo/vue.png",
 		"url": "https://marketplace.visualstudio.com/items?itemName=Vue.volar"

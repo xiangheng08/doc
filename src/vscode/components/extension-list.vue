@@ -9,7 +9,7 @@ import list from './extension-list.json'
       <img class="logo" :src="withBase(item.logo)" :alt="item.name" data-no-zoom />
       <div class="info">
         <div class="title">
-          <a :href="item.name" target="_blank">{{ item.name }}</a>
+          <a :href="item.url" target="_blank">{{ item.name }}</a>
         </div>
         <div class="description">{{ item.desc }}</div>
       </div>
@@ -48,7 +48,7 @@ import list from './extension-list.json'
     }
     .description {
       font-size: 0.9rem;
-      color: var(--vp-c-text-2)
+      color: var(--vp-c-text-1)
     }
   }
 }
