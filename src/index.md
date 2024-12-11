@@ -11,8 +11,8 @@ hero:
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 关于本站
+      link: /about
 
 features:
   - title: Feature A
@@ -26,3 +26,7 @@ features:
 ```js
 console.log('Hello World!')
 ```
+
+<script>
+  console.log('Hello World!')
+</script>
