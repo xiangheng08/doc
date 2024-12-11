@@ -13,6 +13,7 @@ import html from './html'
 import css from './css'
 import vscode from './vscode'
 import js from './js'
+import nodejs from './nodejs'
 
 export default {
   '/git/': git,
@@ -29,4 +30,5 @@ export default {
   '/css/': css,
   '/vscode/': vscode,
   '/js/': js,
+  '/nodejs/': nodejs,
 } satisfies DefaultTheme.Sidebar
