@@ -36,10 +36,11 @@ const nav: DefaultTheme.NavItem[] = [
   {
     text: '其他',
     items: [
-      { text: '面试题', link: '/interview/question/unorganize/1.md' },
+      { text: '面试题', link: '/interview/question/unorganize/1' },
       { text: '常用单词', link: '/common-words' },
       { text: 'Emoji', link: '/emoji' },
       { text: '语义化版本规范', link: '/sem-ver' },
+      { text: '笔记', link: '/note/code-point-and-code-unit' },
     ],
   },
 ]

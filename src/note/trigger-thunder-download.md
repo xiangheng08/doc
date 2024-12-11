@@ -3,9 +3,9 @@
 <script setup>
   import { onMounted } from 'vue';
   import { withBase } from 'vitepress';
-  import { convertThunderDownload } from '@/utils/run/convertThunderDownload.js';
+  import { convertThunderDownload } from './convert-thunder-download.js';
   
-  const url = globalThis?.location?.origin + withBase('/images/other/vscode-extension-logo/vue.png');
+  const url = globalThis?.location?.origin + withBase('/logo.svg');
 
   onMounted(()=>convertThunderDownload());
 </script>
@@ -35,7 +35,7 @@ thunder 协议是迅雷公司自己定义的协议。
 
 批量修改
 
-<<< @/.vitepress/utils/run/convertThunderDownload.js
+<<< ./convert-thunder-download.js
 
 ```html
 <!-- 在标签加上 data-thunder 属性 -->
