@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useData, useRoute, useRouter } from 'vitepress'
+import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { nextTick, provide, onMounted, watch } from 'vue'
+import { nextTick, provide, onMounted } from 'vue'
 import mediumZoom from 'medium-zoom'
 import ScrollToTop from './components/scroll-to-top.vue'
 
