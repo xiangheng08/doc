@@ -10,6 +10,8 @@ import reactNative from './react-native'
 import ts from './ts'
 import react from './react'
 import html from './html'
+import css from './css'
+import vscode from './vscode'
 
 export default {
   '/git/': git,
@@ -23,4 +25,6 @@ export default {
   '/ts/': ts,
   '/react/': react,
   '/html/': html,
+  '/css/': css,
+  '/vscode/': vscode,
 } satisfies DefaultTheme.Sidebar

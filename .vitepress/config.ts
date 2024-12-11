@@ -7,11 +7,11 @@ import { withBase } from './utils/url'
 import sidebarPlugin from './plugins/sidebar-plugin'
 
 const nav: DefaultTheme.NavItem[] = [
-  { text: 'Home', link: '/' },
   {
     text: '技术栈',
     items: [
       { text: 'HTML', link: '/html/intro' },
+      { text: 'CSS', link: '/css' },
       { text: 'Electron', link: '/electron/docs-nav' },
       { text: 'Element Plus', link: '/element-plus/issues' },
       { text: 'Eslint', link: '/eslint/issues' },

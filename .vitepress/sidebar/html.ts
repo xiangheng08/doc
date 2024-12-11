@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'vitepress'
 
 export default [
+  { link: '/html' },
   { link: '/html/intro' },
   { link: '/html/url' },
   { link: '/html/attribute' },
@@ -8,7 +9,6 @@ export default [
   { link: '/html/semantic' },
   {
     text: '标签',
-    collapsed: true,
     items: [
       { link: '/html/tags/text' },
       { link: '/html/tags/list' },
@@ -27,7 +27,6 @@ export default [
   },
   {
     text: '其他',
-    collapsed: true,
     items: [
       {
         link: '/html/other/escape-character',
