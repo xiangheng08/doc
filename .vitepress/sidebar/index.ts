@@ -14,6 +14,8 @@ import css from './css'
 import vscode from './vscode'
 import js from './js'
 import nodejs from './nodejs'
+import vue from './vue'
+import vitepress from './vitepress'
 
 export default {
   '/git/': git,
@@ -31,4 +33,6 @@ export default {
   '/vscode/': vscode,
   '/js/': js,
   '/nodejs/': nodejs,
+  '/vue/': vue,
+  '/vitepress/': vitepress,
 } satisfies DefaultTheme.Sidebar

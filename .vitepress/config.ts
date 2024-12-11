@@ -15,6 +15,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'JavaScript', link: '/js/index' },
       { text: 'NodeJS', link: '/nodejs/index' },
       { text: 'TypeScript', link: '/ts/intro' },
+      { text: 'Vue', link: '/vue/core' },
       { text: 'React', link: '/react/raw' },
       { text: 'React Native', link: '/react-native/link' },
       { text: 'Electron', link: '/electron/docs-nav' },
