@@ -6,4 +6,5 @@ export default [
   { link: '/ts/tips' },
   { link: '/ts/tool-type' },
   { link: '/ts/type-annotation-template' },
+  { link: '/ts/functions' },
 ] satisfies DefaultTheme.Sidebar
