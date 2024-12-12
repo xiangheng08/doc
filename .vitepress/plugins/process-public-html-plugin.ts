@@ -46,20 +46,28 @@ export default function processPublicHtml(): Plugin {
       const base = server.config.base
       // 开发模式：拦截 public 文件夹中的 HTML 请求
       server.middlewares.use(async (req, res, next) => {
-        if (req.url && req.url.endsWith('.html')) {
-          const publicPath = path.join(
-            server.config.publicDir,
-            path.relative(base, req.url),
-          )
+        if (!req.url) return next()
+
+        const url = new URL(
+          req.url,
+          `http://${req.headers.host || 'a.com'}`,
+        )
+
+        if (!url.pathname.endsWith('.html')) return next()
+
+        const publicPath = path.join(
+          server.config.publicDir,
+          path.relative(base, url.pathname),
+        )
+
+        if (!existsSync(publicPath)) return next()
+
           try {
-            let content = await fs.readFile(publicPath, 'utf-8')
-            res.setHeader('Content-Type', 'text/html')
-            res.end(transformHtml(content, server.config.base))
-          } catch (err) {
-            // 如果文件不存在或出现错误，继续处理下一个中间件
-            next()
-          }
-        } else {
+          let content = await fs.readFile(publicPath, 'utf-8')
+          res.setHeader('Content-Type', 'text/html')
+          res.end(transformHtml(content, server.config.base))
+        } catch (err) {
+          // 如果文件不存在或出现错误，继续处理下一个中间件
           next()
         }
       })
