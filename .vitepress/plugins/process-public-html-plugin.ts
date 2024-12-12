@@ -6,6 +6,9 @@ import { SiteConfig } from 'vitepress'
 import fg from 'fast-glob'
 
 const transformHtml = (content: string, base: string = '') => {
+  if(base && !base.endsWith('/')){
+    base += '/'
+  }
   // 替换 BASE_URL 占位符
   content = content.replace(/%BASE_URL%/g, base)
 
