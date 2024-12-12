@@ -20,7 +20,7 @@ Mustache 标签中的内容会被当做 JavaScript 表达式进行解析，最�
 <span v-once>这个将不会改变: {{ msg }}</span>
 ```
 
-<script>
+<!-- <script>
 export default { data() { return {num: 1, counter: 0 } } }
 </script>
 
@@ -28,7 +28,7 @@ export default { data() { return {num: 1, counter: 0 } } }
 <t-button size="small" @click="num++">改变值</t-button>
 <p>普通的: {{ num }}</p>
 <p v-once>使用 v-once 指令: {{ num }}</p>
-</demo>
+</demo> -->
 
 ### 原始 HTML
 
@@ -47,14 +47,14 @@ new Vue({
 <p>使用 v-html 指令: <span v-html="rawHtml"></span></p>
 ```
 
-<script setup>
+<!-- <script setup>
 let rawHtml = ref('<span style="color: red">This should be red.</span>')
 </script>
 
 <demo>
 	<p>使用插值语法: {{ rawHtml }}</p>
 	<p>使用 v-html 指令: <span v-html="rawHtml"></span></p>
-</demo>
+</demo> -->
 
 这个 `span` 的内容将会被替换成为 `rawHtml` 的值，直接作为 HTML，相当于把 `rawHtml` 给这个元素的 `innerHTML` 属性。注意，不能在 `v-html` 中使用模板语法或组件，Vue 不会解析其中的 DOM 模板或组件。
 
@@ -128,12 +128,12 @@ let rawHtml = ref('<span style="color: red">This should be red.</span>')
 </div>
 ```
 
-<demo>
+<!-- <demo>
 	<div id="example-1">
 		<t-button size="small" v-on:click="counter += 1">Add 1</t-button>
 		<p>The button above has been clicked {{ counter }} times.</p>
 	</div>
-</demo>
+</demo> -->
 
 ### 动态参数 <version text="2.6.0+" />
 

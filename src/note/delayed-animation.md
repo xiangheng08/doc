@@ -2,7 +2,7 @@
 
 在某些场景中需要将动画效果的进度使用 js 控制，如果是简单的动画，自是不难，但比较复杂的动画效果，使用 js 控制进度就比较麻烦了。比如下面的例子。
 
-<delayed-animation-example />
+<!-- <delayed-animation-example /> -->
 
 ```css
 @keyframes move {
@@ -56,4 +56,4 @@ boxDom.style.setProperty('--delay', `-${input.value}s`);
 
 上面 demo 的代码如下：
 
-<<< @/.vitepress/examples/frontend/note/delayedAnimationExample.vue
+<!-- <<< @/.vitepress/examples/frontend/note/delayedAnimationExample.vue -->

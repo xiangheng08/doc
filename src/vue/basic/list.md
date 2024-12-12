@@ -123,4 +123,4 @@ example1.items = example1.items.filter(function (item) {
 
 ### 注意事项
 
-由于 JavaScript 的限制，Vue 不能检测数组和对象的变化。[响应式原理](/frontend/vue/basic/reactivity)
+由于 JavaScript 的限制，Vue 不能检测数组和对象的变化。[响应式原理](/vue/basic/reactivity)

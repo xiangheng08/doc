@@ -28,5 +28,6 @@ console.log('Hello World!')
 ```
 
 <script>
-  console.log('Hello World!')
+import { onMounted } from 'vue'
+onMounted(() => console.log('Hello World!'))
 </script>

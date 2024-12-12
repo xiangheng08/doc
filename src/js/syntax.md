@@ -2,9 +2,9 @@
 
 ## 输出
 
-在了解 JavaString 语法前，应该先了解下 JavaString 的[输出方式](/frontend/js/output)，毕竟没有输出，就看不来到效果。
+在了解 JavaString 语法前，应该先了解下 JavaString 的[输出方式](/js/output)，毕竟没有输出，就看不来到效果。
 
-[前往](/frontend/js/output)
+[前往](/js/output)
 
 ## 标识符
 
