@@ -10,15 +10,15 @@ interface Args extends minimist.ParsedArgs {
 
 const args: Args = minimist(process.argv.slice(2), {
   alias: {
-    m: 'mode'
+    m: 'mode',
   },
-  string: ['m']
+  string: ['m'],
 })
 
 const commandNodeEnvMap = {
   dev: 'development',
   build: 'production',
-  preview: 'production'
+  preview: 'production',
 }
 
 type Keys = keyof typeof commandNodeEnvMap
@@ -40,16 +40,17 @@ dotenv.config()
 // 加载 .env[NODE_ENV] 文件
 if (process.env.NODE_ENV) {
   dotenv.config({
-    path: `.env.${process.env.NODE_ENV}`
+    path: `.env.${process.env.NODE_ENV}`,
   })
 }
 
 // 加载 .env[mode] 文件
 if (args.mode) {
   dotenv.config({
-    path: `.env.${args.mode}`
+    path: `.env.${args.mode}`,
   })
 }
 
 export const isDev = process.env.NODE_ENV === 'development'
 export const isProd = process.env.NODE_ENV === 'production'
+export const noSearch = args.search === false

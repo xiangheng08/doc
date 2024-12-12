@@ -1,10 +1,13 @@
-import { isProd } from './env'
+import { isProd, noSearch } from './env'
 import { fileURLToPath, URL } from 'node:url'
 
 import { DefaultTheme, defineConfig } from 'vitepress'
 import sidebar from './sidebar'
 import { withBase } from './utils/url'
 import sidebarPlugin from './plugins/sidebar-plugin'
+import processPublicHtml, {
+  processPublicHtmlBuildEndHook,
+} from './plugins/process-public-html-plugin'
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -49,7 +52,7 @@ const nav: DefaultTheme.NavItem[] = [
 
 const searchConfig: Pick<DefaultTheme.Config, 'search'> = {}
 
-if (isProd) {
+if (isProd && !noSearch) {
   searchConfig.search = {
     provider: 'local', // 本地搜索
     options: {
@@ -166,7 +169,7 @@ export default defineConfig({
       },
     },
 
-    plugins: [sidebarPlugin()],
+    plugins: [sidebarPlugin(), processPublicHtml()],
 
     css: {
       preprocessorOptions: {
@@ -175,5 +178,9 @@ export default defineConfig({
         },
       },
     },
+  },
+
+  async buildEnd(siteConfig) {
+    await processPublicHtmlBuildEndHook(siteConfig)
   },
 })
