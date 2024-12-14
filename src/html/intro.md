@@ -4,7 +4,7 @@
 
 HTML 是网页使用的语言，定义了网页的结构和内容。浏览器访问网站，其实就是从服务器下载 HTML 代码，然后渲染出网页。
 
-HTML 的全名是“超文本标记语言”（HyperText Markup Language），上个世纪 90 年代由欧洲核子研究中心的物理学家蒂姆·伯纳斯-李（Tim Berners-Lee）发明。它的最大特点就是支持超链接，点击链接就可以跳转到其他网页，从而构成了整个互联网。
+HTML 的全名是“超文本标记语言”（HyperText Markup Language），上个世纪 90 年代由欧洲核子研究中心的物理学家[蒂姆·伯纳斯-李](https://baike.baidu.com/item/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF%C2%B7%E6%9D%8E/8868412)（[Tim Berners-Lee](https://zh.wikipedia.org/wiki/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF-%E6%9D%8E)）发明。它的最大特点就是支持超链接，点击链接就可以跳转到其他网页，从而构成了整个互联网。
 
 1999 年，HTML 4.01 版发布，成为广泛接受的 HTML 标准。2014 年，HTML 5 发布，这是目前正在使用的版本。
 
@@ -15,13 +15,13 @@ HTML 的全名是“超文本标记语言”（HyperText Markup Language），�
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8" />
-		<title>网页标题</title>
-	</head>
-	<body>
-		<p>Hello World</p>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>网页标题</title>
+  </head>
+  <body>
+    <p>Hello World</p>
+  </body>
 </html>
 ```
 
@@ -143,11 +143,11 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
-	<body></body>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body></body>
 </html>
 ```
 
@@ -192,9 +192,9 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>网页标题</title>
-	</head>
+  <head>
+    <title>网页标题</title>
+  </head>
 </html>
 ```
 
@@ -202,13 +202,13 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 `<head>`的子元素一般有下面七个，后文会一一介绍。
 
--   `<meta>`：设置网页的元数据。
--   `<link>`：连接外部样式表。
--   `<title>`：设置网页标题。
--   `<style>`：放置内嵌的样式表。
--   `<script>`：引入脚本。
--   `<noscript>`：浏览器不支持脚本时，所要显示的内容。
--   `<base>`：设置网页内部相对 URL 的计算基准。
+- `<meta>`：设置网页的元数据。
+- `<link>`：连接外部样式表。
+- `<title>`：设置网页标题。
+- `<style>`：放置内嵌的样式表。
+- `<script>`：引入脚本。
+- `<noscript>`：浏览器不支持脚本时，所要显示的内容。
+- `<base>`：设置网页内部相对 URL 的计算基准。
 
 ### `<meta>`
 
@@ -218,9 +218,9 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 ```html
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Page Title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page Title</title>
 </head>
 ```
 
@@ -246,9 +246,9 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 ```html
 <head>
-	<meta name="description" content="HTML 语言入门" />
-	<meta name="keywords" content="HTML,教程" />
-	<meta name="author" content="张三" />
+  <meta name="description" content="HTML 语言入门" />
+  <meta name="keywords" content="HTML,教程" />
+  <meta name="author" content="张三" />
 </head>
 ```
 
@@ -288,7 +288,7 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 ```html
 <head>
-	<title>网页标题</title>
+  <title>网页标题</title>
 </head>
 ```
 
@@ -302,12 +302,12 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 ```html
 <html>
-	<head>
-		<title>网页标题</title>
-	</head>
-	<body>
-		<p>hello world</p>
-	</body>
+  <head>
+    <title>网页标题</title>
+  </head>
+  <body>
+    <p>hello world</p>
+  </body>
 </html>
 ```
 

@@ -10,6 +10,9 @@
   border-radius: 8px;
   margin: 16px 0;
   transition: background-color 0.5s ease;
+  box-shadow: var(--vp-shadow-2);
+}
+.dark .demo {
   background-color: var(--vp-c-bg-alt);
 }
 </style>
