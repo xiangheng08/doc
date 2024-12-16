@@ -58,4 +58,8 @@ export default [
     text: 'Vue 核心',
     link: '/vue/core',
   },
+  {
+    text: '实践应用',
+    items: [{ link: '/vue/practice/batch-render' }],
+  },
 ] satisfies DefaultTheme.Sidebar
