@@ -20,7 +20,7 @@
 import { ref, reactive } from 'vue'
 
 // 模拟数据
-const totalItems = 1000
+const totalItems = 300
 const items = Array.from({ length: totalItems }, (_, i) => `Item ${i + 1}`)
 
 const visibleItems = reactive([]) // 当前显示的数据
