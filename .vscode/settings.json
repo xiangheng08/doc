@@ -1,5 +1,11 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.quickSuggestions": {
       "other": "on",
       "comments": "on",
