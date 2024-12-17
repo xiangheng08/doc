@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, watch, shallowRef, onMounted } from 'vue'
+import { watch, shallowRef, onMounted } from 'vue'
 import { withBase, useData } from 'vitepress'
 
 const props = defineProps({
