@@ -20,15 +20,15 @@ Mustache 标签中的内容会被当做 JavaScript 表达式进行解析，最�
 <span v-once>这个将不会改变: {{ msg }}</span>
 ```
 
-<!-- <script>
+<script>
 export default { data() { return {num: 1, counter: 0 } } }
 </script>
 
 <demo>
-<t-button size="small" @click="num++">改变值</t-button>
+<button @click="num++">改变值</button>
 <p>普通的: {{ num }}</p>
 <p v-once>使用 v-once 指令: {{ num }}</p>
-</demo> -->
+</demo>
 
 ### 原始 HTML
 
