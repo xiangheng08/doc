@@ -7,6 +7,10 @@ export default [
   { link: '/css/media-query' },
   {
     text: '样式',
-    items: [{ link: '/css/style/cursor' }],
+    items: [
+      { link: '/css/style/text' },
+      { link: '/css/style/background' },
+      { link: '/css/style/cursor' },
+    ],
   },
 ] satisfies DefaultTheme.Sidebar
