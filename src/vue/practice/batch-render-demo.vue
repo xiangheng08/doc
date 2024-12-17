@@ -1,18 +1,15 @@
 <template>
-  <Demo>
-    <div>
-      <h5>分批渲染 Demo</h5>
-      <div class="box">
-        <button @click="startRendering">开始渲染</button>
-        <button @click="clear">清空</button>
-        <span class="render-status" v-if="visibleItems.length > 0">{{
-          rendering ? '正在渲染...' : '渲染完成'
-        }}</span>
-      </div>
-      <ul>
-        <li v-for="item in visibleItems" :key="item">{{ item }}</li>
-      </ul>
+  <Demo title="分批渲染 Demo">
+    <div class="box">
+      <button @click="startRendering">开始渲染</button>
+      <button @click="clear">清空</button>
+      <span class="render-status" v-if="visibleItems.length > 0">{{
+        rendering ? '正在渲染...' : '渲染完成'
+      }}</span>
     </div>
+    <ul>
+      <li v-for="item in visibleItems" :key="item">{{ item }}</li>
+    </ul>
   </Demo>
 </template>
 
@@ -68,11 +65,11 @@ const clear = () => {
 ul {
   height: 200px;
   overflow-y: scroll;
+  margin-bottom: 0;
 }
 .box {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
 }
 .render-status {
   font-size: 14px;
