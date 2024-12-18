@@ -11,6 +11,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  height: {
+    type: [String, Number],
+    default: 150,
+  }
 })
 
 const iframeRef = shallowRef<HTMLIFrameElement>()
@@ -39,6 +43,8 @@ const getSrc = () => {
     (isDark.value ? 'dark' : 'light')
   )
 }
+
+defineExpose({ iframeRef, getSrc })
 </script>
 
 <template>
@@ -46,6 +52,7 @@ const getSrc = () => {
     ref="iframeRef"
     class="embed-iframe"
     :src="getSrc()"
+    :height="height"
     frameborder="0"
     allowfullscreen
     :loading="lazy ? 'lazy' : 'eager'"
@@ -56,6 +63,5 @@ const getSrc = () => {
 <style scoped>
 .embed-iframe {
   width: 100%;
-  height: 100%;
 }
 </style>

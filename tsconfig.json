@@ -16,5 +16,10 @@
       "@theme/*": [".vitepress/theme/*"]
     }
   },
-  "include": ["env.d.ts", "src/**/*", ".vitepress/**/*"]
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    ".vitepress/**/*",
+    "global-components.d.ts"
+  ]
 }
