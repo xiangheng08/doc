@@ -6,6 +6,7 @@ import Layout from './Layout.vue'
 import EmbedIframe from '../components/embed-iframe.vue'
 import Demo from '../components/demo.vue'
 import DemoIframe from '../components/demo-iframe.vue'
+import CssDemo from '../components/css-demo.vue'
 
 export default {
   extends: DefaultTheme,
@@ -17,5 +18,6 @@ export default {
     app.component('EmbedIframe', EmbedIframe)
     app.component('Demo', Demo)
     app.component('DemoIframe', DemoIframe)
+    app.component('CssDemo', CssDemo)
   },
 } satisfies Theme

@@ -8,5 +8,6 @@ declare module 'vue' {
     EmbedIframe: typeof import('./.vitepress/components/embed-iframe.vue')['default']
     Demo: typeof import('./.vitepress/components/demo.vue')['default']
     DemoIframe: typeof import('./.vitepress/components/demo-iframe.vue')['default']
+    CssDemo: typeof import('./.vitepress/components/css-demo.vue')['default']
   }
 }

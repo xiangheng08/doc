@@ -1,5 +1,14 @@
 # TEST
 
+<css-demo></css-demo>
+
+```css
+p {
+  color: red;
+}
+```
+
+
 <demo-iframe src="/test/base-url.html" open-page>
   <template #header-right>Right</template>
 </demo-iframe>
