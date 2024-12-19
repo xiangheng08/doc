@@ -22,7 +22,7 @@ viewport 是虚拟窗口，虚拟窗口大于手机的屏幕尺寸。手机端�
 
 移动设备上有三个 viewport。
 
-<img src="./images/viewport.png" alt="alt" style="margin: auto;border: 6px solid var(--vp-c-divider);border-radius: 10px;"/>
+<!-- <img src="./images/viewport.png" alt="alt" style="margin: auto;border: 6px solid var(--vp-c-divider);border-radius: 10px;"/> -->
 
 ### layout viewport（布局视口）
 
