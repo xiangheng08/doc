@@ -2,6 +2,7 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   { link: '/css/index' },
+  { link: '/css/effect' },
   { link: '/css/selector' },
   { link: '/css/box-model' },
   { link: '/css/media-query' },
