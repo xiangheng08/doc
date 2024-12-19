@@ -1,128 +1,134 @@
 [
-	{
-		"name": "Chinese (Simplified)",
-		"desc": "vscode 简体中文语言包",
-		"logo": "/vscode/images/extension-logo/lang.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans"
-	},
-	{
-		"name": "CodeGeeX",
-		"desc": "CodeGeeX 是一个基于AI大模型的编程辅助工具，可以实现自动代码生成、代码翻译、自动编写注释等功能，支持20多种编程语言。",
-		"logo": "/vscode/images/extension-logo/code-geex.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=aminer.codegeex"
-	},
-	{
-		"name": "Live Server",
-		"desc": "快速开启一个开发服务器，具有热更新",
-		"logo": "/vscode/images/extension-logo/live-server.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
-	},
-	{
-		"name": "Prettier - Code formatter",
-		"desc": "代码格式化，可以很好的保证代码风格的一致性",
-		"logo": "/vscode/images/extension-logo/prettier.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
-	},
-	{
-		"name": "Code Translate",
-		"desc": "一款纯粹的 vscode 滑词翻译插件（非常好用，在遇到陌生代码，可以根据单词意思知道其作用）",
-		"logo": "/vscode/images/extension-logo/code-translate.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=w88975.code-translate"
-	},
-	{
-		"name": "indent-rainbow",
-		"desc": "使用不同颜色区分代码的不同等级",
-		"logo": "/vscode/images/extension-logo/indent-rainbow.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow"
-	},
-	{
-		"name": "Path Intellisense",
-		"desc": "路径自动补全，虽然这个功能 vscode 自带但是有时候不会生效",
-		"logo": "/vscode/images/extension-logo/path-intellisense.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense"
-	},
-	{
-		"name": "Auto Rename Tag",
-		"desc": "html 标签自动补全",
-		"logo": "/vscode/images/extension-logo/auto-rename-tag.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag"
-	},
-	{
-		"name": "Polacode",
-		"desc": "将代码转为图片",
-		"logo": "/vscode/images/extension-logo/polacode.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=pnp.polacode"
-	},
-	{
-		"name": "Vetur",
-		"desc": "vue2 的官方扩展",
-		"logo": "/vscode/images/extension-logo/vue.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=octref.vetur"
-	},
-	{
-		"name": "Vue - Official",
-		"desc": "vue3 的官方扩展",
-		"logo": "/vscode/images/extension-logo/vue.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=Vue.volar"
-	},
-	{
-		"name": "TypeScript Vue Plugin (Volar)",
-		"desc": "vue3 的 ts 扩展，主要用于提供 .vue 文件 ts 类型",
-		"logo": "/vscode/images/extension-logo/vue-ts.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin"
-	},
-	{
-		"name": "Markdown All in One",
-		"desc": "一款功能强大的Markdown插件，提供了丰富的快捷键和命令，可以简化Markdown文档的编写过程。 它支持快速插入标题、列表、表格、链接等常用元素，还可以实现代码块的高亮显示和导出HTML/PDF等格式。",
-		"logo": "/vscode/images/extension-logo/markdown-all-in-one.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"
-	},
-	{
-		"name": "Markdown Preview Github Styling",
-		"desc": "以 Github 的风格预览 Markdown",
-		"logo": "/vscode/images/extension-logo/markdown-preview-github-styles.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles"
-	},
-	{
-		"name": "Code Spell Checker",
-		"desc": "单词拼写检查",
-		"logo": "/vscode/images/extension-logo/code-spell-checker.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker"
-	},
-	{
-		"name": "Lorem ipsum",
-		"desc": "生成并插入随机文本",
-		"logo": "/vscode/images/extension-logo/lorem-ipsum.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=Tyriar.lorem-ipsum"
-	},
-	{
-		"name": "Regex Previewer",
-		"desc": "正则测试",
-		"logo": "/vscode/images/extension-logo/regex.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=chrmarti.regex"
-	},
-	{
-		"name": "uniapp-snippet",
-		"desc": "uniapp 片段提示",
-		"logo": "/vscode/images/extension-logo/uniapp-snippet.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=dlhtx.uniapp-snippet"
-	},
-	{
-		"name": "ESLint",
-		"desc": "将 ESLint 集成到 vscode 中",
-		"logo": "/vscode/images/extension-logo/eslint.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"
-	},
-	{
-		"name": "GitLens — Git supercharged",
-		"desc": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
-		"logo": "/vscode/images/extension-logo/gitlens.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
-	},
-	{
-		"name": "Git History",
-		"desc": "View git log, file history, compare branches or commits",
-		"logo": "/vscode/images/extension-logo/githistory.png",
-		"url": "https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory"
-	}
+  {
+    "name": "Chinese (Simplified)",
+    "desc": "vscode 简体中文语言包",
+    "logo": "/vscode/images/extension-logo/lang.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans"
+  },
+  {
+    "name": "CodeGeeX",
+    "desc": "CodeGeeX 是一个基于AI大模型的编程辅助工具，可以实现自动代码生成、代码翻译、自动编写注释等功能，支持20多种编程语言。",
+    "logo": "/vscode/images/extension-logo/code-geex.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=aminer.codegeex"
+  },
+  {
+    "name": "Live Server",
+    "desc": "快速开启一个开发服务器，具有热更新",
+    "logo": "/vscode/images/extension-logo/live-server.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+  },
+  {
+    "name": "Prettier - Code formatter",
+    "desc": "代码格式化，可以很好的保证代码风格的一致性",
+    "logo": "/vscode/images/extension-logo/prettier.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
+  },
+  {
+    "name": "Code Translate",
+    "desc": "一款纯粹的 vscode 滑词翻译插件（非常好用，在遇到陌生代码，可以根据单词意思知道其作用）",
+    "logo": "/vscode/images/extension-logo/code-translate.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=w88975.code-translate"
+  },
+  {
+    "name": "indent-rainbow",
+    "desc": "使用不同颜色区分代码的不同等级",
+    "logo": "/vscode/images/extension-logo/indent-rainbow.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow"
+  },
+  {
+    "name": "Path Intellisense",
+    "desc": "路径自动补全，虽然这个功能 vscode 自带但是有时候不会生效",
+    "logo": "/vscode/images/extension-logo/path-intellisense.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense"
+  },
+  {
+    "name": "Auto Rename Tag",
+    "desc": "html 标签自动补全",
+    "logo": "/vscode/images/extension-logo/auto-rename-tag.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag"
+  },
+  {
+    "name": "Polacode",
+    "desc": "将代码转为图片",
+    "logo": "/vscode/images/extension-logo/polacode.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=pnp.polacode"
+  },
+  {
+    "name": "Vetur",
+    "desc": "vue2 的官方扩展",
+    "logo": "/vscode/images/extension-logo/vue.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=octref.vetur"
+  },
+  {
+    "name": "Vue - Official",
+    "desc": "vue3 的官方扩展",
+    "logo": "/vscode/images/extension-logo/vue.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=Vue.volar"
+  },
+  {
+    "name": "TypeScript Vue Plugin (Volar)",
+    "desc": "vue3 的 ts 扩展，主要用于提供 .vue 文件 ts 类型",
+    "logo": "/vscode/images/extension-logo/vue-ts.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin"
+  },
+  {
+    "name": "Markdown All in One",
+    "desc": "一款功能强大的Markdown插件，提供了丰富的快捷键和命令，可以简化Markdown文档的编写过程。 它支持快速插入标题、列表、表格、链接等常用元素，还可以实现代码块的高亮显示和导出HTML/PDF等格式。",
+    "logo": "/vscode/images/extension-logo/markdown-all-in-one.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"
+  },
+  {
+    "name": "Markdown Preview Github Styling",
+    "desc": "以 Github 的风格预览 Markdown",
+    "logo": "/vscode/images/extension-logo/markdown-preview-github-styles.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles"
+  },
+  {
+    "name": "Code Spell Checker",
+    "desc": "单词拼写检查",
+    "logo": "/vscode/images/extension-logo/code-spell-checker.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker"
+  },
+  {
+    "name": "Lorem ipsum",
+    "desc": "生成并插入随机文本",
+    "logo": "/vscode/images/extension-logo/lorem-ipsum.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=Tyriar.lorem-ipsum"
+  },
+  {
+    "name": "Regex Previewer",
+    "desc": "正则测试",
+    "logo": "/vscode/images/extension-logo/regex.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=chrmarti.regex"
+  },
+  {
+    "name": "uniapp-snippet",
+    "desc": "uniapp 片段提示",
+    "logo": "/vscode/images/extension-logo/uniapp-snippet.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=dlhtx.uniapp-snippet"
+  },
+  {
+    "name": "ESLint",
+    "desc": "将 ESLint 集成到 vscode 中",
+    "logo": "/vscode/images/extension-logo/eslint.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"
+  },
+  {
+    "name": "GitLens — Git supercharged",
+    "desc": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
+    "logo": "/vscode/images/extension-logo/gitlens.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
+  },
+  {
+    "name": "Git History",
+    "desc": "View git log, file history, compare branches or commits",
+    "logo": "/vscode/images/extension-logo/githistory.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory"
+  },
+  {
+    "name": "Todo Tree",
+    "desc": "Todo Tree 是一个强大的 VS Code 扩展，用于快速管理和查看代码中的 TODO 注释。它会扫描你的项目文件，自动收集诸如 TODO、FIXME 或自定义标签的注释，并以树状结构展示在侧边栏中。你可以轻松定位这些标记，快速导航到对应的代码行，提升任务跟踪和代码维护效率。扩展还支持自定义关键词、文件过滤、颜色高亮等功能，适合开发者在复杂项目中整理未完成的任务",
+    "logo": "/vscode/images/extension-logo/todo-tree.png",
+    "url": "https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree"
+  }
 ]

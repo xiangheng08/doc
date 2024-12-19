@@ -1,6 +1,6 @@
-# VScode 快捷键
+# VS Code 快捷键
 
-在 Vscode 中，你可能会看到 `ctrl + k, ctrl + c` 这样的快捷键，其中 `Ctrl + K` 不是一个单独的快捷键，而是一个多步组合键的起始部分。当按下 `Ctrl + K` 后，在按下其他键才能触发功能。
+在 VS Code 中，你可能会看到 `ctrl + k, ctrl + c` 这样的快捷键，其中 `Ctrl + K` 不是一个单独的快捷键，而是一个多步组合键的起始部分。当按下 `Ctrl + K` 后，在按下其他键才能触发功能。
 
 -   单行注释：`ctrl + k, ctrl + c`（按下 ctrl + k 不放，再按 c） 或 `ctrl + /`
 -   取消单行注释：`ctrl + k, ctrl + u` (按下 ctrl + k 不放，再按 u)
