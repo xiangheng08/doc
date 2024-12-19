@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { shallowRef, useSlots } from 'vue'
 import type EmbedIframe from './embed-iframe.vue'
+import { withBase } from 'vitepress'
 
 defineProps({
   title: {
@@ -19,6 +20,10 @@ defineProps({
     type: [String, Number],
     default: 150,
   },
+  openPage: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const embedIframeRef = shallowRef<InstanceType<typeof EmbedIframe>>()
@@ -32,8 +37,14 @@ const slots = useSlots()
 
 <template>
   <Demo :title="title" divider-line class="demo-iframe">
-    <template v-for="(_, name) in slots" #[name]>
-      <slot :name="name"></slot>
+    <template #header-left v-if="slots['header-left']">
+      <slot name="header-left"></slot>
+    </template>
+    <template #header-right v-if="slots['header-right'] || openPage">
+      <slot name="header-right"></slot>
+      <a v-if="openPage" :href="withBase(src)" target="_blank">
+        在新页面打开
+      </a>
     </template>
     <EmbedIframe ref="embedIframeRef" v-bind="{ src, lazy, height }" />
   </Demo>
