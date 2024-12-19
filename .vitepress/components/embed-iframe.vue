@@ -57,6 +57,7 @@ defineExpose({ iframeRef, getSrc })
     allowfullscreen
     :loading="lazy ? 'lazy' : 'eager'"
     @load="broadcastAppearance()"
+    sandbox="allow-scripts allow-popups allow-downloads allow-modals"
   ></iframe>
 </template>
 
