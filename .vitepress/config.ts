@@ -26,6 +26,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'Eslint', link: '/eslint/issues' },
       { text: 'VitePress', link: '/vitepress/error' },
       { text: '布局', link: '/layout/waterfall' },
+      { text: '浏览器', link: '/browser/reflow-repaint' },
     ],
   },
   {

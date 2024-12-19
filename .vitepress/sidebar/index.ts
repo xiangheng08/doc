@@ -16,6 +16,7 @@ import js from './js'
 import nodejs from './nodejs'
 import vue from './vue'
 import vitepress from './vitepress'
+import browser from './browser'
 
 export default {
   '/git/': git,
@@ -35,4 +36,5 @@ export default {
   '/nodejs/': nodejs,
   '/vue/': vue,
   '/vitepress/': vitepress,
+  '/browser/': browser,
 } satisfies DefaultTheme.Sidebar
