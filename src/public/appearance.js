@@ -1,15 +1,28 @@
 ;(function () {
   const url = new URL(location.href)
 
+  const setAppearance = (appearance) => {
+    document.documentElement.style.colorScheme = appearance
+    if (appearance === 'dark') {
+      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('light')
+    } else {
+      document.documentElement.classList.add('light')
+      document.documentElement.classList.remove('dark')
+    }
+  }
+
   if (url.searchParams.has('appearance')) {
-    document.documentElement.style.colorScheme =
-      url.searchParams.get('appearance')
+    setAppearance(url.searchParams.get('appearance'))
+    // 去除 URL 参数
+    url.searchParams.delete('appearance')
+    history.replaceState(null, null, url.toString())
   } else {
     // 根据系统主题设置
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.style.colorScheme = 'dark'
+      setAppearance('dark')
     } else {
-      document.documentElement.style.colorScheme = 'light'
+      setAppearance('light')
     }
   }
 
@@ -19,7 +32,7 @@
       event.data !== null &&
       event.data.type === 'appearance'
     ) {
-      document.documentElement.style.colorScheme = event.data.value
+      setAppearance(event.data.value)
     }
   })
 })()
