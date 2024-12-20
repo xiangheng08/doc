@@ -729,7 +729,7 @@ function isYesterday(date) {
 /**
  * 去除 url 多余的斜杠(/)
  */
-export const trimExtraSlashes = (url: string) => {
+export const trimExtraSlashes = (url) => {
   return url.replace(/(?<!:)\/\/+/g, '/')
 }
 ```
@@ -738,4 +738,21 @@ export const trimExtraSlashes = (url: string) => {
 
 ```js
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+```
+
+## 小驼峰转短横线分隔
+
+```js
+const camelToKebabCase = (input) => {
+  return input.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
+```
+
+## 获取 tan 角度
+
+```js
+const getTanDeg = (deg: number) => {
+  const rad = (deg * Math.PI) / 180
+  return Math.tan(rad)
+}
 ```

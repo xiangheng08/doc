@@ -104,3 +104,101 @@ export class ObserverIntersection {
   }
 }
 ```
+
+## 防抖
+
+```ts
+export function debounce<T extends any[], R, THIS>(
+	this: THIS,
+  fn: (...args: T) => R,
+  wait?: number
+): (...args: T) => void {
+  let timeout: NodeJS.Timeout | null = null;
+  return function (this: THIS, ...args: T) {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      fn.apply(this, args);
+    }, wait);
+  };
+}
+```
+
+## hasOwnProperty
+
+```ts
+const rawHasOwnProperty = Object.prototype.hasOwnProperty
+
+export const hasOwnProperty = <T extends object, K extends PropertyKey>(
+  obj: T,
+  key: K,
+): boolean => rawHasOwnProperty.call(obj, key)
+
+export const hasOwnProperties = <T extends object, K extends PropertyKey>(
+  obj: T,
+  keys: K[],
+): boolean => keys.every(key => hasOwnProperty(obj, key))
+
+export const hasOwnOrProperties = <T extends object, K extends PropertyKey>(
+  obj: T,
+  keys: K[],
+): boolean => keys.some(key => hasOwnProperty(obj, key))
+```
+
+## 挑选属性 Pick
+
+```ts
+export const pickProperties = <T extends object, K extends keyof T>(
+  obj: T,
+  ...keys: K[]
+) => {
+  const uniqueKeys = Array.from(new Set(keys))
+  return uniqueKeys.reduce(
+    (acc, key) => {
+      if (key in obj) {
+        acc[key] = obj[key]
+      }
+      return acc
+    },
+    {} as Pick<T, K>,
+  )
+}
+```
+
+## 排除属性 Omit
+
+```ts
+export const omitProperties = <T extends object, K extends keyof T>(
+  obj: T,
+  ...keys: K[]
+) => {
+  const uniqueKeys = Array.from(new Set(keys))
+  return uniqueKeys.reduce(
+    (acc, key) => {
+      delete acc[key]
+      return acc
+    },
+    Object.assign({}, obj),
+  ) as Omit<T, K>
+}
+```
+
+## 修改所有 value 值 Record
+
+```ts
+export const record = <T extends Record<string | number | symbol, any>, V>(
+  obj: T,
+  value: V,
+): Record<keyof T, V> => {
+  return Object.keys(obj).reduce(
+    (acc, key) => {
+      acc[key as keyof T] = value
+      return acc
+    },
+    {} as Record<keyof T, V>,
+  )
+}
+```
+
+
