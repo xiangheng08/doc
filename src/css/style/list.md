@@ -76,7 +76,7 @@ ul {
 更多取值请看下面的 demo
 
 <script setup>
-import ListStyleTypeDemo from './list-style-type-demo.vue'
+import ListStyleTypeDemo from './components/list-style-type-demo.vue'
 </script>
 
 <ListStyleTypeDemo />

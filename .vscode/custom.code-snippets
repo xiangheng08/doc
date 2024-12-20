@@ -17,30 +17,6 @@
 		],
 		"description": "代码组"
 	},
-	"link components": {
-		"prefix": "link components",
-		"scope": "markdown",
-		"body": [
-			"<mylink href=\"${1:url}\">${2:text}</mylink>"
-		],
-		"description": "链接组件（新窗口打开）"
-	},
-	"link components top": {
-		"prefix": "link components top",
-		"scope": "markdown",
-		"body": [
-			"<mylink href=\"${1:url}\" top>${2:text}</mylink>"
-		],
-		"description": "链接组件（顶级窗口打开）"
-	},
-	"link components parent": {
-		"prefix": "link components parent",
-		"scope": "markdown",
-		"body": [
-			"<mylink href=\"${1:url}\" parent>${2:text}</mylink>"
-		],
-		"description": "链接组件（父级窗口打开）"
-	},
 	"link anchor tag": {
 		"prefix": "link anchor tag",
 		"scope": "markdown",
@@ -213,12 +189,14 @@
 		],
 		"description": "忽略格式化"
 	},
-	"sub-page": {
-		"prefix": "sub-page",
+  "script setup": {
+		"prefix": "script setup",
 		"scope": "markdown",
 		"body": [
-			"<sub-page url=\"$1\" height=\"100px\" />",
+			"<script setup>",
+      "$1",
+      "</script>",
 		],
-		"description": "子页面"
-	}
+		"description": "script setup"
+	},
 }

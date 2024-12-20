@@ -11,10 +11,10 @@
 ## outline 轮廓
 
 <script setup>
-import OutlineDemo from './outline-demo.vue'
-import OutlineStyleDemo from './outline-style-demo.vue'
-import OutlineWidthDemo from './outline-width-demo.vue'
-import OutlineOffsetDemo from './outline-offset-demo.vue'
+import OutlineDemo from './components/outline-demo.vue'
+import OutlineStyleDemo from './components/outline-style-demo.vue'
+import OutlineWidthDemo from './components/outline-width-demo.vue'
+import OutlineOffsetDemo from './components/outline-offset-demo.vue'
 </script>
 
 <OutlineDemo />
