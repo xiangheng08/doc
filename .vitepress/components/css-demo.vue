@@ -12,6 +12,14 @@ const props = defineProps({
       return []
     },
   },
+  justifyStart: {
+    type: Boolean,
+    default: false,
+  },
+  property: {
+    type: String,
+    default: '',
+  },
 })
 
 const active = ref(0)
@@ -23,9 +31,16 @@ const camelToKebabCase = (input: string) => {
 </script>
 
 <template>
-  <Demo divider-line title="CSS Demo" class="css-demo">
-    <div class="css-demo-content-wrap">
-      <div class="css-demo-content">
+  <Demo
+    divider-line
+    :title="'CSS Demo' + (property ? `: ${property}` : '')"
+    class="css-demo"
+  >
+    <div class="css-demo-content-wrap" :style="{ height }">
+      <div
+        class="css-demo-content"
+        :class="{ 'justify-start': justifyStart }"
+      >
         <slot :activeStyle="activeStyle"></slot>
       </div>
     </div>
@@ -61,7 +76,7 @@ const camelToKebabCase = (input: string) => {
 <style lang="scss" scoped>
 .css-demo {
   :deep(.content) {
-    padding: 0;
+    padding: 14px 0;
     display: flex;
     justify-content: space-between;
   }
@@ -71,10 +86,9 @@ const camelToKebabCase = (input: string) => {
     border-left: 1px solid var(--vp-c-divider);
   }
   .value-list-wrap {
-    margin: 14px 0;
     padding: 0 14px;
     overflow: hidden auto;
-    height: calc(100% - 28px);
+    height: 100%;
   }
   .value-item {
     margin: 10px;
@@ -83,6 +97,7 @@ const camelToKebabCase = (input: string) => {
     cursor: pointer;
     outline: solid 1px var(--vp-c-divider);
     padding: 8px 14px;
+    overflow: auto hidden;
     &:hover {
       outline: solid 1px var(--vp-c-brand-2);
     }
@@ -92,6 +107,8 @@ const camelToKebabCase = (input: string) => {
   }
   .code-line {
     font-family: var(--vp-font-family-mono);
+    white-space: nowrap;
+    width: fit-content;
     .property {
       color: var(--c-property);
     }
@@ -109,6 +126,9 @@ const camelToKebabCase = (input: string) => {
     justify-content: center;
     min-width: 100%;
     min-height: 100%;
+    &.justify-start {
+      justify-content: flex-start;
+    }
   }
 
   --c-property: #005cc5;
