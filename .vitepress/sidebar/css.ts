@@ -12,6 +12,7 @@ export default [
       { link: '/css/style/link' },
       { link: '/css/style/list' },
       { link: '/css/style/table' },
+      { link: '/css/style/outline' },
       { link: '/css/style/cursor' },
     ],
   },
