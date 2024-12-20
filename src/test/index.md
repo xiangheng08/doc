@@ -1,10 +1,16 @@
 # TEST
 
-<css-demo></css-demo>
+<script setup>
+  import TestCssDemo from './test-css-demo.vue'
+</script>
+
+<TestCssDemo/>
 
 ```css
 p {
   color: red;
+  font-weight: bold;
+  font-size: 20px;
 }
 ```
 

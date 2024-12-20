@@ -1,25 +1,54 @@
 <script setup lang="ts">
-defineProps({
+import { computed, CSSProperties, PropType, ref } from 'vue'
+
+const props = defineProps({
   height: {
     type: String,
     default: '280px',
   },
+  styles: {
+    type: Array as PropType<CSSProperties[]>,
+    default(): CSSProperties[] {
+      return []
+    },
+  },
 })
+
+const active = ref(0)
+const activeStyle = computed(() => props.styles[active.value])
+
+const camelToKebabCase = (input: string) => {
+  return input.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
 </script>
 
 <template>
   <Demo divider-line title="CSS Demo" class="css-demo">
-    <div class="css-demo-content">
-      <slot></slot>
+    <div class="css-demo-content-wrap">
+      <div class="css-demo-content">
+        <slot :activeStyle="activeStyle"></slot>
+      </div>
     </div>
     <div class="style-values" :style="{ height }">
       <div class="value-list-wrap">
         <div class="value-list">
-          <div class="value-item" v-for="item in 20">
-            <div class="code-line">
-              <span class="property">color</span>
-              <span>:&nbsp;</span>
-              <span class="value">red</span>
+          <div
+            class="value-item"
+            v-for="(style, index) in styles"
+            :key="index"
+            @click="active = index"
+            :class="{ selected: active === index }"
+          >
+            <div
+              class="code-line"
+              v-for="(value, property) in style"
+              :key="property"
+            >
+              <span class="property">{{
+                camelToKebabCase(property)
+              }}</span>
+              <span>: </span>
+              <span class="value">{{ value }}</span>
               <span>;</span>
             </div>
           </div>
@@ -42,9 +71,10 @@ defineProps({
     border-left: 1px solid var(--vp-c-divider);
   }
   .value-list-wrap {
-    padding: 14px 14px;
+    margin: 14px 0;
+    padding: 0 14px;
     overflow: hidden auto;
-    height: 100%;
+    height: calc(100% - 28px);
   }
   .value-item {
     margin: 10px;
@@ -61,7 +91,7 @@ defineProps({
     }
   }
   .code-line {
-    display: block;
+    font-family: var(--vp-font-family-mono);
     .property {
       color: var(--c-property);
     }
@@ -69,11 +99,16 @@ defineProps({
       color: var(--c-value);
     }
   }
-  .css-demo-content {
+  .css-demo-content-wrap {
     flex: 1;
+    overflow: auto;
+  }
+  .css-demo-content {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 100%;
+    min-height: 100%;
   }
 
   --c-property: #005cc5;
