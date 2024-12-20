@@ -12,13 +12,21 @@ const props = defineProps({
       return []
     },
   },
+  property: {
+    type: String,
+    default: '',
+  },
   justifyStart: {
     type: Boolean,
     default: false,
   },
-  property: {
+  block: {
+    type: Boolean,
+    default: false,
+  },
+  padding: {
     type: String,
-    default: '',
+    default: '0',
   },
 })
 
@@ -39,7 +47,8 @@ const camelToKebabCase = (input: string) => {
     <div class="css-demo-content-wrap" :style="{ height }">
       <div
         class="css-demo-content"
-        :class="{ 'justify-start': justifyStart }"
+        :class="{ 'justify-start': justifyStart, block }"
+        :style="{ padding }"
       >
         <slot :activeStyle="activeStyle"></slot>
       </div>
@@ -128,6 +137,11 @@ const camelToKebabCase = (input: string) => {
     min-height: 100%;
     &.justify-start {
       justify-content: flex-start;
+    }
+    &.block {
+      display: block;
+      align-items: unset;
+      justify-content: unset;
     }
   }
 
