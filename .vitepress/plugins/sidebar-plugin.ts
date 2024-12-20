@@ -43,9 +43,9 @@ const escapeHtml = (input: string) => {
     '`': '',
   }
 
-  const regExp = /[&<>"'/`]/g
+  const regex = /[&<>"'/`]/g
 
-  return input.replace(regExp, (match) => map[match])
+  return input.replaceAll('\\', '').replace(regex, (match) => map[match])
 }
 
 // 比较两个 ArticleMeta 看是否需要重启服务
