@@ -27,7 +27,13 @@ export default [
   { link: '/css/selector' },
   { link: '/css/box-model' },
   { link: '/css/media-query' },
-  { text: '布局', items: [{ link: '/css/layout/multiple-column' }] },
+  {
+    text: '布局',
+    items: [
+      { link: '/css/layout/multiple-column' },
+      { link: '/css/layout/flex' },
+    ],
+  },
   { text: '属性', items: [{ link: '/css/property/clip-path' }] },
   { link: '/css/values-and-units' },
   {
