@@ -184,7 +184,7 @@ export const omitProperties = <T extends object, K extends keyof T>(
 }
 ```
 
-## 修改所有 value 值 Record
+## 修改所有属性的值 Record
 
 ```ts
 export const record = <T extends Record<string | number | symbol, any>, V>(
