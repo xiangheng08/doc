@@ -32,6 +32,7 @@ export default [
     items: [
       { link: '/css/layout/multiple-column' },
       { link: '/css/layout/flex' },
+      { link: '/css/layout/grid' },
     ],
   },
   { text: '属性', items: [{ link: '/css/property/clip-path' }] },
