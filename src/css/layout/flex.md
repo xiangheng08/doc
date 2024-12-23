@@ -299,3 +299,5 @@ Flex 是 Flexible Box 的缩写，意为 "**弹性布局**"，用来为盒状模
 <AlignSelfDemo />
 
 [参考: Flex 布局教程：语法篇 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+[旧的](/css/layout/old-flex)
