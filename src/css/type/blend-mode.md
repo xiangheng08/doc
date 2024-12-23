@@ -1,6 +1,6 @@
 # \<blend-mode\>
 
-`<blend-mode>` 用于描述当元素重叠时，颜色应当如何呈现。它被用于 [`background-blend-mode`](/frontend/css/style/background.html#background-blend-mode-混合) 和 `mix-blend-mode` 属性。
+`<blend-mode>` 用于描述当元素重叠时，颜色应当如何呈现。它被用于 [`background-blend-mode`](/css/style/background#background-blend-mode-混合) 和 `mix-blend-mode` 属性。
 
 取值：
 

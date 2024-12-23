@@ -178,7 +178,7 @@
 
 定义该元素的背景图片，以及背景色如何混合。
 
-取值：[`<blend-mode>`](/frontend/css/types/blend-mode)
+取值：[`<blend-mode>`](/css/type/blend-mode)
 
 ```css
 .box {
