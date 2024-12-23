@@ -21,6 +21,7 @@ export default [
   { link: '/css/overflow-scroll' },
   { link: '/css/float' },
   { link: '/css/position' },
+  { link: '/css/transform' },
   { link: '/css/transition' },
   { link: '/css/animation' },
   { link: '/css/selector' },

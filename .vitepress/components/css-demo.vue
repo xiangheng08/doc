@@ -12,6 +12,12 @@ const props = defineProps({
       return []
     },
   },
+  extraStyles: {
+    type: Array as PropType<CSSProperties[]>,
+    default(): CSSProperties[] {
+      return []
+    },
+  },
   property: {
     type: String,
     default: '',
@@ -28,10 +34,17 @@ const props = defineProps({
     type: String,
     default: '0',
   },
+  overflowHidden: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const active = ref(0)
 const activeStyle = computed(() => props.styles[active.value])
+const extraStyle = computed<CSSProperties | undefined>(
+  () => props.extraStyles[active.value],
+)
 
 const camelToKebabCase = (input: string) => {
   return input.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
@@ -47,10 +60,14 @@ const camelToKebabCase = (input: string) => {
     <div class="css-demo-content-wrap" :style="{ height }">
       <div
         class="css-demo-content"
-        :class="{ 'justify-start': justifyStart, block }"
+        :class="{
+          'justify-start': justifyStart,
+          block,
+          'overflow-hidden': overflowHidden,
+        }"
         :style="{ padding }"
       >
-        <slot :activeStyle="activeStyle"></slot>
+        <slot :activeStyle="activeStyle" :extraStyle="extraStyle"></slot>
       </div>
     </div>
     <div class="style-values" :style="{ height }">
@@ -135,6 +152,7 @@ const camelToKebabCase = (input: string) => {
     justify-content: center;
     min-width: 100%;
     min-height: 100%;
+    position: relative;
     &.justify-start {
       justify-content: flex-start;
     }
@@ -142,6 +160,9 @@ const camelToKebabCase = (input: string) => {
       display: block;
       align-items: unset;
       justify-content: unset;
+    }
+    &.overflow-hidden {
+      overflow: hidden;
     }
   }
 
