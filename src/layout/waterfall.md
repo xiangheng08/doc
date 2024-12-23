@@ -4,7 +4,11 @@
 
 ## 效果
 
-[点击查看](/layout/waterfall-demo.html)
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
+<a :href="withBase('/layout/waterfall-demo.html')" target="_blank" rel="noopener noreferrer">点击查看</a>
 
 ## 实现原理
 
