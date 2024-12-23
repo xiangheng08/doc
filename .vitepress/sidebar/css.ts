@@ -30,9 +30,12 @@ export default [
   {
     text: '布局',
     items: [
-      { link: '/css/layout/multiple-column' },
+      { link: '/css/layout/float' },
+      { link: '/css/layout/responsive' },
       { link: '/css/layout/flex' },
       { link: '/css/layout/grid' },
+      { link: '/css/layout/table' },
+      { link: '/css/layout/multiple-column' },
     ],
   },
   { text: '属性', items: [{ link: '/css/property/clip-path' }] },
