@@ -27,7 +27,7 @@ features:
 console.log('Hello World!')
 ```
 
-<script>
+<script setup>
 import { onMounted } from 'vue'
 onMounted(() => console.log('Hello World!'))
 </script>

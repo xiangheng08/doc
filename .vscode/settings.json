@@ -21,6 +21,7 @@
     "typeof",
     "unplugin",
     "vitepress",
-    "vuex"
+    "vuex",
+    "vite"
   ]
 }

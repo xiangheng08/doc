@@ -50,6 +50,9 @@ jobs:
         env:
           BASE_URL: /doc
           COPYRIGHT: Copyright © 2022-present <a href="https://github.com/xiangheng08" target="_blank" class="copyright-link">xiangheng08</a>
+          VITE_REPOSITORY_URL: https://github.com/xiangheng08/doc
+          VITE_ISSUES_URL: https://github.com/xiangheng08/doc/issues
+          VITE_PR_URL: https://github.com/xiangheng08/doc/pulls
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
