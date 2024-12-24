@@ -1,21 +1,25 @@
 {
-	"compilerOptions": {
-		"outDir": "dist",
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"allowJs": true,
-		"strict": true,
-		"jsx": "preserve",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./docs/.vitepress/*"],
-			"@theme/*": ["./docs/.vitepress/theme/*"],
-			"@hooks/*": ["./docs/.vitepress/utils/hooks/*"]
-		},
-		"types": ["node"]
-	},
-	"include": ["docs/.vitepress/**/*.ts", "docs/.vitepress/**/*.d.ts"]
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@theme/*": [".vitepress/theme/*"]
+    }
+  },
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    ".vitepress/**/*",
+    "global-components.d.ts"
+  ]
 }

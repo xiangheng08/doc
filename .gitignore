@@ -1,21 +1,11 @@
 node_modules
-docs/.vitepress/cache
-docs/.vitepress/dist
-docs/.vitepress/.temp
-docs/.vitepress/auto-imports.d.ts
-docs/.vitepress/components.d.ts
 
-.vitepress/cache
+# vitepress build output
 .vitepress/dist
+.vitepress/cache
 .vitepress/.temp
-.vitepress/auto-imports.d.ts
-.vitepress/components.d.ts
 
-copylocation
-
-config.mts.timestamp*.*
-
-PSA.send.config.js
-fs.send.config.js
-
+# dotenv environment variables file
+.env
 .env.*
+!.env.example

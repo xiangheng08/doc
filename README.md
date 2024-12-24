@@ -1,25 +1,23 @@
-# My Doc
+# Doc
 
-## 将打包后将文件复制到指定目录
+## 目录结构
 
-在项目根目录下新建名为 copylocation 的文件
+- 每个技术栈在 src 目录下都有一个单独的目录，如 src/react、src/vue 等。
+- 组件放在各自的 components 目录下，比如 vue 的 transition 组件需要演示组件，则放在 src/vue/components 目录下，如果 transition 有单独的目录则放在 src/vue/transition/components 目录下。
+- 图片与组件存放规则一样
 
-内容如下：
+## 侧边栏
 
+如果需要自动生成侧边栏，请将 sidebar 的 text 按照以下格式书写：
+
+```ts
+{
+  // $[原 text 属性值](需要生成的目录路径)
+  text: '$[text](/src/js)',
+}
 ```
-path = D:\WWW\doc
-noExistsCreate = true
-```
-- path：复制到的目录，复制前目录内若有文件自动清空
-- noExistsCreate：如果目录不存在，是否创建（不会递归创建，所以需要检查 path 的上一级目录必须存在）
 
+## 代办
 
-## LOAD_ENV
-
-`.env.{{LOAD_ENV}}`
-
-```sh
-BASE_URL=/doc # 打包后访问路径
-OUT_DIR=/dist/build # 打包输出目录
-COPYRIGHT=Copyright © 2022-present mine # 版权信息
-```
+- [ ] 实现“自动生成侧边栏”（不急）
+- [ ] 添加图片预览[参考](https://www.whbbit.cn/2024/01/06/%E7%BB%99%E4%BD%A0%E7%9A%84vitepress%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E5%8A%9F%E8%83%BD/)

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="%BASE_URL%appearance.js"></script>
+  <title>平滑滚动</title>
+  <style>
+    .nav {
+      width: 389px;
+      padding: 5px;
+      margin: 20px auto 0 auto;
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .scroll-container {
+      width: 400px;
+      height: 260px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      border: 1px solid;
+      margin: 20px auto 0 auto;
+    }
+
+    .scroll-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 5em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <a href="#inner-page-1">page-1</a>
+    <a href="#inner-page-2">page-2</a>
+    <a href="#inner-page-3">page-3</a>
+  </div>
+  <div class="scroll-container">
+    <div class="scroll-page" id="inner-page-1">1</div>
+    <div class="scroll-page" id="inner-page-2">2</div>
+    <div class="scroll-page" id="inner-page-3">3</div>
+  </div>
+</body>
+
+</html>
