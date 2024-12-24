@@ -43,3 +43,11 @@ const avatarRef = ref<InstanceType<typeof ElAvatar>>();
 ```
 
 用了自动导入的话，一定要使用 `import type` 导入，防止和自动导入冲突。
+
+## el-table 设置 fixed 后，有 1px 的滚动
+
+```css
+.el-table .el-table-fixed-column--right.is-first-column::before {
+  bottom: 0px;
+}
+```
