@@ -11,4 +11,12 @@ export default [
     // collapsed: false,
     // items: [],
   },
+  {
+    text: '脚本',
+    items: [
+      { link: '/git/script/auto_push' },
+      { link: '/git/script/push-bundle' },
+      { link: '/git/script/powershell-history' },
+    ],
+  },
 ] satisfies DefaultTheme.Sidebar
