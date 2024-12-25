@@ -18,6 +18,7 @@ import vue from './vue'
 import vitepress from './vitepress'
 import browser from './browser'
 import mysql from './mysql'
+import windows from './windows'
 
 export default {
   '/git/': git,
@@ -39,4 +40,5 @@ export default {
   '/vitepress/': vitepress,
   '/browser/': browser,
   '/mysql/': mysql,
+  '/windows/': windows,
 } satisfies DefaultTheme.Sidebar

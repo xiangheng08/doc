@@ -16,7 +16,6 @@ export default [
     items: [
       { link: '/git/script/auto_push' },
       { link: '/git/script/push-bundle' },
-      { link: '/git/script/powershell-history' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
