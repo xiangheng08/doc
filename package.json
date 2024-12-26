@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
+    "build:no-search": "vitepress build --no-search",
     "preview": "vitepress preview",
     "type-check": "vue-tsc --noEmit"
   },
