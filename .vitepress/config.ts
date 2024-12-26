@@ -56,6 +56,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'Emoji', link: '/emoji' },
       { text: '语义化版本规范', link: '/sem-ver' },
       { text: '笔记', link: '/note/code-point-and-code-unit' },
+      { text: 'Links', link: '/links' },
     ],
   },
 ]
