@@ -3,6 +3,12 @@
 ## 超出文字省略
 
 ```css
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 p {
 	overflow: hidden; /* 溢出部分隐藏 */
 	text-overflow: ellipsis; /* 超出部分省略号表示 */
