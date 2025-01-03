@@ -7,4 +7,5 @@ export default [
   { link: '/ts/tips' },
   { link: '/ts/tool-type' },
   { link: '/ts/type-annotation-template' },
+  { link: '/ts/event-target' },
 ] satisfies DefaultTheme.Sidebar
