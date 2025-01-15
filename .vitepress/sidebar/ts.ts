@@ -8,4 +8,5 @@ export default [
   { link: '/ts/tool-type' },
   { link: '/ts/type-annotation-template' },
   { link: '/ts/event-target' },
+  { link: '/ts/event-emitter' },
 ] satisfies DefaultTheme.Sidebar
