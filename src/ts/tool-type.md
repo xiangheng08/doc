@@ -87,7 +87,7 @@ type DeepReadonly<T> =
     { readonly [K in keyof T]: DeepReadonly<T[K]> }
   : T;
 
-// 仅考虑对象
+// 仅考虑普通对象
 type DeepReadonly<T> = {
   readonly [K in keyof T]: DeepReadonly<T[K]>;
 }
