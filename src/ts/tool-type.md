@@ -77,6 +77,22 @@ type Test2 = UnionToIntersection<Test>;
 // type Test2 = { a: string } & { b: number } & { c: boolean };
 ```
 
+### 深度 Readonly
+
+```ts
+type DeepReadonly<T> =
+  T extends Function ? T : // 函数类型保持不变
+  T extends object ?
+    T extends Array<infer U> ? ReadonlyArray<DeepReadonly<U>> : // 处理数组
+    { readonly [K in keyof T]: DeepReadonly<T[K]> }
+  : T;
+
+// 仅考虑对象
+type DeepReadonly<T> = {
+  readonly [K in keyof T]: DeepReadonly<T[K]>;
+}
+```
+
 ## 内置的工具类型
 
 ### `Partial<T>` 属性变可选
