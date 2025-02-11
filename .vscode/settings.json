@@ -19,9 +19,10 @@
     "rgba",
     "tdesign",
     "typeof",
+    "unobserve",
     "unplugin",
+    "vite",
     "vitepress",
-    "vuex",
-    "vite"
+    "vuex"
   ]
 }
