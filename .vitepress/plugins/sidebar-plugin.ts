@@ -1,9 +1,8 @@
 import path from 'node:path'
 import { existsSync } from 'node:fs'
 import { readFile, stat } from 'node:fs/promises'
-import { Plugin, UserConfig } from 'vite'
-import { DefaultTheme, SiteConfig } from 'vitepress'
 import { debounce } from '.vitepress/utils/common'
+import type { DefaultTheme, SiteConfig, Plugin, UserConfig } from 'vitepress'
 
 const isMultiSidebar = (
   sidebar: any,

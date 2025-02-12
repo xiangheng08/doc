@@ -1,9 +1,8 @@
-import { Plugin } from 'vite'
+import path from 'path'
+import fg from 'fast-glob'
 import fs from 'fs/promises'
 import { existsSync } from 'fs'
-import path from 'path'
-import { SiteConfig } from 'vitepress'
-import fg from 'fast-glob'
+import type { SiteConfig, Plugin } from 'vitepress'
 
 const transformHtml = (content: string, base: string = '') => {
   if(base && !base.endsWith('/')){

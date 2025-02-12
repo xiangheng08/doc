@@ -26,7 +26,6 @@
     "fast-glob": "^3.3.2",
     "sass": "^1.82.0",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11",
     "vue-tsc": "^2.1.10"
   },
   "packageManager": "pnpm@9.12.3"

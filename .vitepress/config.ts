@@ -1,13 +1,14 @@
 import { isProd, noSearch } from './env'
 import { fileURLToPath, URL } from 'node:url'
 
-import { DefaultTheme, defineConfig } from 'vitepress'
 import sidebar from './sidebar'
-import { withBase } from './utils/url'
 import sidebarPlugin from './plugins/sidebar-plugin'
+import { withBase } from './utils/url'
+import { defineConfig } from 'vitepress'
 import processPublicHtml, {
   processPublicHtmlBuildEndHook,
 } from './plugins/process-public-html-plugin'
+import type { DefaultTheme } from 'vitepress'
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -41,7 +42,7 @@ const nav: DefaultTheme.NavItem[] = [
   {
     text: '工具',
     items: [
-      { text: '包管理工具', link: '/manager/command-list' },
+      { text: '包管理工具', link: '/manager/collected-packages' },
       { text: 'NVM', link: '/nvm/index' },
       { text: 'VSCode', link: '/vscode/tips' },
       { text: 'Windows', link: '/windows/tips' },
