@@ -20,3 +20,10 @@ const rgbaColorRegex = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\
 // 匹配 hsl 颜色的正则
 const hslColorRegex = /^hsl?\((\d+),\s*(\d+)(?:%\s*,\s*(\d+)(?:%\s*))?\)$/;
 ```
+
+## 密码
+
+```js
+// 6-20位字母数字特殊字符组合，不需要每种字符都有
+const passwordRegex = /^[a-zA-Z\d!@#$%^&*]{6,20}$/;
+```
