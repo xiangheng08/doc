@@ -19,6 +19,7 @@ import vitepress from './vitepress'
 import browser from './browser'
 import mysql from './mysql'
 import windows from './windows'
+import nginx from './nginx'
 
 export default {
   '/git/': git,
@@ -41,4 +42,5 @@ export default {
   '/browser/': browser,
   '/mysql/': mysql,
   '/windows/': windows,
+  '/nginx/': nginx,
 } satisfies DefaultTheme.Sidebar
