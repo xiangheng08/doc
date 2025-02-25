@@ -10,7 +10,23 @@ export default [
   { link: '/nodejs/commonjs' },
   { link: '/nodejs/esm' },
   { link: '/nodejs/process' },
-  { text: 'fs 文件系统', items: [{ link: '/nodejs/fs' }] },
+  {
+    text: 'path 模块',
+    items: [{ link: '/nodejs/path' }],
+  },
+  {
+    text: 'fs 文件系统',
+    items: [
+      { link: '/nodejs/fs' },
+      { link: '/nodejs/fs/file-system-basics' },
+      { link: '/nodejs/fs/working-with-paths' },
+      { link: '/nodejs/fs/file-stats-metadata' },
+      { link: '/nodejs/fs/directory-operations' },
+      { link: '/nodejs/fs/advanced-techniques' },
+      { link: '/nodejs/fs/error-handling-debugging' },
+      { link: '/nodejs/fs/best-practices-common-pitfalls' },
+    ],
+  },
   {
     text: '子进程',
     items: [{ link: '/nodejs/child-process/scenarios' }],
