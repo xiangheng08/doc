@@ -31,7 +31,15 @@ export default [
   },
   {
     text: '子进程',
-    items: [{ link: '/nodejs/child-process/scenarios' }],
+    items: [
+      { link: '/nodejs/child-process/overview-basic-usage' },
+      { link: '/nodejs/child-process/spawn-method' },
+      { link: '/nodejs/child-process/exec-execfile-method' },
+      { link: '/nodejs/child-process/fork-method' },
+      { link: '/nodejs/child-process/error-handling' },
+      { link: '/nodejs/child-process/performance-security' },
+      { link: '/nodejs/child-process/scenarios' },
+    ],
   },
   {
     text: '项目开发',
