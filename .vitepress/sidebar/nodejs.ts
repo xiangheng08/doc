@@ -7,10 +7,15 @@ export default [
   { link: '/nodejs/run' },
   { link: '/nodejs/develop' },
   { link: '/nodejs/package' },
-  { link: '/nodejs/commonjs' },
-  { link: '/nodejs/esm' },
+  { link: '/nodejs/modularization' },
+  // { link: '/nodejs/commonjs' },
+  // { link: '/nodejs/esm' },
   { link: '/nodejs/process' },
   { link: '/nodejs/path' },
+  { link: '/nodejs/os' },
+  { link: '/nodejs/url' },
+  { link: '/nodejs/events' },
+  { link: '/nodejs/net' },
   {
     text: 'fs 文件系统',
     items: [
@@ -24,10 +29,6 @@ export default [
       { link: '/nodejs/fs/best-practices-common-pitfalls' },
     ],
   },
-  { link: '/nodejs/os' },
-  { link: '/nodejs/url' },
-  { link: '/nodejs/events' },
-  { link: '/nodejs/net' },
   {
     text: '子进程',
     items: [{ link: '/nodejs/child-process/scenarios' }],

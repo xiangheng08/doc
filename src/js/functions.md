@@ -773,3 +773,46 @@ const getTanDeg = (deg: number) => {
   return Math.tan(rad)
 }
 ```
+
+## 选区
+
+```js
+// 选中元素内的所有内容
+const selectText = (element) => {
+  // 创建一个 Range 对象
+  const range = document.createRange();
+  range.selectNodeContents(element); // 选中元素内的所有内容
+
+  // 创建一个 Selection 对象
+  const selection = window.getSelection();
+  selection.removeAllRanges(); // 清除当前选区
+  selection.addRange(range); // 添加新的选区
+}
+
+// 获取选中的文本内容
+const getSelectedText = () => {
+  const selection = window.getSelection(); // 获取当前选区
+  const selectedText = selection.toString(); // 获取选中的文本内容
+  return selectedText;
+}
+
+// 选择输入框文字
+const selectInputText = (inputElement, start, end) => {
+  inputElement.focus(); // 聚焦到输入框
+  inputElement.setSelectionRange(start, end); // 设置选区范围
+}
+
+// 监听选区变化
+document.addEventListener("selectionchange", () => {
+  const selectedText = getSelectedText();
+  if (selectedText) {
+    console.log("Selection Changed:", selectedText);
+  }
+});
+
+// 清除选区
+const clearSelection = () => {
+  const selection = window.getSelection();
+  selection.removeAllRanges(); // 清除选区
+}
+```

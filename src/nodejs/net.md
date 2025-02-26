@@ -1,7 +1,6 @@
 # net 模块
 
-## 快速导航
-### 核心方法
+## 核心方法
 ```js
 const net = require('net');
 

@@ -1,199 +1,187 @@
 # process 进程
 
-`process` 对象提供有关当前 Node.js 进程的信息并对其进行控制。作为全局对象，无需使用引入。
+掌握进程管理的核心API与开发实战技巧
 
-当然也可以从 `node:process` 或 `process` 模块中引入。
+---
 
-下面是一些常用的属性、方法和事件。更多请参考 [Node.js 文档](https://nodejs.org/api/process.html) 或者 [Node.js 中文文档](https://nodejs.cn/api/v22/process.html)（注意版本）。
+## 🧩 核心属性详解
 
-## process 属性
-
-### `process.argv`
-
-一个数组，包含命令行启动 Node.js 进程时的所有参数
-
-- `process.argv[0]` 是 Node.js 可执行文件的路径
-- `process.argv[1]` 是正在执行的 js 文件的路径
-- 之后的元素是传递给 Node.js 进程的命令行参数
-
+### 基础运行时属性
+| 属性               | 说明                                               | 典型场景       |
+| ------------------ | -------------------------------------------------- | -------------- |
+| `process.argv`     | 命令行参数数组（索引0: Node路径，索引1: 脚本路径） | CLI工具开发    |
+| `process.argv0`    | 原始`argv[0]`值（可能被修改）                      | 进程溯源       |
+| `process.env`      | 环境变量对象（支持动态修改）                       | 多环境配置     |
+| `process.execPath` | Node.js可执行文件绝对路径                          | 子进程生成     |
+| `process.versions` | 核心依赖版本信息对象                               | 环境兼容性检查 |
 ```js
-process.argv // ['/usr/local/bin/node', '/Users/xxx/Desktop/test.js', 'hello', 'world']
+// process.versions示例
+{
+  node: '20.5.1',
+  v8: '11.3.244.8-node.13',
+  uv: '1.46.0',
+  zlib: '1.2.13',
+  // ...
+}
 ```
 
-### `process.argv0`
+### 进程控制属性
+| 属性               | 说明                                     |
+| ------------------ | ---------------------------------------- |
+| `process.exitCode` | 设置退出码（替代`process.exit()`更安全） |
+| `process.pid`      | 当前进程PID                              |
+| `process.ppid`     | 父进程PID（process.parent PID缩写）      |
+| `process.arch`     | CPU架构标识（'arm', 'x64', 'ia32'等）    |
 
-`process.argv0` 属性存储了 Node.js 启动时传入的 `argv[0]` 原始值的只读副本。
+## ⚙️ 核心方法解析
 
-### `process.env`
-
-一个包含用户环境变量的对象，允许你读取或修改环境变量。
-
+### 文件系统相关
 ```js
-console.log(process.env.NODE_ENV); // 'development'
+// 获取/修改工作目录
+console.log(process.cwd()); // '/projects/app'
+process.chdir('/tmp');      // 改变工作目录
+
+// 文件模式掩码
+const oldMask = process.umask(0o022); // 设置新掩码返回旧值
 ```
 
-### `process.exitCode`
-
-进程的退出码。可以在进程结束时设置自定义的退出码，默认是 `0`。如果设置非 `0` 值，则表示进程异常退出。
-
-### `process.pid`
-
-当前进程的 PID。
-
-### `process.ppid`
-
-当前进程的父进程的 PID。
-
-### `process.platform`
-
-当前操作系统平台的字符串。常见的值有 `linux`, `win32`, `darwin` (macOS) 等。
-
-### `process.version`
-
-当前 Node.js 的版本号。
-
-## process 方法
-
-### `process.cwd()`
-
-返回当前工作目录。
-
+### 进程控制
 ```js
-process.cwd(); // '/Users/xxx/Desktop'
+// 高精度计时（纳秒级）
+const start = process.hrtime.bigint();
+setTimeout(() => {
+  const duration = Number(process.hrtime.bigint() - start)/1e9;
+  console.log(`耗时 ${duration} 秒`);
+}, 1000);
+
+// 内存分析
+const { rss, heapUsed } = process.memoryUsage();
+console.log(`物理内存: ${rss} bytes | 堆使用: ${heapUsed} bytes`);
 ```
 
-### `process.chdir(directory)`
-
-改变当前工作目录，如果操作失败则抛出异常。
-
+### 信号处理
 ```js
-process.chdir('/Users/xxx/Desktop');
+// 发送信号到其他进程
+process.kill(14321, 'SIGUSR1');
+
+// 自我终止（慎用）
+process.abort(); // 立即生成核心转储文件并退出
 ```
 
-### `process.exit([code])`
+## 📡 关键事件系统
 
-终止当前进程。`code` 是退出码，默认是 `0`。
+### 生命周期事件
+| 事件         | 触发时机                 | 注意事项         |
+| ------------ | ------------------------ | ---------------- |
+| `exit`       | 进程即将退出（同步执行） | 不可执行异步操作 |
+| `beforeExit` | 事件循环为空时触发       | 可执行异步操作   |
+| `disconnect` | IPC通道断开时触发        | 集群/子进程场景  |
 
+### 错误处理事件
 ```js
-process.exit(1);
-```
-
-### `process.nextTick(callback[, ...args])`
-
-将 `callback` 添加到下一个事件循环的队列中，在当前操作完成后执行。
-
-```js
-process.nextTick(() => {
-  console.log('nextTick');
+// 未处理的Promise拒绝
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('未处理的Promise拒绝:', reason);
 });
-console.log('current');
-// current
-// nextTick
-```
 
-### `process.hrtime([time])`
-
-返回当前高精度时间，单位是秒和纳秒。如果提供了 `time`，则返回自 `time` 以来经过的时间。常用于性能测试。
-
-```js
-const start = process.hrtime();
-// ... do something ...
-const end = process.hrtime(start);
-console.log(end); // [0, 123456789]
-```
-
-### `process.kill(pid[, signal])`
-
-向指定进程发送信号。`pid` 是进程的 PID，`signal` 是信号类型，默认是 `SIGTERM`。
-
-```js
-process.kill(12345, 'SIGTERM');
-```
-
-### `process.memoryUsage()`
-
-返回一个对象，包含 Node.js 进程的内存使用情况。
-
-```js
-const used = process.memoryUsage();
-// {
-//   rss: 37068800, // 常驻内存
-//   heapTotal: 18268160, // V8 堆的总内存
-//   heapUsed: 13724528, // V8 堆已用内存
-//   external: 6768 // C++ 对象的外部内存
-// }
-```
-
-### `process.uptime()`
-
-返回 Node.js 进程已运行的时间（秒）。
-
-```js
-console.log(process.uptime()); // 123.456
-```
-
-## process 事件
-
-### `process.on('exit', callback)`
-
-当 Node.js 进程即将退出时触发。这个事件在事件循环结束后发生，无法阻止进程退出。可以用来执行清理等收尾工作。
-
-```js
-process.on('exit', (code) => {
-  console.log('Process is exiting with code:', code);
-});
-```
-
-### `process.on('beforeExit', callback)`
-
-当 Node.js 进程即将退出时触发，但事件循环仍然在运行。可以用来执行清理等收尾工作。
-
-```js
-process.on('beforeExit', (code) => {
-  console.log('Process is about to exit with code:', code);
-});
-```
-
-### `process.on('uncaughtException', callback)`
-
-当发生未捕获的异常时触发，可以用来处理未捕获的错误，但不推荐用于生产环境中（因为可能导致进程不稳定）。
-
-```js
-process.on('uncaughtException', (err) => {
-  console.error('An uncaught exception occurred:', err);
-  // process.exit(1); // 退出进程
-});
-```
-
-### `process.on('SIGINT', callback)`
-
-当接收到 `SIGINT` 信号时触发，通常是在用户按下 `Ctrl+C` 时发送的。
-
-```js
-process.on('SIGINT', () => {
-  console.log('Received SIGINT signal.');
-  // process.exit(0); // 退出进程
-});
-```
-
-### `process.on('SIGTERM', callback)`
-
-当接收到 `SIGTERM` 信号时触发，通常是在系统或进程管理器要求进程终止时发送的。
-
-```js
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM signal.');
-  // process.exit(0); // 退出进程
-});
-```
-### `process.on('warning', callback)`
-
-当 Node.js 进程触发一个警告时触发。警告可能是由于内存泄漏、不当使用 API 等引起的。 
-
-```js
+// 实验性警告
 process.on('warning', (warning) => {
-  console.warn(warning.name); // 'Warning'
-  console.warn(warning.message); // 'This is a warning message'
-  console.warn(warning.stack); // 'Warning: This is a warning message\n    at Object.<anonymous> (/Users/xxx/Desktop/test.js:3:9)'
+  if (warning.code === 'DEP0097') {
+    console.warn('弃用警告:', warning.message);
+  }
 });
 ```
+
+### 信号事件
+```js
+// 自定义信号处理
+process.on('SIGUSR1', () => {
+  console.log('收到用户自定义信号');
+  // 执行日志转存等操作
+});
+
+// 优雅关闭
+process.on('SIGTERM', () => {
+  db.closeConnection().finally(() => {
+    process.exit(0);
+  });
+});
+```
+
+## ✅ 最佳实践
+
+### 环境变量管理
+```js
+// 类型转换处理
+const PORT = parseInt(process.env.PORT || '3000');
+const ENABLE_CACHE = process.env.CACHE === 'true'; // 字符串转布尔
+
+// 敏感信息过滤
+const sanitizedEnv = Object.keys(process.env)
+  .filter(key => !/PASSWORD/i.test(key))
+  .reduce((obj, key) => ({...obj, [key]: process.env[key]}), {});
+```
+
+### 错误处理策略
+```js
+// 全局异常处理中间件
+process.on('uncaughtException', (err) => {
+  logger.fatal(err);
+  // 紧急恢复：关闭连接后重启
+  server.close(() => {
+    cluster.fork(); // 集群模式下重启
+  });
+  setTimeout(() => process.exit(1), 5000).unref();
+});
+```
+
+### 性能优化
+```bash
+# 启动时添加V8优化参数
+NODE_OPTIONS='--max-old-space-size=4096' node app.js
+```
+
+## ⚠️ 常见问题
+
+### 环境变量失效
+- **现象**：`process.env`读取值为`undefined`
+- **检查清单**：
+  1. 变量名是否包含空格等特殊字符
+  2. 在Windows系统使用`SET VAR=value`临时设置
+  3. 检查.env文件编码格式（推荐UTF-8）
+
+### 内存泄漏定位
+1. 使用`process.memoryUsage()`定期记录内存快照
+2. 通过Chrome DevTools Memory面板分析堆快照
+3. 检查未释放的定时器/事件监听器
+
+### 进程僵死处理
+```js
+// 心跳检测机制
+setInterval(() => {
+  if(Date.now() - lastActivity > 30000) {
+    console.error('进程无响应，主动退出');
+    process.exit(2);
+  }
+}, 5000).unref();
+```
+
+### 信号处理异常
+- **现象**：SIGTERM无法终止进程
+- **解决方案**：
+  ```js
+  process.on('SIGTERM', () => {
+    // 标记关闭状态，停止接受新请求
+    isShuttingDown = true;
+    // 设置关闭超时
+    setTimeout(() => {
+      console.error('强制终止进程');
+      process.exit(1);
+    }, 30000).unref();
+    // 关闭资源
+    closeResources().then(() => process.exit(0));
+  });
+  ```
+
+> 📘 扩展阅读：[Node.js Process官方文档](https://nodejs.org/api/process.html) | [进程信号详解](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)  
+> 🔍 调试技巧：使用`NODE_DEBUG=process node app.js`查看进程底层操作

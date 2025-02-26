@@ -1,4 +1,4 @@
-# URL 模块
+# url 模块
 
 Node.js 的 `url` 模块提供 URL 解析和格式化工具，用于处理 Web 地址的各个组成部分（协议/主机/路径等）。支持两种标准：
 - **Legacy API**（Node.js 传统方式）
@@ -7,6 +7,11 @@ Node.js 的 `url` 模块提供 URL 解析和格式化工具，用于处理 Web �
 ```js
 const url = require('url'); // 传统方式
 const { URL, URLSearchParams } = require('url'); // WHATWG
+
+// 在 Node.js 中，URL 和 URLSearchParams 类是挂载在全局对象上的。
+// 这意味着可以在不显式导入的情况下直接使用它们。
+console.log(URL);
+console.log(URLSearchParams);
 ```
 
 ## 核心 API
