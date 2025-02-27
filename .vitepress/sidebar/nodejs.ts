@@ -16,6 +16,7 @@ export default [
   { link: '/nodejs/url' },
   { link: '/nodejs/events' },
   { link: '/nodejs/net' },
+  { link: '/nodejs/crypto' },
   {
     text: 'fs 文件系统',
     items: [

@@ -1,4 +1,4 @@
-# path 模块
+# path 路径
 
 Node.js 的 `path` 模块是处理文件/目录路径的核心工具，提供跨平台的路径操作支持。通过 `const path = require('path');` 引入。
 

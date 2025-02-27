@@ -1,4 +1,4 @@
-# events 模块
+# events 事件
 
 Node.js 的 `events` 模块是异步事件驱动架构的核心，提供 `EventEmitter` 类用于处理事件订阅与发布。通过 `require('events')` 引入。
 
