@@ -1,11 +1,7 @@
 # Nginx 反向代理
 
----
-
 ## 基础概念
 反向代理（Reverse Proxy）用于将客户端请求转发到后端服务器，隐藏真实服务器信息，常用于负载均衡、安全防护、SSL终止等场景。
-
----
 
 ## 核心配置指令
 
@@ -32,8 +28,6 @@
    proxy_redirect off; # 关闭自动重定向修正
    ```
 
----
-
 ## 实战配置示例
 
 ### 基础反向代理
@@ -52,8 +46,6 @@ server {
 ```
 - 将所有`example.com`的请求转发到本机3000端口
 - 保留原始客户端IP（通过`X-Real-IP`头）
-
----
 
 ### 负载均衡
 ```nginx
@@ -76,8 +68,6 @@ server {
 - 使用`upstream`模块定义服务器集群
 - `weight`设置权重，`backup`标记备用服务器
 
----
-
 ### WebSocket代理
 ```nginx
 server {
@@ -95,8 +85,6 @@ server {
 ```
 - `Upgrade`和`Connection`头用于WebSocket协议升级
 - 延长超时时间保持长连接
-
----
 
 ### SSL终止代理
 ```nginx
@@ -116,8 +104,6 @@ server {
 - 处理SSL加密后转发明文到后端
 - 通过`X-Forwarded-Proto`头告知后端协议类型
 
----
-
 ### 静态文件缓存
 ```nginx
 proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m;
@@ -136,8 +122,6 @@ server {
 ```
 - 使用`proxy_cache_path`定义缓存路径
 - `add_header`显示缓存命中状态
-
----
 
 ### 传递客户端信息
 
@@ -171,8 +155,6 @@ proxy_send_timeout 60s;          # 发送请求超时
 proxy_read_timeout 60s;          # 读取响应超时
 ```
 
----
-
 ## 调试技巧
 1. 查看完整请求头：
 ```nginx
@@ -188,8 +170,6 @@ log_format proxy_log '$remote_addr - $http_x_real_ip [$time_local] '
                      '"$request" $status $body_bytes_sent';
 access_log /var/log/nginx/proxy.log proxy_log;
 ```
-
----
 
 ## 完整配置文件示例
 ```nginx
@@ -225,8 +205,6 @@ http {
     }
 }
 ```
-
----
 
 ## 注意事项
 1. 修改配置后需验证并重载：  
