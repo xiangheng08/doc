@@ -6,6 +6,7 @@ export default [
     text: '脚本',
     items: [
       { link: '/windows/script/powershell-history' },
+      { link: '/windows/script/silent-runner' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
