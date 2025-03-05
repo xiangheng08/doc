@@ -62,4 +62,8 @@ export default [
     text: '实践应用',
     items: [{ link: '/vue/practice/batch-render' }],
   },
+  {
+    text: '通用组件',
+    items: [{ link: '/vue/generic-component/file-drop/index' }],
+  },
 ] satisfies DefaultTheme.Sidebar
