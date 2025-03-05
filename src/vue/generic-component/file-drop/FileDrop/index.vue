@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Mode">
-import { computed, provide, ref } from 'vue'
+import { computed, provide, ref, watchEffect } from 'vue'
 import {
   DropError,
   getEntries,
@@ -16,6 +16,7 @@ const props = withDefaults(
     showOverlay?: boolean
     overlayTitle?: string
     overlayDesc?: string
+    dragging?: boolean
   }>(),
   {
     full: false,
@@ -28,12 +29,15 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'drop', payload: DropResult<T>): void
   (e: 'error', error: DropError): void
+  (e: 'update:dragging', dragging: boolean): void
 }>()
 
 const isDragging = ref(false)
 
 provide('mode', props.mode)
 provide('isDragging', isDragging)
+
+watchEffect(() => emit('update:dragging', isDragging.value))
 
 const wrapperClassNames = computed(() => ({
   'full-size': props.full,
@@ -99,11 +103,11 @@ const handleDragLeave = (e: DragEvent) => {
   >
     <slot></slot>
 
-    <div v-if="showOverlay && isDragging" class="overlay">
+    <div class="overlay" :class="{ show: showOverlay && isDragging }">
       <slot name="overlay"></slot>
       <div class="default-overlay">
-        <h3 class="overlay-title">{{ overlayTitle }}</h3>
-        <p class="overlay-desc">{{ overlayDesc }}</p>
+        <div class="overlay-title">{{ overlayTitle }}</div>
+        <div class="overlay-desc">{{ overlayDesc }}</div>
       </div>
     </div>
   </div>
@@ -128,12 +132,21 @@ const handleDragLeave = (e: DragEvent) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--overlay-bg, rgba(0, 0, 0, 0.6));
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.8));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 9;
+  transition: opacity var(--overlay-transition-duration, 0.2s) ease-in-out;
+
+  opacity: 0;
   pointer-events: none;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .default-overlay {
@@ -142,12 +155,11 @@ const handleDragLeave = (e: DragEvent) => {
 
 .overlay-title {
   color: var(--overlay-title-color, #f5f5f5);
-  margin-bottom: 8px;
-  font-size: var(--overlay-title-font-size, 18px);
+  font-size: var(--overlay-title-font-size, 16px);
 }
 
 .overlay-desc {
   color: var(--overlay-desc-color, #999);
-  font-size: var(--overlay-desc-font-size, 14px);
+  font-size: var(--overlay-desc-font-size, 12px);
 }
 </style>
