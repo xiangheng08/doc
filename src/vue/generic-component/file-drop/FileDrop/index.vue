@@ -61,6 +61,7 @@ const handleDrop = async (e: DragEvent) => {
     } catch (_) {
       if (files.length === 0) return
       // 出现错误说明不支持 webkitGetAsEntry API，直接返回没有层级的文件结构列表
+      payload.structureNotSupported = true
       payload.result = files.map(
         (file) => new FileStructure(file),
       ) as unknown as Result
