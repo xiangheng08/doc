@@ -3,10 +3,16 @@
 ## 示例
 
 <script setup>
-import Example from './example.vue'
+import Example1 from './example1.vue'
+import Example2 from './example2.vue'
+import Example3 from './example3.vue'
 </script>
 
-<Example />
+<Example1 />
+<div style="height: 20px"></div>
+<Example2 />
+<div style="height: 20px"></div>
+<Example3 />
 
 ## 代码
 

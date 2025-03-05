@@ -1,6 +1,12 @@
 <script setup lang="ts" generic="T extends Mode">
 import { computed, provide, ref } from 'vue'
-import { DropError, getEntries, getFiles, parseStructure, FileStructure } from './utils'
+import {
+  DropError,
+  getEntries,
+  getFiles,
+  parseStructure,
+  FileStructure,
+} from './utils'
 import type { Mode, DropResult } from './utils'
 
 const props = withDefaults(
@@ -43,38 +49,25 @@ const handleDrop = async (e: DragEvent) => {
 
   const payload: DropResult<T> = {
     result: [],
-    filteredItems: [],
     structureNotSupported: false,
   }
 
+  type Result = DropResult<T>['result']
+
   if (props.mode === 'structure') {
+    if (entries.length === 0) return
     try {
-      // @ts-ignore
-      payload.result = await parseStructure(entries)
-    } catch (error) {
-      console.error(error)
-      if (files.length > 0) {
-        // @ts-ignore
-        payload.result = files.map((file) => new FileStructure(file))
-      } else {
-        return
-      }
+      payload.result = (await parseStructure(entries)) as Result
+    } catch (_) {
+      if (files.length === 0) return
+      // 出现错误说明不支持 webkitGetAsEntry API，直接返回没有层级的文件结构列表
+      payload.result = files.map(
+        (file) => new FileStructure(file),
+      ) as unknown as Result
     }
   } else {
     if (files.length === 0) return
-    const filtered: File[] = []
-    const result: File[] = []
-
-    files.forEach((file) => {
-      if (file.size === 0 && !file.type) {
-        filtered.push(file)
-      } else {
-        result.push(file)
-      }
-    })
-    // @ts-ignore
-    payload.result = result
-    payload.filteredItems = filtered
+    payload.result = files as Result
   }
 
   emit('drop', payload)
@@ -85,8 +78,14 @@ const handleDragOver = (e: DragEvent) => {
   isDragging.value = true
 }
 
-const handleDragLeave = () => {
-  isDragging.value = false
+const handleDragLeave = (e: DragEvent) => {
+  const dropZone = e.currentTarget as HTMLElement
+  const relatedTarget = e.relatedTarget as HTMLElement | null
+
+  // 判断是否仍在拖拽区域内，避免移动到子元素时误触发 dragleave
+  if (!relatedTarget || !dropZone.contains(relatedTarget)) {
+    isDragging.value = false
+  }
 }
 </script>
 
@@ -128,7 +127,7 @@ const handleDragLeave = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--overlay-bg, rgba(255, 255, 255, 0.9));
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.6));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,13 +140,13 @@ const handleDragLeave = () => {
 }
 
 .overlay-title {
-  color: var(--overlay-title-color, #333);
+  color: var(--overlay-title-color, #f5f5f5);
   margin-bottom: 8px;
   font-size: var(--overlay-title-font-size, 18px);
 }
 
 .overlay-desc {
-  color: var(--overlay-desc-color, #666);
+  color: var(--overlay-desc-color, #999);
   font-size: var(--overlay-desc-font-size, 14px);
 }
 </style>

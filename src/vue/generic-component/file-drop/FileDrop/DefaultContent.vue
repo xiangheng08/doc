@@ -27,7 +27,7 @@ const addUnit = (val: number | string): string => {
 const style = computed(() => {
   return {
     width: addUnit(props.width || props.size),
-    height: addUnit(props.width || props.size),
+    height: addUnit(props.height || props.size),
   }
 })
 </script>
