@@ -64,6 +64,9 @@ export default [
   },
   {
     text: '通用组件',
-    items: [{ link: '/vue/generic-component/file-drop/' }],
+    items: [
+      { link: '/vue/generic-component/file-drop/' },
+      { link: '/vue/generic-component/infinite-scroll/' },
+    ],
   },
 ] satisfies DefaultTheme.Sidebar

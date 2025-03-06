@@ -1,3 +1,5 @@
+// utils.ts
+
 import { inject, ref, type Ref } from 'vue'
 
 export type Mode = 'file' | 'structure'
