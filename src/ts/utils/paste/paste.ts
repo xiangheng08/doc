@@ -110,10 +110,6 @@ export async function parsePasteEvent<T extends Mode>(
 ): Promise<PasteResult<T>> {
   const { preventDefault = true } = options || {}
 
-  if (preventDefault) {
-    e.preventDefault()
-  }
-
   const files = getPasteFiles(e)
   const entries = getPasteEntries(e)
 
@@ -134,6 +130,7 @@ export async function parsePasteEvent<T extends Mode>(
       payload.hasDirectories = structureResult.some((item) =>
         item.isDirectory(),
       )
+      payload.result = structureResult as Result
     } catch (_) {
       payload.structureNotSupported = true
       payload.result = files.map(
@@ -144,6 +141,10 @@ export async function parsePasteEvent<T extends Mode>(
     // 文件解析逻辑
     if (files.length === 0) return payload
     payload.result = files as Result
+  }
+
+  if (preventDefault && payload.result.length > 0) {
+    e.preventDefault()
   }
 
   return payload

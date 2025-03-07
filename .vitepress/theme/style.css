@@ -155,3 +155,12 @@
   align-items: center;
   justify-content: center
 }
+
+button.native,
+input.native,
+optgroup.native,
+select.native,
+textarea.native {
+  /* 还原浏览器默认样式 */
+  all: revert;
+}
