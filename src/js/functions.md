@@ -859,3 +859,14 @@ const selectFile = (options) => {
   });
 };
 ```
+
+## 随机数
+
+```js
+/**
+ * 随机整数
+ */
+const randomInt = (max, min = 0) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+```

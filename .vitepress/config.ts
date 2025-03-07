@@ -26,6 +26,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'React', link: '/react/raw' },
           { text: 'React Native', link: '/react-native/link' },
           { text: 'Electron', link: '/electron/docs-nav' },
+          { text: 'Element UI', link: '/element-ui/encapsulation/native-input-suggestions' },
           { text: 'Element Plus', link: '/element-plus/issues' },
           { text: 'Eslint', link: '/eslint/issues' },
           { text: 'VitePress', link: '/vitepress/error' },
