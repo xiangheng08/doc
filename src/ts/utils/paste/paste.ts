@@ -1,18 +1,5 @@
-// utils.ts
-
-import { inject, ref, type Ref } from 'vue'
-
+// paste.ts
 export type Mode = 'file' | 'structure'
-
-export class DropError extends Error {
-  readonly code: string
-
-  constructor(message: string, code: string) {
-    super(message)
-    this.name = 'DropError'
-    this.code = code
-  }
-}
 
 export class Structure {
   readonly name: string
@@ -48,7 +35,15 @@ export class DirectoryStructure extends Structure {
   }
 }
 
-export interface DropResult<T extends Mode> {
+export type PasteOptions = {
+  /**
+   * 是否在解析到文件后阻止默认粘贴行为
+   * @default true
+   */
+  preventDefault?: boolean
+}
+
+export type PasteResult<T extends Mode> = {
   /**
    * 拖拽的文件或文件结构
    */
@@ -63,27 +58,23 @@ export interface DropResult<T extends Mode> {
   hasDirectories: boolean
 }
 
-/**
- * 拖拽处理函数类型
- */
-export type HandleDrop<T extends Mode> = (payload: DropResult<T>) => void
-
-export const getFiles = (e: DragEvent): File[] => {
-  return Array.from(e.dataTransfer?.files || [])
-}
-
-export const getEntries = (e: DragEvent): FileSystemEntry[] => {
-  return Array.from(e.dataTransfer?.items || [])
+// 辅助函数：从剪贴板获取条目
+const getPasteEntries = (e: ClipboardEvent): FileSystemEntry[] => {
+  return Array.from(e.clipboardData?.items || [])
+    .filter((item) => item.kind === 'file')
     .map((item) => item.webkitGetAsEntry())
     .filter(Boolean) as FileSystemEntry[]
 }
 
-/**
- * 解析文件结构
- */
-export const parseStructure = async (
+// 辅助函数：从剪贴板获取文件
+const getPasteFiles = (e: ClipboardEvent): File[] => {
+  return Array.from(e.clipboardData?.files || [])
+}
+
+// 辅助函数：解析文件结构
+export async function parseStructure(
   entries: FileSystemEntry[],
-): Promise<Structure[]> => {
+): Promise<Structure[]> {
   const result: Structure[] = []
 
   for (const entry of entries) {
@@ -111,9 +102,49 @@ export const parseStructure = async (
   return result
 }
 
-/**
- * 从父组件注入 `isDragging` ref。
- */
-export const injectDragging = () => {
-  return inject<Ref<boolean>>('isDragging') || ref(false)
+// 主解析函数
+export async function parsePasteEvent<T extends Mode>(
+  e: ClipboardEvent,
+  mode: T,
+  options?: PasteOptions,
+): Promise<PasteResult<T>> {
+  const { preventDefault = true } = options || {}
+
+  if (preventDefault) {
+    e.preventDefault()
+  }
+
+  const files = getPasteFiles(e)
+  const entries = getPasteEntries(e)
+
+  const payload: PasteResult<T> = {
+    result: [],
+    structureNotSupported: false,
+    hasDirectories: false,
+  }
+
+  type Result = PasteResult<T>['result']
+
+  if (mode === 'structure') {
+    if (entries.length === 0) return payload
+
+    // 结构解析逻辑（需要异步处理）
+    try {
+      const structureResult = await parseStructure(entries)
+      payload.hasDirectories = structureResult.some((item) =>
+        item.isDirectory(),
+      )
+    } catch (_) {
+      payload.structureNotSupported = true
+      payload.result = files.map(
+        (file) => new FileStructure(file),
+      ) as unknown as Result
+    }
+  } else {
+    // 文件解析逻辑
+    if (files.length === 0) return payload
+    payload.result = files as Result
+  }
+
+  return payload
 }

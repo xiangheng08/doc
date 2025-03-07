@@ -9,4 +9,8 @@ export default [
   { link: '/ts/type-annotation-template' },
   { link: '/ts/event-target' },
   { link: '/ts/event-emitter' },
+  {
+    text: 'Utils',
+    items: [{ link: '/ts/utils/paste/' }],
+  },
 ] satisfies DefaultTheme.Sidebar

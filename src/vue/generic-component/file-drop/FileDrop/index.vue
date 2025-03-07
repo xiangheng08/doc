@@ -54,6 +54,7 @@ const handleDrop = async (e: DragEvent) => {
   const payload: DropResult<T> = {
     result: [],
     structureNotSupported: false,
+    hasDirectories: false,
   }
 
   type Result = DropResult<T>['result']
@@ -62,6 +63,9 @@ const handleDrop = async (e: DragEvent) => {
     if (entries.length === 0) return
     try {
       payload.result = (await parseStructure(entries)) as Result
+      payload.hasDirectories = payload.result.some((file) =>
+        (file as FileStructure).isDirectory(),
+      )
     } catch (_) {
       if (files.length === 0) return
       // 出现错误说明不支持 webkitGetAsEntry API，直接返回没有层级的文件结构列表
