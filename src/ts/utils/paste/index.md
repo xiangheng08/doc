@@ -6,10 +6,14 @@
 
 :::
 
+---
+
 <script setup>
 import Example1 from './Example1.vue'
 import Example2 from './Example2.vue'
 </script>
+
+> 打开控制台查看输出结果
 
 文件模式
 <demo><Example1 /></demo>
