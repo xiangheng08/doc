@@ -16,7 +16,17 @@ import Example2 from './Example2.vue'
 > 打开控制台查看输出结果
 
 文件模式
-<demo><Example1 /></demo>
+<Example1 />
+::: details 点击查看代码
+
+<<< ./Example1.vue
+
+:::
 
 文件结构模式
-<demo><Example2 /></demo>
+<Example2 />
+::: details 点击查看代码
+
+<<< ./Example2.vue
+
+:::
