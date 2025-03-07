@@ -1,5 +1,10 @@
 import { DefaultTheme } from 'vitepress'
 
 export default [
-  { link: '/element-ui/encapsulation/native-input-suggestions' },
+  {
+    text: '封装',
+    items: [
+      { link: '/element-ui/encapsulation/native-input-suggestions' },
+    ],
+  },
 ] satisfies DefaultTheme.Sidebar
