@@ -56,3 +56,7 @@ import Example4 from './Example4.vue'
 <<< ./FileDrop/DefaultContent.vue
 
 :::
+
+---
+
+[处理粘贴事件](/ts/utils/paste/)
