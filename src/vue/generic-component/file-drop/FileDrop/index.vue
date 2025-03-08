@@ -9,22 +9,46 @@ import {
 } from './utils'
 import type { Mode, DropResult } from './utils'
 
-const props = withDefaults(
-  defineProps<{
-    mode: T
-    full?: boolean
-    showOverlay?: boolean
-    overlayTitle?: string
-    overlayDesc?: string
-    dragging?: boolean
-  }>(),
-  {
-    full: false,
-    showOverlay: false,
-    overlayTitle: '拖拽文件到此区域',
-    overlayDesc: '支持单个或批量文件',
-  },
-)
+interface Props {
+  /**
+   * 文件拖拽模式
+   * - `file`: 文件模式
+   * - `structure`: 文件结构模式
+   */
+  mode: T
+  /**
+   * 是否撑满父元素
+   */
+  full?: boolean
+  /**
+   * 是否显示遮罩层
+   */
+  showOverlay?: boolean
+  /**
+   * 遮罩层标题
+   */
+  overlayTitle?: string
+  /**
+   * 遮罩层描述
+   */
+  overlayDesc?: string
+  /**
+   * v-model:dragging
+   */
+  dragging?: boolean
+  /**
+   * 是否激活拖拽
+   */
+  active?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  full: false,
+  showOverlay: false,
+  overlayTitle: '拖拽文件到此区域',
+  overlayDesc: '支持单个或批量文件',
+  active: true,
+})
 
 const emit = defineEmits<{
   (e: 'drop', payload: DropResult<T>): void
@@ -34,9 +58,11 @@ const emit = defineEmits<{
 
 const isDragging = ref(false)
 
+// 提供给子组件
 provide('mode', props.mode)
 provide('isDragging', isDragging)
 
+// 提供给父组件 v-model:dragging
 watchEffect(() => emit('update:dragging', isDragging.value))
 
 const wrapperClassNames = computed(() => ({
@@ -45,6 +71,8 @@ const wrapperClassNames = computed(() => ({
 }))
 
 const handleDrop = async (e: DragEvent) => {
+  if (!props.active) return
+
   e.preventDefault()
   isDragging.value = false
 
@@ -62,9 +90,10 @@ const handleDrop = async (e: DragEvent) => {
   if (props.mode === 'structure') {
     if (entries.length === 0) return
     try {
-      payload.result = (await parseStructure(entries)) as Result
-      payload.hasDirectories = payload.result.some((file) =>
-        (file as FileStructure).isDirectory(),
+      const structures = await parseStructure(entries)
+      payload.result = structures as Result
+      payload.hasDirectories = structures.some((file) =>
+        file.isDirectory(),
       )
     } catch (_) {
       if (files.length === 0) return
@@ -83,11 +112,15 @@ const handleDrop = async (e: DragEvent) => {
 }
 
 const handleDragOver = (e: DragEvent) => {
+  if (!props.active) return
+
   e.preventDefault()
   isDragging.value = true
 }
 
 const handleDragLeave = (e: DragEvent) => {
+  if (!props.active) return
+
   const dropZone = e.currentTarget as HTMLElement
   const relatedTarget = e.relatedTarget as HTMLElement | null
 
@@ -105,7 +138,7 @@ const handleDragLeave = (e: DragEvent) => {
     @dragleave="handleDragLeave"
     @drop.prevent="handleDrop"
   >
-    <slot></slot>
+    <slot :is-dragging="isDragging"></slot>
 
     <div class="overlay" :class="{ show: showOverlay && isDragging }">
       <slot name="overlay"></slot>
