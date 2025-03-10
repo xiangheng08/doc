@@ -15,12 +15,12 @@ hero:
       link: /about
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 知识体系化
+    details: 采用结构化文档分类 + 标签索引系统，支持思维导图式知识导航
+  - title: 技术实践
+    details: 包含可交互的Vue组件示例，配套完整代码片段与最佳实践指南
+  - title: 多端同步
+    details: 自适应PC/移动端访问，支持PWA离线缓存，GitHub实时内容同步
 ---
 
 ```js
