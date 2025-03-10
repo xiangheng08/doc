@@ -9,6 +9,7 @@ import Example1 from './Example1.vue'
 import Example2 from './Example2.vue'
 import Example3 from './Example3.vue'
 import Example4 from './Example4.vue'
+import Example5 from './Example5.vue'
 </script>
 
 <Example1 />
@@ -36,6 +37,13 @@ import Example4 from './Example4.vue'
 ::: details 示例代码
 
 <<< ./Example4.vue
+
+:::
+
+<Example5 />
+::: details 示例代码
+
+<<< ./Example5.vue
 
 :::
 

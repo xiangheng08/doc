@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Mode">
-import { computed, provide, ref, watchEffect } from 'vue'
+import { onBeforeUnmount, onMounted, provide, ref, watchEffect } from 'vue'
 import {
   DropError,
   getEntries,
@@ -17,10 +17,6 @@ interface Props {
    * - `structure`: 文件结构模式
    */
   mode: T
-  /**
-   * 是否撑满父元素
-   */
-  full?: boolean
   /**
    * 是否显示遮罩层
    */
@@ -57,8 +53,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  full: false,
-  showOverlay: false,
+  showOverlay: true,
   overlayTitle: '拖拽文件到此区域',
   overlayDesc: '支持单个或批量文件',
   overlayZIndex: 3000,
@@ -84,11 +79,6 @@ provide('isParsing', isParsing)
 watchEffect(() => emit('update:dragging', isDragging.value))
 // 提供给父组件 v-model:parsing
 watchEffect(() => emit('update:parsing', isParsing.value))
-
-const wrapperClassNames = computed(() => ({
-  'full-size': props.full,
-  dragging: isDragging.value,
-}))
 
 const handleDrop = async (e: DragEvent) => {
   if (!props.active) return
@@ -157,52 +147,41 @@ const handleDragLeave = (e: DragEvent) => {
     isDragging.value = false
   }
 }
+
+onMounted(() => {
+  document.addEventListener('dragover', handleDragOver)
+  document.addEventListener('dragleave', handleDragLeave)
+  document.addEventListener('drop', handleDrop)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('dragover', handleDragOver)
+  document.removeEventListener('dragleave', handleDragLeave)
+  document.removeEventListener('drop', handleDrop)
+})
 </script>
 
 <template>
-  <div
-    :class="['drop-zone', wrapperClassNames]"
-    @dragover="handleDragOver"
-    @dragleave="handleDragLeave"
-    @drop.prevent="handleDrop"
-  >
-    <slot :is-dragging="isDragging" :is-parsing="isParsing"></slot>
-
+  <Teleport to="body">
     <div
-      class="overlay"
+      class="drop-zone-global-overlay"
       :class="{ show: showOverlay && isDragging }"
       :style="{
         zIndex: overlayZIndex,
       }"
     >
-      <slot
-        name="overlay"
-        :is-dragging="isDragging"
-        :is-parsing="isParsing"
-      ></slot>
+      <slot :is-dragging="isDragging" :is-parsing="isParsing"></slot>
       <div class="default-overlay">
         <div class="overlay-title">{{ overlayTitle }}</div>
         <div class="overlay-desc">{{ overlayDesc }}</div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style lang="css" scoped>
-.drop-zone {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-  overflow: hidden;
-}
-
-.drop-zone.full-size {
-  width: 100%;
-  height: 100%;
-}
-
-.overlay {
-  position: absolute;
+.drop-zone-global-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -219,7 +198,7 @@ const handleDragLeave = (e: DragEvent) => {
   pointer-events: none;
 }
 
-.overlay.show {
+.drop-zone-global-overlay.show {
   opacity: 1;
   pointer-events: auto;
 }
