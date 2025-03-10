@@ -61,6 +61,10 @@ export interface DropResult<T extends Mode> {
    * 在文件结构模式中，是否包含文件夹
    */
   hasDirectories: boolean
+  /**
+   * 过滤后的文件列表（在文件模式下，通过配置 `accept` 参数，过滤掉的文件）
+   */
+  filtered: File[]
 }
 
 /**
@@ -116,4 +120,42 @@ export const parseStructure = async (
  */
 export const injectDragging = () => {
   return inject<Ref<boolean>>('isDragging') || ref(false)
+}
+
+export const filterFilesByAccept = (
+  files: File[],
+  accept?: string,
+): {
+  allowed: File[]
+  invalid: File[]
+} => {
+  if (!accept) return { allowed: files, invalid: [] }
+
+  const allowedTypes = accept.split(',').map((t) => t.trim())
+  const allowed: File[] = [] // 符合的
+  const invalid: File[] = [] // 不符合的
+
+  for (const file of files) {
+    const matched = allowedTypes.some((type) => {
+      // 处理扩展名匹配 (如 .pdf)
+      if (type.startsWith('.')) {
+        return file.name.toLowerCase().endsWith(type.toLowerCase())
+      }
+
+      // 处理 MIME 类型匹配 (如 image/*)
+      const [category, subtype] = type.split('/')
+      const regex = new RegExp(
+        `${category}/${subtype === '*' ? '.*' : subtype}$`,
+      )
+      return regex.test(file.type)
+    })
+
+    if (matched) {
+      allowed.push(file)
+    } else {
+      invalid.push(file)
+    }
+  }
+
+  return { allowed, invalid }
 }
