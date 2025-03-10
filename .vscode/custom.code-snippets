@@ -199,4 +199,14 @@
 		],
 		"description": "script setup"
 	},
+  "demo component": {
+		"prefix": "demo component",
+		"scope": "markdown",
+		"body": [
+			"<demo>",
+      "$1",
+      "</demo>",
+		],
+		"description": "script setup"
+	},
 }
