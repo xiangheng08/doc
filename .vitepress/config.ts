@@ -8,6 +8,7 @@ import { defineConfig } from 'vitepress'
 import processPublicHtml, {
   processPublicHtmlBuildEndHook,
 } from './plugins/process-public-html-plugin'
+import codeDemoPlugin from './md-plugins/code-demo'
 import type { DefaultTheme } from 'vitepress'
 
 const nav: DefaultTheme.NavItem[] = [
@@ -26,7 +27,10 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'React', link: '/react/raw' },
           { text: 'React Native', link: '/react-native/link' },
           { text: 'Electron', link: '/electron/docs-nav' },
-          { text: 'Element UI', link: '/element-ui/encapsulation/native-input-suggestions' },
+          {
+            text: 'Element UI',
+            link: '/element-ui/encapsulation/native-input-suggestions',
+          },
           { text: 'Element Plus', link: '/element-plus/issues' },
           { text: 'Eslint', link: '/eslint/issues' },
           { text: 'VitePress', link: '/vitepress/error' },
@@ -163,6 +167,9 @@ export default defineConfig({
   },
 
   markdown: {
+    config(md) {
+      md.use(codeDemoPlugin)
+    },
     theme: { light: 'github-light', dark: 'github-dark' },
     lineNumbers: false, // 启用行号
     math: true, // 启用数学公式

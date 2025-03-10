@@ -9,5 +9,6 @@ declare module 'vue' {
     Demo: typeof import('./.vitepress/components/demo.vue')['default']
     DemoIframe: typeof import('./.vitepress/components/demo-iframe.vue')['default']
     CssDemo: typeof import('./.vitepress/components/css-demo.vue')['default']
+    CodeDemo: typeof import('./.vitepress/components/code-demo.vue')['default']
   }
 }
