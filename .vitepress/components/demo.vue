@@ -76,10 +76,6 @@ const headerShow = computed(() => {
   .content {
     padding: 22px 24px;
   }
-
-  button {
-    all: revert;
-  }
 }
 
 .dark .demo {

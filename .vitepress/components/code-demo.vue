@@ -95,9 +95,6 @@ const copyCode = async () => {
   :deep(div[class*='language-']) {
     margin: 0;
     border-radius: 0;
-    button.copy::before {
-      top: -2px;
-    }
   }
 }
 .operate {

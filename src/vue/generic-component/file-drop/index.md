@@ -4,14 +4,6 @@
 
 > 打开控制台查看输出结果
 
-<script setup>
-import Example1 from './Example1.vue'
-import Example2 from './Example2.vue'
-import Example3 from './Example3.vue'
-import Example4 from './Example4.vue'
-import Example5 from './Example5.vue'
-</script>
-
 ::: demo
 ./Example1.vue
 :::
@@ -20,39 +12,18 @@ import Example5 from './Example5.vue'
 ./Example2.vue
 :::
 
-<Example1 />
-::: details 示例代码
-
-<<< ./Example1.vue
-
+::: demo
+./Example3.vue
 :::
 
-<Example2 />
-::: details 示例代码
-
-<<< ./Example2.vue
-
+::: demo
+./Example4.vue
 :::
 
-<Example3 />
-::: details 示例代码
+全局文件拖入
 
-<<< ./Example3.vue
-
-:::
-
-<Example4 />
-::: details 示例代码
-
-<<< ./Example4.vue
-
-:::
-
-<Example5 />
-::: details 示例代码
-
-<<< ./Example5.vue
-
+::: demo
+./Example5.vue
 :::
 
 ## 代码
