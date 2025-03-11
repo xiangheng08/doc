@@ -380,17 +380,17 @@ function insertSubstring(str, insertion, start, end) {
 ## 复制文字
 
 ```js
-function copyText(text) {
-	if (navigator.clipboard) {
-		navigator.clipboard.writeText(text);
-	} else {
-		const textArea = document.createElement('textarea');
-		textArea.value = text;
-		document.body.appendChild(textArea);
-		textArea.select();
-		document.execCommand('copy');
-		document.body.removeChild(textArea);
-	}
+const copyText = async (text) => {
+  if (navigator.clipboard) {
+    await navigator.clipboard.writeText(text)
+  } else {
+    const textArea = document.createElement('textarea')
+    textArea.value = text
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textArea)
+  }
 }
 ```
 

@@ -20,4 +20,5 @@
 ## 代办
 
 - [ ] 实现“自动生成侧边栏”（不急）
-- [ ] 添加图片预览[参考](https://www.whbbit.cn/2024/01/06/%E7%BB%99%E4%BD%A0%E7%9A%84vitepress%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E5%8A%9F%E8%83%BD/)
+- [x] 添加图片预览[参考](https://www.whbbit.cn/2024/01/06/%E7%BB%99%E4%BD%A0%E7%9A%84vitepress%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E5%8A%9F%E8%83%BD/)
+- [ ] 实现 demo 容器展开/收起时的高度动画
