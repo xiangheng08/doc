@@ -209,4 +209,14 @@
 		],
 		"description": "script setup"
 	},
+  "demo container": {
+		"prefix": "demo container",
+		"scope": "markdown",
+		"body": [
+			"::: demo",
+      "$1",
+      ":::",
+		],
+		"description": "script setup"
+	},
 }

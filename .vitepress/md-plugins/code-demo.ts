@@ -15,7 +15,7 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
       const m = tokens[idx].info.trim().match(regex)
 
       // means the tag is opening
-      if (tokens[idx].nesting === 1 && currentPath) {
+      if (tokens[idx].nesting === 1) {
         const description = m && m.length > 1 ? m[1] : ''
         const sourceFileToken = tokens[idx + 2]
         const sourceFile = sourceFileToken.children?.[0].content ?? ''
@@ -37,26 +37,26 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
           componentName = path
             .relative(process.cwd(), sourceFilePath)
             .replace('.vue', '')
-            .replaceAll('/', '_')
+            .replace(/[\/\\\-]/g, '_')
         }
         if (!source) {
           throw new Error(`Incorrect source file: ${sourceFile}`)
         }
-
-        // const importStatement = `import ${componentName} from '${sourceFile}';\n`
+        // 组件占位符
+        const componentPlaceholder = `%ep_${componentName}|${sourceFile}%`
+        // 组件源码
+        const rawCode = encodeURIComponent(source)
+        // code render
+        const codeRender = encodeURIComponent(
+          md.render(`\`\`\` vue\n${source}\`\`\``),
+        )
 
         return [
-          `<code-demo path="${sourceFile}" description="${description}">`,
-          // `<script>${importStatement}<\/script>`, // 注意转义斜杠
-          // `<template #example>${source}</template>`,
-          `<template #example><TestCssDemo /></template>`,
-          `\t<template #code>${md.render(
-            `\`\`\` vue\n${source}\`\`\``,
-          )}</template>`,
-          `</code-demo>`,
+          `<code-demo path="${sourceFile}" description="${description}" raw-code="${rawCode}" code-render="${codeRender}">`,
+          `<template #example>${componentPlaceholder}</template>`
         ].join('\n')
       } else {
-        return '<code-demo />\n'
+        return '</code-demo>\n'
       }
     },
   }

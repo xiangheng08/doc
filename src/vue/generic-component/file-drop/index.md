@@ -12,6 +12,14 @@ import Example4 from './Example4.vue'
 import Example5 from './Example5.vue'
 </script>
 
+::: demo
+./Example1.vue
+:::
+
+::: demo
+./Example2.vue
+:::
+
 <Example1 />
 ::: details 示例代码
 

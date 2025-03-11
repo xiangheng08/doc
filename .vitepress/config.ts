@@ -9,6 +9,7 @@ import processPublicHtml, {
   processPublicHtmlBuildEndHook,
 } from './plugins/process-public-html-plugin'
 import codeDemoPlugin from './md-plugins/code-demo'
+import demoDynamicImport from './plugins/demo-dynamic-import'
 import type { DefaultTheme } from 'vitepress'
 
 const nav: DefaultTheme.NavItem[] = [
@@ -192,7 +193,7 @@ export default defineConfig({
       },
     },
 
-    plugins: [sidebarPlugin(), processPublicHtml()],
+    plugins: [sidebarPlugin(), processPublicHtml(), demoDynamicImport()],
 
     css: {
       preprocessorOptions: {
