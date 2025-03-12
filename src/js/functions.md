@@ -870,3 +870,11 @@ const randomInt = (max, min = 0) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 ```
+
+## 获取错误信息字符串
+
+[跳转 ts 查看](/ts/functions#获取错误信息字符串)
+
+## 格式化金额
+
+[跳转 ts 查看](/ts/functions#格式化金额)
