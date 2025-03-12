@@ -31,7 +31,7 @@
 
 `v-else` 元素必须紧跟在带 `v-if` 或者 `v-else-if` 的元素的后面，否则它将不会被识别。
 
-### `v-else-if` <version text="2.1.0+"/>
+### `v-else-if` <Badge text="2.1.0+"/>
 
 `v-else-if`，顾名思义，充当` v-if` 的“else-if 块”，可以连续使用：
 

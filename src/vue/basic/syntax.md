@@ -135,7 +135,7 @@ let rawHtml = ref('<span style="color: red">This should be red.</span>')
 	</div>
 </demo> -->
 
-### 动态参数 <version text="2.6.0+" />
+### 动态参数 <Badge text="2.6.0+" />
 
 从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数：
 

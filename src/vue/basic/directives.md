@@ -4,7 +4,7 @@
 
 -   **预期**：`string`
 -   **详细**：
-    更新元素的 `textContent`。如果要更新部分的 `textContent`，需要使用 `{{ Mustache }}` 插值。
+    更新元素的 `textContent`。如果要更新部分的 `textContent`，需要使用插值语法。
 -   **示例**：
 
     ```html
@@ -67,7 +67,7 @@
     </div>
     ```
 
-## v-else-if <version text="2.1.0+"/>
+## v-else-if <Badge text="2.1.0+"/>
 
 -   **类型**：`any`
 -   **限制**：前一兄弟元素必须有 `v-if` 或 `v-else-if`。
