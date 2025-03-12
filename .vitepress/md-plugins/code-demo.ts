@@ -11,8 +11,12 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
       return !!params.trim().match(regex)
     },
     render(tokens, idx, _, env) {
-      const currentPath = env.realPath as string
+      const currentPath = env.realPath || env.path as string // 当前 md 文件路径
       const m = tokens[idx].info.trim().match(regex)
+
+      if(!currentPath){
+        throw new Error('currentPath is empty')
+      }
 
       // means the tag is opening
       if (tokens[idx].nesting === 1) {
@@ -27,6 +31,7 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
             path.dirname(currentPath),
             sourceFile,
           )
+
           if (!fs.existsSync(sourceFilePath)) {
             throw new Error(`Incorrect source file: ${sourceFile}`)
           }
@@ -42,8 +47,9 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
         if (!source) {
           throw new Error(`Incorrect source file: ${sourceFile}`)
         }
+
         // 组件占位符
-        const componentPlaceholder = `%ep_${componentName}|${sourceFile}%`
+        const componentPlaceholder = `@ep_${componentName}(${sourceFile})`
         // 组件源码
         const rawCode = encodeURIComponent(source)
         // code render
@@ -52,11 +58,11 @@ const createDemoContainer = (md: MarkdownRenderer): ContainerOpts => {
         )
 
         return [
-          `<code-demo path="${sourceFile}" description="${description}" raw-code="${rawCode}" code-render="${codeRender}">`,
-          `<template #example>${componentPlaceholder}</template>`
+          `<CodeDemo path="${sourceFile}" description="${description}" raw-code="${rawCode}" code-render="${codeRender}">`,
+          `\t<template #example>${componentPlaceholder}</template>`,
         ].join('\n')
       } else {
-        return '</code-demo>\n'
+        return '</CodeDemo>\n'
       }
     },
   }

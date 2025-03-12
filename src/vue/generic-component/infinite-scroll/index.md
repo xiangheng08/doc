@@ -10,6 +10,8 @@
 
 ## 示例
 
-::: demo 
+::: demo
+
 ./Example1.vue
+
 :::

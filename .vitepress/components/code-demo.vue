@@ -42,6 +42,8 @@ const copyCode = async () => {
     copied.value = false
   }, 2000)
 }
+
+const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
 </script>
 
 <template>
@@ -54,7 +56,7 @@ const copyCode = async () => {
         v-if="codeShow"
         class="code__inner"
         ref="codeRef"
-        v-html="decodeURIComponent(codeRender || '')"
+        v-html="codeRenderText"
       ></div>
     </div>
     <div class="operate">

@@ -5,25 +5,35 @@
 > 打开控制台查看输出结果
 
 ::: demo
+
 ./Example1.vue
+
 :::
 
 ::: demo
+
 ./Example2.vue
+
 :::
 
 ::: demo
+
 ./Example3.vue
+
 :::
 
 ::: demo
+
 ./Example4.vue
+
 :::
 
 全局文件拖入
 
 ::: demo
+
 ./Example5.vue
+
 :::
 
 ## 代码

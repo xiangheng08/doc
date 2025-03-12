@@ -1,7 +1,7 @@
 import type { Plugin } from 'vitepress'
 
 // 匹配占位符
-const placeholderRegex = /%ep_([^|]+)\|([^%]+)%/g
+const placeholderRegex = /@ep_([^\(]+)\(([^\)]+)\)/g
 // 匹配正则关键字
 const keywordRegex = /[.*+?^${}()|[\]\\]/g
 // 转义正则关键字
@@ -69,8 +69,7 @@ const demoDynamicImport = (): Plugin => {
       // 重置 placeholderRegex
       placeholderRegex.lastIndex = 0
 
-      let importCount = 0
-      let importStatements = '// demo container imports\n'
+      const imports: { componentName: string; path: string }[] = []
       let match
       let newCode = code
 
@@ -79,8 +78,9 @@ const demoDynamicImport = (): Plugin => {
         // 匹配所有占位符 %ep_component|path%
         const [full, componentName, path] = match
 
-        // 生成导入语句
-        importStatements += `import ${componentName} from '${path}'\n`
+        if (!imports.some((i) => i.componentName === componentName)) {
+          imports.push({ componentName, path })
+        }
 
         // 替换原有的 _createTextVNode 为 _createVNode
         const textVNodeRegex = createTextVNodeRegex(full)
@@ -91,16 +91,19 @@ const demoDynamicImport = (): Plugin => {
 
         // 将组件添加到 __returned__ 中
         newCode = addReturned(newCode, componentName)
-
-        importCount++
       }
 
-      if (importCount === 0) return
+      if (imports.length === 0) return
+
+      // 生成导入语句
+      const importStatements =
+        '// demo container imports\n' +
+        imports
+          .map((v) => `import ${v.componentName} from "${v.path}"`)
+          .join('\n')
 
       // 将导入语句注入到 Vue SFC
       newCode = importStatements + '\n' + newCode
-
-      // console.log(newCode);
 
       return newCode
     },

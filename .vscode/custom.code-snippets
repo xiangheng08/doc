@@ -214,7 +214,9 @@
 		"scope": "markdown",
 		"body": [
 			"::: demo",
+      "",
       "$1",
+      "",
       ":::",
 		],
 		"description": "script setup"
