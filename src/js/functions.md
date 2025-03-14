@@ -62,6 +62,10 @@ function throttle(fn, delay, start = true) {
 }
 ```
 
+## lodash 版节流
+
+[ts 实现](/ts/functions#lodash-版节流)
+
 ## 获取某个日期位于当年的第几天
 
 ```js
