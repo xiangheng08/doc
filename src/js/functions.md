@@ -823,6 +823,8 @@ const clearSelection = () => {
 
 ## 选择文件
 
+[ts 实现](/ts/functions#选择文件)
+
 ```js
 /**
  * 选择文件
@@ -845,10 +847,7 @@ const selectFile = (options) => {
     if (multiple) input.multiple = multiple;
     input.click();
     input.onchange = () => {
-      const files = [];
-      for (let i = 0; i < input.files.length; i++) {
-        files.push(input.files[i]);
-      }
+      const files = Array.from(input.files || []);
       if (files.length > 0) {
         resolve(files);
       } else {

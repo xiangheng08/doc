@@ -408,3 +408,45 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
   return decimal > 0 ? `${formattedInteger}.${decimalPart || '0'.repeat(decimal)}` : formattedInteger;
 };
 ```
+
+## 选择文件
+
+[js 实现](/js/functions#选择文件)
+
+```ts
+interface SelectFileOptions {
+  accept?: string
+  multiple?: boolean
+}
+
+/**
+ * 选择文件
+ * @example
+ * selectFile({ accept: 'image/*', multiple: true }).then(files => {
+ *     console.log(files)
+ * })
+ */
+export const selectFile = (options: SelectFileOptions): Promise<File[]> => {
+  return new Promise((resolve, reject) => {
+    const { accept, multiple } = options || {}
+    const input = document.createElement('input')
+    input.type = 'file'
+    if (accept) input.accept = accept
+    if (multiple) input.multiple = multiple
+    input.click()
+    input.onchange = () => {
+      const files = Array.from(input.files || [])
+      if (files.length > 0) {
+        resolve(files)
+      } else {
+        reject()
+      }
+      input.remove()
+    }
+    input.onerror = () => {
+      reject()
+      input.remove()
+    }
+  })
+}
+```
