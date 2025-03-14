@@ -125,6 +125,77 @@ export function debounce<T extends any[], R, THIS>(
 }
 ```
 
+## lodash 版节流
+
+```ts
+type ThrottleOptions = {
+  leading?: boolean;
+  trailing?: boolean;
+};
+
+function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number,
+  options: ThrottleOptions = {}
+): (...args: Parameters<T>) => ReturnType<T> | void {
+  let lastExecTime: number | undefined;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  let storedArgs: Parameters<T> | undefined;
+  let storedThis: any;
+
+  // 处理默认选项并确保至少有一个触发选项
+  let { leading = true, trailing = true } = options;
+  if (!leading && !trailing) {
+    trailing = true;
+  }
+
+  // 清理定时器并重置状态
+  const clearTimer = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutId = undefined;
+    }
+  };
+
+  // 执行 trailing 调用
+  const trailingExec = () => {
+    lastExecTime = Date.now();
+    clearTimer();
+    if (trailing && storedArgs) {
+      func.apply(storedThis, storedArgs);
+      storedArgs = undefined;
+      storedThis = undefined;
+    }
+  };
+
+  return function (this: any, ...args: Parameters<T>): ReturnType<T> | void {
+    const now = Date.now();
+    
+    // 计算剩余时间
+    const remaining = lastExecTime === undefined
+      ? 0
+      : wait - (now - lastExecTime);
+
+    // 保存当前调用的上下文和参数
+    storedArgs = args;
+    storedThis = this;
+
+    if (remaining <= 0) {
+      clearTimer();
+      lastExecTime = now;
+      if (leading) {
+        return func.apply(storedThis, storedArgs);
+      }
+    } else if (!timeoutId && trailing) {
+      timeoutId = setTimeout(trailingExec, remaining);
+    }
+
+    // 非 leading 调用或无立即执行时返回 undefined
+    return undefined;
+  };
+}
+```
+
 ## hasOwnProperty
 
 ```ts
@@ -336,75 +407,4 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
   const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return decimal > 0 ? `${formattedInteger}.${decimalPart || '0'.repeat(decimal)}` : formattedInteger;
 };
-```
-
-## lodash 版节流
-
-```ts
-type ThrottleOptions = {
-  leading?: boolean;
-  trailing?: boolean;
-};
-
-function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-  options: ThrottleOptions = {}
-): (...args: Parameters<T>) => ReturnType<T> | void {
-  let lastExecTime: number | undefined;
-  let timeoutId: ReturnType<typeof setTimeout> | undefined;
-  let storedArgs: Parameters<T> | undefined;
-  let storedThis: any;
-
-  // 处理默认选项并确保至少有一个触发选项
-  let { leading = true, trailing = true } = options;
-  if (!leading && !trailing) {
-    trailing = true;
-  }
-
-  // 清理定时器并重置状态
-  const clearTimer = () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutId = undefined;
-    }
-  };
-
-  // 执行 trailing 调用
-  const trailingExec = () => {
-    lastExecTime = Date.now();
-    clearTimer();
-    if (trailing && storedArgs) {
-      func.apply(storedThis, storedArgs);
-      storedArgs = undefined;
-      storedThis = undefined;
-    }
-  };
-
-  return function (this: any, ...args: Parameters<T>): ReturnType<T> | void {
-    const now = Date.now();
-    
-    // 计算剩余时间
-    const remaining = lastExecTime === undefined
-      ? 0
-      : wait - (now - lastExecTime);
-
-    // 保存当前调用的上下文和参数
-    storedArgs = args;
-    storedThis = this;
-
-    if (remaining <= 0) {
-      clearTimer();
-      lastExecTime = now;
-      if (leading) {
-        return func.apply(storedThis, storedArgs);
-      }
-    } else if (!timeoutId && trailing) {
-      timeoutId = setTimeout(trailingExec, remaining);
-    }
-
-    // 非 leading 调用或无立即执行时返回 undefined
-    return undefined;
-  };
-}
 ```
