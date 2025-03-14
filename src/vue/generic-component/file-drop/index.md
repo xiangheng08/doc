@@ -44,6 +44,12 @@
 
 :::
 
+::: details ./FileDrop/Global.vue
+
+<<< ./FileDrop/Global.vue
+
+:::
+
 ::: details ./FileDrop/utils.ts
 
 <<< ./FileDrop/utils.ts
