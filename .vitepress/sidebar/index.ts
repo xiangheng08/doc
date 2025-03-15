@@ -21,6 +21,7 @@ import mysql from './mysql'
 import windows from './windows'
 import nginx from './nginx'
 import elementUi from './element-ui'
+import chrome from './chrome'
 
 export default {
   '/git/': git,
@@ -44,5 +45,6 @@ export default {
   '/mysql/': mysql,
   '/windows/': windows,
   '/nginx/': nginx,
-  '/element-ui/': elementUi
+  '/element-ui/': elementUi,
+  '/chrome/': chrome,
 } satisfies DefaultTheme.Sidebar

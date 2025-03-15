@@ -55,6 +55,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'NVM', link: '/nvm/index' },
       { text: 'VSCode', link: '/vscode/tips' },
       { text: 'Windows', link: '/windows/tips' },
+      { text: 'Chrome', link: '/chrome/' },
     ],
   },
   { text: 'Git', link: '/git/command-list' },
