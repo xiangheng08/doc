@@ -40,6 +40,7 @@ export default [
         text: '任务队列',
         link: '/js/advanced/function/task-queue',
       },
+      { link: '/js/advanced/function/parallel-task-queue' }
     ],
   },
   // {
