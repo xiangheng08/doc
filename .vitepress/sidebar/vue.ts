@@ -69,4 +69,5 @@ export default [
       { link: '/vue/generic-component/infinite-scroll/' },
     ],
   },
+  { link: '/vue/style-penetration' },
 ] satisfies DefaultTheme.Sidebar
