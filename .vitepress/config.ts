@@ -26,6 +26,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'TypeScript', link: '/ts/intro' },
           { text: 'Vue', link: '/vue/core' },
           { text: 'React', link: '/react/raw' },
+          { text: 'Vite', link: '/vite/' },
           { text: 'React Native', link: '/react-native/link' },
           { text: 'Electron', link: '/electron/docs-nav' },
           {
@@ -37,6 +38,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'VitePress', link: '/vitepress/error' },
           { text: '布局', link: '/layout/waterfall' },
           { text: '浏览器', link: '/browser/reflow-repaint' },
+          { text: '微信小程序', link: '/wx-mp/' },
         ],
       },
       {

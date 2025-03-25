@@ -23,6 +23,7 @@ import nginx from './nginx'
 import elementUi from './element-ui'
 import chrome from './chrome'
 import vite from './vite'
+import wxMp from './wx-mp'
 
 export default {
   '/git/': git,
@@ -49,4 +50,5 @@ export default {
   '/element-ui/': elementUi,
   '/chrome/': chrome,
   '/vite/': vite,
+  '/wx-mp/': wxMp,
 } satisfies DefaultTheme.Sidebar
