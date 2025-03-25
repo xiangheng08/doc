@@ -70,4 +70,8 @@ export default [
     ],
   },
   { link: '/vue/style-penetration' },
+  {
+    text: 'Hooks',
+    items: [{ link: '/vue/hooks/lock' }, { link: '/vue/hooks/paging' }],
+  },
 ] satisfies DefaultTheme.Sidebar
