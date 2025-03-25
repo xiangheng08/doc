@@ -22,6 +22,7 @@ import windows from './windows'
 import nginx from './nginx'
 import elementUi from './element-ui'
 import chrome from './chrome'
+import vite from './vite'
 
 export default {
   '/git/': git,
@@ -47,4 +48,5 @@ export default {
   '/nginx/': nginx,
   '/element-ui/': elementUi,
   '/chrome/': chrome,
+  '/vite/': vite,
 } satisfies DefaultTheme.Sidebar
