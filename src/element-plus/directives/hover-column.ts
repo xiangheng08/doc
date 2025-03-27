@@ -2,7 +2,7 @@ import type { Directive } from 'vue'
 
 type EventHandler = (e: MouseEvent) => void
 type SetHoverColumn = (column: number | null) => void
-type Position = DOMRect
+type Position = { left: number; right: number }
 
 const handlerMap = new WeakMap<
   HTMLElement,
@@ -63,9 +63,15 @@ const directive: Directive<HTMLElement, SetHoverColumn> = {
 const getPositions = (el: HTMLElement) => {
   const colgroup = el.querySelector('colgroup')
   if (!colgroup) return []
-  return Array.from(colgroup.children).map<Position>((col) =>
-    col.getBoundingClientRect(),
-  )
+  const startLeft = colgroup.getBoundingClientRect().left
+  let left = startLeft
+  return Array.from(colgroup.children).map<Position>((col) => {
+    // 兼容 col 堆叠在一起的情况
+    return {
+      left,
+      right: (left += col.getBoundingClientRect().width),
+    }
+  })
 }
 
 export default directive
