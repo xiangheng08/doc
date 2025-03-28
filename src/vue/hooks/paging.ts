@@ -1,7 +1,7 @@
 /*
   usePaging 依赖于 lodash-es 的 cloneDeep 方法
 */
-// @ts-ignore 这里我并没有下载 lodash-es 所以 @ts-ignore 去除警告，真实代码需去除这行
+// @ts-ignore 这里我并没有下载 lodash-es 所以用 @ts-ignore 去除警告，真实代码需去除这行
 import { cloneDeep } from 'lodash-es'
 import { reactive, isRef, isProxy, toRaw } from 'vue'
 import type { Reactive, Ref } from 'vue'
