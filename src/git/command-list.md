@@ -68,9 +68,9 @@
 
 ## 标签
 
--   `git tag <tag_name> [<commit_hash>]`: 创建标签（默认当前分支最新提交）。
+-   `git tag <tag_name> [commit_hash]`: 创建标签（默认当前分支最新提交）。
 -   `git tag`: 查看所有标签
--   `git tag -a <tag_name> -m "Tag message" [<commit_hash>]`: 创建带注释的标签。
+-   `git tag -a <tag_name> -m "Tag message" [commit_hash]`: 创建带注释的标签。
 -   `git push --tags`: 推送所有标签到远程仓库。
 -   `git show <tag_name>`: 查看标签信息。
 -   `git tag -d <tag_name>`: 删除标签。
@@ -111,7 +111,6 @@
 
 ```sh
 git push --set-upstream origin main
-
 ```
 
 ### 配置默认的拉取远程地址
@@ -226,6 +225,24 @@ git config --local --list | grep user
 ::: tip
 提示：如果配置比较多就会进入分页模式，可以按下 q 键退出分页模式。
 :::
+
+## 参数占位符解释
+
+参数占位符？ -> `git tag <tag_name> [commit_hash]` 的 `<tag_name>` 和 `[commit_hash]`
+
+- 必选参数：`<tag_name>`
+- 可选参数：`[commit_hash]`
+
+---
+
+-   `branch_name`: 分支名称，用于指定分支的操作。
+-   `tag_name`: 标签名称，用于指定标签的操作。
+-   `commit_hash`: 提交哈希值，用于指定某个提交的操作，方括号表示该参数为可选。
+-   `file`: 文件名，用于指定文件的操作。
+-   `repository_url`: 远程仓库的 URL 地址。
+-   `remote`: 远程仓库的名称，通常为 `origin`。
+-   `local_branch` 和 `remote_branch`: 本地分支和远程分支的名称。
+-   `remote_name`: 远程仓库的名称。
 
 ## 关键词
 
