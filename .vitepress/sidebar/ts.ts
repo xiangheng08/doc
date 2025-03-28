@@ -2,6 +2,7 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   { link: '/ts/intro' },
+  { link: '/ts/basic' },
   { link: '/ts/functions' },
   { link: '/ts/build-qa' },
   { link: '/ts/tips' },
