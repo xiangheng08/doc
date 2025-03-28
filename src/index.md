@@ -20,7 +20,7 @@ features:
   - title: 技术实践
     details: 包含可交互的Vue组件示例，配套完整代码片段与最佳实践指南
   - title: 多端同步
-    details: 自适应PC/移动端访问，支持PWA离线缓存，GitHub实时内容同步
+    details: 自适应PC/移动端访问，GitHub实时内容同步
 ---
 
 ```js
