@@ -36,6 +36,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'Element Plus', link: '/element-plus/issues' },
           { text: 'Eslint', link: '/eslint/issues' },
           { text: 'VitePress', link: '/vitepress/error' },
+          { text: 'Axios', link: '/axios/' },
           { text: '布局', link: '/layout/waterfall' },
           { text: '浏览器', link: '/browser/reflow-repaint' },
           { text: '微信小程序', link: '/wx-mp/' },
@@ -70,6 +71,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: '语义化版本规范', link: '/sem-ver' },
       { text: '笔记', link: '/note/code-point-and-code-unit' },
       { text: 'Links', link: '/links' },
+      { text: '关于本站', link: '/about' },
     ],
   },
 ]

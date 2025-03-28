@@ -24,6 +24,7 @@ import elementUi from './element-ui'
 import chrome from './chrome'
 import vite from './vite'
 import wxMp from './wx-mp'
+import axios from './axios'
 
 export default {
   '/git/': git,
@@ -51,4 +52,5 @@ export default {
   '/chrome/': chrome,
   '/vite/': vite,
   '/wx-mp/': wxMp,
+  '/axios/': axios,
 } satisfies DefaultTheme.Sidebar
