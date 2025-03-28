@@ -1,34 +1,19 @@
 # useLock
 
-```ts
-import { ref } from 'vue'
-import type { Ref } from 'vue'
+`useLock` 是一个用于锁定异步函数的钩子，确保在函数执行期间不会被重复调用。它提供了一个 `running` 状态变量，用于判断函数是否正在执行。该钩子特别适用于需要防止重复执行的场景，例如登录、注册等操作，同时也可以用于禁用按钮等 UI 控制。
 
-export const useLock = <T extends any[]>(
-  fn: (...args: T) => Promise<any>,
-  shouldLock = true, // 是否需要加锁
-): [locking: Ref<boolean>, wrappedFn: (...args: T) => Promise<void>] => {
-  const locking = ref(false)
+通过将 `shouldLock` 参数设置为 `false`，可以仅获取函数的运行状态，而不进行锁定操作。
 
-  const wrappedFn = async (...args: T) => {
-    if (shouldLock && locking.value) return
-    locking.value = true
-    try {
-      return await fn(...args)
-    } finally {
-      locking.value = false
-    }
-  }
-
-  return [locking, wrappedFn]
-}
-```
+<<< ./lock.ts
 
 实践：
 
 ```ts
-const getData = async (id: number) => { /* .... */ }
+const login = async (id: number) => { /* .... */ }
 
-const [loading, getDataFn] = useLock(getData)
+const [disabled, loginFn] = useLock(login)
 ```
 
+```vue
+<button :disabled="disabled" @click="loginFn()">登录</button>
+```
