@@ -85,7 +85,7 @@ index.ts:1:1 - error TS2304: Cannot find name 'a'.
   ~~~~~
 ```
 
-想这样
+像这样
 
 但是上面的命令还是会生成 js 文件，如果你想在编译时遇到错误，就不要生成文件可以使用 `--noEmitOnError` 参数
 
@@ -103,7 +103,7 @@ tsc --noEmit index.ts
 
 `tsconfig.json` 是一个配置文件，用来配置 tsc 编译器的行为。有了它，就可以直接运行 `tsc` 命令了，`tsc` 会自动读取当前目录的 `tsconfig.json` 文件，并使用其中的配置进行编译。
 
-使用 `tsc --init` 会在当前目录生成一个 `tsconfig.json` 文件，里面有一些默认的配置。想下面的这样：
+使用 `tsc --init` 会在当前目录生成一个 `tsconfig.json` 文件，里面有一些默认的配置。像下面的这样：
 
 <<< init-tsconfig.json
 
