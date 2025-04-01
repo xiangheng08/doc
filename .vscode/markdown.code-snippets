@@ -74,7 +74,7 @@
 		"description": "代码块"
 	},
 	"code": {
-		"prefix": "code inline",
+		"prefix": ["code inline", "cl"],
 		"scope": "markdown",
 		"body": [
 			"`${1:code}`"
