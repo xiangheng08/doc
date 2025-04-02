@@ -20,10 +20,10 @@ const nav: DefaultTheme.NavItem[] = [
         text: '前端',
         items: [
           { text: 'HTML', link: '/html/intro' },
-          { text: 'CSS', link: '/css/index' },
-          { text: 'JavaScript', link: '/js/index' },
+          { text: 'CSS', link: '/css/' },
+          { text: 'JavaScript', link: '/js/' },
           { text: 'WebAPI', link: '/web-api/' },
-          { text: 'NodeJS', link: '/nodejs/index' },
+          { text: 'NodeJS', link: '/nodejs/' },
           { text: 'TypeScript', link: '/ts/intro' },
           { text: 'Vue', link: '/vue/' },
           { text: 'React', link: '/react/raw' },
@@ -104,7 +104,7 @@ if (isProd && !noSearch) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'My doc',
-  description: 'My Doc',
+  description: '我的文档',
   lang: 'zh-CN',
 
   srcDir: 'src',
@@ -183,7 +183,7 @@ export default defineConfig({
   },
 
   cleanUrls: true, // 去除url中的.html
-  metaChunk: true, // 将公共的js提取出来
+  metaChunk: true, // 提取页面元数据到单独的 js 中
 
   vite: {
     server: {
