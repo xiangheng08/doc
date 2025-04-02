@@ -5,14 +5,14 @@ TypeScript 继承了 JavaScript 的类型，在这个基础上，又定义了一
 ## 基本类型
 
 TypeScript 的基本类型有：
-- number
-- string
-- boolean
-- symbol
-- bigint
-- object
-- null
-- undefined
+- `number`
+- `string`
+- `boolean`
+- `symbol`
+- `bigint`
+- `object`
+- `null`
+- `undefined`
 
 因为 TypeScript 继承了 JavaScript 的类型设计，所以以上的类型和 JavaScript 的基本类型是一样的。
 
