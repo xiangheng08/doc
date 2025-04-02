@@ -25,6 +25,7 @@ import chrome from './chrome'
 import vite from './vite'
 import wxMp from './wx-mp'
 import axios from './axios'
+import webApi from './web-api'
 
 export default {
   '/git/': git,
@@ -53,4 +54,5 @@ export default {
   '/vite/': vite,
   '/wx-mp/': wxMp,
   '/axios/': axios,
+  '/web-api/': webApi,
 } satisfies DefaultTheme.Sidebar

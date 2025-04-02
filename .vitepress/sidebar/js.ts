@@ -233,6 +233,10 @@ export default [
     ],
   },
   {
+    text: 'WebAPI',
+    link: '/web-api/'
+  },
+  {
     text: '其他',
     items: [
       {

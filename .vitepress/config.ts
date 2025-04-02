@@ -22,6 +22,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'HTML', link: '/html/intro' },
           { text: 'CSS', link: '/css/index' },
           { text: 'JavaScript', link: '/js/index' },
+          { text: 'WebAPI', link: '/web-api/' },
           { text: 'NodeJS', link: '/nodejs/index' },
           { text: 'TypeScript', link: '/ts/intro' },
           { text: 'Vue', link: '/vue/' },
