@@ -1,4 +1,4 @@
-# Clipboard
+# Clipboard API
 
 使用 JavaScript 操作剪切板，目前，一共有三种方法可以实现剪贴板操作。
 
