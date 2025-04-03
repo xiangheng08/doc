@@ -59,7 +59,7 @@ const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
         v-html="codeRenderText"
       ></div>
     </div>
-    <div class="operate">
+    <div class="operate" :class="{ 'code-show': codeShow }">
       <button
         class="operate-item"
         @click="copyCode"
@@ -106,11 +106,13 @@ const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
   align-items: center;
   border-top: 1px solid var(--vp-c-divider);
   height: 40px;
-  position: sticky;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
+  &.code-show {
+    position: sticky;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 10;
+  }
 }
 .operate-item {
   cursor: pointer;
