@@ -87,6 +87,7 @@ const codeRenderText = computed(() =>
 <style lang="scss" scoped>
 .batch-render-demo {
   overflow: visible;
+  contain: paint;
   border: none;
   :deep(.content) {
     padding: 0;
@@ -124,7 +125,6 @@ const codeRenderText = computed(() =>
     right: 0px;
     bottom: 0px;
     z-index: 10;
-    border-radius: 0;
     border-top: 1px solid var(--vp-c-divider);
   }
 }
