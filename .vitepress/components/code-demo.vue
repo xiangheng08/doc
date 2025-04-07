@@ -43,7 +43,9 @@ const copyCode = async () => {
   }, 2000)
 }
 
-const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
+const codeRenderText = computed(() =>
+  decodeURIComponent(props.codeRender || ''),
+)
 </script>
 
 <template>
@@ -83,15 +85,22 @@ const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
 </template>
 
 <style lang="scss" scoped>
-.batch-render-demo :deep(.content) {
-  padding: 0;
+.batch-render-demo {
+  overflow: visible;
+  border: none;
+  :deep(.content) {
+    padding: 0;
+  }
 }
 .example {
   padding: 22px 24px;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--vp-c-divider);
 }
 .code {
+  border-left: 1px solid var(--vp-c-divider);
+  border-right: 1px solid var(--vp-c-divider);
   .code__inner {
-    border-top: 1px solid var(--vp-c-divider);
     transition: height 0.3s ease;
   }
   :deep(div[class*='language-']) {
@@ -104,14 +113,19 @@ const codeRenderText = computed(()=> decodeURIComponent(props.codeRender || ''))
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-top: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-divider);
+  border-top: none;
   height: 40px;
+  background-color: var(--vp-c-bg-alt);
+  border-radius: 0 0 8px 8px;
   &.code-show {
     position: sticky;
     left: 0px;
     right: 0px;
     bottom: 0px;
     z-index: 10;
+    border-radius: 0;
+    border-top: 1px solid var(--vp-c-divider);
   }
 }
 .operate-item {
