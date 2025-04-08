@@ -2,8 +2,6 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   { link: '/ts/intro' },
-  { link: '/ts/basic' },
-  { link: '/ts/types' },
   { link: '/ts/functions' },
   { link: '/ts/build-qa' },
   { link: '/ts/tips' },
@@ -14,5 +12,13 @@ export default [
   {
     text: 'Utils',
     items: [{ link: '/ts/utils/paste/' }],
+  },
+  {
+    text: '文档',
+    items: [
+      { link: '/ts/basic' },
+      { link: '/ts/types' },
+      { link: '/ts/special-type' },
+    ],
   },
 ] satisfies DefaultTheme.Sidebar
