@@ -25,15 +25,11 @@
 
 以下是一个使用 Vue3 setup 语法实现的分批渲染的 Demo：
 
-<script setup>
-import BatchRenderDemo from './batch-render-demo.vue'
-</script>
+::: demo 分批渲染 Demo
 
-<BatchRenderDemo />
+./batch-render-demo.vue
 
-代码如下：
-
-<<< ./batch-render-demo.vue
+:::
 
 ## 使用 setTimeout 和 requestAnimationFrame 的区别
 

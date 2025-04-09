@@ -1,16 +1,14 @@
 <template>
-  <Demo title="分批渲染 Demo">
-    <div class="box">
-      <button @click="startRendering">开始渲染</button>
-      <button @click="clear">清空</button>
-      <span class="render-status" v-if="visibleItems.length > 0">{{
-        rendering ? '正在渲染...' : '渲染完成'
-      }}</span>
-    </div>
-    <ul>
-      <li v-for="item in visibleItems" :key="item">{{ item }}</li>
-    </ul>
-  </Demo>
+  <div class="box">
+    <button @click="startRendering">开始渲染</button>
+    <button @click="clear">清空</button>
+    <span class="render-status" v-if="visibleItems.length > 0">{{
+      rendering ? '正在渲染...' : '渲染完成'
+    }}</span>
+  </div>
+  <ul>
+    <li v-for="item in visibleItems" :key="item">{{ item }}</li>
+  </ul>
 </template>
 
 <script setup>

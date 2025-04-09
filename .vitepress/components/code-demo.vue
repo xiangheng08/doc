@@ -53,7 +53,7 @@ const codeRenderText = computed(() =>
     <div class="example">
       <slot name="example"></slot>
     </div>
-    <div class="code">
+    <div class="code" :class="{ 'code-show': codeShow }">
       <div
         v-if="codeShow"
         class="code__inner"
@@ -88,7 +88,6 @@ const codeRenderText = computed(() =>
 .batch-render-demo {
   overflow: visible;
   contain: paint;
-  border: none;
   :deep(.content) {
     padding: 0;
   }
@@ -96,11 +95,11 @@ const codeRenderText = computed(() =>
 .example {
   padding: 22px 24px;
   border-radius: 8px 8px 0 0;
-  border: 1px solid var(--vp-c-divider);
 }
 .code {
-  border-left: 1px solid var(--vp-c-divider);
-  border-right: 1px solid var(--vp-c-divider);
+  &.code-show {
+    border-top: 1px solid var(--vp-c-divider);
+  }
   .code__inner {
     transition: height 0.3s ease;
   }
@@ -114,8 +113,7 @@ const codeRenderText = computed(() =>
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid var(--vp-c-divider);
-  border-top: none;
+  border-top: 1px solid var(--vp-c-divider);
   height: 40px;
   background-color: var(--vp-c-bg-alt);
   border-radius: 0 0 8px 8px;
@@ -125,7 +123,6 @@ const codeRenderText = computed(() =>
     right: 0px;
     bottom: 0px;
     z-index: 10;
-    border-top: 1px solid var(--vp-c-divider);
   }
 }
 .operate-item {
