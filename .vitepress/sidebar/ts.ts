@@ -20,6 +20,7 @@ export default [
       { link: '/ts/types' },
       { link: '/ts/special-type' },
       { link: '/ts/array' },
+      { link: '/ts/tuple' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
