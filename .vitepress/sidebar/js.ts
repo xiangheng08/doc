@@ -236,6 +236,7 @@ export default [
     text: 'WebAPI',
     link: '/web-api/'
   },
+  { link: '/js/ecma-version-changelog' },
   {
     text: '其他',
     items: [
