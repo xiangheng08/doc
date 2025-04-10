@@ -19,6 +19,7 @@ export default [
       { link: '/ts/basic' },
       { link: '/ts/types' },
       { link: '/ts/special-type' },
+      { link: '/ts/array' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
