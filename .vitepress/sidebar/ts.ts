@@ -21,6 +21,8 @@ export default [
       { link: '/ts/special-type' },
       { link: '/ts/array' },
       { link: '/ts/tuple' },
+      { link: '/ts/symbol' },
+      { link: '/ts/function' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
