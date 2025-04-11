@@ -16,6 +16,7 @@ export default [
   {
     text: '文档',
     items: [
+      { link: '/ts/docs-explain' },
       { link: '/ts/basic' },
       { link: '/ts/types' },
       { link: '/ts/special-type' },
