@@ -24,6 +24,7 @@ export default [
       { link: '/ts/tuple' },
       { link: '/ts/symbol' },
       { link: '/ts/function' },
+      { link: '/ts/object' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
