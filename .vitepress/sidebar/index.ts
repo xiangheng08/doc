@@ -26,6 +26,7 @@ import vite from './vite'
 import wxMp from './wx-mp'
 import axios from './axios'
 import webApi from './web-api'
+import database from './database'
 
 export default {
   '/git/': git,
@@ -55,4 +56,5 @@ export default {
   '/wx-mp/': wxMp,
   '/axios/': axios,
   '/web-api/': webApi,
+  '/database/': database,
 } satisfies DefaultTheme.Sidebar

@@ -43,6 +43,7 @@ const nav: DefaultTheme.NavItem[] = [
       {
         text: '后端',
         items: [
+          { text: '数据库', link: '/database/' },
           { text: 'MySql', link: '/mysql/error' },
           { text: 'Nginx', link: '/nginx/reverse-proxy' },
         ],
