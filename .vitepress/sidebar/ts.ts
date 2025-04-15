@@ -25,6 +25,7 @@ export default [
       { link: '/ts/symbol' },
       { link: '/ts/function' },
       { link: '/ts/object' },
+      { link: '/ts/interface' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
