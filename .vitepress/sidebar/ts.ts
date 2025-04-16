@@ -26,6 +26,7 @@ export default [
       { link: '/ts/function' },
       { link: '/ts/object' },
       { link: '/ts/interface' },
+      { link: '/ts/class' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
