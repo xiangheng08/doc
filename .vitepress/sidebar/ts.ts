@@ -27,6 +27,7 @@ export default [
       { link: '/ts/object' },
       { link: '/ts/interface' },
       { link: '/ts/class' },
+      { link: '/ts/generics' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
