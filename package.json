@@ -10,7 +10,8 @@
     "build": "vitepress build",
     "build:no-search": "vitepress build --no-search",
     "preview": "vitepress preview",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "dist-analyzer": "node scripts/dist-analyzer.js"
   },
   "dependencies": {
     "medium-zoom": "^1.1.0",
