@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { copyText } from '../utils/common'
 import CodeIcon from './icons/code-icon.vue'
 import CopyIcon from './icons/copy-icon.vue'
@@ -46,6 +46,20 @@ const copyCode = async () => {
 const codeRenderText = computed(() =>
   decodeURIComponent(props.codeRender || ''),
 )
+
+const codeRegionHeight = ref('auto')
+
+const getCodeRegionHeight = () => {
+  if (codeRef.value) {
+    const codeHeight = codeRef.value.offsetHeight
+    return codeHeight + 'px'
+  }
+  return 'auto'
+}
+
+onMounted(() => {
+  codeRegionHeight.value = getCodeRegionHeight()
+})
 </script>
 
 <template>
@@ -53,13 +67,12 @@ const codeRenderText = computed(() =>
     <div class="example">
       <slot name="example"></slot>
     </div>
-    <div class="code" :class="{ 'code-show': codeShow }">
-      <div
-        v-if="codeShow"
-        class="code__inner"
-        ref="codeRef"
-        v-html="codeRenderText"
-      ></div>
+    <div
+      class="code"
+      :class="{ 'code-show': codeShow }"
+      :style="{ '--code-region-height': codeRegionHeight }"
+    >
+      <div class="code__inner" ref="codeRef" v-html="codeRenderText"></div>
     </div>
     <div class="operate" :class="{ 'code-show': codeShow }">
       <button
@@ -97,11 +110,13 @@ const codeRenderText = computed(() =>
   border-radius: 8px 8px 0 0;
 }
 .code {
+  height: 0;
+  overflow: hidden;
+  transition: 0.15s ease-in-out;
+  border-top: 1px solid transparent;
   &.code-show {
-    border-top: 1px solid var(--vp-c-divider);
-  }
-  .code__inner {
-    transition: height 0.3s ease;
+    border-color: var(--vp-c-divider);
+    height: var(--code-region-height);
   }
   :deep(div[class*='language-']) {
     margin: 0;
