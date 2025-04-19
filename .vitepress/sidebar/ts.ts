@@ -28,6 +28,7 @@ export default [
       { link: '/ts/interface' },
       { link: '/ts/class' },
       { link: '/ts/generics' },
+      { link: '/ts/enum' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
