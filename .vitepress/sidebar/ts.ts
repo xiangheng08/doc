@@ -30,6 +30,7 @@ export default [
       { link: '/ts/generics' },
       { link: '/ts/enum' },
       { link: '/ts/assert' },
+      { link: '/ts/module' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
