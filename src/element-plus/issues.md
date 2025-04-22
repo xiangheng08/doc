@@ -96,5 +96,16 @@ interface StickyTableOptions {
 }
 ```
 
+## 使用自动导入后，在 vscode 中仍然会自动添加导出语句
 
+```json
+// settings.json
+{
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "auto-imports.d.ts",
+    "components.d.ts"
+  ]
+}
+```
 
+`typescript.preferences.autoImportFileExcludePatterns` 的作用是：从自动导入中排除指定文件的 glob 模式。相对路径是相对于工作区进行解析的。使用 tsconfig.json 'exclude'语义计算模式。
