@@ -78,4 +78,10 @@ export default [
       { link: '/vue/hooks/paging-js' },
     ],
   },
+  {
+    text: 'Mixins',
+    items: [
+      { link: '/vue/mixins/paging' },
+    ],
+  },
 ] satisfies DefaultTheme.Sidebar

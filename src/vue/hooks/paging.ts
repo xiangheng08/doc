@@ -124,7 +124,9 @@ export const usePaging = <
 
   let setLastOutdate: () => void = () => {}
 
-  // 请求分页接口
+  /**
+   * 请求分页接口
+   */
   const getList = async () => {
     setLastOutdate()
     let outdated = false
