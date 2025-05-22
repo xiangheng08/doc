@@ -86,8 +86,15 @@ export const usePaging = (options) => {
    * 重置参数
    */
   const resetParams = () => {
-    Object.assign(params, cloneDeep(initParams))
-    getList()
+    if (isRef(params)) {
+      params.value = cloneDeep(initParams)
+    } else {
+      // 清空 params
+      for (const key in params) {
+        delete params[key]
+      }
+      Object.assign(params, cloneDeep(initParams))
+    }
   }
 
   /**
