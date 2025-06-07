@@ -11,5 +11,6 @@ export default [
       // },
     ],
   },
-  { link: 'vitepress/error' },
+  { link: 'vitepress/issues' },
+  { link: 'vitepress/group-icons' },
 ] satisfies DefaultTheme.Sidebar

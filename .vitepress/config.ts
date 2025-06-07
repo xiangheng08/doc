@@ -11,6 +11,7 @@ import processPublicHtml, {
 import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
 import type { DefaultTheme } from 'vitepress'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -174,6 +175,7 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(codeDemoPlugin)
+      md.use(groupIconMdPlugin)
     },
     theme: { light: 'github-light', dark: 'github-dark' },
     lineNumbers: false, // 启用行号
@@ -197,7 +199,7 @@ export default defineConfig({
       },
     },
 
-    plugins: [sidebarPlugin(), processPublicHtml(), demoDynamicImport()],
+    plugins: [sidebarPlugin(), processPublicHtml(), demoDynamicImport(), groupIconVitePlugin()],
 
     css: {
       preprocessorOptions: {
