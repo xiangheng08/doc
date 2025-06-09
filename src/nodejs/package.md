@@ -90,13 +90,16 @@
 
 - **`scripts`**  
   - 自定义快捷命令，通过 `npm run <script>` 执行。  
+  - 支持通过 `pre` 和 `post` 前缀创建生命周期钩子（例如：`pretest` 会在 `test` 脚本前自动执行）
   - 常用脚本：  
     ```json
     "scripts": {
-      "start": "node app.js",         // 启动应用
-      "test": "jest",                 // 运行测试
-      "build": "webpack --mode production",  // 打包
-      "lint": "eslint src"            // 代码检查
+      "start": "node app.js",
+      "pretest": "echo '准备测试环境...'",  // 在 test 前自动执行
+      "test": "jest",                   
+      "posttest": "echo '测试完成清理工作...'", // 在 test 后自动执行
+      "build": "webpack --mode production",
+      "lint": "eslint src"
     }
     ```
 
@@ -159,7 +162,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest"
+    "pretest": "echo '准备测试环境...'",
+    "test": "jest",
+    "posttest": "echo '测试完成清理工作...'",
+    "build": "webpack --mode production",
+    "lint": "eslint src"
   },
   "dependencies": {
     "express": "^4.18.2"
