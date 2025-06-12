@@ -16,6 +16,7 @@ export default [
   { link: '/js/functions' },
   { link: '/js/tips' },
   { link: '/js/regex' },
+  { link: '/js/runtime' },
   {
     text: 'JS 高阶语法',
     items: [
