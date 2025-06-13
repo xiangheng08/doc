@@ -31,6 +31,7 @@ export default [
       { link: '/ts/enum' },
       { link: '/ts/assert' },
       { link: '/ts/module' },
+      { link: '/ts/tsconfig.json' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
