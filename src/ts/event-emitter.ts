@@ -35,14 +35,23 @@ export class EventEmitter<T extends EventMap = {}> {
   }
 
   // 监听一次事件
-  once<K extends keyof T>(event: K, listener: (...args: T[K]) => void, context?: unknown): Off {
+  once<K extends keyof T>(
+    event: K,
+    listener: (...args: T[K]) => void,
+    context?: unknown,
+  ): Off {
     return this.on(event, listener, context, true)
   }
 
   // 取消监听
-  off<K extends keyof T>(event: K, listener: (...args: T[K]) => void): void {
+  off<K extends keyof T>(
+    event: K,
+    listener: (...args: T[K]) => void,
+  ): void {
     if (!this[listenersSymbol][event]) return
-    const index = this[listenersSymbol][event].findIndex((el) => el.fn === listener)
+    const index = this[listenersSymbol][event].findIndex(
+      (el) => el.fn === listener,
+    )
     if (index !== -1) {
       this[listenersSymbol][event].splice(index, 1)
       if (this[listenersSymbol][event].length === 0) {
@@ -72,7 +81,10 @@ export class EventEmitter<T extends EventMap = {}> {
     // 移除只监听一次的监听器
     if (this[listenersSymbol][event]) {
       for (const listener of onceEventListeners) {
-        this[listenersSymbol][event].splice(this[listenersSymbol][event].indexOf(listener), 1)
+        this[listenersSymbol][event].splice(
+          this[listenersSymbol][event].indexOf(listener),
+          1,
+        )
       }
     }
   }
