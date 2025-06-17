@@ -339,6 +339,14 @@ export function formatDuration(ms) {
 // 1h 2m 5s
 ```
 
+## 格式化金额
+
+[跳转 ts 查看](/ts/functions#格式化金额)
+
+## 格式化字节
+
+[点击查看](/nodejs/functions#格式化字节)
+
 ## 判断是否为文件协议
 
 ```js
@@ -877,7 +885,3 @@ const randomInt = (max, min = 0) => {
 ## 获取错误信息字符串
 
 [跳转 ts 查看](/ts/functions#获取错误信息字符串)
-
-## 格式化金额
-
-[跳转 ts 查看](/ts/functions#格式化金额)

@@ -407,6 +407,10 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 };
 ```
 
+## 格式化字节
+
+[点击查看](/nodejs/functions#格式化字节)
+
 ## 选择文件
 
 [js 实现](/js/functions#选择文件)
