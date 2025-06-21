@@ -196,6 +196,7 @@ function arePathsEqual(path1, path2, p = true, root) {
 
 ```js
 const formatBytes = (bytes, decimals = 2) => {
+  if(bytes <= 0) return '0B'
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals
   const units = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
