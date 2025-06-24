@@ -833,43 +833,7 @@ const clearSelection = () => {
 
 [ts 实现](/ts/functions#选择文件)
 
-```js
-/**
- * 选择文件
- * @param {object} [options]
- * @param {boolean} [options.accept]
- * @param {boolean} [options.multiple]
- * @returns {Promise<File[]>}
- *
- * @example
- * selectFile({ accept: 'image/*', multiple: true }).then(files => {
- *     console.log(files)
- * })
- */
-const selectFile = (options) => {
-  return new Promise((resolve, reject) => {
-    const { accept, multiple } = options || {};
-    const input = document.createElement('input');
-    input.type = 'file';
-    if (accept) input.accept = accept;
-    if (multiple) input.multiple = multiple;
-    input.click();
-    input.onchange = () => {
-      const files = Array.from(input.files || []);
-      if (files.length > 0) {
-        resolve(files);
-      } else {
-        reject();
-      }
-      input.remove();
-    };
-    input.onerror = () => {
-      reject();
-      input.remove();
-    };
-  });
-};
-```
+<<< ./select-file.js
 
 ## 随机数
 
