@@ -409,7 +409,9 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 
 ## 格式化字节
 
-[点击查看](/nodejs/functions#格式化字节)
+[另一个](/nodejs/functions#格式化字节)
+
+<<< ./format-bytes.ts
 
 ## 选择文件
 
