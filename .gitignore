@@ -6,8 +6,8 @@ node_modules
 .vitepress/.temp
 
 # dotenv environment variables file
-.env
-.env.*
-!.env.example
+/.env
+/.env.*
+/!.env.example
 template.md
 template.ts

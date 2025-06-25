@@ -14,12 +14,15 @@
     "dist-analyzer": "node scripts/dist-analyzer.js"
   },
   "dependencies": {
+    "envalid": "^8.0.0",
     "medium-zoom": "^1.1.0",
+    "ms": "^2.1.3",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@types/markdown-it-container": "^2.0.10",
     "@types/minimist": "^1.2.5",
+    "@types/ms": "^2.1.0",
     "@types/node": "^22.10.1",
     "dotenv": "^16.4.6",
     "fast-glob": "^3.3.2",

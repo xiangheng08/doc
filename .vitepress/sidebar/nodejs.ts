@@ -45,9 +45,8 @@ export default [
   {
     text: '项目开发',
     items: [
-      {
-        link: '/nodejs/project/env',
-      },
+      { link: '/nodejs/project/env' },
+      { link: '/nodejs/project/read-env' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
