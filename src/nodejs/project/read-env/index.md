@@ -6,7 +6,7 @@
 
 <<< ./config.ts [config.ts]
 
-<<< ./.env
+<<< ./.env{txt}
 
 :::
 
