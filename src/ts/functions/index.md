@@ -413,6 +413,12 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 
 <<< ./format-bytes.ts
 
+## 格式化用时
+
+[另一个](/js/functions/#格式化用时)
+
+<<< ./format-duration.ts
+
 ## 选择文件
 
 [js 实现](/js/functions#选择文件)
