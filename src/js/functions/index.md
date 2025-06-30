@@ -64,7 +64,7 @@ function throttle(fn, delay, start = true) {
 
 ## lodash 版节流
 
-[ts 实现](/ts/functions#lodash-版节流)
+[ts 实现](/ts/functions/#lodash-版节流)
 
 ## 获取某个日期位于当年的第几天
 
@@ -341,7 +341,7 @@ export function formatDuration(ms) {
 
 ## 格式化金额
 
-[跳转 ts 查看](/ts/functions#格式化金额)
+[跳转 ts 查看](/ts/functions/#格式化金额)
 
 ## 格式化字节
 
@@ -578,7 +578,7 @@ function compareVersions(currentVersion, compareVersion) {
 
 ## 观察元素大小的变化
 
-[ts 版本](/ts/functions#观察元素大小的变化)
+[ts 版本](/ts/functions/#观察元素大小的变化)
 
 ```js
 // observer.js
@@ -831,7 +831,7 @@ const clearSelection = () => {
 
 ## 选择文件
 
-[ts 实现](/ts/functions#选择文件)
+[ts 实现](/ts/functions/#选择文件)
 
 <<< ./select-file.js
 
@@ -848,4 +848,4 @@ const randomInt = (max, min = 0) => {
 
 ## 获取错误信息字符串
 
-[跳转 ts 查看](/ts/functions#获取错误信息字符串)
+[跳转 ts 查看](/ts/functions/#获取错误信息字符串)

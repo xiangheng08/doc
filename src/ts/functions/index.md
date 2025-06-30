@@ -421,6 +421,6 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 
 ## 选择文件
 
-[js 实现](/js/functions#选择文件)
+[js 实现](/js/functions/#选择文件)
 
 <<< ./select-file.ts
