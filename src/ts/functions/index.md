@@ -407,6 +407,10 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 };
 ```
 
+## 数字千位分隔符
+
+<<< ./add-thousands-separator.ts
+
 ## 格式化字节
 
 [另一个](/nodejs/functions#格式化字节)
