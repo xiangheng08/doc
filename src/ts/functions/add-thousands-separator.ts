@@ -1,20 +1,30 @@
 /**
  * 给数字添加千位分隔符
- * @param num 输入的数字（支持 number 或 string 类型）
- * @returns 添加千位分隔符后的字符串
  */
-export const addThousandsSeparator = (num: number | string): string => {
-  // 转换为字符串并分割整数与小数部分
-  const [integerPart, decimalPart] = String(num).split('.')
-
-  // 处理整数部分：从右向左每3位添加逗号
-  const formattedInteger = integerPart.replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ',',
-  )
-
-  // 拼接小数部分（如果存在）
-  return decimalPart
-    ? `${formattedInteger}.${decimalPart}`
-    : formattedInteger
+export const addThousandsSeparator = (
+  num: number | string,
+  decimal = 0,
+) => {
+  const [int, dec = ''] = String(num).split('.')
+  const formatted = int.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  if (decimal > 0) {
+    return `${formatted}.${dec.slice(0, decimal).padEnd(decimal, '0')}`
+  } else {
+    return formatted
+  }
 }
+
+// 测试用例
+console.log(addThousandsSeparator(1234567)) // "1,234,567"
+console.log(addThousandsSeparator(1234567.89)) // "1,234,567"
+console.log(addThousandsSeparator(1234567.89, 2)) // "1,234,567.89"
+console.log(addThousandsSeparator(1000)) // "1,000"
+console.log(addThousandsSeparator(0)) // "0"
+console.log(addThousandsSeparator(0, 2)) // "0.00"
+console.log(addThousandsSeparator(1234.5, 3)) // "1,234.500" (小数位不足补0)
+console.log(addThousandsSeparator(1234.56789, 2)) // "1,234.56" (小数位超长截断)
+console.log(addThousandsSeparator(999)) // "999" (不满千位不加分隔符)
+console.log(addThousandsSeparator(-1234567)) // "-1,234,567" (负数处理)
+console.log(addThousandsSeparator('987654321')) // "987,654,321" (字符串输入)
+console.log(addThousandsSeparator('12345.678', 1)) // "12,345.6" (字符串+小数位)
+console.log(addThousandsSeparator('1234567890123456')) // "1,234,567,890,123,456" (大数字)

@@ -27,6 +27,7 @@ import wxMp from './wx-mp'
 import axios from './axios'
 import webApi from './web-api'
 import database from './database'
+import echarts from './echarts'
 
 export default {
   '/git/': git,
@@ -57,4 +58,5 @@ export default {
   '/axios/': axios,
   '/web-api/': webApi,
   '/database/': database,
+  '/echarts/': echarts,
 } satisfies DefaultTheme.Sidebar
