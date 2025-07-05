@@ -7,7 +7,7 @@ import { CustomChart } from 'echarts/charts'
 // @ts-ignore 类型报错，懒得解决
 echarts.use([CustomChart])
 
-// 辅助函数
+// 辅助函数：添加千分位分隔符
 const addThousandsSeparator = (num: number | string, decimal = 0) => {
   const [int, dec = ''] = String(num).split('.')
   const formatted = int.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -66,8 +66,11 @@ const option = {
 
         const [x, y] = api.coord([
           api.value(0),
-          Math.max(item.revenue ?? 0, item.cost ?? 0),
+          Math.max(item.revenue, item.cost),
         ])
+
+        //                                   20 等于 grid.bottom
+        const enterY = api.getHeight() - y - 20
 
         const children: any = [
           {
@@ -81,6 +84,15 @@ const option = {
               fontWeight: 700,
               textAlign: 'center',
             },
+            enterFrom: { y: enterY },
+            during: (duringAPI: any) => {
+              const liveY = duringAPI.getTransform('y')
+              const progress = 1 - liveY / enterY
+              duringAPI.setStyle(
+                'text',
+                addThousandsSeparator(item.cost * progress),
+              )
+            },
           },
           {
             type: 'text',
@@ -92,6 +104,15 @@ const option = {
               fontSize: 16,
               fontWeight: 700,
               textAlign: 'center',
+            },
+            enterFrom: { y: enterY },
+            during: (duringAPI: any) => {
+              const liveY = duringAPI.getTransform('y')
+              const progress = 1 - liveY / enterY
+              duringAPI.setStyle(
+                'text',
+                addThousandsSeparator(item.revenue * progress),
+              )
             },
           },
           {
@@ -106,6 +127,7 @@ const option = {
               fill: '#EAF7F9',
               stroke: '#0CA7B8',
             },
+            enterFrom: { y: enterY },
           },
           {
             type: 'text',
@@ -118,6 +140,15 @@ const option = {
               fontWeight: 700,
               textAlign: 'center',
             },
+            enterFrom: { y: enterY },
+            during: (duringAPI: any) => {
+              const liveY = duringAPI.getTransform('y')
+              const progress = 1 - liveY / enterY
+              duringAPI.setStyle(
+                'text',
+                (rate * progress).toFixed(2) + '%',
+              )
+            },
           },
           {
             type: 'text',
@@ -129,13 +160,13 @@ const option = {
               fontSize: 12,
               textAlign: 'center',
             },
+            enterFrom: { y: enterY },
           },
         ]
 
         return {
           type: 'group',
           children,
-          enterFrom: { y: api.getHeight() - 20 }
         }
       },
     },
