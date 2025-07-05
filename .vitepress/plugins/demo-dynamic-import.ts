@@ -37,11 +37,17 @@ const demoDynamicImport = (): Plugin => {
 
       // 生成导入语句
       const importStatements = imports
-        .map((v) => `import ${v.componentName} from "${v.path}"`)
+        .map((v) => `const ${v.componentName} = defineClientComponent(() => {
+  return import("${v.path}")
+})`)
         .join('\n')
 
       // 将导入语句注入到 Vue SFC
       newCode = importStatements + '\n' + newCode
+
+      if(!defineClientComponentImportRegex.test(newCode)){
+        newCode = `import { defineClientComponent } from "vitepress"\n` + newCode
+      }
 
       return newCode
     },
@@ -52,6 +58,8 @@ const demoDynamicImport = (): Plugin => {
 const placeholderRegex = /@ep_([^\(]+)\(([^\)]+)\)/g
 // 匹配正则关键字
 const keywordRegex = /[.*+?^${}()|[\]\\]/g
+// 匹配 defineClientComponent
+const defineClientComponentImportRegex = /import {.*defineClientComponent.*} from ['"]vitepress['"]/
 // 转义正则关键字
 const escapeRegex = (str: string) => str.replace(keywordRegex, '\\$&')
 // 创建 _createTextVNode("%ep_component|path%") 匹配正则
