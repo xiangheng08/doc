@@ -3,8 +3,10 @@ import fs from 'fs'
 import path from 'path'
 
 const distDir = path.resolve(import.meta.dirname, '../.vitepress/dist')
+const tempFile = path.resolve(process.cwd(), 'dist-analyzer.temp')
 
 const formatBytes = (bytes, decimals = 2) => {
+  if (bytes === 0) return '0B'
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals
   const units = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
@@ -33,12 +35,17 @@ const fileList = files.map((filePath) => {
 
 fileList.sort((a, b) => b.size - a.size)
 
-fileList.forEach((file) => {
-  console.log(`${formatBytes(file.size, 2).padEnd(8, ' ')} ${file.path}`)
-})
+const totalSize = fileList.reduce((acc, cur) => acc + cur.size, 0)
 
-console.log(
-  `\nTotal: ${fileList.length} Files ${formatBytes(
-    fileList.reduce((acc, cur) => acc + cur.size, 0),
-  )}\n`,
-)
+let content = fileList.map(
+  (file) => `${formatBytes(file.size, 2).padEnd(9, ' ')} ${file.path}`,
+).join('\n')
+
+content += `\n\nTotal: ${formatBytes(totalSize, 2)} ${fileList.length} Files\n`
+
+console.log(content)
+
+fs.writeFileSync(tempFile, content, 'utf-8')
+
+console.log(`File list saved to ${tempFile}`);
+
