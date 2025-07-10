@@ -5,6 +5,7 @@ import ProportionalSplitBar from './ProportionalSplitBar.vue'
 <template>
   <div style="display: flex; flex-direction: column; gap: 20px">
     <ProportionalSplitBar :proportional="[7500, 12500]"  />
+    <ProportionalSplitBar :proportional="[0, 0]"  />
     <ProportionalSplitBar :proportional="[630, 500]" :decimal="2" />
     <ProportionalSplitBar :left-value="75" style="--divider-angle: 15deg;" />
     <ProportionalSplitBar :left-value="75" style="--divider-angle: 0deg;" />

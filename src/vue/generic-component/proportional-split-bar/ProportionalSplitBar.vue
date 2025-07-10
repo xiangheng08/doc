@@ -10,18 +10,20 @@ const props = withDefaults(defineProps<Props>(), {
   leftValue: 0,
 })
 
-const values = computed<[number, number]>(() => {
+const values = computed<[number, number, number]>(() => {
   if (props.proportional) {
-    const sum = props.proportional[0] + props.proportional[1]
+    const numbers = props.proportional.map(Number)
+    const sum = numbers[0] + numbers[1]
     if (sum === 0) {
-      return [50, 50]
+      return [0, 0, 50]
     }
     return [
-      (props.proportional[0] / sum) * 100,
-      (props.proportional[1] / sum) * 100,
+      (numbers[0] / sum) * 100,
+      (numbers[1] / sum) * 100,
+      (numbers[0] / sum) * 100,
     ]
   } else {
-    return [props.leftValue, 100 - props.leftValue]
+    return [props.leftValue, 100 - props.leftValue, props.leftValue]
   }
 })
 </script>
@@ -29,7 +31,7 @@ const values = computed<[number, number]>(() => {
 <template>
   <div
     class="proportional-split-bar"
-    :style="{ '--left-value': values[0] }"
+    :style="{ '--left-value': values[2] }"
   >
     <div class="side left">
       <div class="side-text">{{ values[0].toFixed(decimal) }}%</div>
