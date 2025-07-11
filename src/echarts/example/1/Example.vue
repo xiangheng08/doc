@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
-import * as echarts from 'echarts'
 import VChart from 'vue-echarts'
+import { use } from 'echarts'
 import { CustomChart } from 'echarts/charts'
 
 // @ts-ignore 类型报错，懒得解决
-echarts.use([CustomChart])
+use([CustomChart])
 
 // 辅助函数：添加千分位分隔符
 const addThousandsSeparator = (num: number | string, decimal = 0) => {

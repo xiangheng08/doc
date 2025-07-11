@@ -37,7 +37,9 @@ fileList.sort((a, b) => b.size - a.size)
 
 const totalSize = fileList.reduce((acc, cur) => acc + cur.size, 0)
 
-let content = fileList.map(
+let content = `Total: ${formatBytes(totalSize, 2)} ${fileList.length} Files\n\n`
+
+content += fileList.map(
   (file) => `${formatBytes(file.size, 2).padEnd(9, ' ')} ${file.path}`,
 ).join('\n')
 
