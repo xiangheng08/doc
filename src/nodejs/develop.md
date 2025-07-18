@@ -1,6 +1,6 @@
 # 搭建开发环境
 
-首先，肯定是新建文件夹，然后使用 `npm init -y` 命令，生成一个 [`package.json`](/nodejs/package) 文件。
+首先，肯定是新建文件夹，然后使用 `npm init -y` 命令，生成一个 [`package.json`](/nodejs/package-json) 文件。
 
 ## 安装依赖
 

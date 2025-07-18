@@ -6,7 +6,7 @@ export default [
   { link: '/nodejs/install' },
   { link: '/nodejs/run' },
   { link: '/nodejs/develop' },
-  { link: '/nodejs/package' },
+  { link: '/nodejs/package-json' },
   { link: '/nodejs/modularization' },
   // { link: '/nodejs/commonjs' },
   // { link: '/nodejs/esm' },
