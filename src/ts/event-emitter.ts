@@ -48,26 +48,26 @@ export class EventEmitter<T extends EventMap = {}> {
     event: K,
     listener: (...args: T[K]) => void,
   ): void {
-    if (!this[listenersSymbol][event]) return
-    const index = this[listenersSymbol][event].findIndex(
-      (el) => el.fn === listener,
-    )
-    if (index !== -1) {
-      this[listenersSymbol][event].splice(index, 1)
-      if (this[listenersSymbol][event].length === 0) {
-        // 如果该事件没有任何监听器了，则删除该事件
-        delete this[listenersSymbol][event]
-      }
+    const listeners = this[listenersSymbol][event]
+    if (!listeners) return
+    const index = listeners.findIndex((el) => el.fn === listener)
+    if (index === -1) return
+    listeners.splice(index, 1)
+    if (listeners.length === 0) {
+      // 如果该事件没有任何监听器了，则删除该事件
+      delete this[listenersSymbol][event]
     }
   }
 
   // 触发事件
   emit<K extends keyof T>(event: K, ...args: T[K]): void {
-    if (!this[listenersSymbol][event]) return
-    const onceEventListeners: EventListener[] = []
-    const eventListeners = [...this[listenersSymbol][event]] // 避免在事件处理函数中修改 listeners
-    for (let i = 0; i < eventListeners.length; i++) {
-      const { fn, once, context } = eventListeners[i]
+    const listeners = this[listenersSymbol][event]
+    if (!listeners) return
+    const onceListeners: EventListener[] = []
+    // 避免在事件处理函数中修改 listeners
+    const _listeners = [...listeners]
+    for (let i = 0; i < _listeners.length; i++) {
+      const { fn, once, context } = _listeners[i]
       try {
         fn.apply(context, args)
       } catch (error) {
@@ -75,16 +75,17 @@ export class EventEmitter<T extends EventMap = {}> {
       }
       if (once) {
         // @ts-ignore
-        onceEventListeners.push(eventListeners[i])
+        onceListeners.push(_listeners[i])
       }
     }
     // 移除只监听一次的监听器
     if (this[listenersSymbol][event]) {
-      for (const listener of onceEventListeners) {
-        this[listenersSymbol][event].splice(
-          this[listenersSymbol][event].indexOf(listener),
-          1,
-        )
+      const listeners2 = this[listenersSymbol][event]
+      for (const listener of onceListeners) {
+        listeners2.splice(listeners2.indexOf(listener), 1)
+      }
+      if (listeners2.length === 0) {
+        delete this[listenersSymbol][event]
       }
     }
   }
@@ -106,7 +107,7 @@ export class EventEmitter<T extends EventMap = {}> {
               clearTimeout(timer)
             }
             off()
-            resolve(args) // 完成 Promise
+            resolve(args)
           }
         } catch (error) {
           // predicate 抛出异常时，移除监听并拒绝 Promise
