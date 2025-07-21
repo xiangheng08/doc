@@ -1,109 +1,12 @@
 # 常用函数
 
-## 观察元素大小的变化
+## 观察元素大小的变化 {#observeResize}
 
-```ts
-/* observer-resize.ts */
+<<< ./observer-resize.ts
 
-export type ResizeCallbackFn = (
-  contentRect: DOMRectReadOnly,
-  target: HTMLElement,
-) => void
+## 观察元素可见性的变化 {#ObserverIntersection}
 
-let resizeObserverInstance: ResizeObserver | null = null
-const resizeCallbackMap = new WeakMap<HTMLElement, ResizeCallbackFn>()
-
-/**
- * 观察元素大小的变化
- */
-export function observeResize(element: HTMLElement, callback: ResizeCallbackFn) {
-  if (!resizeObserverInstance) {
-    resizeObserverInstance = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const target = entry.target
-        const callbackFn = resizeCallbackMap.get(target as HTMLElement)
-        if (callbackFn) {
-          callbackFn(entry.contentRect, target as HTMLElement)
-        }
-      }
-    })
-  }
-
-  resizeObserverInstance.observe(element)
-  resizeCallbackMap.set(element, callback)
-
-  // 返回一个取消观察的函数
-  return () => {
-    resizeObserverInstance?.unobserve(element)
-    resizeCallbackMap.delete(element)
-  }
-}
-
-/**
- * 停止观察元素大小的变化
- */
-export function unobserveResize(element: HTMLElement) {
-  if (resizeObserverInstance) {
-    resizeObserverInstance.unobserve(element)
-    resizeCallbackMap.delete(element)
-  }
-}
-```
-
-## 观察元素可见性的变化
-
-```ts
-/* observer-intersection.ts */
-export type IntersectionCallbackFu = (entry: IntersectionObserverEntry) => void
-
-export type ObserveFn = (
-  el: Element,
-  callback: IntersectionCallbackFu
-) => () => void
-
-export class ObserverIntersection {
-  private observer: IntersectionObserver
-  private observedElements: Map<Element, IntersectionCallbackFu>
-
-  constructor(options?: IntersectionObserverInit) {
-    this.observedElements = new Map()
-    this.observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const callback = this.observedElements.get(entry.target)
-        if (callback) {
-          callback(entry)
-        }
-      })
-    }, options)
-  }
-
-  observe(el: Element, callback: IntersectionCallbackFu): () => void {
-    if (this.observedElements.has(el)) {
-      console.warn('Element is already being observed.')
-      return () => this.unobserve(el)
-    }
-
-    this.observedElements.set(el, callback)
-    this.observer.observe(el)
-
-    return () => this.unobserve(el)
-  }
-
-  unobserve(el: Element): void {
-    if (this.observedElements.has(el)) {
-      this.observedElements.delete(el)
-      this.observer.unobserve(el)
-    } else {
-      console.warn('Element is not being observed.')
-    }
-  }
-
-  disconnectAll(): void {
-    this.observer.disconnect()
-    this.observedElements.clear()
-  }
-}
-```
+<<< ./observer-intersection.ts
 
 ## 防抖
 
@@ -270,144 +173,15 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 }
 ```
 
-## 获取错误信息字符串
+## 获取错误信息字符串 {#getErrorMessage}
 
-```ts
-/**
- * 将任意类型的错误对象转换为可读的错误信息字符串
- * @param {unknown} error - catch捕获的错误对象
- * @returns {string} 可读的错误信息
- */
-const getErrorMessage = (error: unknown): string => {
-  if (error instanceof Error) {
-    return error.message;
-  }
-  
-  if (typeof error === 'object' && error !== null) {
-    // 处理包含message属性的对象
-    if ('message' in error && typeof error.message === 'string') {
-      return error.message;
-    }
-    
-    // 尝试JSON序列化
-    try {
-      return JSON.stringify(error);
-    } catch (_) {
-      return String(error);
-    }
-  }
-  
-  // 处理基础类型和undefined/null
-  return String(error ?? 'Unknown error');
-}
-```
+<<< ./get-error-message.ts
 
-## 格式化金额
+## 格式化金额 {#formatAmount}
 
-```ts
-export interface FormatAmountOptions {
-  /**
-   * 货币符号
-   */
-  currency?: string;
-  /**
-   * 小数位数
-   */
-  decimal?: number;
-  /**
-   * NaN 的显示值
-   */
-  nanValue?: string;
-  /**
-   * 0 的显示值
-   */
-  zeroValue?: string;
-  /**
-   * 是否显示千分位
-   */
-  thousand?: boolean;
-  /**
-   * 是否四舍五入（默认false）
-   */
-  rounding?: boolean;
-  /**
-   * 是否优先使用真实小数位（默认true）
-   */
-  keepOriginalDecimal?: boolean;
-}
+<<< ./format-amount.ts
 
-/**
- * 格式化金额
- */
-export const formatAmount = (
-  amount: unknown,
-  {
-    currency = '',
-    decimal = 2,
-    nanValue = '--',
-    zeroValue,
-    thousand = true,
-    rounding = false,
-    keepOriginalDecimal = true,
-  }: FormatAmountOptions = {}
-): string => {
-  // 类型转换和清理
-  const numericValue = convertToNumber(amount);
-
-  if (isNaN(numericValue)) return nanValue;
-  if (numericValue === 0 && zeroValue !== undefined) return zeroValue;
-
-  // 处理小数位
-  const actualDecimal = calculateActualDecimal(numericValue, decimal, keepOriginalDecimal);
-  let formatted = processDecimal(numericValue, actualDecimal, rounding);
-
-  // 千分位处理
-  if (thousand) {
-    formatted = addThousandSeparator(formatted, actualDecimal);
-  }
-
-  return currency ? `${currency}${formatted}` : formatted;
-};
-
-// 辅助函数分解
-const convertToNumber = (amount: unknown): number => {
-  if (typeof amount === 'string') {
-    // 处理科学计数法
-    if (/e/i.test(amount)) return Number(Number(amount).toFixed(20));
-    return Number(amount.replace(/,/g, ''));
-  }
-  return Number(amount);
-};
-
-const calculateActualDecimal = (num: number, decimal: number, keepOriginal: boolean): number => {
-  if (!keepOriginal) return decimal;
-
-  const str = num.toString();
-  const decimalIndex = str.indexOf('.');
-  const originalDecimals = decimalIndex === -1 ? 0 : str.length - decimalIndex - 1;
-
-  return originalDecimals > decimal ? originalDecimals : decimal;
-};
-
-const processDecimal = (num: number, decimal: number, rounding: boolean): string => {
-  const factor = 10 ** decimal;
-  const fixed = rounding ? Math.round(num * factor) / factor : Math.floor(num * factor) / factor;
-
-  return fixed.toLocaleString('en-US', {
-    minimumFractionDigits: decimal,
-    maximumFractionDigits: decimal,
-    useGrouping: false,
-  });
-};
-
-const addThousandSeparator = (numStr: string, decimal: number): string => {
-  const [integerPart, decimalPart] = numStr.split('.');
-  const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return decimal > 0 ? `${formattedInteger}.${decimalPart || '0'.repeat(decimal)}` : formattedInteger;
-};
-```
-
-## 数字千位分隔符
+## 数字千位分隔符 {#addThousandsSeparator}
 
 <<< ./add-thousands-separator.ts
 
@@ -428,3 +202,13 @@ const addThousandSeparator = (numStr: string, decimal: number): string => {
 [js 实现](/js/functions/#选择文件)
 
 <<< ./select-file.ts
+
+## 加载图片 {#loadImage}
+
+<<< ./load-image.ts
+
+## 获取图片平均色 {#getImageAverageColor}
+
+[loadImage](#loadImage)
+
+<<< ./get-image-average-color.ts
