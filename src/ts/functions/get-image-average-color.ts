@@ -23,9 +23,9 @@ export const getImageAverageColor = async (file: File) => {
     b += colors[i + 2]
   }
 
-  r /= image.width * image.height
-  g /= image.width * image.height
-  b /= image.width * image.height
+  r = Math.round(r / (image.width * image.height))
+  g = Math.round(g / (image.width * image.height))
+  b = Math.round(b / (image.width * image.height))
 
-  return { r: Math.round(r), g: Math.round(g), b: Math.round(b) }
+  return { r, g, b }
 }
