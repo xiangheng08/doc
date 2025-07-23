@@ -212,3 +212,11 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 [loadImage](#loadImage)
 
 <<< ./get-image-average-color.ts
+
+## RGB 转 HSL
+
+<<< ./rgb-to-hsl.ts
+
+## HSL 转 RGB
+
+<<< ./hsl-to-rgb.ts
