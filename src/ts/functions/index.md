@@ -220,3 +220,9 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 ## HSL 转 RGB
 
 <<< ./hsl-to-rgb.ts
+
+## 只处理一次错误 {#handleUniqueError}
+
+安全地处理错误，避免重复处理同一错误实例
+
+<<< ./handle-unique-error.ts
