@@ -10,6 +10,7 @@
 -   `git config --global user.name "Your Name"`: 配置全局用户名。
 -   `git config --global user.email "youremail@example.com"`: 配置全局邮箱地址。
 -   `git config --global --list`: 查看全局配置
+-   `git config --local --list`: 查看本地配置（当前存储库）
 
 ## 增加和提交
 
@@ -26,6 +27,8 @@
 -   `git branch -d <branch_name>`: 删除本地分支，不能删除当前分支，需要切换分支再删除。
 -   `git push <remote> --delete <branch_name>`: 删除远程分支。
 -   `git branch -r`: 显示远程分支列表。
+-   `git checkout --orphan <branch_name>`: 创建空分支
+-   `git switch --orphan <branch_name>`: 创建空分支（Git 2.23+）
 
 ## 远程操作
 
