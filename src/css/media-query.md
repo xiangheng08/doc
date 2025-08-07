@@ -1,5 +1,131 @@
 # 媒体查询
 
+## 媒体查询案例集合
+
+```css
+/* 同时满足多个条件 */
+@media (min-width: 768px) and (max-width: 1199px) { ... }
+
+/* 满足任意条件 */
+@media (max-width: 767px), (orientation: portrait) { ... }
+```
+
+```css
+/* 响应式断点 - 移动设备优先（通用） */
+/* 当屏幕宽度≥576px时应用（典型手机横屏/小平板） */
+@media (min-width: 576px) {
+
+}
+
+/* 同理，当屏幕宽度≤576px时，将 min-width 换成 max-width 即可 - PC设备优先 */
+@media (max-width: 576px) {
+
+}
+
+/* 响应式断点 - 平板设备 */
+/* 当屏幕宽度≥768px时应用（竖屏平板/小桌面） */
+@media (min-width: 768px) {
+
+}
+
+/* 响应式断点 - 桌面设备 */
+/* 当屏幕宽度≥1024px时应用（标准桌面） */
+@media (min-width: 1024px) {
+  
+}
+
+/* 超大屏幕适配 */
+/* 当屏幕宽度≥1440px时应用（大尺寸桌面/电视） */
+@media (min-width: 1440px) {
+  
+}
+
+/* 设备方向检测 */
+/* 当设备处于横屏时应用 */
+@media (orientation: landscape) {
+  
+}
+
+/* 打印样式优化 */
+/* 打印文档时隐藏非必要元素 */
+@media print {
+  
+}
+
+/* 深色模式适配 */
+/* 当系统启用深色模式时应用 */
+@media (prefers-color-scheme: dark) {
+  
+}
+
+/* 亮色模式适配 */
+/* 当系统启用亮色模式时应用 */
+@media (prefers-color-scheme: light) {
+  
+}
+
+/* 高分辨率屏幕适配 */
+/* 视网膜屏/高DPI设备适配 */
+@media 
+  (-webkit-min-device-pixel-ratio: 2), 
+  (min-resolution: 192dpi) { 
+  
+}
+
+/* 特定设备高度适配 */
+/* 当视口高度≤600px时（常见于移动设备横屏） */
+@media (max-height: 600px) {
+  
+}
+
+/* 组合条件查询 */
+/* 同时满足最小宽度和最大宽度（平板竖屏范围） */
+@media (min-width: 768px) and (max-width: 1023px) {
+  
+}
+
+/* 旧版浏览器支持 */
+/* 仅当浏览器支持网格布局时应用 */
+@supports (display: grid) {
+  
+}
+
+/* 运动偏好设置 */
+/* 当用户选择减少动画时应用 */
+@media (prefers-reduced-motion: reduce) {
+  
+}
+
+/* 电视屏幕适配 */
+/* 大屏幕且宽高比16:9的设备 */
+@media 
+  (min-width: 1200px) and 
+  (min-aspect-ratio: 16/9) {
+  
+}
+
+/* 超小屏幕适配（老式手机） */
+/* 最大宽度≤320px的设备 */
+@media (max-width: 320px) {
+  
+}
+
+/* 悬停能力检测 */
+/* 适用于支持悬停的设备（如桌面） */
+@media (hover: hover) {
+  
+}
+```
+
+常用断点参考：
+
+- `576px`：小屏设备 (sm)
+- `768px`：平板 (md)
+- `992px`：桌面 (lg)
+- `1200px`：大桌面 (xl)
+- `1440px`：超大屏 (xxl)
+
+
 ## viewport
 
 手机是在电脑后出现的，早期网页设置没有考虑到手机的存在。把一个电脑端访问的网页拿到手机上浏览，我们需要告诉手机该怎么做。
