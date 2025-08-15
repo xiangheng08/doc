@@ -71,6 +71,7 @@ export default [
     ],
   },
   { link: '/vue/style-penetration' },
+  { link: '/vue/modifiers' },
   {
     text: 'Hooks',
     items: [
