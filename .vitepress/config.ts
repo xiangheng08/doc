@@ -40,6 +40,7 @@ const nav: DefaultTheme.NavItem[] = [
           { text: '布局', link: '/layout/waterfall' },
           { text: '浏览器', link: '/browser/reflow-repaint' },
           { text: '微信小程序', link: '/wx-mp/' },
+          { text: 'ECharts', link: '/echarts/' },
         ],
       },
       {
