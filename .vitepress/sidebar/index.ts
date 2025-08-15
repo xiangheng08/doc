@@ -28,6 +28,7 @@ import axios from './axios'
 import webApi from './web-api'
 import database from './database'
 import echarts from './echarts'
+import http from './http'
 
 export default {
   '/git/': git,
@@ -59,4 +60,5 @@ export default {
   '/web-api/': webApi,
   '/database/': database,
   '/echarts/': echarts,
+  '/http/': http,
 } satisfies DefaultTheme.Sidebar
