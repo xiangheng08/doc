@@ -29,6 +29,7 @@ import webApi from './web-api'
 import database from './database'
 import echarts from './echarts'
 import http from './http'
+import gitea from './gitea'
 
 export default {
   '/git/': git,
@@ -61,4 +62,5 @@ export default {
   '/database/': database,
   '/echarts/': echarts,
   '/http/': http,
+  '/gitea/': gitea
 } satisfies DefaultTheme.Sidebar

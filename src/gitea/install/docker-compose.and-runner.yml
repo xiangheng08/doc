@@ -1,0 +1,42 @@
+version: "3"
+
+networks:
+  gitea_network:
+    external: false
+
+services:
+  gitea_server:
+    image: docker.gitea.com/gitea:1.24.5
+    container_name: gitea_server
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    networks:
+      - gitea_network
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "222:22"
+
+  gitea_runner:
+    image: gitea/act_runner:nightly
+    container_name: gitea_runner
+    depends_on:
+      - gitea_server
+    environment:
+      CONFIG_FILE: /config.yaml
+      GITEA_INSTANCE_URL: http://gitea_server:3000
+      GITEA_RUNNER_REGISTRATION_TOKEN: "${REGISTRATION_TOKEN}"
+      GITEA_RUNNER_NAME: gitea_runner
+      GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
+      # 实际名称可能不同，请根据实际情况修改
+      # 必须和 gitea_server 处于同一网络，不然会无法连接
+      GITEA_CONTAINER_NETWORK: gitea_network
+    volumes:
+      - ./config.yaml:/config.yaml
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
