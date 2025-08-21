@@ -11,59 +11,109 @@ import processPublicHtml, {
 import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
 import type { DefaultTheme } from 'vitepress'
-import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from 'vitepress-plugin-group-icons'
 
 const nav: DefaultTheme.NavItem[] = [
   {
-    text: '技术栈',
+    text: '前端',
     items: [
       {
-        text: '前端',
+        text: '核心技术',
         items: [
           { text: 'HTML', link: '/html/intro' },
           { text: 'CSS', link: '/css/' },
           { text: 'JavaScript', link: '/js/' },
           { text: 'HTTP', link: '/http/' },
           { text: 'WebAPI', link: '/web-api/' },
-          { text: 'NodeJS', link: '/nodejs/' },
           { text: 'TypeScript', link: '/ts/intro' },
-          { text: 'Vue', link: '/vue/' },
-          { text: 'React', link: '/react/raw' },
-          { text: 'Vite', link: '/vite/' },
-          { text: 'React Native', link: '/react-native/link' },
-          { text: 'Electron', link: '/electron/docs-nav' },
-          { text: 'Element UI', link: '/element-ui/' },
-          { text: 'Element Plus', link: '/element-plus/issues' },
-          { text: 'Eslint', link: '/eslint/issues' },
-          { text: 'VitePress', link: '/vitepress/error' },
-          { text: 'Axios', link: '/axios/' },
-          { text: '布局', link: '/layout/waterfall' },
-          { text: '浏览器', link: '/browser/reflow-repaint' },
-          { text: '微信小程序', link: '/wx-mp/' },
-          { text: 'ECharts', link: '/echarts/' },
         ],
       },
       {
-        text: '后端',
+        text: '框架',
         items: [
-          { text: '数据库', link: '/database/' },
-          { text: 'MySql', link: '/mysql/error' },
-          { text: 'Nginx', link: '/nginx/reverse-proxy' },
+          { text: 'Vue', link: '/vue/' },
+          { text: 'React', link: '/react/raw' },
+          { text: 'Element UI', link: '/element-ui/' },
+          { text: 'Element Plus', link: '/element-plus/issues' },
+          { text: 'VitePress', link: '/vitepress/error' },
+        ],
+      },
+      {
+        text: '构建工具',
+        items: [
+          { text: 'Vite', link: '/vite/' },
+          { text: 'Webpack（占个位）', link: '/emoji' },
+          { text: 'Rollup（占个位）', link: '/emoji' },
+        ],
+      },
+      {
+        text: '实用工具和库',
+        items: [
+          { text: 'Axios', link: '/axios/' },
+          { text: 'ECharts', link: '/echarts/' },
+          { text: 'Eslint', link: '/eslint/issues' },
+          { text: '布局', link: '/layout/waterfall' },
+          { text: '浏览器', link: '/browser/reflow-repaint' },
+        ],
+      },
+      {
+        text: '其他',
+        items: [
+          { text: '布局', link: '/layout/waterfall' },
+          { text: '浏览器', link: '/browser/reflow-repaint' },
         ],
       },
     ],
   },
   {
-    text: '工具',
+    text: '后端',
     items: [
+      {
+        text: '服务端技术',
+        items: [
+          { text: 'NodeJS', link: '/nodejs/' },
+          { text: 'Express（占个位）', link: '/emoji' },
+          { text: 'Koa（占个位）', link: '/emoji' },
+        ],
+      },
+      {
+        text: '数据库',
+        items: [{ text: 'MySql', link: '/mysql/error' }],
+      },
+      {
+        text: '网络和协议',
+        items: [
+          { text: 'Nginx', link: '/nginx/reverse-proxy' },
+          { text: 'HTTP', link: '/http/' },
+        ],
+      },
+    ],
+  },
+  {
+    text: '应用',
+    items: [
+      { text: 'Electron', link: '/electron/docs-nav' },
+      { text: 'React Native', link: '/react-native/link' },
+      { text: '微信小程序', link: '/wx-mp/' },
+    ],
+  },
+  {
+    text: '工具/环境',
+    items: [
+      { text: 'Git', link: '/git/command-list' },
+      { text: 'Gitea', link: '/gitea/index' },
+      { text: 'Docker（占个位）', link: '/emoji' },
       { text: '包管理工具', link: '/manager/collected-packages' },
       { text: 'NVM', link: '/nvm/index' },
       { text: 'VSCode', link: '/vscode/tips' },
       { text: 'Windows', link: '/windows/tips' },
       { text: 'Chrome', link: '/chrome/' },
+      { text: 'FFmpeg', link: '/ffmpeg/merge-audio-video' },
     ],
   },
-  { text: 'Git', link: '/git/command-list' },
   {
     text: '其他',
     items: [
@@ -72,7 +122,6 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'Emoji', link: '/emoji' },
       { text: '语义化版本规范', link: '/sem-ver' },
       { text: '笔记', link: '/note/code-point-and-code-unit' },
-      { text: 'Gitea', link: '/gitea/index' },
       { text: 'Links', link: '/links' },
       { text: '关于本站', link: '/about' },
     ],
@@ -202,7 +251,12 @@ export default defineConfig({
       },
     },
 
-    plugins: [sidebarPlugin(), processPublicHtml(), demoDynamicImport(), groupIconVitePlugin()],
+    plugins: [
+      sidebarPlugin(),
+      processPublicHtml(),
+      demoDynamicImport(),
+      groupIconVitePlugin(),
+    ],
 
     css: {
       preprocessorOptions: {
