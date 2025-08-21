@@ -45,8 +45,8 @@ const nav: DefaultTheme.NavItem[] = [
         text: '构建工具',
         items: [
           { text: 'Vite', link: '/vite/' },
-          { text: 'Webpack（占个位）', link: '/emoji' },
-          { text: 'Rollup（占个位）', link: '/emoji' },
+          { text: 'Webpack', link: '/webpack/' },
+          { text: 'Rollup', link: '/rollup/' },
         ],
       },
       {
@@ -75,8 +75,8 @@ const nav: DefaultTheme.NavItem[] = [
         text: '服务端技术',
         items: [
           { text: 'NodeJS', link: '/nodejs/' },
-          { text: 'Express（占个位）', link: '/emoji' },
-          { text: 'Koa（占个位）', link: '/emoji' },
+          { text: 'Express', link: '/express/' },
+          { text: 'Koa', link: '/koa/' },
         ],
       },
       {
@@ -105,7 +105,7 @@ const nav: DefaultTheme.NavItem[] = [
     items: [
       { text: 'Git', link: '/git/command-list' },
       { text: 'Gitea', link: '/gitea/index' },
-      { text: 'Docker（占个位）', link: '/emoji' },
+      { text: 'Docker', link: '/docker/' },
       { text: '包管理工具', link: '/manager/collected-packages' },
       { text: 'NVM', link: '/nvm/index' },
       { text: 'VSCode', link: '/vscode/tips' },

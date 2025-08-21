@@ -30,6 +30,11 @@ import database from './database'
 import echarts from './echarts'
 import http from './http'
 import gitea from './gitea'
+import rollup from './rollup'
+import webpack from './webpack'
+import express from './express'
+import koa from './koa'
+import docker from './docker'
 
 export default {
   '/git/': git,
@@ -62,5 +67,10 @@ export default {
   '/database/': database,
   '/echarts/': echarts,
   '/http/': http,
-  '/gitea/': gitea
+  '/gitea/': gitea,
+  '/rollup/': rollup,
+  '/webpack/': webpack,
+  '/express/': express,
+  '/koa/': koa,
+  '/docker/': docker,
 } satisfies DefaultTheme.Sidebar
