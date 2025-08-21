@@ -234,3 +234,7 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 ## NPM 相关方法  {#npm}
 
 <<< ./npm.ts
+
+## 分步执行任务 {#performTask}
+
+<<< ./perform-task.ts
