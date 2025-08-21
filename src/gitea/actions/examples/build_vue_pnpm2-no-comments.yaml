@@ -1,0 +1,37 @@
+name: Build Vue Project with pnpm
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: https://gitea.com/actions/checkout@v4
+
+      - name: Setup Node
+        uses: https://gitea.com/actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup npm
+        run: |
+          npm config set registry https://registry.npmmirror.com/
+
+      - name: Install pnpm via npm
+        run: npm install -g pnpm
+
+      - name: Setup pnpm
+        run: |
+          pnpm config set registry https://registry.npmmirror.com/
+
+      - name: Install dependencies
+        run: pnpm Install
+
+      - name: Build
+        run: pnpm build
+
+      - name: View files
+        run: ls -R ./dist
