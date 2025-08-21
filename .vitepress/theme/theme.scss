@@ -1,0 +1,25 @@
+/**
+ *  导航栏
+ * -------------------------------------------------------------------------- */
+.VPNavBarMenu .menu .VPMenu {
+  padding: 0 0 12px;
+  .VPMenuGroup {
+    padding: 12px 0 0;
+    margin: 12px 0 0;
+    &:first-child {
+      margin: 0;
+    }
+    .title {
+      font-size: 12px;
+      line-height: 28px;
+      color: var(--vp-c-text-3);
+      padding: 0 18px;
+    }
+    .VPLink.link{
+      font-size: 13px;
+      line-height: 28px;
+      padding: 0 18px;
+      border-radius: 0;
+    }
+  }
+}
