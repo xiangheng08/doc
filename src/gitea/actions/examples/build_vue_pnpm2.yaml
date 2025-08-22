@@ -1,0 +1,47 @@
+name: Build Vue Project with pnpm
+
+on:
+  push:
+    branches: [main] # 在推送 main 分支时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # 使用 actions/checkout@v4 默认从 Github 拉取代码
+        # 也可以指定仓库拉取，例如：https://gitea.com/actions/checkout@v4
+        # 国内 gitea.com 比 github.com 的速度应该是要更快的
+        # 而且 github.com 超时的情况比较多，所以这里使用 gitea.com 的镜像
+        uses: https://gitea.com/actions/checkout@v4
+
+      - name: Setup Node
+        uses: https://gitea.com/actions/setup-node@v4
+        with:
+          node-version: 20 # 选择合适的 Node.js 版本
+
+      - name: Setup npm
+        run: |
+          npm config set registry https://registry.npmmirror.com/
+
+      # 在国内通过 npm 安装 pnpm 大概率比使用 pnpm/action-setup 快很多
+      # 如果你的 Runner 能够流畅的访问 Github，那么还是建议使用 pnpm/action-setup
+      # 像 setup-node 的 cache 配置的前提条件就是预先安装包管理器，使用 npm 安装就没法用了
+      - name: Install pnpm via npm
+        run: npm install -g pnpm
+
+      - name: Setup pnpm
+        run: |
+          pnpm config set registry https://registry.npmmirror.com/
+
+      # 安装依赖
+      - name: Install dependencies
+        run: pnpm Install
+
+      # 构建
+      - name: Build
+        run: pnpm build
+
+      # 查看构建结果
+      - name: View files
+        run: ls -R ./dist
