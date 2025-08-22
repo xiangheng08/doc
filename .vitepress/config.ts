@@ -55,8 +55,6 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'Axios', link: '/axios/' },
           { text: 'ECharts', link: '/echarts/' },
           { text: 'Eslint', link: '/eslint/issues' },
-          { text: '布局', link: '/layout/waterfall' },
-          { text: '浏览器', link: '/browser/reflow-repaint' },
         ],
       },
       {
@@ -95,16 +93,36 @@ const nav: DefaultTheme.NavItem[] = [
   {
     text: '应用',
     items: [
-      { text: 'Electron', link: '/electron/docs-nav' },
-      { text: 'React Native', link: '/react-native/link' },
-      { text: '微信小程序', link: '/wx-mp/' },
+      {
+        text: '桌面应用',
+        items: [{ text: 'Electron', link: '/electron/docs-nav' }],
+      },
+      {
+        text: 'APP',
+        items: [
+          { text: 'React Native', link: '/react-native/link' },
+          { text: 'uni-app', link: '/uniapp/' },
+        ],
+      },
+      {
+        text: '小程序',
+        items: [
+          { text: '微信小程序', link: '/wx-mp/' },
+          { text: 'uni-app', link: '/uniapp/' },
+        ],
+      },
     ],
   },
   {
     text: '工具/环境',
     items: [
-      { text: 'Git', link: '/git/command-list' },
-      { text: 'Gitea', link: '/gitea/index' },
+      {
+        text: '版本控制/DevOps',
+        items: [
+          { text: 'Git', link: '/git/command-list' },
+          { text: 'Gitea', link: '/gitea/index' },
+        ],
+      },
       { text: 'Docker', link: '/docker/' },
       { text: '包管理工具', link: '/manager/collected-packages' },
       { text: 'NVM', link: '/nvm/index' },

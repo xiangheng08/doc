@@ -3,14 +3,26 @@
  * -------------------------------------------------------------------------- */
 .VPNavBarMenu .menu .VPMenu {
   padding: 12px 0;
+  min-width: 192px;
+  background-color: var(--vp-c-bg);
+  box-shadow: var(--vp-shadow-1);
+  border: 1px solid var(--vp-c-border);
+
   .VPMenuGroup {
-    padding: 12px 0 0;
-    margin: 12px 0 0;
+    padding: 12px 0;
+    margin: 0;
     &:first-child {
-      margin: -12px 0 0;
+      padding: 0 0 12px;
+    }
+    & + .VPMenuGroup {
+      border-top: 1px solid var(--vp-c-border);
+    }
+    & + .VPMenuLink {
+      margin: 0;
+      padding: 12px 0 0;
     }
     .title {
-      font-size: 12px;
+      font-size: 10px;
       line-height: 28px;
       color: var(--vp-c-text-3);
       padding: 0 18px;
@@ -20,6 +32,7 @@
     font-size: 13px;
     line-height: 28px;
     padding: 0 18px;
+
     border-radius: 0;
   }
 }

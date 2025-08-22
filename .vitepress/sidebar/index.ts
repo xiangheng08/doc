@@ -35,6 +35,7 @@ import webpack from './webpack'
 import express from './express'
 import koa from './koa'
 import docker from './docker'
+import uniapp from './uniapp'
 
 export default {
   '/git/': git,
@@ -73,4 +74,5 @@ export default {
   '/express/': express,
   '/koa/': koa,
   '/docker/': docker,
+  '/uniapp/': uniapp,
 } satisfies DefaultTheme.Sidebar
