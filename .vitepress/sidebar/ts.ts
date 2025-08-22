@@ -32,6 +32,7 @@ export default [
       { link: '/ts/assert' },
       { link: '/ts/module' },
       { link: '/ts/tsconfig-json' },
+      { link: '/ts/declare' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
