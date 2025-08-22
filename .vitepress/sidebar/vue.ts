@@ -81,9 +81,11 @@ export default [
     ],
   },
   {
+    text: 'Directives',
+    items: [{ link: '/vue/directives/slide-in' }],
+  },
+  {
     text: 'Mixins',
-    items: [
-      { link: '/vue/mixins/paging' },
-    ],
+    items: [{ link: '/vue/mixins/paging' }],
   },
 ] satisfies DefaultTheme.Sidebar
