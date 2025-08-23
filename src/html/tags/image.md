@@ -165,7 +165,7 @@
 
 为了解决上面这些问题，HTML 语言提供了一套完整的解决方案。首先，`<img>`标签引入了`srcset`属性。
 
-`srcset`属性用来指定多张图像，适应不同像素密度的屏幕。它的值是一个逗号分隔的字符串，每个部分都是一张图像的 URL，后面接一个空格，然后是像素密度的描述符。请看下面的例子。
+`srcset`属性用来指定多张图像，适应不同[像素密度](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio)的屏幕。它的值是一个逗号分隔的字符串，每个部分都是一张图像的 URL，后面接一个空格，然后是像素密度的描述符。请看下面的例子。
 
 ```html
 <img srcset="foo-320w.jpg, foo-480w.jpg 1.5x, foo-640w.jpg 2x" src="foo-640w.jpg" />
