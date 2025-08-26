@@ -38,11 +38,26 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const PADDING_TOP = 4 // 顶部内边距
 const BLOCK_SIZE = 10 // 每个贡献块的大小
-const BLOCK_MARGIN = 2 // 每个贡献块的间距
+const BLOCK_GAP = 2 // 每个贡献块的间隔
+const BLOCK_RADIUS = 2 // 每个贡献块的圆角
 const MONTH_HEIGHT = 13 // 月份标签高度
-const WEEK_WIDTH = 18 // 周标签的宽度
-const LEGEND_HEIGHT = 30 // 图例高度
+const WEEK_WIDTH = 22 // 周标签的宽度
+const LABEL_FONT_SIZE = 9 // 标签字体大小
+const LEGEND_HEIGHT = 34 // 图例高度
+const LEGEND_BLOCK_GAP = 4 // 图例块间隔
+const LEGEND_PADDING = 32 // 图例内边距
+const LEGEND_FONT_SIZE = 9 // 图例字体大小
+
+// 贡献块属性
+const blockAttributes = {
+  width: BLOCK_SIZE,
+  height: BLOCK_SIZE,
+  rx: BLOCK_RADIUS,
+  ry: BLOCK_RADIUS,
+  class: 'contribution-rect',
+}
 
 // 月份名称
 const monthNames = [
@@ -62,7 +77,7 @@ const monthNames = [
 
 const svgWidth = ref(0)
 const svgHeight = ref(0)
-const legendBaseY = ref(0)
+const legendCentralAxis = ref(0) // 图例中轴线
 
 const contributionRects = ref<ContributionRect[]>([])
 const monthLabels = ref<MonthLabel[]>([])
@@ -72,16 +87,16 @@ const fn = () => {
   const rects: ContributionRect[] = []
   const months: MonthLabel[] = []
 
-  const baseX = WEEK_WIDTH + BLOCK_MARGIN
-  const baseY = MONTH_HEIGHT + BLOCK_MARGIN
+  const baseX = WEEK_WIDTH + BLOCK_GAP
+  const baseY = PADDING_TOP + MONTH_HEIGHT + BLOCK_GAP
 
   let row = new Date(props.data[0].date).getDay()
   let col = 0
 
   for (let i = 0; i < props.data.length; i++) {
     const contribution = props.data[i]
-    const x = baseX + col * (BLOCK_SIZE + BLOCK_MARGIN)
-    const y = baseY + row * (BLOCK_SIZE + BLOCK_MARGIN)
+    const x = baseX + col * (BLOCK_SIZE + BLOCK_GAP)
+    const y = baseY + row * (BLOCK_SIZE + BLOCK_GAP)
     rects.push({
       ...contribution,
       x,
@@ -102,18 +117,15 @@ const fn = () => {
   for (let i = rects.length - 2; i >= 0; i--) {
     const rect = rects[i]
     const next = rects[i + 1]
+    const nextNext = rects[i + 2]
 
     if (rect.month !== lastMonth) {
-      if (rect.col === lastCol) {
-        months.push({ name: monthNames[next.month], x: next.x, y: 12 })
-      } else {
-        const nextNext = rects[i + 2]
-        months.push({
-          name: monthNames[nextNext.month],
-          x: nextNext.x,
-          y: 12,
-        })
-      }
+      const month = rect.col === lastCol ? next.month : nextNext.month
+      months.push({
+        name: monthNames[month],
+        x: next.x,
+        y: PADDING_TOP + MONTH_HEIGHT - BLOCK_GAP,
+      })
     }
 
     lastMonth = rect.month
@@ -123,14 +135,27 @@ const fn = () => {
   contributionRects.value = rects
   monthLabels.value = months
   weekLabels.value = [
-    { name: 'Mon', x: 0, y: baseY + 1 * (BLOCK_SIZE + BLOCK_MARGIN) + 8 },
-    { name: 'Wed', x: 0, y: baseY + 3 * (BLOCK_SIZE + BLOCK_MARGIN) + 8 },
-    { name: 'Fri', x: 0, y: baseY + 5 * (BLOCK_SIZE + BLOCK_MARGIN) + 8 },
+    {
+      name: 'Mon',
+      x: 0,
+      y: baseY + 1 * (BLOCK_SIZE + BLOCK_GAP) + BLOCK_SIZE / 2,
+    },
+    {
+      name: 'Wed',
+      x: 0,
+      y: baseY + 3 * (BLOCK_SIZE + BLOCK_GAP) + BLOCK_SIZE / 2,
+    },
+    {
+      name: 'Fri',
+      x: 0,
+      y: baseY + 5 * (BLOCK_SIZE + BLOCK_GAP) + BLOCK_SIZE / 2,
+    },
   ]
 
-  svgWidth.value = baseX + (col + 1) * (BLOCK_SIZE + BLOCK_MARGIN)
-  svgHeight.value = baseY + 7 * (BLOCK_SIZE + BLOCK_MARGIN) + LEGEND_HEIGHT
-  legendBaseY.value = baseY + 7 * (BLOCK_SIZE + BLOCK_MARGIN)
+  svgWidth.value = baseX + (col + 1) * (BLOCK_SIZE + BLOCK_GAP)
+  svgHeight.value = baseY + 7 * (BLOCK_SIZE + BLOCK_GAP) + LEGEND_HEIGHT
+  legendCentralAxis.value =
+    baseY + 7 * (BLOCK_SIZE + BLOCK_GAP) + LEGEND_HEIGHT / 2
 }
 
 watchEffect(fn)
@@ -150,8 +175,9 @@ watchEffect(fn)
           :key="month.name"
           :x="month.x"
           :y="month.y"
-          height="10"
+          :font-size="LABEL_FONT_SIZE"
           text-anchor="start"
+          dominant-baseline="text-bottom"
           class="label-text"
         >
           {{ month.name }}
@@ -164,7 +190,9 @@ watchEffect(fn)
           :key="week.name"
           :x="week.x"
           :y="week.y"
-          height="10"
+          :font-size="LABEL_FONT_SIZE"
+          text-anchor="start"
+          dominant-baseline="middle"
           class="label-text"
         >
           {{ week.name }}
@@ -178,19 +206,23 @@ watchEffect(fn)
           :x="item.x"
           :y="item.y"
           :data-level="item.level"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          class="contribution-rect"
+          v-bind="blockAttributes"
         />
       </g>
 
       <g class="legend">
         <text
-          :x="svgWidth - 89"
-          :y="legendBaseY + 20"
+          :x="
+            svgWidth -
+            LEGEND_PADDING -
+            32 -
+            LEGEND_BLOCK_GAP * 2 -
+            (BLOCK_SIZE + LEGEND_BLOCK_GAP) * 4
+          "
+          :y="legendCentralAxis"
+          :font-size="LEGEND_FONT_SIZE"
           text-anchor="end"
+          dominant-baseline="middle"
           class="legend-text"
         >
           Less
@@ -198,20 +230,22 @@ watchEffect(fn)
         <rect
           v-for="(n, i) in 5"
           :x="
-            svgWidth - BLOCK_MARGIN - 35 - (BLOCK_SIZE + BLOCK_MARGIN) * i
+            svgWidth -
+            LEGEND_PADDING -
+            32 -
+            LEGEND_BLOCK_GAP -
+            (BLOCK_SIZE + LEGEND_BLOCK_GAP) * (5 - n)
           "
-          :y="legendBaseY + 11"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          :data-level="5 - n"
-          class="contribution-rect"
+          :y="legendCentralAxis - BLOCK_SIZE / 2"
+          :data-level="i"
+          v-bind="blockAttributes"
         />
         <text
-          :x="svgWidth - BLOCK_MARGIN"
-          :y="legendBaseY + 20"
+          :x="svgWidth - LEGEND_PADDING"
+          :y="legendCentralAxis"
+          :font-size="LEGEND_FONT_SIZE"
           text-anchor="end"
+          dominant-baseline="middle"
           class="legend-text"
         >
           More
@@ -254,45 +288,35 @@ watchEffect(fn)
     .label-text {
       fill: #f0f6fc;
     }
+    .legend-text {
+      color: #9198a1;
+    }
   }
-}
 
-.chart-container {
-  position: relative;
-  display: inline-block;
-}
+  .label-text {
+    fill: #767676;
+  }
 
-.contribution-chart {
-  overflow: visible;
-}
+  .contribution-rect {
+    &[data-level='0'] {
+      fill: #ebedf0;
+    }
+    &[data-level='1'] {
+      fill: #9be9a8;
+    }
+    &[data-level='2'] {
+      fill: #40c463;
+    }
+    &[data-level='3'] {
+      fill: #30a14e;
+    }
+    &[data-level='4'] {
+      fill: #216e39;
+    }
+  }
 
-.label-text {
-  font-size: 9px;
-  fill: #767676;
-}
-
-.contribution-rect {
-  &[data-level='0'] {
-    fill: #ebedf0;
+  .legend-text {
+    fill: #59636e;
   }
-  &[data-level='1'] {
-    fill: #9be9a8;
-  }
-  &[data-level='2'] {
-    fill: #40c463;
-  }
-  &[data-level='3'] {
-    fill: #30a14e;
-  }
-  &[data-level='4'] {
-    fill: #216e39;
-  }
-}
-
-.legend-text {
-  margin: 0 4px;
-  font-size: 9px;
-  line-height: 18px;
-  fill: #767676;
 }
 </style>
