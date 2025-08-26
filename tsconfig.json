@@ -21,5 +21,9 @@
     "src/**/*",
     ".vitepress/**/*",
     "global-components.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vitepress/dist"
   ]
 }
