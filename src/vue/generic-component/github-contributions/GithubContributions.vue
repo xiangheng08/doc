@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 // 定义贡献项接口
 interface Contribution {
@@ -33,6 +33,7 @@ interface WeekLabel {
 interface Props {
   data: Contribution[]
   dark?: boolean
+  background?: boolean
 }
 
 const props = defineProps<Props>()
@@ -41,6 +42,7 @@ const BLOCK_SIZE = 10 // 每个贡献块的大小
 const BLOCK_MARGIN = 2 // 每个贡献块的间距
 const MONTH_HEIGHT = 13 // 月份标签高度
 const WEEK_WIDTH = 18 // 周标签的宽度
+const LEGEND_HEIGHT = 30 // 图例高度
 
 // 月份名称
 const monthNames = [
@@ -60,6 +62,7 @@ const monthNames = [
 
 const svgWidth = ref(0)
 const svgHeight = ref(0)
+const legendBaseY = ref(0)
 
 const contributionRects = ref<ContributionRect[]>([])
 const monthLabels = ref<MonthLabel[]>([])
@@ -126,18 +129,19 @@ const fn = () => {
   ]
 
   svgWidth.value = baseX + (col + 1) * (BLOCK_SIZE + BLOCK_MARGIN)
-  svgHeight.value = baseY + 7 * (BLOCK_SIZE + BLOCK_MARGIN)
+  svgHeight.value = baseY + 7 * (BLOCK_SIZE + BLOCK_MARGIN) + LEGEND_HEIGHT
+  legendBaseY.value = baseY + 7 * (BLOCK_SIZE + BLOCK_MARGIN)
 }
 
-fn()
+watchEffect(fn)
 </script>
 
 <template>
-  <div class="contributions" :class="{ dark }">
+  <div class="contributions" :class="{ dark, background }">
     <svg
-      :width="svgWidth"
-      :height="svgHeight"
-      :view-box="`0 0 ${svgWidth} ${svgHeight}`"
+      width="100%"
+      height="100%"
+      :viewBox="`0 0 ${svgWidth} ${svgHeight}`"
       class="contribution-chart"
     >
       <g class="month-labels">
@@ -181,80 +185,54 @@ fn()
           class="contribution-rect"
         />
       </g>
-    </svg>
 
-    <div class="legend">
-      <span class="legend-text">Less</span>
-      <svg width="58" height="10" class="legend-svg">
+      <g class="legend">
+        <text
+          :x="svgWidth - 89"
+          :y="legendBaseY + 20"
+          text-anchor="end"
+          class="legend-text"
+        >
+          Less
+        </text>
         <rect
-          x="0"
-          y="0"
+          v-for="(n, i) in 5"
+          :x="
+            svgWidth - BLOCK_MARGIN - 35 - (BLOCK_SIZE + BLOCK_MARGIN) * i
+          "
+          :y="legendBaseY + 11"
           width="10"
           height="10"
           rx="2"
           ry="2"
-          data-level="0"
+          :data-level="5 - n"
           class="contribution-rect"
         />
-        <rect
-          x="12"
-          y="0"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          data-level="1"
-          class="contribution-rect"
-        />
-        <rect
-          x="24"
-          y="0"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          data-level="2"
-          class="contribution-rect"
-        />
-        <rect
-          x="36"
-          y="0"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          data-level="3"
-          class="contribution-rect"
-        />
-        <rect
-          x="48"
-          y="0"
-          width="10"
-          height="10"
-          rx="2"
-          ry="2"
-          data-level="4"
-          class="contribution-rect"
-        />
-      </svg>
-      <span class="legend-text">More</span>
-    </div>
+        <text
+          :x="svgWidth - BLOCK_MARGIN"
+          :y="legendBaseY + 20"
+          text-anchor="end"
+          class="legend-text"
+        >
+          More
+        </text>
+      </g>
+    </svg>
   </div>
 </template>
 
 <style scoped lang="scss">
 .contributions {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
-    Arial, sans-serif;
-  padding: 8px;
-  border-radius: 6px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  &.background {
+    padding: 8px;
+    border-radius: 6px;
+    background-color: #fff;
+  }
 
   &.dark {
-    background-color: #0d1117;
+    &.background {
+      background-color: #0d1117;
+    }
     .contribution-rect {
       &[data-level='0'] {
         fill: #151b23;
@@ -311,22 +289,10 @@ fn()
   }
 }
 
-.legend {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 8px 32px;
-  color: #767676;
-}
-
 .legend-text {
   margin: 0 4px;
   font-size: 9px;
   line-height: 18px;
-}
-
-.legend-svg {
-  margin: 0 4px;
+  fill: #767676;
 }
 </style>

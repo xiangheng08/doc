@@ -68,7 +68,7 @@ export default [
       { link: '/vue/generic-component/file-drop/' },
       { link: '/vue/generic-component/infinite-scroll/' },
       { link: '/vue/generic-component/proportional-split-bar/' },
-      { link: '/vue/generic-component/contributions/' },
+      { link: '/vue/generic-component/github-contributions/' },
     ],
   },
   { link: '/vue/style-penetration' },

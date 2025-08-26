@@ -1,11 +1,11 @@
 <template>
-  <Contributions :data="contributionsData" :dark="isDark" />
+  <GithubContributions :data="contributionsData" :dark="isDark" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useData } from 'vitepress'
-import Contributions from './Contributions.vue'
+import GithubContributions from './GithubContributions.vue'
 import data from './data.json'
 
 const { isDark } = useData()
