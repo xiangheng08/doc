@@ -120,7 +120,8 @@ const nav: DefaultTheme.NavItem[] = [
         text: '版本控制/DevOps',
         items: [
           { text: 'Git', link: '/git/command-list' },
-          { text: 'Gitea', link: '/gitea/index' },
+          { text: 'Github', link: '/github/' },
+          { text: 'Gitea', link: '/gitea/' },
         ],
       },
       {

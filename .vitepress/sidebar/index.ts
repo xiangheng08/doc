@@ -37,6 +37,7 @@ import koa from './koa'
 import docker from './docker'
 import uniapp from './uniapp'
 import algorithm from './algorithm'
+import github from './github'
 
 export default {
   '/git/': git,
@@ -77,4 +78,5 @@ export default {
   '/docker/': docker,
   '/uniapp/': uniapp,
   '/algorithm/': algorithm,
+  '/github/': github,
 } satisfies DefaultTheme.Sidebar
