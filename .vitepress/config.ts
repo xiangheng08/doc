@@ -123,18 +123,37 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'Gitea', link: '/gitea/index' },
         ],
       },
-      { text: 'Docker', link: '/docker/' },
-      { text: '包管理工具', link: '/manager/collected-packages' },
-      { text: 'NVM', link: '/nvm/index' },
-      { text: 'VSCode', link: '/vscode/tips' },
-      { text: 'Windows', link: '/windows/tips' },
-      { text: 'Chrome', link: '/chrome/' },
-      { text: 'FFmpeg', link: '/ffmpeg/merge-audio-video' },
+      {
+        text: '开发环境',
+        items: [
+          { text: 'Docker', link: '/docker/' },
+          { text: 'NVM', link: '/nvm/index' },
+          { text: '包管理工具', link: '/manager/collected-packages' },
+        ],
+      },
+      {
+        text: '编辑器/工具',
+        items: [
+          { text: 'VSCode', link: '/vscode/tips' },
+          { text: 'Chrome', link: '/chrome/' },
+        ],
+      },
+      {
+        text: '操作系统',
+        items: [
+          { text: 'Windows', link: '/windows/tips' },
+        ],
+      },
+      {
+        text: '多媒体处理',
+        items: [{ text: 'FFmpeg', link: '/ffmpeg/merge-audio-video' }],
+      },
     ],
   },
   {
     text: '其他',
     items: [
+      { text: '算法', link: '/algorithm/' },
       { text: '面试题', link: '/interview/question/unorganize/1' },
       { text: '常用单词', link: '/common-words' },
       { text: 'Emoji', link: '/emoji' },
