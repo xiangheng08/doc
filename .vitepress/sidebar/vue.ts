@@ -58,6 +58,9 @@ export default [
     text: 'Vue 核心',
     link: '/vue/core',
   },
+  { link: '/vue/style-penetration' },
+  { link: '/vue/modifiers' },
+  { link: '/vue/built-in-directives' },
   {
     text: '实践应用',
     items: [{ link: '/vue/practice/batch-render' }],
@@ -71,8 +74,6 @@ export default [
       { link: '/vue/generic-component/github-contributions/' },
     ],
   },
-  { link: '/vue/style-penetration' },
-  { link: '/vue/modifiers' },
   {
     text: 'Hooks',
     items: [
