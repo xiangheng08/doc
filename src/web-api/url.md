@@ -172,6 +172,10 @@ function handleFiles(files) {
 
 `URL()` 构造函数解析非法网址时，会抛出错误，必须用 `try...catch` 代码块处理，这样终究不是非常方便。因此，URL 对象又引入了 `URL.canParse()` 方法，它返回一个布尔值，表示当前字符串是否为有效网址。
 
+::: warning
+`URL.canParse()` 是一个相对较新的方法，Chrome 120+ 和 Firefox 115+ 才支持。点击查看[浏览器兼容性](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/canParse_static#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7)。
+:::
+
 ```js
 URL.canParse(url)
 URL.canParse(url, base)
@@ -211,9 +215,11 @@ function isUrlValid(string) {
 
 ### `URL.parse()`
 
-`URL.parse()` 是一个新添加的方法，Chromium 126 和 Firefox 126 开始支持。
-
 它的主要目的就是，改变 `URL()` 构造函数解析非法网址抛错的问题。这个新方法不会抛错，如果参数是有效网址，则返回 URL 实例对象，否则返回 `null`。
+
+::: warning
+`URL.parse()` 是一个新添加的方法，Chromium 126 和 Firefox 126 开始支持。点击查看[浏览器兼容性](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/parse_static#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7)。
+:::
 
 ```js
 const urlstring = "this is not a URL";

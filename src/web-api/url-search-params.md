@@ -282,3 +282,184 @@ if (url.searchParams.size) {
   console.log("该 URL 有查询字符串");
 }
 ```
+
+## 实际应用场景
+
+### URL 查询参数管理
+
+```js
+// 解析当前页面的查询参数
+const params = new URLSearchParams(window.location.search);
+
+// 获取特定参数
+const userId = params.get('userId');
+const category = params.get('category');
+
+// 修改参数并更新URL
+params.set('page', '2');
+window.history.replaceState({}, '', \`\${location.pathname}?\${params}\`);
+```
+
+### 构建 API 请求
+
+```js
+// 构建带有查询参数的 API 请求
+const buildApiUrl = (endpoint, queryParams) => {
+  const url = new URL(endpoint);
+  Object.keys(queryParams).forEach(key => {
+    if (queryParams[key] !== null && queryParams[key] !== undefined) {
+      url.searchParams.append(key, queryParams[key]);
+    }
+  });
+  return url.toString();
+};
+
+const apiUrl = buildApiUrl('https://api.example.com/users', {
+  page: 1,
+  limit: 10,
+  sort: 'name'
+});
+// 结果: https://api.example.com/users?page=1&limit=10&sort=name
+```
+
+### 表单数据处理
+
+```js
+// 处理表单提交
+const form = document.querySelector('#searchForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  const params = new URLSearchParams();
+  
+  // 将 FormData 转换为 URLSearchParams
+  for (const [key, value] of formData) {
+    params.append(key, value);
+  }
+  
+  // 发送请求
+  fetch(\`/search?\${params}\`)
+    .then(response => response.json())
+    .then(data => console.log(data));
+});
+```
+
+### 路由状态管理
+
+```js
+// 在单页应用中管理路由状态
+class Router {
+  constructor() {
+    this.params = new URLSearchParams(window.location.search);
+    this.updateState();
+    window.addEventListener('popstate', () => this.updateState());
+  }
+  
+  updateState() {
+    this.params = new URLSearchParams(window.location.search);
+    this.render();
+  }
+  
+  navigate(path, queryParams = {}) {
+    const params = new URLSearchParams(queryParams);
+    const url = \`\${path}?\${params}\`;
+    
+    window.history.pushState({}, '', url);
+    this.updateState();
+  }
+  
+  getParam(key) {
+    return this.params.get(key);
+  }
+  
+  setParam(key, value) {
+    this.params.set(key, value);
+    this.navigate(window.location.pathname, Object.fromEntries(this.params));
+  }
+  
+  render() {
+    // 根据参数更新页面内容
+    console.log('路由参数更新:', Object.fromEntries(this.params));
+  }
+}
+
+// 使用示例
+const router = new Router();
+router.setParam('view', 'list');
+router.setParam('filter', 'active');
+```
+
+## 与其他技术对比
+
+| 特性 | URLSearchParams | 手动字符串处理 | 第三方库(如qs) |
+|------|----------------|----------------|----------------|
+| 浏览器原生支持 | ✅ 是 | ✅ 是 | ❌ 否 |
+| 自动编码/解码 | ✅ 是 | ❌ 否 | ✅ 是 |
+| 易用性 | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| 功能丰富度 | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| 性能 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| 嵌套对象支持 | ❌ 否 | ❌ 否 | ✅ 是 |
+
+### 与手动字符串处理对比
+
+```js
+// 手动处理查询字符串（不推荐）
+const parseQueryString = (query) => {
+  const params = {};
+  const pairs = query.substring(1).split('&');
+  
+  for (let i = 0; i < pairs.length; i++) {
+    const pair = pairs[i].split('=');
+    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+  }
+  
+  return params;
+};
+
+// 使用 URLSearchParams（推荐）
+const params = new URLSearchParams(window.location.search);
+const value = params.get('key');
+```
+
+### 与第三方库对比
+
+对于简单的查询字符串操作，URLSearchParams 已经足够。但对于复杂的嵌套对象序列化，可能需要使用第三方库：
+
+```js
+// URLSearchParams 不支持嵌套对象
+const params = new URLSearchParams();
+params.append('filter', { name: 'John', age: 30 }); // 转换为 "[object Object]"
+
+// 第三方库（如 qs）支持嵌套对象
+// qs.stringify({ filter: { name: 'John', age: 30 } })
+// 结果: "filter[name]=John&filter[age]=30"
+```
+
+## 浏览器兼容性
+
+URLSearchParams 在现代浏览器中有良好的支持：
+
+- Chrome 49+
+- Firefox 29+
+- Safari 10.1+
+- Edge 17+
+
+对于较老的浏览器，可以使用 polyfill：
+
+```js
+// 检查浏览器支持
+if ('URLSearchParams' in window) {
+  // 使用原生 URLSearchParams
+  const params = new URLSearchParams('a=1&b=2');
+} else {
+  // 使用 polyfill 或降级方案
+  // 可以引入 https://github.com/WebReflection/url-search-params
+}
+```
+
+## 相关资源
+
+- [MDN URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)
+- [URL 标准规范](https://url.spec.whatwg.org/#urlsearchparams)
+- [Can I Use: URLSearchParams](https://caniuse.com/urlsearchparams)
