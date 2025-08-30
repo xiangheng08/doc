@@ -97,6 +97,7 @@ export default [
       { link: '/vue/vue2/options-api' },
       { link: '/vue/vue2/lifecycle' },
       { link: '/vue/vue2/reactivity' },
+      { link: '/vue/vue2/vuex' },
 
     ],
   },
