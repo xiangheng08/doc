@@ -90,4 +90,14 @@ export default [
     text: 'Mixins',
     items: [{ link: '/vue/mixins/paging' }],
   },
+  {
+    text: 'Vue2',
+    items: [
+      { link: '/vue/vue2/intro' },
+      { link: '/vue/vue2/options-api' },
+      { link: '/vue/vue2/lifecycle' },
+      { link: '/vue/vue2/reactivity' },
+
+    ],
+  },
 ] satisfies DefaultTheme.Sidebar
