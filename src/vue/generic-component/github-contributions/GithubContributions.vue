@@ -179,6 +179,8 @@ const contributionRects = ref<ContributionRect[]>([])
 const monthLabels = ref<MonthLabel[]>([])
 const weekLabels = ref<WeekLabel[]>([])
 const legendContributionRects = ref<ContributionRect[]>([])
+const legendMoreTextX = ref(0)
+const legendLessTextX = ref(0)
 
 const getLevelColor = (level: number) => {
   const color = levelColors[level] || levelColors[0]
@@ -265,6 +267,13 @@ watchEffect(() => {
     baseY + rectGroupHeight + LEGEND_HEIGHT + PADDING_BOTTOM
   legendCentralAxis.value = baseY + rectGroupHeight + LEGEND_HEIGHT / 2
 
+  legendMoreTextX.value = svgWidth.value - LEGEND_PADDING - 22
+  legendLessTextX.value =
+    legendMoreTextX.value -
+    (BLOCK_SIZE + LEGEND_BLOCK_GAP) * 5 -
+    20 -
+    LEGEND_BLOCK_GAP
+
   legendContributionRects.value = Array(5)
     .fill(0)
     .map<ContributionRect>((_, i) => {
@@ -273,11 +282,8 @@ watchEffect(() => {
         count: 0,
         level: i,
         x:
-          svgWidth.value -
-          LEGEND_PADDING -
-          32 -
-          LEGEND_BLOCK_GAP -
-          (BLOCK_SIZE + LEGEND_BLOCK_GAP) * (5 - (i + 1)),
+          legendMoreTextX.value -
+          (BLOCK_SIZE + LEGEND_BLOCK_GAP) * (5 - i),
         y: legendCentralAxis.value - BLOCK_SIZE / 2,
         row: 0,
         col: 0,
@@ -412,15 +418,9 @@ const handleTooltipLeave = () => {
 
       <g class="legend">
         <text
-          :x="
-            svgWidth -
-            LEGEND_PADDING -
-            32 -
-            LEGEND_BLOCK_GAP * 2 -
-            (BLOCK_SIZE + LEGEND_BLOCK_GAP) * 4
-          "
+          :x="legendLessTextX"
           :y="legendCentralAxis"
-          text-anchor="end"
+          text-anchor="start"
           dominant-baseline="middle"
           v-bind="legendTextAttributes"
         >
@@ -439,9 +439,9 @@ const handleTooltipLeave = () => {
           @mouseleave="hideTooltip"
         />
         <text
-          :x="svgWidth - LEGEND_PADDING"
+          :x="legendMoreTextX"
           :y="legendCentralAxis"
-          text-anchor="end"
+          text-anchor="start"
           dominant-baseline="middle"
           v-bind="legendTextAttributes"
         >

@@ -1,5 +1,6 @@
 # Github 贡献图
 
+<!-- 调试用 -->
 <!-- <script setup>
 import Example from './Example.vue'
 </script>
@@ -15,3 +16,7 @@ import Example from './Example.vue'
 ./Example.vue
 
 :::
+
+组件源码：
+
+<<< ./GithubContributions.vue
