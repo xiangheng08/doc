@@ -2,6 +2,64 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   {
+    text: 'Vue2',
+    items: [
+      { link: '/vue/vue2/intro' },
+      { link: '/vue/vue2/options-api' },
+      { link: '/vue/vue2/lifecycle' },
+      { link: '/vue/vue2/reactivity' },
+      { link: '/vue/vue2/vuex' },
+      { link: '/vue/vue2/vue-router' },
+      { link: '/vue/vue2/vue-cli' },
+    ],
+  },
+  {
+    text: 'Vue3',
+    items: [
+      { link: '/vue/vue3/intro' },
+      { link: '/vue/vue3/vue2-vs-vue3' },
+      { link: '/vue/vue3/composition-api' },
+      { link: '/vue/vue3/global-api' },
+      { link: '/vue/vue3/reactivity' },
+      { link: '/vue/vue3/lifecycle' },
+      { link: '/vue/vue3/components' },
+    ],
+  },
+  { link: '/vue/style-penetration' },
+  { link: '/vue/modifiers' },
+  { link: '/vue/built-in-directives' },
+  {
+    text: '实践应用',
+    items: [{ link: '/vue/practice/batch-render' }],
+  },
+  {
+    text: '通用组件',
+    items: [
+      { link: '/vue/generic-component/file-drop/' },
+      { link: '/vue/generic-component/infinite-scroll/' },
+      { link: '/vue/generic-component/proportional-split-bar/' },
+      { link: '/vue/generic-component/github-contributions/' },
+    ],
+  },
+  {
+    text: 'Hooks',
+    items: [
+      { link: '/vue/hooks/lock' },
+      { link: '/vue/hooks/paging' },
+      { link: '/vue/hooks/paging-js' },
+    ],
+  },
+  {
+    text: 'Directives',
+    items: [{ link: '/vue/directives/slide-in' }],
+  },
+  {
+    text: 'Mixins',
+    items: [{ link: '/vue/mixins/paging' }],
+  },
+
+  // TODO: 后面连同md文件一起删除
+  {
     text: 'Vue 基础',
     items: [
       {
@@ -57,59 +115,5 @@ export default [
   {
     text: 'Vue 核心',
     link: '/vue/core',
-  },
-  { link: '/vue/style-penetration' },
-  { link: '/vue/modifiers' },
-  { link: '/vue/built-in-directives' },
-  {
-    text: '实践应用',
-    items: [{ link: '/vue/practice/batch-render' }],
-  },
-  {
-    text: '通用组件',
-    items: [
-      { link: '/vue/generic-component/file-drop/' },
-      { link: '/vue/generic-component/infinite-scroll/' },
-      { link: '/vue/generic-component/proportional-split-bar/' },
-      { link: '/vue/generic-component/github-contributions/' },
-    ],
-  },
-  {
-    text: 'Hooks',
-    items: [
-      { link: '/vue/hooks/lock' },
-      { link: '/vue/hooks/paging' },
-      { link: '/vue/hooks/paging-js' },
-    ],
-  },
-  {
-    text: 'Directives',
-    items: [{ link: '/vue/directives/slide-in' }],
-  },
-  {
-    text: 'Mixins',
-    items: [{ link: '/vue/mixins/paging' }],
-  },
-  {
-    text: 'Vue2',
-    items: [
-      { link: '/vue/vue2/intro' },
-      { link: '/vue/vue2/options-api' },
-      { link: '/vue/vue2/lifecycle' },
-      { link: '/vue/vue2/reactivity' },
-      { link: '/vue/vue2/vuex' },
-      { link: '/vue/vue2/vue-router' },
-      { link: '/vue/vue2/vue-cli' },
-    ],
-  },
-  {
-    text: 'Vue3',
-    items: [
-      { link: '/vue/vue3/intro' },
-      { link: '/vue/vue3/vue2-vs-vue3' },
-      { link: '/vue/vue3/composition-api' },
-      { link: '/vue/vue3/global-api' },
-      { link: '/vue/vue3/reactivity' },
-    ],
   },
 ] satisfies DefaultTheme.Sidebar

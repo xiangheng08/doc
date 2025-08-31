@@ -232,4 +232,28 @@
 		],
 		"description": "script setup"
 	},
+  "badge info": {
+		"prefix": "badge info",
+		"scope": "markdown",
+		"body": ["<Badge type=\"info\" text=\"$1\" />"],
+		"description": "<Badge type=\"info\" text=\"default\" />"
+	},
+  "badge tip": {
+		"prefix": "badge tip",
+		"scope": "markdown",
+		"body": ["<Badge type=\"tip\" text=\"$1\" />"],
+		"description": "<Badge type=\"tip\" text=\"^1.9.0\" />"
+	},
+  "badge warning": {
+		"prefix": "badge warning",
+		"scope": "markdown",
+		"body": ["<Badge type=\"warning\" text=\"$1\" />"],
+		"description": "<Badge type=\"warning\" text=\"beta\" />"
+	},
+  "badge danger": {
+		"prefix": "badge danger",
+		"scope": "markdown",
+		"body": ["<Badge type=\"danger\" text=\"$1\" />"],
+		"description": "<Badge type=\"danger\" text=\"caution\" />"
+	},
 }
