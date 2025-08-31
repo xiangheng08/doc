@@ -98,6 +98,8 @@ export default [
       { link: '/vue/vue2/lifecycle' },
       { link: '/vue/vue2/reactivity' },
       { link: '/vue/vue2/vuex' },
+      { link: '/vue/vue2/vue-router' },
+      { link: '/vue/vue2/vue-cli' },
 
     ],
   },

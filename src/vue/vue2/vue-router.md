@@ -1,0 +1,453 @@
+# 在 Vue2 中使用 Vue Router
+
+## Vue Router 简介
+
+Vue Router 是 Vue.js 官方的路由管理器，它与 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌。它包含的功能有：
+
+- 声明式路由：使用 `<router-link>` 组件创建导航链接
+- 编程式导航：通过 JavaScript 实现页面跳转
+- 嵌套的路由/视图表：支持多层嵌套的路由结构
+- 模块化的、基于组件的路由配置
+- 动态路由匹配：支持动态路径参数、查询、通配符
+- 命名路由和命名视图：便于路由管理和组件渲染
+- 路由参数、查询、通配符
+- 基于 Vue.js 过渡系统的视图过渡效果
+- 细粒度的导航控制：提供多种方式的导航控制
+- 带有自动激活的 CSS class 的链接
+- HTML5 历史模式或 hash 模式
+- 可扩展的路由配置
+- 路由懒加载：优化应用性能
+
+
+## 下载安装
+
+### 直接下载 / CDN
+
+```html
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+```
+
+### NPM 安装
+
+```bash
+npm install vue-router@3
+pnpm add vue-router@3
+yarn add vue-router@3
+```
+
+如果在一个模块化工程中使用它，必须要通过 `Vue.use()` 明确地安装路由功能：
+
+```js
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+```
+
+### Vue CLI 插件
+
+如果你有一个正在使用 Vue CLI 的项目，你可以以项目插件的形式添加 Vue Router：
+
+```bash
+vue add router
+```
+
+## 在 Vue2 中使用
+
+在 Vue2 项目中使用 Vue Router 需要注意版本兼容性：
+
+- Vue 2.x 需要使用 Vue Router 3.x 版本
+- Vue 3.x 需要使用 Vue Router 4.x 版本
+
+## 使用方法
+
+### 1. 基本用法
+
+```js
+// 1. 定义路由组件
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+// 2. 定义路由
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+
+// 3. 创建 router 实例
+const router = new VueRouter({
+  mode: 'history', // 可选 'hash' 或 'history'
+  routes
+})
+
+// 4. 创建和挂载根实例
+const app = new Vue({
+  router
+}).$mount('#app')
+```
+
+### 2. 动态路由匹配
+
+```js
+const User = {
+  template: '<div>User {{ $route.params.id }}</div>'
+}
+
+const router = new VueRouter({
+  routes: [
+    // 动态路径参数以冒号开头
+    { path: '/user/:id', component: User },
+    {
+      // 会匹配以 `/user-` 开头的任意路径
+      path: '/user-*'
+    },
+    {
+      // 会匹配所有路径，通常在最后定义，用于404页面
+      path: '*'
+    }
+  ]
+})
+```
+
+详细介绍请看[动态路由匹配 | Vue Router](https://v3.router.vuejs.org/zh/guide/essentials/dynamic-matching.html)
+
+### 3. 嵌套路由
+
+```js
+const User = {
+  template: `
+    <div class="user">
+      <h2>User {{ $route.params.id }}</h2>
+      <router-view></router-view>
+    </div>
+  `
+}
+
+const router = new VueRouter({
+  routes: [
+    { 
+      path: '/user/:id', 
+      component: User,
+      children: [
+        {
+          // 当 /user/:id/profile 匹配成功
+          path: 'profile',
+          component: UserProfile
+        },
+        {
+          // 当 /user/:id/posts 匹配成功
+          path: 'posts',
+          component: UserPosts
+        }
+      ]
+    }
+  ]
+})
+```
+
+### 4. 命名路由
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/user/:userId',
+      name: 'user',
+      component: User
+    }
+  ]
+})
+
+// 使用命名路由
+// <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+// 或者
+// router.push({ name: 'user', params: { userId: 123 } })
+```
+
+### 5. 编程式导航
+
+```js
+// 字符串路径
+router.push('home')
+
+// 对象
+router.push({ path: 'home' })
+
+// 命名的路由
+router.push({ name: 'user', params: { userId: '123' }})
+
+// 带查询参数
+router.push({ path: 'register', query: { plan: 'private' }})
+
+// 替换当前路由
+router.replace({ path: 'home' })
+
+// 前进或后退
+router.go(-1) // 后退一步
+router.go(1)  // 前进一步
+```
+
+### 6. 命名视图
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/',
+      components: {
+        default: Foo,
+        a: Bar,
+        b: Baz
+      }
+    }
+  ]
+})
+```
+
+对应的模板：
+
+```html
+<router-view></router-view>
+<router-view name="a"></router-view>
+<router-view name="b"></router-view>
+```
+
+## 路由模式
+
+Vue Router 有三种路由模式，通过 `mode` 配置项进行设置：
+
+### Hash 模式（默认）
+
+Hash 模式是 Vue Router 的默认模式，使用 URL 的 hash 来模拟一个完整的 URL。当 URL 改变时，页面不会重新加载。
+
+```js
+const router = new VueRouter({
+  mode: 'hash', // 默认值，可省略
+  routes: [...]
+})
+```
+
+在 hash 模式下，URL 会带有 `#` 符号，例如：`http://yoursite.com/#/user/id`。
+
+### History 模式
+
+History 模式充分利用 history.pushState API 来完成 URL 跳转而无须重新加载页面，URL 更加美观。
+
+```js
+const router = new VueRouter({
+  mode: 'history',
+  routes: [...]
+})
+```
+
+在 history 模式下，URL 看起来像正常的 URL，例如：`http://yoursite.com/user/id`。
+
+使用 history 模式时需要注意，需要服务器配置支持。因为这是一个单页客户端应用，如果后台没有正确的配置，当用户在浏览器直接访问 `http://yoursite.com/user/id` 就会返回 404。
+
+需要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面。
+
+#### 服务器配置示例
+
+**nginx**
+
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+**Apache**
+
+```
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+```
+
+**原生 Node.js**
+
+```js
+const http = require('http')
+const fs = require('fs')
+const httpPort = 80
+
+http.createServer((req, res) => {
+  fs.readFile('index.html', 'utf-8', (err, content) => {
+    if (err) {
+      console.log('We cannot open "index.html" file.')
+    }
+
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8'
+    })
+
+    res.end(content)
+  })
+}).listen(httpPort, () => {
+  console.log('Server listening on: http://localhost:%s', httpPort)
+})
+```
+
+#### Express
+
+可以使用 [`connect-history-api-fallback`](https://github.com/bripkens/connect-history-api-fallback) 模块，将所有请求都映射到 `index.html` 文件。
+
+安装：
+```sh
+npm install --save connect-history-api-fallback
+pnpm add connect-history-api-fallback
+yarn add connect-history-api-fallback
+```
+
+使用：
+```js
+const express = require('express');
+const history = require('connect-history-api-fallback');
+
+const app = express();
+app.use(history());
+```
+
+### Abstract 模式
+
+Abstract 模式不依赖于浏览器的 URL，而是使用一个内部数组来存储路由历史记录。主要用于 Node.js 环境中，例如服务端渲染。
+
+```js
+const router = new VueRouter({
+  mode: 'abstract',
+  routes: [...]
+})
+```
+
+### 注意事项
+
+使用 history 模式时，由于服务器会将所有路由都指向 index.html，因此需要在 Vue 应用中处理 404 页面：
+
+```js
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    // ...其他路由
+    { path: '*', component: NotFoundComponent }
+  ]
+})
+```
+
+## 常见错误
+
+### 404 页面问题
+
+使用 history 模式时，服务器不会返回404页面，需要我们配置一个404路由，以避免 404 错误。
+
+``js{6}
+// 解决方案：添加通配符路由
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    // ...其他路由
+    { path: '*', component: NotFoundComponent }
+  ]
+})
+```
+
+### 路由参数变化不更新组件
+
+当使用路由参数时，从 `/user/foo` 导航到 `/user/bar`，原来的组件实例会被复用。
+
+```js
+const User = {
+  template: '...',
+  watch: {
+    // 监听路由变化
+    $route(to, from) {
+      // 对路由变化作出响应
+    }
+  }
+}
+```
+
+### params 被忽略问题
+
+如果提供了 `path`，`params` 会被忽略。
+
+```js
+// 错误用法
+router.push({ path: '/user', params: { userId: 123 }}) // -> /user
+
+// 正确用法
+router.push({ name: 'user', params: { userId: 123 }}) // -> /user/123
+// 或者
+router.push({ path: `/user/${123}` }) // -> /user/123
+```
+
+## 实践应用
+
+### 路由守卫
+
+用于权限验证和页面访问控制。
+
+```js
+router.beforeEach((to, from, next) => {
+  // 验证用户是否已登录
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!isAuthenticated()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+```
+
+### 路由懒加载
+
+优化应用性能。
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: () => import('./Foo.vue')
+    }
+  ]
+})
+```
+
+### 滚动行为
+
+控制页面滚动位置
+
+```js
+const router = new VueRouter({
+  mode: 'history',
+  routes: [...],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
+})
+```
+
+## 相关链接
+
+- [Vue Router 3 官方文档](https://v3.router.vuejs.org/zh/)
+- [Vue 2 官方文档](https://v2.cn.vuejs.org/)
+- [Vue CLI](https://cli.vuejs.org/zh/)
