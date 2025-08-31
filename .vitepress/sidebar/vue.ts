@@ -100,7 +100,13 @@ export default [
       { link: '/vue/vue2/vuex' },
       { link: '/vue/vue2/vue-router' },
       { link: '/vue/vue2/vue-cli' },
-
+    ],
+  },
+  {
+    text: 'Vue3',
+    items: [
+      { link: '/vue/vue3/intro' },
+      { link: '/vue/vue3/vue2-vs-vue3' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
