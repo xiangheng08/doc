@@ -107,6 +107,9 @@ export default [
     items: [
       { link: '/vue/vue3/intro' },
       { link: '/vue/vue3/vue2-vs-vue3' },
+      { link: '/vue/vue3/composition-api' },
+      { link: '/vue/vue3/global-api' },
+      { link: '/vue/vue3/reactivity' },
     ],
   },
 ] satisfies DefaultTheme.Sidebar
