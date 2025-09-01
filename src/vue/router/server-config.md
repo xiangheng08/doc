@@ -2,7 +2,36 @@
 
 在使用 Vue Router 的 history 模式时，需要服务器配置支持。因为这是一个单页客户端应用，如果后台没有正确的配置，当用户在浏览器直接访问如 `http://yoursite.com/user/id` 这样的 URL 时就会返回 404。
 
-需要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面。
+需要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 `index.html` 页面。
+
+## 注意
+
+这有一个注意事项。你的服务器将不再报告 404 错误，因为现在所有未找到的路径都会显示你的 `index.html` 文件。为了解决这个问题，你应该在你的 Vue 应用程序中实现一个万能的路由来显示 404 页面。
+
+
+
+::: code-group
+
+```js [Vue3]
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [{ path: '/:pathMatch(.*)', component: NotFoundComponent }],
+})
+```
+
+```js [Vue2]
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    { path: '*', component: NotFoundComponent }
+  ]
+})
+
+```
+
+:::
+
+如果你使用了 SSR，可以看看[Vue 服务器端渲染文档](https://cn.vuejs.org/guide/scaling-up/ssr)
 
 ## 服务器配置示例
 
