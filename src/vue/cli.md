@@ -91,22 +91,19 @@ yarn global upgrade --latest @vue/cli
 vue upgrade
 ```
 
-## 配置
-
-### 全局配置
+## 全局配置
 
 有些针对 @vue/cli 的全局配置，例如你惯用的包管理器和你本地保存的 preset，都保存在 home 目录下一个名叫 `.vuerc` 的 JSON 文件。你可以用编辑器直接编辑这个文件来更改已保存的选项。
 
 你也可以使用 `vue config` 命令来审查或修改全局的 CLI 配置。
 
-### 项目配置
+## 项目配置
 
 `vue.config.js` 是一个可选的配置文件，如果项目的（和 `package.json` 同级的）根目录中存在这个文件，那么它会被 `@vue/cli-service` 自动加载。
 
 这个文件应该导出一个包含了选项的对象：
 
-```js
-// vue.config.js
+```js [vue.config.js]
 const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
@@ -116,7 +113,7 @@ module.exports = defineConfig({
 
 常用的配置选项包括：
 
-#### publicPath
+### publicPath
 
 部署应用包时的基本 URL。默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 `https://www.my-app.com/`。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。
 
@@ -128,7 +125,7 @@ module.exports = {
 }
 ```
 
-#### outputDir
+### outputDir
 
 当运行 `vue-cli-service build` 时生成的生产环境构建文件的目录。默认值为 'dist'。
 
@@ -138,7 +135,7 @@ module.exports = {
 }
 ```
 
-#### assetsDir
+### assetsDir
 
 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
 
@@ -148,7 +145,7 @@ module.exports = {
 }
 ```
 
-#### lintOnSave
+### lintOnSave
 
 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码。
 
@@ -158,7 +155,7 @@ module.exports = {
 }
 ```
 
-#### productionSourceMap
+### productionSourceMap
 
 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
 
@@ -168,9 +165,11 @@ module.exports = {
 }
 ```
 
-#### devServer
+### devServer
 
-配置开发服务器的相关选项。
+配置开发服务器的相关选项。所有 [webpack DevServer](https://webpack.js.org/configuration/dev-server/) 的选项都支持。
+
+> 像 host、port 和 https 可能会被命令行参数覆写
 
 ```js
 module.exports = {
@@ -180,11 +179,49 @@ module.exports = {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true
-      }
+      },
     }
+    // 更多配置项...
   }
 }
 ```
+
+### devServer.proxy
+
+配置代理选项。
+
+```js
+module.exports = {
+  devServer: {
+    // 将没有匹配到静态文件的请求代理到 http://localhost:4000
+    proxy: 'http://localhost:4000',
+
+    // 将所有以 /api 开头的请求代理到 http://localhost:3000
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+
+    // 重写路径
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api': '' },
+      },
+    },
+
+    // 多个代理到同一个目标
+    proxy: [
+      {
+        context: ['/auth', '/api'],
+        target: 'http://localhost:3000',
+        // 重写 origin 头
+        changeOrigin: true,
+      },
+    ],
+  }
+}
+```
+
 
 ## 相关链接
 

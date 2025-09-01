@@ -9,8 +9,6 @@ export default [
       { link: '/vue/vue2/lifecycle' },
       { link: '/vue/vue2/reactivity' },
       { link: '/vue/vue2/vuex' },
-      { link: '/vue/vue2/vue-router' },
-      { link: '/vue/vue2/vue-cli' },
     ],
   },
   {
@@ -23,11 +21,44 @@ export default [
       { link: '/vue/vue3/reactivity' },
       { link: '/vue/vue3/lifecycle' },
       { link: '/vue/vue3/components' },
+      { link: '/vue/vue3/composables' },
     ],
   },
   { link: '/vue/style-penetration' },
   { link: '/vue/modifiers' },
   { link: '/vue/built-in-directives' },
+  {
+    text: '生态系统',
+    items: [
+      {
+        text: 'Vue Router',
+        items: [
+          { link: '/vue/router/intro' },
+          { link: '/vue/router/v3' },
+          { link: '/vue/router/v4' },
+          { link: '/vue/router/server-config' },
+        ],
+      },
+      // { link: '/vue/ecosystem/vuex' },
+      { text: 'Axios', link: '/axios/' },
+      { text: 'Element UI', link: '/element-ui/' },
+      { text: 'Element Plus', link: '/element-plus/' },
+      { text: 'Echarts', link: '/echarts/' },
+      { text: 'Quill', link: '/quill/' },
+    ],
+  },
+  {
+    text: '工具链',
+    items: [
+      { text: 'Vite', link: '/vite/' },
+      { text: 'Vue CLI', link: '/vue/cli' },
+      { text: 'Vue DevTools', link: 'https://devtools.vuejs.org/' },
+      {
+        text: 'Vue - Official（VS Code）',
+        link: 'https://marketplace.visualstudio.com/items?itemName=Vue.volar',
+      },
+    ],
+  },
   {
     text: '实践应用',
     items: [{ link: '/vue/practice/batch-render' }],
