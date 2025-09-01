@@ -31,6 +31,15 @@ export default [
     text: '生态系统',
     items: [
       {
+        text: 'Pinia',
+        items: [
+          { link: '/vue/pinia/' },
+          { link: '/vue/pinia/basic-usage' },
+          { link: '/vue/pinia/advanced-usage' },
+          { link: '/vue/pinia/examples' },
+        ],
+      },
+      {
         text: 'Vue Router',
         items: [
           { link: '/vue/router/intro' },
