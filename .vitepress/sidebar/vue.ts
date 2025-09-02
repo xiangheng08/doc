@@ -37,6 +37,9 @@ export default [
           { link: '/vue/pinia/basic-usage' },
           { link: '/vue/pinia/advanced-usage' },
           { link: '/vue/pinia/examples' },
+          { link: '/vue/pinia/getters' },
+          { link: '/vue/pinia/actions' },
+          { link: '/vue/pinia/vscode-snippets' },
         ],
       },
       {

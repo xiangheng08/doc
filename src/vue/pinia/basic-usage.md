@@ -37,6 +37,71 @@ export const useCounterStore = defineStore('counter', () => {
 })
 ```
 
+在 Setup Store 中：
+
+- `ref()` 就是 `state` 属性
+- `computed()` 就是 `getters`
+- `function()` 就是 `actions`
+
+::: warning 注意
+要让 pinia 正确识别 state，你必须在 setup store 中返回 state 的所有属性。这意味着，你不能在 store 中使用私有属性。不完整返回会影响 SSR ，开发工具和其他插件的正常运行。
+:::
+
+## TypeScript
+
+pinia 默认兼容 TypeScript 并不需要额外的配置。pinia 能够自动推断您的状态类型，但为了确保类型推断的准确性，建议启用 strict 模式，或者至少启用 noImplicitThis 选项。但是一些复杂类型就需要手动指定。
+
+```ts
+const useStore = defineStore('storeId', {
+  // 为了完整类型推理，推荐使用箭头函数
+  state: () => {
+    return {
+      // 这些属性都会自动推断出它们的类型
+      count: 0,
+      name: 'Eduardo',
+      isAdmin: true,
+
+      // 但是一些复杂类型就需要手动指定
+      userList: [] as UserInfo[],
+      user: null as UserInfo | null,
+    }
+  },
+})
+
+interface UserInfo {
+  name: string
+  age: number
+}
+```
+
+或者定义一个 store 接口，然后使用它来定义 store：
+
+```ts
+interface State {
+  count: number
+  name: string
+  isAdmin: boolean
+  userList: UserInfo[]
+  user: UserInfo | null
+}
+
+const useStore = defineStore('storeId', {
+  state: (): State => {
+    return {
+      count: 0,
+      name: 'Eduardo',
+      isAdmin: true,
+      userList: [],
+      user: null,
+    }
+  },
+})
+
+interface UserInfo {
+  name: string
+  age: number
+}
+```
 
 ## 使用 Store
 
@@ -46,12 +111,18 @@ export const useCounterStore = defineStore('counter', () => {
     <p>Count: {{ counter.count }}</p>
     <p>Double Count: {{ counter.doubleCount }}</p>
     <button @click="counter.increment()">Increment</button>
+    <button @click="handleClick">Increment2</button>
   </div>
 </template>
 
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 const counter = useCounterStore()
+
+const handleClick = () => {
+  // 也可直接对其进行读写
+  counter.count++
+}
 </script>
 ```
 
@@ -97,20 +168,40 @@ counter.$patch((state) => {
 
 ```js
 // 在 store 中定义 action
-actions: {
-  increment() {
-    this.count++
-  },
-  
-  async fetchData() {
-    const data = await api.getData()
-    this.$patch({ data })
+defineStore('counter', {
+  // ...
+  actions: {
+    increment() {
+      this.count++
+    },
+    
+    async fetchData() {
+      const data = await api.getData()
+      this.$patch({ data })
+    }
   }
-}
+})
 
 // 在组件中调用
 counter.increment()
 ```
+
+或者是 Setup Store 的 `function`
+
+```js
+defineStore('counter', () => {
+  const count = ref(0)
+  function increment() {
+    count.value++
+  }
+
+  return { increment, /* ... */ }
+})
+
+// 在组件中调用
+counter.increment()
+```
+
 
 ## 重置 state
 

@@ -1,259 +1,198 @@
 {
-	"code group": {
-		"prefix": "code group",
-		"scope": "markdown",
-		"body": [
-			"::: code-group",
-			"",
-			"```${1:lang} [${2:name}]",
-			"${3:code}",
-			"```",
-			"",
-			"```${4:lang} [${5:name}]",
-			"${6:code}",
-			"```",
-			"",
-			":::"
-		],
-		"description": "代码组"
-	},
-	"link anchor tag": {
-		"prefix": "link anchor tag",
-		"scope": "markdown",
-		"body": [
-			"<a target=\"_blank\" href=\"${1:url}\">${2:text}</a>"
-		],
-		"description": "a 标签链接"
-	},
-	"picture center": {
-		"prefix": ["pic center", "img center", "image center"],
-		"scope": "markdown",
-		"body": [
-			"<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"
-		],
-		"description": "居中图片"
-	},
-	"html code block": {
-		"prefix": "code html",
-		"scope": "markdown",
-		"body": [
-			"```html",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "html 代码块"
-	},
-	"css code block": {
-		"prefix": "code css",
-		"scope": "markdown",
-		"body": [
-			"```css",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "css 代码块"
-	},
-	"js code block": {
-		"prefix": ["code js", "code javascript"],
-		"scope": "markdown",
-		"body": [
-			"```js",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "js 代码块"
-	},
-	"ts code block": {
-		"prefix": ["code ts", "code typescript"],
-		"scope": "markdown",
-		"body": [
-			"```ts",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "ts 代码块"
-	},
-	"sh code block": {
-		"prefix": ["code sh", "code shell"],
-		"scope": "markdown",
-		"body": [
-			"```sh",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "sh 代码块"
-	},
-	"bash code block": {
-		"prefix": "bash",
-		"scope": "markdown",
-		"body": [
-			"```bash",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "bash 代码块"
-	},
+  "code group": {
+    "prefix": "code group",
+    "scope": "markdown",
+    "body": [
+      "::: code-group",
+      "",
+      "```${1:lang} [${2:name}]",
+      "${3:code}",
+      "```",
+      "",
+      "```${4:lang} [${5:name}]",
+      "${6:code}",
+      "```",
+      "",
+      ":::"
+    ],
+    "description": "代码组"
+  },
+  "link anchor tag": {
+    "prefix": "link anchor tag",
+    "scope": "markdown",
+    "body": ["<a target=\"_blank\" href=\"${1:url}\">${2:text}</a>"],
+    "description": "a 标签链接"
+  },
+  "picture center": {
+    "prefix": ["pic center", "img center", "image center"],
+    "scope": "markdown",
+    "body": ["<img src=\"$1\" alt=\"${2:alt}\" style=\"margin: auto;\"/>"],
+    "description": "居中图片"
+  },
+  "html code block": {
+    "prefix": "code html",
+    "scope": "markdown",
+    "body": ["```html", "$1", "```", "${0}"],
+    "description": "html 代码块"
+  },
+  "css code block": {
+    "prefix": "code css",
+    "scope": "markdown",
+    "body": ["```css", "$1", "```", "${0}"],
+    "description": "css 代码块"
+  },
+  "js code block": {
+    "prefix": ["code js", "code javascript"],
+    "scope": "markdown",
+    "body": ["```js", "$1", "```", "${0}"],
+    "description": "js 代码块"
+  },
+  "ts code block": {
+    "prefix": ["code ts", "code typescript"],
+    "scope": "markdown",
+    "body": ["```ts", "$1", "```", "${0}"],
+    "description": "ts 代码块"
+  },
+  "sh code block": {
+    "prefix": ["code sh", "code shell"],
+    "scope": "markdown",
+    "body": ["```sh", "$1", "```", "${0}"],
+    "description": "sh 代码块"
+  },
+  "bash code block": {
+    "prefix": "bash",
+    "scope": "markdown",
+    "body": ["```bash", "$1", "```", "${0}"],
+    "description": "bash 代码块"
+  },
   "json code block": {
-		"prefix": "json",
-		"scope": "markdown",
-		"body": [
-			"```json",
-			"$1",
-			"```",
-			"${0}"
-		],
-		"description": "json 代码块"
-	},
-	"info containers": {
-		"prefix": "info containers",
-		"scope": "markdown",
-		"body": [
-			"::: info $1",
-			"$2",
-			":::",
-		],
-		"description": "信息容器"
-	},
-	"tip containers": {
-		"prefix": "tip containers",
-		"scope": "markdown",
-		"body": [
-			"::: tip $1",
-			"$2",
-			":::",
-		],
-		"description": "提示容器"
-	},
-	"warning containers": {
-		"prefix": "warning containers",
-		"scope": "markdown",
-		"body": [
-			"::: warning $1",
-			"$2",
-			":::",
-		],
-		"description": "警告容器"
-	},
-	"danger containers": {
-		"prefix": "danger containers",
-		"scope": "markdown",
-		"body": [
-			"::: danger $1",
-			"$2",
-			":::",
-		],
-		"description": "危险容器"
-	},
-	"details containers": {
-		"prefix": "details containers",
-		"scope": "markdown",
-		"body": [
-			"::: details $1",
-			"$2",
-			":::",
-		],
-		"description": "可展开/详情容器"
-	},
-	"参考": {
-		"prefix": ["参考", "cankao", "ck"],
-		"scope": "markdown",
-		"body": [
-			"[参考]($1)",
-		],
-		"description": "参考链接"
-	},
-	"来源": {
-		"prefix": ["来源", "laiyuan", "ly"],
-		"scope": "markdown",
-		"body": [
-			"[来源]($1)",
-		],
-		"description": "来源链接"
-	},
-	"官网": {
-		"prefix": ["官网", "guanwang", "gw"],
-		"scope": "markdown",
-		"body": [
-			"[官网]($1)",
-		],
-		"description": "官网链接"
-	},
-	"TOC": {
-		"prefix": "toc",
-		"scope": "markdown",
-		"body": [
-			"[[toc]]",
-		],
-		"description": "目录表"
-	},
-	"prettier-ignore": {
-		"prefix": ["prettier-ignore", "ignore-prettier"],
-		"scope": "markdown",
-		"body": [
-			"<!-- prettier-ignore -->",
-		],
-		"description": "忽略格式化"
-	},
+    "prefix": "json",
+    "scope": "markdown",
+    "body": ["```json", "$1", "```", "${0}"],
+    "description": "json 代码块"
+  },
+  "info containers": {
+    "prefix": "info containers",
+    "scope": "markdown",
+    "body": ["::: info $1", "$2", ":::"],
+    "description": "信息容器"
+  },
+  "tip containers": {
+    "prefix": "tip containers",
+    "scope": "markdown",
+    "body": ["::: tip $1", "$2", ":::"],
+    "description": "提示容器"
+  },
+  "warning containers": {
+    "prefix": "warning containers",
+    "scope": "markdown",
+    "body": ["::: warning $1", "$2", ":::"],
+    "description": "警告容器"
+  },
+  "danger containers": {
+    "prefix": "danger containers",
+    "scope": "markdown",
+    "body": ["::: danger $1", "$2", ":::"],
+    "description": "危险容器"
+  },
+  "details containers": {
+    "prefix": "details containers",
+    "scope": "markdown",
+    "body": ["::: details $1", "$2", ":::"],
+    "description": "可展开/详情容器"
+  },
+  "参考": {
+    "prefix": ["参考", "cankao", "ck"],
+    "scope": "markdown",
+    "body": ["[参考]($1)"],
+    "description": "参考链接"
+  },
+  "来源": {
+    "prefix": ["来源", "laiyuan", "ly"],
+    "scope": "markdown",
+    "body": ["[来源]($1)"],
+    "description": "来源链接"
+  },
+  "官网": {
+    "prefix": ["官网", "guanwang", "gw"],
+    "scope": "markdown",
+    "body": ["[官网]($1)"],
+    "description": "官网链接"
+  },
+  "TOC": {
+    "prefix": "toc",
+    "scope": "markdown",
+    "body": ["[[toc]]"],
+    "description": "目录表"
+  },
+  "prettier-ignore": {
+    "prefix": ["prettier-ignore", "ignore-prettier"],
+    "scope": "markdown",
+    "body": ["<!-- prettier-ignore -->"],
+    "description": "忽略格式化"
+  },
   "script setup": {
-		"prefix": "script setup",
-		"scope": "markdown",
-		"body": [
-			"<script setup>",
-      "$1",
-      "</script>",
-		],
-		"description": "script setup"
-	},
+    "prefix": "script setup",
+    "scope": "markdown",
+    "body": ["<script setup>", "$1", "</script>"],
+    "description": "script setup"
+  },
   "demo component": {
-		"prefix": "demo component",
-		"scope": "markdown",
-		"body": [
-			"<demo>",
-      "$1",
-      "</demo>",
-		],
-		"description": "script setup"
-	},
+    "prefix": "demo component",
+    "scope": "markdown",
+    "body": ["<demo>", "$1", "</demo>"],
+    "description": "script setup"
+  },
   "demo container": {
-		"prefix": "demo container",
-		"scope": "markdown",
-		"body": [
-			"::: demo",
-      "",
-      "$1",
-      "",
-      ":::",
-		],
-		"description": "script setup"
-	},
+    "prefix": "demo container",
+    "scope": "markdown",
+    "body": ["::: demo", "", "$1", "", ":::"],
+    "description": "script setup"
+  },
   "badge info": {
-		"prefix": "badge info",
-		"scope": "markdown",
-		"body": ["<Badge type=\"info\" text=\"$1\" />"],
-		"description": "<Badge type=\"info\" text=\"default\" />"
-	},
+    "prefix": "badge info",
+    "scope": "markdown",
+    "body": ["<Badge type=\"info\" text=\"$1\" />"],
+    "description": "<Badge type=\"info\" text=\"default\" />"
+  },
   "badge tip": {
-		"prefix": "badge tip",
-		"scope": "markdown",
-		"body": ["<Badge type=\"tip\" text=\"$1\" />"],
-		"description": "<Badge type=\"tip\" text=\"^1.9.0\" />"
-	},
+    "prefix": "badge tip",
+    "scope": "markdown",
+    "body": ["<Badge type=\"tip\" text=\"$1\" />"],
+    "description": "<Badge type=\"tip\" text=\"^1.9.0\" />"
+  },
   "badge warning": {
-		"prefix": "badge warning",
-		"scope": "markdown",
-		"body": ["<Badge type=\"warning\" text=\"$1\" />"],
-		"description": "<Badge type=\"warning\" text=\"beta\" />"
-	},
+    "prefix": "badge warning",
+    "scope": "markdown",
+    "body": ["<Badge type=\"warning\" text=\"$1\" />"],
+    "description": "<Badge type=\"warning\" text=\"beta\" />"
+  },
   "badge danger": {
-		"prefix": "badge danger",
-		"scope": "markdown",
-		"body": ["<Badge type=\"danger\" text=\"$1\" />"],
-		"description": "<Badge type=\"danger\" text=\"caution\" />"
-	},
+    "prefix": "badge danger",
+    "scope": "markdown",
+    "body": ["<Badge type=\"danger\" text=\"$1\" />"],
+    "description": "<Badge type=\"danger\" text=\"caution\" />"
+  },
+  "install": {
+    "prefix": "install",
+    "scope": "markdown",
+    "body": [
+      "::: code-group",
+      "",
+      "```sh [npm]",
+      "npm install ${1:name}",
+      "```",
+      "",
+      "```sh [pnpm]",
+      "pnpm add ${1:name}",
+      "```",
+      "",
+      "```sh [yarn]",
+      "yarn add ${1:name}",
+      "```",
+      "",
+      ":::"
+    ],
+    "description": "生成包管理器安装命令代码组"
+  }
 }

@@ -22,11 +22,23 @@ Pinia 有三个核心概念：
 
 ## 安装
 
-```bash
+::: code-group
+
+```sh [npm]
 npm install pinia
 ```
 
-## 基本用法
+```sh [pnpm]
+pnpm add pinia
+```
+
+```sh [yarn]
+yarn add pinia
+```
+
+:::
+
+## 注册 Pinia
 
 ```js
 import { createApp } from 'vue'
@@ -40,6 +52,46 @@ app.use(pinia)
 app.mount('#app')
 ```
 
+## 目录结构
+
+下面为推荐的目录结构，根据自己需要可自行调整：
+
+```
+src
+└── stores
+    ├── index.js          # (可选) 初始化 Pinia，不必导入 store
+    ├── module1.js        # 'module1' id
+    ├── nested-module2.js # 'nested/module2' id
+    ├── nested-module3.js # 'nested/module3' id
+    └── nested.js         # 'nested' id
+```
+
+## 在组件外使用 store
+
+必须在 `app.use(pinia)` 安装 pinia 插件后，才能使用 `useStore()`。
+
+```js
+import { useUserStore } from '@/stores/user'
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// ❌  失败，因为它是在创建 pinia 之前被调用的
+const userStore = useUserStore()
+
+const pinia = createPinia()
+const app = createApp(App)
+app.use(pinia)
+
+// ✅ 成功，因为 pinia 实例现在激活了
+const userStore = useUserStore()
+```
+
+如果是服务端渲染请点击[此处查看](https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html#ssr-apps)
+
 ## 相关链接
 
 - [官方文档](https://pinia.vuejs.org/zh/)
+- [从 Vuex ≤4 迁移](https://pinia.vuejs.org/zh/cookbook/migration-vuex.html)
+- [热更新](https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html#ssr-apps)
+- [store 测试](https://pinia.vuejs.org/zh/cookbook/testing.html)
