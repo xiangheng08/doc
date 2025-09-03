@@ -8,7 +8,6 @@ export default [
       { link: '/vue/vue2/options-api' },
       { link: '/vue/vue2/lifecycle' },
       { link: '/vue/vue2/reactivity' },
-      { link: '/vue/vue2/vuex' },
     ],
   },
   {
@@ -51,7 +50,15 @@ export default [
           { link: '/vue/router/server-config' },
         ],
       },
-      // { link: '/vue/ecosystem/vuex' },
+      {
+        text: 'Vuex',
+        items: [
+          { link: '/vue/vuex/' },
+          { link: '/vue/vuex/vuex3' },
+          { link: '/vue/vuex/vuex4' },
+          { link: '/vue/vuex/vuex3-vs-vuex4' },
+        ],
+      },
       { text: 'Axios', link: '/axios/' },
       { text: 'Element UI', link: '/element-ui/' },
       { text: 'Element Plus', link: '/element-plus/' },

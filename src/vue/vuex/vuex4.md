@@ -1,68 +1,52 @@
-# 在 Vue2 中使用 Vuex
+# Vuex 4.x 使用指南
 
-## 什么是 Vuex？
+## 安装
 
-Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+::: code-group
 
-简单来说，Vuex 就像是一个全局的"数据仓库"，所有组件都可以访问和修改其中的数据。它解决了多个组件之间共享状态的问题，使得状态管理更加清晰和高效。
+```sh [npm]
+npm install vue@4
+```
 
-## 核心原理
+```sh [pnpm]
+pnpm add vue@4
+```
 
-Vuex 的工作流程遵循一个单向数据流的原则，其核心流程如下：
+```sh [yarn]
+yarn add vue@4
+```
 
-![Vuex 工作流程](../images/vuex-flow.png)
+:::
 
-1. **Vue Components（Vue 组件）**：负责接收用户操作，执行 dispatch 方法触发对应 action 进行回应。
-2. **Actions（操作）**：处理操作行为的模块，包含同步/异步操作，支持多个同名方法。向后台 API 请求和触发其他 action 都在这里进行。
-3. **Mutations（变更）**：状态改变的操作方法，是 Vuex 修改 state 的唯一推荐方法。只能进行同步操作，方法名全局唯一。
-4. **State（状态）**：页面状态管理容器对象，集中存储 Vue Components 中 data 对象的零散数据，以进行统一的状态管理。
-
-整个流程可以概括为：组件 -> Actions（处理异步）-> Mutations（改状态）-> State（更新）-> 组件（重新渲染）
-
-![vuex](../images/vuex.png)
-
-## 在 Vue2 中使用 Vuex
-
-在 Vue2 中使用 Vuex 时，需要注意版本匹配问题：
+## 版本匹配
 
 - Vue 2.x 需要使用 Vuex 3.x 版本
 - Vue 3.x 需要使用 Vuex 4.x 版本
 
-### 安装
+## 基本使用方式
 
-```bash
-npm install vuex@3 --save
-# 或者
-pnpm add vuex@3
-yarn add vuex@3
-```
-
-### 基本使用方式
-
-#### 1. 创建 Store
+### 1. 创建 Store
 
 ```js
 // store/index.js
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-// 使用 Vuex 插件
-Vue.use(Vuex)
+import { createStore } from 'vuex'
 
 // 创建 store 实例
-const store = new Vuex.Store({
+const store = createStore({
   // 状态
-  state: {
-    count: 0,
-    todos: [
-      { id: 1, text: '学习 Vue', done: true },
-      { id: 2, text: '学习 Vuex', done: false }
-    ]
+  state() {
+    return {
+      count: 0,
+      todos: [
+        { id: 1, text: '学习 Vue', done: true },
+        { id: 2, text: '学习 Vuex', done: false }
+      ]
+    }
   },
   
   // 计算属性
   getters: {
-    doneTodos: state => {
+    doneTodos: (state) => {
       return state.todos.filter(todo => todo.done)
     },
     doneTodosCount: (state, getters) => {
@@ -102,21 +86,18 @@ const store = new Vuex.Store({
 export default store
 ```
 
-#### 2. 在 main.js 中引入 Store
+### 2. 在 main.js 中引入 Store
 
 ```js
 // main.js
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 
-new Vue({
-  store, // 将 store 实例注入到根组件
-  render: h => h(App),
-}).$mount('#app')
+createApp(App).use(store).mount('#app')
 ```
 
-#### 3. 在组件中使用
+### 3. 在组件中使用
 
 ```vue
 <template>
@@ -182,9 +163,13 @@ export default {
 State 是 Vuex 中存储应用状态的地方，类似于组件中的 data。
 
 ```js
-const store = new Vuex.Store({
-  state: {
-    count: 0
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state() {
+    return {
+      count: 0
+    }
   }
 })
 ```
@@ -204,15 +189,19 @@ computed: {
 Getters 类似于组件中的 computed 属性，用于从 state 中派生出一些状态。
 
 ```js
-const store = new Vuex.Store({
-  state: {
-    todos: [
-      { id: 1, text: '...', done: true },
-      { id: 2, text: '...', done: false }
-    ]
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state() {
+    return {
+      todos: [
+        { id: 1, text: '...', done: true },
+        { id: 2, text: '...', done: false }
+      ]
+    }
   },
   getters: {
-    doneTodos: state => {
+    doneTodos: (state) => {
       return state.todos.filter(todo => todo.done)
     }
   }
@@ -234,9 +223,13 @@ computed: {
 Mutations 是修改 state 的唯一途径，且必须是同步函数。
 
 ```js
-const store = new Vuex.Store({
-  state: {
-    count: 0
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state() {
+    return {
+      count: 0
+    }
   },
   mutations: {
     increment(state) {
@@ -269,9 +262,13 @@ methods: {
 Actions 类似于 mutations，但可以包含任意异步操作。
 
 ```js
-const store = new Vuex.Store({
-  state: {
-    count: 0
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state() {
+    return {
+      count: 0
+    }
   },
   mutations: {
     increment(state) {
@@ -399,20 +396,20 @@ export default {
 
 为了解决以上问题，Vuex 允许我们将 store 分割成模块（modules）。每个模块拥有自己的 state、mutation、action、getter，甚至是嵌套子模块——从上至下进行同样方式的分割：
 
-::: code-group
-
 ```js [store/modules/user.js]
 const userModule = {
   // 命名空间
   namespaced: true,
   
-  state: () => ({
-    profile: {
-      name: '',
-      email: ''
-    },
-    permissions: []
-  }),
+  state() {
+    return {
+      profile: {
+        name: '',
+        email: ''
+      },
+      permissions: []
+    }
+  },
   
   getters: {
     fullName: (state) => {
@@ -451,10 +448,12 @@ export default userModule
 const productsModule = {
   namespaced: true,
   
-  state: () => ({
-    list: [],
-    loading: false
-  }),
+  state() {
+    return {
+      list: [],
+      loading: false
+    }
+  },
   
   getters: {
     expensiveProducts: (state) => {
@@ -488,14 +487,11 @@ export default productsModule
 ```
 
 ```js [store/index.js]
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import user from './modules/user'
 import products from './modules/products'
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+const store = createStore({
   state: {
     version: '1.0.0'
   },
@@ -507,8 +503,6 @@ const store = new Vuex.Store({
 
 export default store
 ```
-
-:::
 
 ## 使用案例：模块化应用
 
@@ -597,9 +591,11 @@ export default {
 const userModule = {
   namespaced: true,
   
-  state: () => ({
-    profile: null
-  }),
+  state() {
+    return {
+      profile: null
+    }
+  },
   
   getters: {
     // 在模块 getters 中访问根状态和其他模块的 getters
@@ -734,29 +730,10 @@ export default {
 </script>
 ```
 
-## 项目结构
-
-```
-├── index.html
-├── main.js
-├── api
-│   └── ... # 抽取出API请求
-├── components
-│   ├── App.vue
-│   └── ...
-└── store
-    ├── index.js          # 我们组装模块并导出 store 的地方
-    ├── actions.js        # 根级别的 action
-    ├── mutations.js      # 根级别的 mutation
-    └── modules
-        ├── cart.js       # 购物车模块
-        └── products.js   # 产品模块
-```
-
 ## 相关链接
 
-- [Vuex 3 官方文档](https://v3.vuex.vuejs.org/zh/)
-- [Vue 2 官方文档](https://v2.cn.vuejs.org/)
+- [Vuex 4 官方文档](https://vuex.vuejs.org/zh/)
+- [Vue 3 官方文档](https://v3.cn.vuejs.org/)
 - [Vue Devtools 浏览器扩展](https://github.com/vuejs/vue-devtools)
-- [项目结构](https://v3.vuex.vuejs.org/zh/guide/structure.html)
-- [购物车示例](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
+- [项目结构](https://vuex.vuejs.org/zh/guide/structure.html)
+- [购物车示例](https://github.com/vuejs/vuex/tree/4.0/examples/classic/shopping-cart)
