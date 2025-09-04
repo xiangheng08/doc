@@ -34,7 +34,10 @@ export default [
   { link: '/vue/style-penetration' },
   {
     text: '内置组件',
-    items: [{ link: '/vue/built-ins/transition' }],
+    items: [
+      { link: '/vue/built-ins/transition' },
+      { link: '/vue/built-ins/transition-group' },
+    ],
   },
   {
     text: '实践应用',
