@@ -33,6 +33,10 @@ export default [
   { link: '/vue/modifiers' },
   { link: '/vue/style-penetration' },
   {
+    text: '内置组件',
+    items: [{ link: '/vue/built-ins/transition' }],
+  },
+  {
     text: '实践应用',
     items: [{ link: '/vue/practice/batch-render' }],
   },
