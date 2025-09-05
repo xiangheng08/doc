@@ -37,6 +37,7 @@ export default [
     items: [
       { link: '/vue/built-ins/transition' },
       { link: '/vue/built-ins/transition-group' },
+      { link: '/vue/built-ins/keep-alive' },
     ],
   },
   {
