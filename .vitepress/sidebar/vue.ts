@@ -53,6 +53,7 @@ export default [
       { link: '/vue/hooks/lock' },
       { link: '/vue/hooks/paging' },
       { link: '/vue/hooks/paging-js' },
+      { link: '/vue/hooks/appearance' },
     ],
   },
   {
