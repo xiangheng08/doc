@@ -60,13 +60,25 @@
     "description": "sh 代码块"
   },
   "bash code block": {
-    "prefix": "bash",
+    "prefix": "code bash",
     "scope": "markdown",
     "body": ["```bash", "$1", "```", "${0}"],
     "description": "bash 代码块"
   },
+  "vue code block": {
+    "prefix": "code vue",
+    "scope": "markdown",
+    "body": ["```vue", "$1", "```", "${0}"],
+    "description": "vue 代码块"
+  },
+  "vue-html code block": {
+    "prefix": "code vue-html",
+    "scope": "markdown",
+    "body": ["```vue-html", "$1", "```", "${0}"],
+    "description": "vue template 代码块"
+  },
   "json code block": {
-    "prefix": "json",
+    "prefix": "code json",
     "scope": "markdown",
     "body": ["```json", "$1", "```", "${0}"],
     "description": "json 代码块"
