@@ -156,7 +156,7 @@ export const omitProperties = <T extends object, K extends keyof T>(
 }
 ```
 
-## 修改所有属性的值 Record
+## 修改所有属性的值 Record {#record}
 
 ```ts
 export const record = <T extends Record<string | number | symbol, any>, V>(
@@ -185,19 +185,19 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 
 <<< ./add-thousands-separator.ts
 
-## 格式化字节
+## 格式化字节 {#formatBytes}
 
 [另一个](/nodejs/functions#格式化字节)
 
 <<< ./format-bytes.ts
 
-## 格式化用时
+## 格式化用时 {#formatDuration}
 
 [另一个](/js/functions/#格式化用时)
 
 <<< ./format-duration.ts
 
-## 选择文件
+## 选择文件 {#selectFile}
 
 [js 实现](/js/functions/#选择文件)
 
@@ -213,11 +213,29 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 
 <<< ./get-image-average-color.ts
 
-## RGB 转 HSL
+## 获取图片大小 {#getImageDimensions}
+
+[loadImage](#loadImage)
+
+<<< ./get-image-dimensions.ts
+
+## 是否为矢量图 {#isVectorImage }
+
+<<< ./is-vector-image.ts
+
+## Canvas 转 Blob {#canvasToBlob}
+
+<<< ./canvas-to-blob.ts
+
+## Blob 转 Base64 {#blobToBase64}
+
+<<< ./blob-to-base64.ts
+
+## RGB 转 HSL {#rgbToHsl}
 
 <<< ./rgb-to-hsl.ts
 
-## HSL 转 RGB
+## HSL 转 RGB {#hslToRgb}
 
 <<< ./hsl-to-rgb.ts
 
