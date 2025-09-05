@@ -32,12 +32,15 @@ export default [
   { link: '/vue/built-in-directives' },
   { link: '/vue/modifiers' },
   { link: '/vue/style-penetration' },
+  { link: '/vue/built-ins/special-elements' },
   {
     text: '内置组件',
     items: [
       { link: '/vue/built-ins/transition' },
       { link: '/vue/built-ins/transition-group' },
       { link: '/vue/built-ins/keep-alive' },
+      { link: '/vue/built-ins/teleport' },
+      { link: '/vue/built-ins/suspense' },
     ],
   },
   {
