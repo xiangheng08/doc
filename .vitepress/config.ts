@@ -160,6 +160,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: 'Emoji', link: '/emoji' },
       { text: '语义化版本规范', link: '/sem-ver' },
       { text: '笔记', link: '/note/code-point-and-code-unit' },
+      { text: 'VitePress', link: '/vitepress/' },
       { text: 'Links', link: '/links' },
       { text: '关于本站', link: '/about' },
     ],
