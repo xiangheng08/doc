@@ -6,7 +6,7 @@ import type { InjectionKey } from 'vue'
 /**
  * 广播处理函数
  */
-type BroadcastHandler<T = unknown> = (data?: T) => void
+type BroadcastHandler<T = unknown> = (data: T) => void
 
 /**
  * 广播器
