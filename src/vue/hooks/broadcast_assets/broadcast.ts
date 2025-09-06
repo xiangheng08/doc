@@ -39,6 +39,9 @@ export interface BroadcastReceiveOptions {
   excludeSelf?: boolean
 }
 
+/**
+ * 监听器组成
+ */
 interface ListenerMaterial {
   handler: BroadcastHandler<any>
   once?: boolean
@@ -74,6 +77,7 @@ class Broadcaster {
       materials.push({ handler, once, excludeSelf, uid })
     }
 
+    // 返回取消监听的函数
     return () => this.off(type, handler)
   }
 
