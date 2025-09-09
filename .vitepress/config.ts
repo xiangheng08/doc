@@ -35,7 +35,7 @@ const nav: DefaultTheme.NavItem[] = [
         text: '框架',
         items: [
           { text: 'Vue', link: '/vue/' },
-          { text: 'React', link: '/react/raw' },
+          { text: 'React', link: '/react/' },
           { text: 'Element UI', link: '/element-ui/' },
           { text: 'Element Plus', link: '/element-plus/issues' },
           { text: 'VitePress', link: '/vitepress/error' },
