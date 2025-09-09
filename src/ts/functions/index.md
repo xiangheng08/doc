@@ -256,3 +256,7 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 ## 分步执行任务 {#performTask}
 
 <<< ./perform-task.ts
+
+## 创建一个可过期的 Promise 包装器 {#createExpirablePromise}
+
+<<< ./create-expirable-promise.ts
