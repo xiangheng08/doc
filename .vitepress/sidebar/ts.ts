@@ -9,6 +9,7 @@ export default [
   { link: '/ts/type-annotation-template' },
   { link: '/ts/event-target' },
   { link: '/ts/event-emitter' },
+  { link: '/ts/currying-type' },
   {
     text: 'Utils',
     items: [{ link: '/ts/utils/paste/' }],

@@ -18,6 +18,8 @@ export default [
   { link: '/js/regex' },
   { link: '/js/this' },
   { link: '/js/prototype-chain' },
+  { link: '/js/closure' },
+  { link: '/js/currying' },
   { link: '/js/runtimes' },
   {
     text: 'JS 高阶语法',
