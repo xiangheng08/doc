@@ -206,5 +206,17 @@
       ":::"
     ],
     "description": "生成包管理器安装命令代码组"
+  },
+  "github table": {
+    "prefix": "github table",
+    "scope": "markdown",
+    "body": [
+      "| Tables        |      Are      |  Cool |",
+      "| ------------- | :-----------: | ----: |",
+      "| col 3 is      | right-aligned |  1600 |",
+      "| col 2 is      |   centered    |    12 |",
+      "| zebra stripes |   are neat    |     1 |"
+    ],
+    "description": "生成 GitHub 表格"
   }
 }
