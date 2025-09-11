@@ -4,6 +4,7 @@ export default [
   { link: '/browser/rendering-process' },
   { link: '/browser/reflow-repaint' },
   { link: '/browser/event-loop' },
+  { link: '/browser/security' },
   {
     text: '开发者工具',
     items: [{ link: '/browser/devtools/lighthouse' }],
