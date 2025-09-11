@@ -10,6 +10,7 @@ export default [
   { link: '/ts/event-target' },
   { link: '/ts/event-emitter' },
   { link: '/ts/currying-type' },
+  { link: '/ts/dto' },
   {
     text: 'Utils',
     items: [{ link: '/ts/utils/paste/' }],
