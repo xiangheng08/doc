@@ -5,16 +5,16 @@ import sidebar from './sidebar'
 import sidebarPlugin from './plugins/sidebar-plugin'
 import { withBase } from './utils/url'
 import { defineConfig } from 'vitepress'
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from 'vitepress-plugin-group-icons'
 import processPublicHtml, {
   processPublicHtmlBuildEndHook,
 } from './plugins/process-public-html-plugin'
 import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
 import type { DefaultTheme } from 'vitepress'
-import {
-  groupIconMdPlugin,
-  groupIconVitePlugin,
-} from 'vitepress-plugin-group-icons'
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -26,9 +26,9 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'HTML', link: '/html/intro' },
           { text: 'CSS', link: '/css/' },
           { text: 'JavaScript', link: '/js/' },
-          { text: 'HTTP', link: '/http/' },
-          { text: 'WebAPI', link: '/web-api/' },
           { text: 'TypeScript', link: '/ts/intro' },
+          { text: 'WebAPI', link: '/web-api/' },
+          { text: 'HTTP', link: '/http/' },
         ],
       },
       {
@@ -37,8 +37,8 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'Vue', link: '/vue/' },
           { text: 'React', link: '/react/' },
           { text: 'Element UI', link: '/element-ui/' },
-          { text: 'Element Plus', link: '/element-plus/issues' },
-          { text: 'VitePress', link: '/vitepress/error' },
+          { text: 'Element Plus', link: '/element-plus/' },
+          { text: 'VitePress', link: '/vitepress/' },
         ],
       },
       {
@@ -141,9 +141,7 @@ const nav: DefaultTheme.NavItem[] = [
       },
       {
         text: '操作系统',
-        items: [
-          { text: 'Windows', link: '/windows/tips' },
-        ],
+        items: [{ text: 'Windows', link: '/windows/tips' }],
       },
       {
         text: '多媒体处理',
