@@ -25,6 +25,8 @@ export default [
   { link: '/nodejs/cluster' },
   { link: '/nodejs/perf_hooks' },
   { link: '/nodejs/http' },
+  { link: '/nodejs/dns' },
+  { link: '/nodejs/util' },
   {
     text: 'fs 文件系统',
     items: [
