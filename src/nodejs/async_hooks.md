@@ -39,7 +39,7 @@ asyncHook.enable();
 ## 核心概念
 
 ### 异步资源
-异步资源是指具有关联回调的对象。这些回调可能会被多次调用（如 [net.createServer()](net.html) 中的 'connection' 事件）或只调用一次（如 [fs.open()](fs.html)）。
+异步资源是指具有关联回调的对象。这些回调可能会被多次调用（如 `net.createServer()` 中的 'connection' 事件）或只调用一次（如 `fs.open()`）。
 
 ### Async ID
 每个异步资源都有一个唯一的 asyncId，用于标识该资源。
@@ -211,7 +211,7 @@ class DatabaseRequest extends AsyncResource {
 - `type`: 异步事件的类型
 - `options`: 
   - `triggerAsyncId`: 触发该异步资源的 asyncId
-  - `requireManualDestroy`: 是否需要手动调用 [emitDestroy()](#asyncresource_emitdestroy)
+  - `requireManualDestroy`: 是否需要手动调用 `emitDestroy()`
 
 ### `asyncResource.runInAsyncScope(fn[, thisArg, ...args])`
 
@@ -270,7 +270,7 @@ runWithId(() => {
 
 ### `asyncLocalStorage.disable()`
 
-禁用实例，在后续调用中 [getStore()](#asynclocalstorage_getstore) 将返回 undefined。
+禁用实例，在后续调用中 `getStore()` 将返回 undefined。
 
 ### `asyncLocalStorage.getStore()`
 

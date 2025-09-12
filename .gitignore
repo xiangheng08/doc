@@ -9,7 +9,10 @@ node_modules
 /.env
 /.env.*
 /!.env.example
+
+# misc
 template.md
 template.ts
 *.temp
 *.temp.js
+.vitepress/config.ts.timestamp-*.mjs
