@@ -17,6 +17,14 @@ export default [
   { link: '/nodejs/events' },
   { link: '/nodejs/net' },
   { link: '/nodejs/crypto' },
+  { link: '/nodejs/buffer' },
+  { link: '/nodejs/stream' },
+  { link: '/nodejs/string_decoder' },
+  { link: '/nodejs/async_hooks' },
+  { link: '/nodejs/assert' },
+  { link: '/nodejs/cluster' },
+  { link: '/nodejs/perf_hooks' },
+  { link: '/nodejs/http' },
   {
     text: 'fs 文件系统',
     items: [
