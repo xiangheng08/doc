@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useData, useRouter } from 'vitepress'
-import { nextTick, provide, onMounted } from 'vue'
-import mediumZoom from 'medium-zoom'
 import DefaultTheme from 'vitepress/theme'
 import ScrollToTop from './components/scroll-to-top.vue'
-import type { Zoom } from 'medium-zoom'
+import { useData } from 'vitepress'
+import { nextTick, provide } from 'vue'
+import { useImageZoom } from './hooks/zoom'
+import { useOutlineAutoScroll } from './hooks/outline'
 
 const { isDark } = useData()
 
@@ -46,46 +46,9 @@ provide(
   },
 )
 
-// 判断祖先元素是否有 data-no-zoom 属性
-const hasNoZoom = (element: HTMLElement) => {
-  while (element.parentElement) {
-    if ('noZoom' in element.dataset) {
-      return true
-    }
-    element = element.parentElement
-  }
-  return false
-}
+useImageZoom()
 
-let latestZoom: Zoom | null = null
-
-const setupMediumZoom = () => {
-  if (latestZoom) {
-    latestZoom.detach()
-    latestZoom = null
-  }
-
-  const images: HTMLImageElement[] = []
-
-  document
-    .querySelectorAll<HTMLImageElement>('.main img:not([data-no-zoom])')
-    .forEach((image) => {
-      if (!hasNoZoom(image)) {
-        images.push(image)
-      }
-    })
-
-  if (images.length === 0) return
-
-  // 图片预览
-  latestZoom = mediumZoom(images, { background: 'rgba(0, 0, 0, 0.7)' })
-}
-
-onMounted(setupMediumZoom)
-
-const router = useRouter()
-
-router.onAfterRouteChange = setupMediumZoom
+useOutlineAutoScroll()
 </script>
 
 <template>
