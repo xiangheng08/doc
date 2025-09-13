@@ -97,6 +97,10 @@ function throttle<T extends (...args: any[]) => any>(
 }
 ```
 
+## 节流和防抖的结合函数 {#throttleAndDebounce}
+
+<<< ./throttle-and-debounce.ts
+
 ## hasOwnProperty
 
 ```ts
@@ -260,3 +264,7 @@ export const record = <T extends Record<string | number | symbol, any>, V>(
 ## 创建一个可过期的 Promise 包装器 {#createExpirablePromise}
 
 <<< ./create-expirable-promise.ts
+
+## 获取元素在滚动容器中的偏移量 {#getScrollOffset}
+
+<<< ./get-scroll-offset.ts
