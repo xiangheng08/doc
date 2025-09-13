@@ -26,3 +26,21 @@ export const copyText = async (text: string) => {
     document.body.removeChild(textArea)
   }
 }
+
+// from https://github.com/vuejs/vitepress/blob/v1.6.3/src/client/theme-default/support/utils.ts
+export const throttleAndDebounce = (
+  fn: () => void,
+  delay: number,
+): (() => void) => {
+  let timer: ReturnType<typeof setTimeout>
+  let called = false
+
+  return () => {
+    if (timer) clearTimeout(timer)
+
+    if (!called) {
+      fn()
+      ;(called = true) && setTimeout(() => (called = false), delay)
+    } else timer = setTimeout(fn, delay)
+  }
+}

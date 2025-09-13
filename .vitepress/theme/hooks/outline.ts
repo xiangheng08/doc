@@ -1,59 +1,66 @@
-import { debounce } from '../../utils/common'
+import { throttleAndDebounce } from '../../utils/common'
 import { onMounted, onUnmounted, ref } from 'vue'
 
+// 底边距（底部阴影区域的高度）
 const PADDING_BOTTOM = 32
 
+// 获取 Aside 容器的内容区域高度
 const getAsideContainerContentHeight = (el: HTMLElement) => {
   const paddingTop = parseInt(getComputedStyle(el).paddingTop)
-  if (Number.isNaN(paddingTop)) return null
   return el.clientHeight - paddingTop - PADDING_BOTTOM
+}
+
+// 获取元素在滚动容器中的顶部偏移量
+const getScrollOffsetTop = (el: HTMLElement, scroller: HTMLElement) => {
+  return (
+    el.getBoundingClientRect().top -
+    scroller.getBoundingClientRect().top +
+    scroller.scrollTop -
+    parseInt(getComputedStyle(scroller).paddingTop)
+  )
 }
 
 export const useOutlineAutoScroll = (): void => {
   const asideContainerRef = ref<HTMLElement>()
 
-  const autoScroll = debounce(() => {
+  // 使用 throttleAndDebounce，保持和 vitepress 更新激活的 outline link 的行为一致，并减少计算开销
+  const autoScroll = throttleAndDebounce(() => {
     if (!asideContainerRef.value) return
 
+    // 获取当前激活的的 outline link
     const activeLink = asideContainerRef.value.querySelector<HTMLElement>(
       '.outline-link.active',
     )
 
     if (!activeLink) return
 
+    // 滚动容器的内容区域高度
     const contentHeight = getAsideContainerContentHeight(
       asideContainerRef.value,
     )
-    if (contentHeight === null) return
+    if (Number.isNaN(contentHeight)) return
 
-    console.log('contentHeight', contentHeight)
+    // 获取当前激活的 link 相对于滚动容器的顶部偏移
+    const linkScrollOffsetTop = getScrollOffsetTop(
+      activeLink,
+      asideContainerRef.value,
+    )
+    if (Number.isNaN(linkScrollOffsetTop)) return
 
     const containerScrollTop = asideContainerRef.value.scrollTop
-    const linkOffsetTop = activeLink.offsetTop
     const linkHeight = activeLink.offsetHeight
 
-    console.log('containerScrollTop', containerScrollTop)
-    console.log('linkOffsetTop', linkOffsetTop)
-    console.log('linkHeight', linkHeight)
-
-    console.log(linkOffsetTop + linkHeight , containerScrollTop + contentHeight);
-
-
-
-    if (linkOffsetTop < containerScrollTop) {
-      console.log('down')
-
+    if (linkScrollOffsetTop < containerScrollTop) {
       asideContainerRef.value.scrollTo({
-        top: linkOffsetTop,
+        top: linkScrollOffsetTop,
         behavior: 'smooth',
       })
-    } else if (linkOffsetTop + linkHeight > containerScrollTop + contentHeight) {
-      const diff = linkOffsetTop + linkHeight - (containerScrollTop + contentHeight)
-      const top = containerScrollTop + diff + linkHeight
-      console.log('up', top)
-
+    } else if (
+      linkScrollOffsetTop + linkHeight >
+      containerScrollTop + contentHeight
+    ) {
       asideContainerRef.value.scrollTo({
-        top,
+        top: linkScrollOffsetTop - contentHeight + linkHeight,
         behavior: 'smooth',
       })
     }
@@ -64,6 +71,7 @@ export const useOutlineAutoScroll = (): void => {
   }
 
   onMounted(() => {
+    // 滚动容器
     const el = document.querySelector<HTMLElement>(
       '.Layout .VPContent .aside .aside-container',
     )
