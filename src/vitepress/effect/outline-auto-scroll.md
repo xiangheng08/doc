@@ -1,6 +1,11 @@
 # 页面导航自动滚动
 
-点击查看 [throttleAndDebounce](/ts/functions/#throttleAndDebounce)
+其他模块函数：
+
+- [throttleAndDebounce](/ts/functions/#throttleAndDebounce)
+- [getScrollOffsetTop](/ts/functions/#getScrollOffset)
+
+实现代码：
 
 <<< ../../../.vitepress/theme/hooks/outline.ts
 

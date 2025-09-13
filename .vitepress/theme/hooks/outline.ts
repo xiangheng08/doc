@@ -1,4 +1,4 @@
-import { throttleAndDebounce } from '../../utils/common'
+import { getScrollOffsetTop, throttleAndDebounce } from '../../utils/common'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 // 底边距（底部阴影区域的高度）
@@ -10,15 +10,6 @@ const getAsideContainerContentHeight = (el: HTMLElement) => {
   return el.clientHeight - paddingTop - PADDING_BOTTOM
 }
 
-// 获取元素在滚动容器中的顶部偏移量
-const getScrollOffsetTop = (el: HTMLElement, scroller: HTMLElement) => {
-  return (
-    el.getBoundingClientRect().top -
-    scroller.getBoundingClientRect().top +
-    scroller.scrollTop -
-    parseInt(getComputedStyle(scroller).paddingTop)
-  )
-}
 
 export const useOutlineAutoScroll = (): void => {
   const asideContainerRef = ref<HTMLElement>()

@@ -5,6 +5,7 @@ import { useData } from 'vitepress'
 import { nextTick, provide } from 'vue'
 import { useImageZoom } from './hooks/zoom'
 import { useOutlineAutoScroll } from './hooks/outline'
+import { useSidebarActiveIntoView } from './hooks/sidebar'
 
 const { isDark } = useData()
 
@@ -49,6 +50,8 @@ provide(
 useImageZoom()
 
 useOutlineAutoScroll()
+
+useSidebarActiveIntoView()
 </script>
 
 <template>

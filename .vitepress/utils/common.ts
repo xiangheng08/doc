@@ -44,3 +44,14 @@ export const throttleAndDebounce = (
     } else timer = setTimeout(fn, delay)
   }
 }
+
+// 获取元素在滚动容器中的顶部偏移量
+export const getScrollOffsetTop = (target: HTMLElement, scroller: HTMLElement) => {
+  return (
+    target.getBoundingClientRect().top -
+    scroller.getBoundingClientRect().top +
+    scroller.scrollTop -
+    parseInt(getComputedStyle(scroller).paddingTop)
+  )
+}
+

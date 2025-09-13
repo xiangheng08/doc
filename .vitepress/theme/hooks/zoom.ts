@@ -1,6 +1,6 @@
 import mediumZoom from 'medium-zoom'
 import { onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vitepress'
+import { useAfterRouteChangeCallback } from './router'
 import type { Zoom } from 'medium-zoom'
 
 // 判断祖先元素是否有 data-no-zoom 属性
@@ -39,9 +39,7 @@ export const useImageZoom = () => {
     latestZoom = mediumZoom(images, { background: 'rgba(0, 0, 0, 0.7)' })
   }
 
-  const router = useRouter()
-
-  router.onAfterRouteChange = setupMediumZoom
+  useAfterRouteChangeCallback(setupMediumZoom)
 
   onMounted(setupMediumZoom)
 
