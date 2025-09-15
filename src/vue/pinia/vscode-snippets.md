@@ -1,6 +1,6 @@
 # VS Code 代码片段
 
-```json [pinia.code-snippets]
+```json [.vscode/pinia.code-snippets]
 {
   "Pinia Options Store Boilerplate": {
     "scope": "javascript,typescript",
@@ -43,3 +43,39 @@
   }
 }
 ```
+
+代码片段：
+
+::: code-group
+
+```ts [pinia-options.ts]
+import { defineStore, acceptHMRUpdate } from 'pinia'
+
+export const use1Store = defineStore('store_name', {
+ state: () => ({
+   
+ }),
+ getters: {},
+ actions: {},
+})
+
+if (import.meta.hot) {
+ import.meta.hot.accept(acceptHMRUpdate(use1Store, import.meta.hot))
+}
+```
+
+```ts [pinia-setup.ts]
+import { ref, computed } from 'vue'
+import { defineStore, acceptHMRUpdate } from 'pinia'
+
+export const use1Store = defineStore('store_name', () => {
+ 
+ return {}
+})
+
+if (import.meta.hot) {
+ import.meta.hot.accept(acceptHMRUpdate(use1Store, import.meta.hot))
+}
+```
+
+:::
