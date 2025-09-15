@@ -1,20 +1,23 @@
 import { isProd, noSearch } from './env'
 import { fileURLToPath, URL } from 'node:url'
 
-import sidebar from './sidebar'
-import sidebarPlugin from './plugins/sidebar-plugin'
-import { withBase } from './utils/url'
 import { defineConfig } from 'vitepress'
+import type { DefaultTheme } from 'vitepress'
+
+import sidebar from './sidebar'
+
+import { withBase } from './utils/url'
+
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
-import processPublicHtml, {
-  processPublicHtmlBuildEndHook,
-} from './plugins/process-public-html-plugin'
+
+import sidebarPlugin from './plugins/sidebar-plugin'
 import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
-import type { DefaultTheme } from 'vitepress'
+import processPublicHtml from './plugins/process-public-html-plugin'
+import { processPublicHtmlBuildEndHook } from './plugins/process-public-html-plugin'
 
 const nav: DefaultTheme.NavItem[] = [
   {
@@ -225,11 +228,8 @@ export default defineConfig({
       },
     ],
 
-    sidebarMenuLabel: '目录',
-    darkModeSwitchLabel: '暗黑模式',
-
     outline: {
-      label: '本页目录',
+      label: '页面导航',
       level: [2, 4], // 层级
     },
 
@@ -239,7 +239,7 @@ export default defineConfig({
       linkText: '返回首页',
     },
 
-    docFooter: { prev: '上一篇', next: '下一篇' },
+    docFooter: { prev: '上一页', next: '下一页' },
 
     footer: {
       // message: 'my doc',
@@ -247,7 +247,7 @@ export default defineConfig({
     },
 
     lastUpdated: {
-      text: '上次更新',
+      text: '最后更新于',
       formatOptions: {
         year: 'numeric',
         month: '2-digit',
@@ -255,8 +255,13 @@ export default defineConfig({
       },
     },
 
-    darkModeSwitchTitle: '切换到深色模式',
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+    skipToContentLabel: '跳转到内容',
 
     ...searchConfig,
   },
