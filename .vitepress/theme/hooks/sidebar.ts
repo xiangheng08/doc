@@ -12,7 +12,10 @@ export const useSidebarActiveIntoView = () => {
     const activeItem = sidebar.querySelector<HTMLElement>(
       '.VPSidebarItem.is-active',
     )
-    if (!activeItem) return
+    if (!activeItem) {
+      sidebar.scrollTo({ top: 0 })
+      return
+    }
 
     const scrollOffsetTop = getScrollOffsetTop(activeItem, sidebar)
     const computedStyle = getComputedStyle(sidebar)
