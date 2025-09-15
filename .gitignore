@@ -16,3 +16,6 @@ template.ts
 *.temp
 *.temp.js
 .vitepress/config.ts.timestamp-*.mjs
+
+# vscode snippets
+.vscode/pinia.code-snippets
