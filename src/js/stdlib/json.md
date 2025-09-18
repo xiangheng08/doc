@@ -49,355 +49,120 @@ JSON 对值的类型和格式有严格的规定。
 
 ## JSON 对象
 
-`JSON`对象是 JavaScript 的原生对象，用来处理 JSON 格式数据。它有两个静态方法：`JSON.stringify()`和`JSON.parse()`。
+`JSON` {#JSON}
 
-## JSON.stringify()
+用于解析和序列化 JSON 数据的全局对象。
 
-### 基本用法
+## 静态方法 {#static-methods}
 
-`JSON.stringify()`方法用于将一个值转为 JSON 字符串。该字符串符合 JSON 格式，并且可以被`JSON.parse()`方法还原。
+### `JSON.parse(text[, reviver])` {#JSON.parse}
 
-```js
-JSON.stringify('abc'); // ""abc""
-JSON.stringify(1); // "1"
-JSON.stringify(false); // "false"
-JSON.stringify([]); // "[]"
-JSON.stringify({}); // "{}"
-
-JSON.stringify([1, 'false', false]);
-// '[1,"false",false]'
-
-JSON.stringify({ name: '张三' });
-// '{"name":"张三"}'
-```
-
-上面代码将各种类型的值，转成 JSON 字符串。
-
-注意，对于原始类型的字符串，转换结果会带双引号。
-
-```js
-JSON.stringify('foo') === 'foo'; // false
-JSON.stringify('foo') === '"foo"'; // true
-```
-
-上面代码中，字符串`foo`，被转成了`"\"foo\""`。这是因为将来还原的时候，内层双引号可以让 JavaScript 引擎知道，这是一个字符串，而不是其他类型的值。
-
-```js
-JSON.stringify(false); // "false"
-JSON.stringify('false'); // "\"false\""
-```
-
-上面代码中，如果不是内层的双引号，将来还原的时候，引擎就无法知道原始值是布尔值还是字符串。
-
-如果对象的属性是`undefined`、函数或 XML 对象，该属性会被`JSON.stringify()`过滤。
-
-```js
-var obj = {
-	a: undefined,
-	b: function () {},
-};
-
-JSON.stringify(obj); // "{}"
-```
-
-上面代码中，对象`obj`的`a`属性是`undefined`，而`b`属性是一个函数，结果都被`JSON.stringify`过滤。
-
-如果数组的成员是`undefined`、函数或 XML 对象，则这些值被转成`null`。
-
-```js
-var arr = [undefined, function () {}];
-JSON.stringify(arr); // "[null,null]"
-```
-
-上面代码中，数组`arr`的成员是`undefined`和函数，它们都被转成了`null`。
-
-正则对象会被转成空对象。
-
-```js
-JSON.stringify(/foo/); // "{}"
-```
-
-`JSON.stringify()`方法会忽略对象的不可遍历的属性。
-
-<!-- prettier-ignore -->
-```js
-var obj = {};
-Object.defineProperties(obj, {
-  'foo': {
-    value: 1,
-    enumerable: true
-  },
-  'bar': {
-    value: 2,
-    enumerable: false
-  }
-});
-
-JSON.stringify(obj); // "{"foo":1}"
-```
-
-上面代码中，`bar`是`obj`对象的不可遍历属性，`JSON.stringify`方法会忽略这个属性。
-
-### 第二个参数
-
-`JSON.stringify()`方法还可以接受一个数组，作为第二个参数，指定参数对象的哪些属性需要转成字符串。
-
-<!-- prettier-ignore -->
-```js
-var obj = {
-  'prop1': 'value1',
-  'prop2': 'value2',
-  'prop3': 'value3'
-};
-
-var selectedProperties = ['prop1', 'prop2'];
-
-JSON.stringify(obj, selectedProperties)
-// "{"prop1":"value1","prop2":"value2"}"
-```
-
-上面代码中，`JSON.stringify()`方法的第二个参数指定，只转`prop1`和`prop2`两个属性。
-
-这个类似白名单的数组，只对对象的属性有效，对数组无效。
-
-```js
-JSON.stringify(['a', 'b'], ['0']);
-// "["a","b"]"
-
-JSON.stringify({ 0: 'a', 1: 'b' }, ['0']);
-// "{"0":"a"}"
-```
-
-上面代码中，第二个参数指定 JSON 格式只转`0`号属性，实际上对数组是无效的，只对对象有效。
-
-第二个参数还可以是一个函数，用来更改`JSON.stringify()`的返回值。
-
-```js
-function f(key, value) {
-	if (typeof value === 'number') {
-		value = 2 * value;
-	}
-	return value;
-}
-
-JSON.stringify({ a: 1, b: 2 }, f);
-// '{"a": 2,"b": 4}'
-```
-
-上面代码中的`f`函数，接受两个参数，分别是被转换的对象的键名和键值。如果键值是数值，就将它乘以`2`，否则就原样返回。
-
-注意，这个处理函数是递归处理所有的键。
-
-```js
-var obj = { a: { b: 1 } };
-
-function f(key, value) {
-	console.log('[' + key + ']:' + value);
-	return value;
-}
-
-JSON.stringify(obj, f);
-// []:[object Object]
-// [a]:[object Object]
-// [b]:1
-// '{"a":{"b":1}}'
-```
-
-上面代码中，对象`obj`一共会被`f`函数处理三次，输出的最后那行是`JSON.stringify()`的默认输出。第一次键名为空，键值是整个对象`obj`；第二次键名为`a`，键值是`{b: 1}`；第三次键名为`b`，键值为 1。
-
-递归处理中，每一次处理的对象，都是前一次返回的值。
-
-```js
-var obj = { a: 1 };
-
-function f(key, value) {
-	if (typeof value === 'object') {
-		return { b: 2 };
-	}
-	return value * 2;
-}
-
-JSON.stringify(obj, f);
-// "{"b": 4}"
-```
-
-上面代码中，`f`函数修改了对象`obj`，接着`JSON.stringify()`方法就递归处理修改后的对象`obj`。
-
-如果处理函数返回`undefined`或没有返回值，则该属性会被忽略。
-
-```js
-function f(key, value) {
-	if (typeof value === 'string') {
-		return undefined;
-	}
-	return value;
-}
-
-JSON.stringify({ a: 'abc', b: 123 }, f);
-// '{"b": 123}'
-```
-
-上面代码中，`a`属性经过处理后，返回`undefined`，于是该属性被忽略了。
-
-### 第三个参数
-
-`JSON.stringify()`还可以接受第三个参数，用于增加返回的 JSON 字符串的可读性。
-
-默认返回的是单行字符串，对于大型的 JSON 对象，可读性非常差。第三个参数使得每个属性单独占据一行，并且将每个属性前面添加指定的前缀（不超过 10 个字符）。
-
-```js
-// 默认输出
-JSON.stringify({ p1: 1, p2: 2 });
-// JSON.stringify({ p1: 1, p2: 2 })
-
-// 分行输出
-JSON.stringify({ p1: 1, p2: 2 }, null, '\t');
-// {
-// 	"p1": 1,
-// 	"p2": 2
-// }
-```
-
-上面例子中，第三个属性`\t`在每个属性前面添加一个制表符，然后分行显示。
-
-第三个属性如果是一个数字，则表示每个属性前面添加的空格（最多不超过 10 个）。
-
-```js
-JSON.stringify({ p1: 1, p2: 2 }, null, 2);
-/*
-"{
-  "p1": 1,
-  "p2": 2
-}"
-*/
-```
-
-### 参数对象的 toJSON() 方法
-
-如果参数对象有自定义的`toJSON()`方法，那么`JSON.stringify()`会使用这个方法的返回值作为参数，而忽略原对象的其他属性。
-
-下面是一个普通的对象。
-
-```js
-var user = {
-	firstName: '三',
-	lastName: '张',
-
-	get fullName() {
-		return this.lastName + this.firstName;
-	},
-};
-
-JSON.stringify(user);
-// "{"firstName":"三","lastName":"张","fullName":"张三"}"
-```
-
-现在，为这个对象加上`toJSON()`方法。
-
-```js
-var user = {
-	firstName: '三',
-	lastName: '张',
-
-	get fullName() {
-		return this.lastName + this.firstName;
-	},
-
-	toJSON: function () {
-		return {
-			name: this.lastName + this.firstName,
-		};
-	},
-};
-
-JSON.stringify(user);
-// "{"name":"张三"}"
-```
-
-上面代码中，`JSON.stringify()`发现参数对象有`toJSON()`方法，就直接使用这个方法的返回值作为参数，而忽略原对象的其他参数。
-
-`Date`对象就有一个自己的`toJSON()`方法。
-
-```js
-var date = new Date('2015-01-01');
-date.toJSON(); // "2015-01-01T00:00:00.000Z"
-JSON.stringify(date); // ""2015-01-01T00:00:00.000Z""
-```
-
-上面代码中，`JSON.stringify()`发现处理的是`Date`对象实例，就会调用这个实例对象的`toJSON()`方法，将该方法的返回值作为参数。
-
-`toJSON()`方法的一个应用是，将正则对象自动转为字符串。因为`JSON.stringify()`默认不能转换正则对象，但是设置了`toJSON()`方法以后，就可以转换正则对象了。
-
-```js
-var obj = {
-	reg: /foo/,
-};
-
-// 不设置 toJSON 方法时
-JSON.stringify(obj); // "{"reg":{}}"
-
-// 设置 toJSON 方法时
-RegExp.prototype.toJSON = RegExp.prototype.toString;
-JSON.stringify(/foo/); // ""/foo/""
-```
-
-上面代码在正则对象的原型上面部署了`toJSON()`方法，将其指向`toString()`方法，因此转换成 JSON 格式时，正则对象就先调用`toJSON()`方法转为字符串，然后再被`JSON.stringify()`方法处理。
-
-## JSON.parse()
-
-`JSON.parse()`方法用于将 JSON 字符串转换成对应的值。
+解析 JSON 字符串并返回对应的 JavaScript 值或对象。
 
 ```js
 JSON.parse('{}'); // {}
-JSON.parse('true'); // true
 JSON.parse('"foo"'); // "foo"
-JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+JSON.parse('123'); // 123
+JSON.parse('true'); // true
 JSON.parse('null'); // null
+JSON.parse('{"name": "Alice", "age": 30}'); // { name: "Alice", age: 30 }
 
-var o = JSON.parse('{"name": "张三"}');
-o.name; // 张三
+// 使用 reviver 函数
+JSON.parse('{"p": 5}', (key, value) => {
+  if (typeof value === 'number') {
+    return value * 2;
+  }
+  return value;
+}); // { p: 10 }
 ```
 
-如果传入的字符串不是有效的 JSON 格式，`JSON.parse()`方法将报错。
+### `JSON.stringify(value[, replacer[, space]])` {#JSON.stringify}
+
+将 JavaScript 值转换为 JSON 字符串。
 
 ```js
-JSON.parse("'String'"); // illegal single quotes
-// SyntaxError: Unexpected token ILLEGAL
+JSON.stringify({}); // '{}'
+JSON.stringify(true); // 'true'
+JSON.stringify('foo'); // '"foo"'
+JSON.stringify([1, 'false', false]); // '[1,"false",false]'
+JSON.stringify({ x: 5 }); // '{"x":5}'
+
+// 使用 replacer 数组
+JSON.stringify({ x: 1, y: 2 }, ['x']); // '{"x":1}'
+
+// 使用 replacer 函数
+JSON.stringify({ x: 1, y: 2 }, (key, value) => {
+  if (typeof value === 'number') {
+    return value * 2;
+  }
+  return value;
+}); // '{"x":2,"y":4}'
+
+// 使用 space 参数格式化输出
+JSON.stringify({ x: 1, y: 2 }, null, 2);
+// {
+//   "x": 1,
+//   "y": 2
+// }
+
+// toJSON 方法
+const obj = {
+  data: 'test',
+  toJSON() {
+    return 'serialized';
+  }
+};
+JSON.stringify(obj); // '"serialized"'
 ```
 
-上面代码中，双引号字符串中是一个单引号字符串，因为单引号字符串不符合 JSON 格式，所以报错。
+## JSON 语法规则 {#syntax-rules}
 
-为了处理解析错误，可以将`JSON.parse()`方法放在`try...catch`代码块中。
+1. 数据类型：字符串、数值、布尔值、null、对象、数组
+2. 字符串必须使用双引号
+3. 对象键名必须使用双引号
+4. 禁止尾随逗号
+5. 禁止 undefined、函数、Symbol
+6. 禁止 NaN 和 Infinity
 
 ```js
-try {
-	JSON.parse("'String'");
-} catch (e) {
-	console.log('parsing error');
-}
+// 合法的 JSON
+'{"name": "Alice", "age": 30}'
+'[1, 2, 3]'
+'{"items": ["a", "b"]}'
+
+// 不合法的 JSON
+"{name: 'Alice'}" // 键名和字符串值必须使用双引号
+'{"age": undefined}' // undefined 不被支持
+'{"fn": function() {}}' // 函数不被支持
 ```
 
-`JSON.parse()`方法可以接受一个处理函数，作为第二个参数，用法与`JSON.stringify()`方法类似。
+## 注意事项 {#notes}
+
+1. 不是所有 JavaScript 值都能被序列化为 JSON：
 
 ```js
-function f(key, value) {
-	if (key === 'a') {
-		return value + 10;
-	}
-	return value;
-}
+// 会被忽略或转换的值
+JSON.stringify(undefined); // undefined
+JSON.stringify(function() {}); // undefined
+JSON.stringify(Symbol('foo')); // undefined
 
-JSON.parse('{"a": 1, "b": 2}', f);
-// {a: 11, b: 2}
+// 包含这些值的对象
+JSON.stringify({ x: undefined, y: 1 }); // '{"y":1}'
+JSON.stringify([undefined, 1]); // '[null,1]'
 ```
 
-上面代码中，`JSON.parse()`的第二个参数是一个函数，如果键名是`a`，该函数会将键值加上 10。
-
-`JSON.parse()`和`JSON.stringify()`可以结合使用，像下面这样写，实现对象的深拷贝。
+2. 循环引用会导致错误：
 
 ```js
-JSON.parse(JSON.stringify(obj));
+const obj = {};
+obj.self = obj;
+// JSON.stringify(obj); // TypeError: Converting circular structure to JSON
 ```
 
-上面这种写法，可以深度克隆一个对象，但是对象内部不能有 JSON
-不允许的数据类型，比如函数、正则对象、日期对象等。
+3. Date 对象会被转换为字符串：
+
+```js
+JSON.stringify({ now: new Date() }); 
+// '{"now":"2022-01-01T00:00:00.000Z"}'
+```
+

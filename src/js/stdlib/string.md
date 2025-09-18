@@ -1,426 +1,471 @@
-# String 对象
+# String
 
-## 概述
+表示和操作字符序列的对象。
 
-`String`对象是 JavaScript 原生提供的三个包装对象之一，用来生成字符串对象。
+## 构造函数 {#constructor}
+
+创建字符串对象。
 
 ```js
-var s1 = 'abc';
-var s2 = new String('abc');
+// 字符串字面量（推荐）
+const str1 = 'hello';
+const str2 = "world";
+const str3 = `template`;
 
-typeof s1; // "string"
-typeof s2; // "object"
+// 构造函数
+const str4 = new String('hello');
+typeof str4; // "object"
 
-s2.valueOf(); // "abc"
+// 转换函数
+const str5 = String(123); // "123"
+const str6 = String(true); // "true"
 ```
 
-上面代码中，变量`s1`是字符串，`s2`是对象。由于`s2`是字符串对象，`s2.valueOf`方法返回的就是它所对应的原始字符串。
+## 静态方法 {#static-methods}
 
-字符串对象是一个类似数组的对象（很像数组，但不是数组）。
+### `String.fromCharCode(...codeUnits)` {#String.fromCharCode}
 
-<!-- prettier-ignore -->
-```js
-new String('abc')
-// String {0: "a", 1: "b", 2: "c", length: 3}
-
-(new String('abc'))[1] // "b"
-```
-
-上面代码中，字符串`abc`对应的字符串对象，有数值键（`0`、`1`、`2`）和`length`属性，所以可以像数组那样取值。
-
-除了用作构造函数，`String`对象还可以当作工具方法使用，将任意类型的值转为字符串。
+根据 UTF-16 码元序列返回字符串。
 
 ```js
-String(true); // "true"
-String(5); // "5"
-```
-
-上面代码将布尔值`true`和数值`5`，分别转换为字符串。
-
-## 静态方法
-
-### String.fromCharCode()
-
-`String`对象提供的静态方法（即定义在对象本身，而不是定义在对象实例的方法），主要是`String.fromCharCode()`。该方法的参数是一个或多个数值，代表 Unicode 码点，返回值是这些码点组成的字符串。
-
-```js
+String.fromCharCode(65); // "A"
+String.fromCharCode(72, 101, 108, 108, 111); // "Hello"
 String.fromCharCode(); // ""
-String.fromCharCode(97); // "a"
-String.fromCharCode(104, 101, 108, 108, 111);
-// "hello"
 ```
 
-上面代码中，`String.fromCharCode`方法的参数为空，就返回空字符串；否则，返回参数对应的 Unicode 字符串。
+### `String.fromCodePoint(...codePoints)` {#String.fromCodePoint}
 
-注意，该方法不支持 Unicode 码点大于`0xFFFF`的字符，即传入的参数不能大于`0xFFFF`（即十进制的 65535）。
+根据 Unicode 码点序列返回字符串。
 
 ```js
-String.fromCharCode(0x20bb7);
-// "ஷ"
-String.fromCharCode(0x20bb7) === String.fromCharCode(0x0bb7);
-// true
+String.fromCodePoint(65); // "A"
+String.fromCodePoint(0x1F600); // "😀"
 ```
 
-上面代码中，`String.fromCharCode`参数`0x20BB7`大于`0xFFFF`，导致返回结果出错。`0x20BB7`对应的字符是汉字`𠮷`，但是返回结果却是另一个字符（码点`0x0BB7`）。这是因为`String.fromCharCode`发现参数值大于`0xFFFF`，就会忽略多出的位（即忽略`0x20BB7`里面的`2`）。
+### `String.raw(callSite, ...substitutions)` {#String.raw}
 
-这种现象的根本原因在于，码点大于`0xFFFF`的字符占用四个字节，而 JavaScript 默认支持两个字节的字符。这种情况下，必须把`0x20BB7`拆成两个字符表示。
+获取模板字符串的原始字符串形式。
 
 ```js
-String.fromCharCode(0xd842, 0xdfb7);
-// "𠮷"
+String.raw`Hi\n${2+3}!`; // "Hi\\n5!"
+String.raw({ raw: ['foo', 'bar'] }, 1, 2); // "foo1bar"
 ```
 
-上面代码中，`0x20BB7`拆成两个字符`0xD842`和`0xDFB7`（即两个两字节字符，合成一个四字节字符），就能得到正确的结果。码点大于`0xFFFF`的字符的四字节表示法，由 UTF-16 编码方法决定。
+## 实例属性 {#instance-properties}
 
-## 实例属性
+### `String.prototype.length` {#String.prototype.length}
 
-### String.prototype.length
-
-字符串实例的`length`属性返回字符串的长度。
+返回字符串中的字符数。
 
 ```js
-'abc'.length; // 3
+const str = 'Hello';
+str.length; // 5
+
+''.length; // 0
+'中文'.length; // 2
 ```
 
-## 实例方法
+## 实例方法 {#instance-methods}
 
-### String.prototype.charAt()
+### `String.prototype.at(index)` {#String.prototype.at}
 
-`charAt`方法返回指定位置的字符，参数是从`0`开始编号的位置。
+返回指定索引处的字符。
 
 ```js
-var s = new String('abc');
-
-s.charAt(1); // "b"
-s.charAt(s.length - 1); // "c"
+const str = 'Hello';
+str.at(0); // "H"
+str.at(-1); // "o"
+str.at(10); // undefined
 ```
 
-这个方法完全可以用数组下标替代。
+### `String.prototype.charAt(index)` {#String.prototype.charAt}
+
+返回指定索引处的字符。
 
 ```js
-'abc'.charAt(1); // "b"
-'abc'[1]; // "b"
+const str = 'Hello';
+str.charAt(0); // "H"
+str.charAt(4); // "o"
+str.charAt(10); // ""
 ```
 
-如果参数为负数，或大于等于字符串的长度，`charAt`返回空字符串。
+### `String.prototype.charCodeAt(index)` {#String.prototype.charCodeAt}
+
+返回指定索引处字符的 UTF-16 码元值。
 
 ```js
-'abc'.charAt(-1); // ""
-'abc'.charAt(3); // ""
+const str = 'ABC';
+str.charCodeAt(0); // 65
+str.charCodeAt(1); // 66
+str.charCodeAt(2); // 67
 ```
 
-### String.prototype.charCodeAt()
+### `String.prototype.codePointAt(index)` {#String.prototype.codePointAt}
 
-`charCodeAt()`方法返回字符串指定位置的 Unicode 码点（十进制表示），相当于`String.fromCharCode()`的逆操作。
+返回指定索引处字符的 Unicode 码点值。
 
 ```js
-'abc'.charCodeAt(1); // 98
+const str = 'A😀';
+str.codePointAt(0); // 65
+str.codePointAt(1); // 128512
 ```
 
-上面代码中，`abc`的`1`号位置的字符是`b`，它的 Unicode 码点是`98`。
+### `String.prototype.concat(str1[, ...strN])` {#String.prototype.concat}
 
-如果没有任何参数，`charCodeAt`返回首字符的 Unicode 码点。
+连接两个或多个字符串。
 
 ```js
-'abc'.charCodeAt(); // 97
+const str1 = 'Hello';
+const str2 = 'World';
+str1.concat(' ', str2); // "Hello World"
+'abc'.concat('d', 'e', 'f'); // "abcdef"
 ```
 
-如果参数为负数，或大于等于字符串的长度，`charCodeAt`返回`NaN`。
+### `String.prototype.endsWith(searchString[, length])` {#String.prototype.endsWith}
+
+判断字符串是否以指定的子字符串结尾。
 
 ```js
-'abc'.charCodeAt(-1); // NaN
-'abc'.charCodeAt(4); // NaN
+const str = 'Hello World';
+str.endsWith('World'); // true
+str.endsWith('Hello'); // false
+str.endsWith('Hello', 5); // true
 ```
 
-注意，`charCodeAt`方法返回的 Unicode 码点不会大于 65536（0xFFFF），也就是说，只返回两个字节的字符的码点。如果遇到码点大于 65536 的字符（四个字节的字符），必须连续使用两次`charCodeAt`，不仅读入`charCodeAt(i)`，还要读入`charCodeAt(i+1)`，将两个值放在一起，才能得到准确的字符。
+### `String.prototype.includes(searchString[, position])` {#String.prototype.includes}
 
-### String.prototype.concat()
-
-`concat`方法用于连接两个字符串，返回一个新字符串，不改变原字符串。
+判断字符串是否包含指定的子字符串。
 
 ```js
-var s1 = 'abc';
-var s2 = 'def';
-
-s1.concat(s2); // "abcdef"
-s1; // "abc"
+const str = 'Hello World';
+str.includes('World'); // true
+str.includes('world'); // false
+str.includes('Hello', 1); // false
 ```
 
-该方法可以接受多个参数。
+### `String.prototype.indexOf(searchValue[, fromIndex])` {#String.prototype.indexOf}
+
+返回指定值在字符串中首次出现的索引。
 
 ```js
-'a'.concat('b', 'c'); // "abc"
+const str = 'Hello World';
+str.indexOf('World'); // 6
+str.indexOf('o'); // 4
+str.indexOf('o', 5); // 7
+str.indexOf('xyz'); // -1
 ```
 
-如果参数不是字符串，`concat`方法会将其先转为字符串，然后再连接。
+### `String.prototype.isWellFormed()` {#String.prototype.isWellFormed}
+
+判断字符串是否格式良好（不包含单独代理项）。
 
 ```js
-var one = 1;
-var two = 2;
-var three = '3';
-
-''.concat(one, two, three); // "123"
-one + two + three; // "33"
+'\u{1F600}'.isWellFormed(); // true
+'\uD83D\uDE00'.isWellFormed(); // true
+'\uD83D'.isWellFormed(); // false
 ```
 
-上面代码中，`concat`方法将参数先转成字符串再连接，所以返回的是一个三个字符的字符串。作为对比，加号运算符在两个运算数都是数值时，不会转换类型，所以返回的是一个两个字符的字符串。
+### `String.prototype.lastIndexOf(searchValue[, fromIndex])` {#String.prototype.lastIndexOf}
 
-### String.prototype.slice()
-
-`slice()`方法用于从原字符串取出子字符串并返回，不改变原字符串。它的第一个参数是子字符串的开始位置，第二个参数是子字符串的结束位置（不含该位置）。
+返回指定值在字符串中最后一次出现的索引。
 
 ```js
-'JavaScript'.slice(0, 4); // "Java"
+const str = 'Hello World Hello';
+str.lastIndexOf('Hello'); // 12
+str.lastIndexOf('o'); // 15
+str.lastIndexOf('xyz'); // -1
 ```
 
-如果省略第二个参数，则表示子字符串一直到原字符串结束。
+### `String.prototype.localeCompare(compareString[, locales[, options]])` {#String.prototype.localeCompare}
+
+返回一个数字表示字符串在排序中是否排在给定字符串之前、之后或相同位置。
 
 ```js
-'JavaScript'.slice(4); // "Script"
+'a'.localeCompare('b'); // -1
+'a'.localeCompare('a'); // 0
+'b'.localeCompare('a'); // 1
+
+// 中文排序
+'张三'.localeCompare('李四'); // 1
 ```
 
-如果参数是负值，表示从结尾开始倒数计算的位置，即该负值加上字符串长度。
+### `String.prototype.match(regexp)` {#String.prototype.match}
+
+使用正则表达式匹配字符串。
 
 ```js
-'JavaScript'.slice(-6); // "Script"
-'JavaScript'.slice(0, -6); // "Java"
-'JavaScript'.slice(-2, -1); // "p"
+const str = 'The quick brown fox';
+str.match(/quick/); // ["quick", index: 4, ...]
+str.match(/lazy/); // null
+
+// 全局匹配
+const str2 = 'test test test';
+str2.match(/test/g); // ["test", "test", "test"]
 ```
 
-如果第一个参数大于第二个参数（正数情况下），`slice()`方法返回一个空字符串。
+### `String.prototype.matchAll(regexp)` {#String.prototype.matchAll}
+
+返回所有匹配正则表达式的迭代器。
 
 ```js
-'JavaScript'.slice(2, 1); // ""
+const str = 'test test test';
+const matches = str.matchAll(/test/g);
+[...matches]; // [["test", index: 0, ...], ["test", index: 5, ...], ["test", index: 10, ...]]
 ```
 
-### String.prototype.substring()
+### `String.prototype.normalize([form])` {#String.prototype.normalize}
 
-`substring`方法用于从原字符串取出子字符串并返回，不改变原字符串，跟`slice`方法很相像。它的第一个参数表示子字符串的开始位置，第二个位置表示结束位置（返回结果不含该位置）。
+返回字符串的 Unicode 标准化形式。
 
 ```js
-'JavaScript'.substring(0, 4); // "Java"
+const str = '\u1E9B\u0323';
+str.normalize(); // "ẛ̣"
+str.normalize('NFC'); // "ẛ̣"
+str.normalize('NFD'); // "ẛ̣"
 ```
 
-如果省略第二个参数，则表示子字符串一直到原字符串的结束。
+### `String.prototype.padEnd(maxLength[, fillString])` {#String.prototype.padEnd}
+
+在字符串末尾填充指定字符直到达到指定长度。
 
 ```js
-'JavaScript'.substring(4); // "Script"
+'hello'.padEnd(10); // "hello     "
+'hello'.padEnd(10, '.'); // "hello....."
+'hello'.padEnd(3, '.'); // "hello"
 ```
 
-如果第一个参数大于第二个参数，`substring`方法会自动更换两个参数的位置。
+### `String.prototype.padStart(maxLength[, fillString])` {#String.prototype.padStart}
+
+在字符串开头填充指定字符直到达到指定长度。
 
 ```js
-'JavaScript'.substring(10, 4); // "Script"
-// 等同于
-'JavaScript'.substring(4, 10); // "Script"
+'5'.padStart(3, '0'); // "005"
+'hello'.padStart(10); // "     hello"
+'hello'.padStart(10, '.'); // ".....hello"
 ```
 
-上面代码中，调换`substring`方法的两个参数，都得到同样的结果。
+### `String.prototype.repeat(count)` {#String.prototype.repeat}
 
-如果参数是负数，`substring`方法会自动将负数转为 0。
+返回重复指定次数的字符串。
 
 ```js
-'JavaScript'.substring(-3); // "JavaScript"
-'JavaScript'.substring(4, -3); // "Java"
+'abc'.repeat(3); // "abcabcabc"
+'abc'.repeat(0); // ""
+'abc'.repeat(1); // "abc"
 ```
 
-上面代码中，第二个例子的参数`-3`会自动变成`0`，等同于`'JavaScript'.substring(4, 0)`。由于第二个参数小于第一个参数，会自动互换位置，所以返回`Java`。
+### `String.prototype.replace(searchValue, replaceValue)` {#String.prototype.replace}
 
-由于这些规则违反直觉，因此不建议使用`substring`方法，应该优先使用`slice`。
-
-### String.prototype.substr()
-
-`substr`方法用于从原字符串取出子字符串并返回，不改变原字符串，跟`slice`和`substring`方法的作用相同。
-
-`substr`方法的第一个参数是子字符串的开始位置（从 0 开始计算），第二个参数是子字符串的长度。
+替换字符串中第一个匹配的子字符串。
 
 ```js
-'JavaScript'.substr(4, 6); // "Script"
+const str = 'Hello World Hello';
+str.replace('Hello', 'Hi'); // "Hi World Hello"
+str.replace(/Hello/g, 'Hi'); // "Hi World Hi"
+
+// 使用函数
+str.replace('Hello', (match) => match.toUpperCase()); // "HELLO World Hello"
 ```
 
-如果省略第二个参数，则表示子字符串一直到原字符串的结束。
+### `String.prototype.replaceAll(searchValue, replaceValue)` {#String.prototype.replaceAll}
+
+替换字符串中所有匹配的子字符串。
 
 ```js
-'JavaScript'.substr(4); // "Script"
+const str = 'Hello World Hello';
+str.replaceAll('Hello', 'Hi'); // "Hi World Hi"
+
+// 使用正则表达式（必须全局标志）
+str.replaceAll(/Hello/g, 'Hi'); // "Hi World Hi"
 ```
 
-如果第一个参数是负数，表示倒数计算的字符位置。如果第二个参数是负数，将被自动转为 0，因此会返回空字符串。
+### `String.prototype.search(regexp)` {#String.prototype.search}
+
+搜索匹配正则表达式的子字符串并返回索引。
 
 ```js
-'JavaScript'.substr(-6); // "Script"
-'JavaScript'.substr(4, -1); // ""
+const str = 'The quick brown fox';
+str.search(/quick/); // 4
+str.search(/lazy/); // -1
 ```
 
-上面代码中，第二个例子的参数`-1`自动转为`0`，表示子字符串长度为`0`，所以返回空字符串。
+### `String.prototype.slice(startIndex[, endIndex])` {#String.prototype.slice}
 
-### String.prototype.indexOf()，String.prototype.lastIndexOf()
-
-`indexOf`方法用于确定一个字符串在另一个字符串中第一次出现的位置，返回结果是匹配开始的位置。如果返回`-1`，就表示不匹配。
+提取字符串的一部分并返回新字符串。
 
 ```js
-'hello world'.indexOf('o'); // 4
-'JavaScript'.indexOf('script'); // -1
+const str = 'Hello World';
+str.slice(0, 5); // "Hello"
+str.slice(6); // "World"
+str.slice(-5); // "World"
+str.slice(-5, -1); // "Worl"
 ```
 
-`indexOf`方法还可以接受第二个参数，表示从该位置开始向后匹配。
+### `String.prototype.split([separator[, limit]])` {#String.prototype.split}
+
+使用指定分隔符将字符串分割成数组。
 
 ```js
-'hello world'.indexOf('o', 6); // 7
+const str = 'Hello World';
+str.split(' '); // ["Hello", "World"]
+str.split(''); // ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"]
+str.split(' ', 1); // ["Hello"]
+
+// 使用正则表达式
+'1, 2, 3'.split(/,\s*/); // ["1", "2", "3"]
 ```
 
-`lastIndexOf`方法的用法跟`indexOf`方法一致，主要的区别是`lastIndexOf`从尾部开始匹配，`indexOf`则是从头部开始匹配。
+### `String.prototype.startsWith(searchString[, position])` {#String.prototype.startsWith}
+
+判断字符串是否以指定的子字符串开头。
 
 ```js
-'hello world'.lastIndexOf('o'); // 7
+const str = 'Hello World';
+str.startsWith('Hello'); // true
+str.startsWith('World'); // false
+str.startsWith('World', 6); // true
 ```
 
-另外，`lastIndexOf`的第二个参数表示从该位置起向前匹配。
+### `String.prototype.substring(indexStart[, indexEnd])` {#String.prototype.substring}
+
+返回字符串两个索引之间的子字符串。
 
 ```js
-'hello world'.lastIndexOf('o', 6); // 4
+const str = 'Hello World';
+str.substring(0, 5); // "Hello"
+str.substring(6); // "World"
+str.substring(6, 11); // "World"
 ```
 
-### String.prototype.trim()
+### `String.prototype.toLocaleLowerCase([locales])` {#String.prototype.toLocaleLowerCase}
 
-`trim`方法用于去除字符串两端的空格，返回一个新字符串，不改变原字符串。
+根据本地化规则将字符串转换为小写。
 
 ```js
-'  hello world  '.trim();
-// "hello world"
+const str = 'HELLO';
+str.toLocaleLowerCase(); // "hello"
+str.toLocaleLowerCase('tr'); // "hello" (土耳其语)
 ```
 
-该方法去除的不仅是空格，还包括制表符（`\t`、`\v`）、换行符（`\n`）和回车符（`\r`）。
+### `String.prototype.toLocaleUpperCase([locales])` {#String.prototype.toLocaleUpperCase}
+
+根据本地化规则将字符串转换为大写。
 
 ```js
-'\r\nabc \t'.trim(); // 'abc'
+const str = 'hello';
+str.toLocaleUpperCase(); // "HELLO"
+str.toLocaleUpperCase('tr'); // "HELLO" (土耳其语)
 ```
 
-### String.prototype.toLowerCase()，String.prototype.toUpperCase()
+### `String.prototype.toLowerCase()` {#String.prototype.toLowerCase}
 
-`toLowerCase`方法用于将一个字符串全部转为小写，`toUpperCase`则是全部转为大写。它们都返回一个新字符串，不改变原字符串。
+将字符串转换为小写。
 
 ```js
-'Hello World'.toLowerCase();
-// "hello world"
-
-'Hello World'.toUpperCase();
-// "HELLO WORLD"
+const str = 'Hello World';
+str.toLowerCase(); // "hello world"
 ```
 
-### String.prototype.match()
+### `String.prototype.toString()` {#String.prototype.toString}
 
-`match`方法用于确定原字符串是否匹配某个子字符串，返回一个数组，成员为匹配的第一个字符串。如果没有找到匹配，则返回`null`。
+返回字符串对象的字符串表示。
 
 ```js
-'cat, bat, sat, fat'.match('at'); // ["at"]
-'cat, bat, sat, fat'.match('xt'); // null
+const str = new String('Hello');
+str.toString(); // "Hello"
 ```
 
-返回的数组还有`index`属性和`input`属性，分别表示匹配字符串开始的位置和原始字符串。
+### `String.prototype.toUpperCase()` {#String.prototype.toUpperCase}
+
+将字符串转换为大写。
 
 ```js
-var matches = 'cat, bat, sat, fat'.match('at');
-matches.index; // 1
-matches.input; // "cat, bat, sat, fat"
+const str = 'Hello World';
+str.toUpperCase(); // "HELLO WORLD"
 ```
 
-`match`方法还可以使用正则表达式作为参数，详见《正则表达式》一章。
+### `String.prototype.toWellFormed()` {#String.prototype.toWellFormed}
 
-### String.prototype.search()，String.prototype.replace()
-
-`search`方法的用法基本等同于`match`，但是返回值为匹配的第一个位置。如果没有找到匹配，则返回`-1`。
+返回格式良好的字符串版本。
 
 ```js
-'cat, bat, sat, fat'.search('at'); // 1
+'\uD83D'.toWellFormed(); // ""
+'\uD83D\uDE00'.toWellFormed(); // "😀"
 ```
 
-`search`方法还可以使用正则表达式作为参数，详见《正则表达式》一节。
+### `String.prototype.trim()` {#String.prototype.trim}
 
-`replace`方法用于替换匹配的子字符串，一般情况下只替换第一个匹配（除非使用带有`g`修饰符的正则表达式）。
+去除字符串开头和结尾的空白字符。
 
 ```js
-'aaa'.replace('a', 'b'); // "baa"
+const str = '  Hello World  ';
+str.trim(); // "Hello World"
 ```
 
-`replace`方法还可以使用正则表达式作为参数，详见《正则表达式》一节。
+### `String.prototype.trimEnd()` {#String.prototype.trimEnd}
 
-### String.prototype.split()
-
-`split`方法按照给定规则分割字符串，返回一个由分割出来的子字符串组成的数组。
+去除字符串结尾的空白字符。
 
 ```js
-'a|b|c'.split('|'); // ["a", "b", "c"]
+const str = '  Hello World  ';
+str.trimEnd(); // "  Hello World"
 ```
 
-如果分割规则为空字符串，则返回数组的成员是原字符串的每一个字符。
+### `String.prototype.trimStart()` {#String.prototype.trimStart}
+
+去除字符串开头的空白字符。
 
 ```js
-'a|b|c'.split(''); // ["a", "|", "b", "|", "c"]
+const str = '  Hello World  ';
+str.trimStart(); // "Hello World  "
 ```
 
-如果省略参数，则返回数组的唯一成员就是原字符串。
+### `String.prototype.valueOf()` {#String.prototype.valueOf}
+
+返回字符串对象的原始值。
 
 ```js
-'a|b|c'.split(); // ["a|b|c"]
+const str = new String('Hello');
+str.valueOf(); // "Hello"
 ```
 
-如果满足分割规则的两个部分紧邻着（即两个分割符中间没有其他字符），则返回数组之中会有一个空字符串。
+## 模板字符串 {#template-strings}
+
+### 多行字符串 {#multiline-strings}
 
 ```js
-'a||c'.split('|'); // ['a', '', 'c']
+const multiline = `这是第一行
+这是第二行
+这是第三行`;
 ```
 
-如果满足分割规则的部分处于字符串的开头或结尾（即它的前面或后面没有其他字符），则返回数组的第一个或最后一个成员是一个空字符串。
+### 表达式插值 {#expression-interpolation}
 
 ```js
-'|b|c'.split('|'); // ["", "b", "c"]
-'a|b|'.split('|'); // ["a", "b", ""]
+const name = 'Alice';
+const age = 30;
+const greeting = `Hello, ${name}! You are ${age} years old.`;
+// "Hello, Alice! You are 30 years old."
 ```
 
-`split`方法还可以接受第二个参数，限定返回数组的最大成员数。
+### 嵌套模板 {#nested-templates}
 
 ```js
-'a|b|c'.split('|', 0); // []
-'a|b|c'.split('|', 1); // ["a"]
-'a|b|c'.split('|', 2); // ["a", "b"]
-'a|b|c'.split('|', 3); // ["a", "b", "c"]
-'a|b|c'.split('|', 4); // ["a", "b", "c"]
+const classes = `header ${isLargeScreen() ? '' : `icon-${item.isCollapsed ? 'expand' : 'collapse'}`}`;
 ```
 
-上面代码中，`split`方法的第二个参数，决定了返回数组的成员数。
-
-`split`方法还可以使用正则表达式作为参数，详见《正则表达式》一节。
-
-### String.prototype.localeCompare()
-
-`localeCompare`方法用于比较两个字符串。它返回一个整数，如果小于 0，表示第一个字符串小于第二个字符串；如果等于 0，表示两者相等；如果大于 0，表示第一个字符串大于第二个字符串。
+### 带标签的模板 {#tagged-templates}
 
 ```js
-'apple'.localeCompare('banana'); // -1
-'apple'.localeCompare('apple'); // 0
+function highlight(strings, ...values) {
+  let result = '';
+  strings.forEach((string, i) => {
+    result += string + (values[i] || '');
+  });
+  return result;
+}
+
+const name = 'Alice';
+const age = 30;
+const message = highlight`Hello, ${name}! You are ${age} years old.`;
 ```
-
-该方法的最大特点，就是会考虑自然语言的顺序。举例来说，正常情况下，大写的英文字母小于小写字母。
-
-```js
-'B' > 'a'; // false
-```
-
-上面代码中，字母`B`小于字母`a`。因为 JavaScript 采用的是 Unicode 码点比较，`B`的码点是 66，而`a`的码点是 97。
-
-但是，`localeCompare`方法会考虑自然语言的排序情况，将`B`排在`a`的前面。
-
-```js
-'B'.localeCompare('a'); // 1
-```
-
-上面代码中，`localeCompare`方法返回整数 1，表示`B`较大。
-
-`localeCompare`还可以有第二个参数，指定所使用的语言（默认是英语），然后根据该语言的规则进行比较。
-
-```js
-'ä'.localeCompare('z', 'de'); // -1
-'ä'.localeCompare('z', 'sv'); // 1
-```
-
-上面代码中，`de`表示德语，`sv`表示瑞典语。德语中，`ä`小于`z`，所以返回`-1`；瑞典语中，`ä`大于`z`，所以返回`1`。

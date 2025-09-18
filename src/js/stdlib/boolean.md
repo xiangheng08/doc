@@ -1,86 +1,101 @@
-# Boolean 对象
+# Boolean
 
-## 概述
+表示布尔值的包装对象。
 
-`Boolean`对象是 JavaScript 的三个包装对象之一。作为构造函数，它主要用于生成布尔值的包装对象实例。
+## 构造函数 {#constructor}
 
-```js
-var b = new Boolean(true);
-
-typeof b; // "object"
-b.valueOf(); // true
-```
-
-上面代码的变量`b`是一个`Boolean`对象的实例，它的类型是对象，值为布尔值`true`。
-
-注意，`false`对应的包装对象实例，布尔运算结果也是`true`。
+创建 Boolean 对象。
 
 ```js
-if (new Boolean(false)) {
-	console.log('true');
-} // true
+// 作为构造函数使用（不推荐）
+const b1 = new Boolean(true);
+const b2 = new Boolean(false);
 
-if (new Boolean(false).valueOf()) {
-	console.log('true');
-} // 无输出
+// 作为转换函数使用（推荐）
+const b3 = Boolean(0); // false
+const b4 = Boolean(1); // true
 ```
 
-上面代码的第一个例子之所以得到`true`，是因为`false`对应的包装对象实例是一个对象，进行逻辑运算时，被自动转化成布尔值`true`（因为所有对象对应的布尔值都是`true`）。而实例的`valueOf`方法，则返回实例对应的原始值，本例为`false`。
+## 静态属性 {#static-properties}
 
-## Boolean 函数的类型转换作用
+### `Boolean.length` {#Boolean.length}
 
-`Boolean`对象除了可以作为构造函数，还可以单独使用，将任意值转为布尔值。这时`Boolean`就是一个单纯的工具方法。
+值为 1。
+
+### `Boolean.prototype` {#Boolean.prototype}
+
+Boolean 构造函数的原型。
+
+## 实例方法 {#instance-methods}
+
+### `Boolean.prototype.toString()` {#Boolean.prototype.toString}
+
+返回指定 Boolean 对象的字符串形式。
+
+```js
+const flag = new Boolean(true);
+flag.toString(); // "true"
+
+const flag2 = new Boolean(false);
+flag2.toString(); // "false"
+```
+
+### `Boolean.prototype.valueOf()` {#Boolean.prototype.valueOf}
+
+返回 Boolean 对象的原始值。
+
+```js
+const flag = new Boolean(true);
+flag.valueOf(); // true
+
+const flag2 = new Boolean(false);
+flag2.valueOf(); // false
+```
+
+## 转换规则 {#conversion-rules}
+
+以下值被转换为 `false`：
 
 ```js
 Boolean(undefined); // false
 Boolean(null); // false
 Boolean(0); // false
-Boolean(''); // false
+Boolean(-0); // false
 Boolean(NaN); // false
+Boolean(''); // false
+Boolean(false); // false
+```
 
-Boolean(1); // true
+其他所有值都被转换为 `true`：
+
+```js
 Boolean('false'); // true
+Boolean('0'); // true
 Boolean([]); // true
 Boolean({}); // true
-Boolean(function () {}); // true
-Boolean(/foo/); // true
+Boolean(function() {}); // true
+Boolean(/regexp/); // true
 ```
 
-上面代码中几种得到`true`的情况，都值得认真记住。
+## 注意事项 {#notes}
 
-顺便提一下，使用双重的否运算符（`!`）也可以将任意值转为对应的布尔值。
+1. 使用 Boolean 构造函数创建的对象始终为真值：
 
 ```js
-!!undefined; // false
-!!null; // false
-!!0; // false
-!!''; // false
-!!NaN; // false
-
-!!1; // true
-!!'false'; // true
-!![]; // true
-!!{}; // true
-!!function () {}; // true
-!!/foo/; // true
+const flag = new Boolean(false);
+if (flag) {
+  // 这段代码会执行，因为 flag 是一个对象
+  console.log('执行了');
+}
 ```
 
-最后，对于一些特殊值，`Boolean`对象前面加不加`new`，会得到完全相反的结果，必须小心。
+2. 推荐使用 Boolean 函数或双非运算符进行类型转换：
 
 ```js
-if (Boolean(false)) {
-	console.log('true');
-} // 无输出
+// 推荐方式
+const flag1 = Boolean(expression);
+const flag2 = !!expression;
 
-if (new Boolean(false)) {
-	console.log('true');
-} // true
-
-if (Boolean(null)) {
-	console.log('true');
-} // 无输出
-
-if (new Boolean(null)) {
-	console.log('true');
-} // true
+// 不推荐方式
+const flag3 = new Boolean(expression);
 ```

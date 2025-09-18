@@ -1,246 +1,404 @@
-# Math 对象
+# Math
 
-`Math` 是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在 `Math` 对象上调用。
+提供数学常数和函数的内置对象。
 
-## 静态属性
+## 静态属性 {#static-properties}
 
-`Math`对象的静态属性，提供以下一些数学常数。
+### `Math.E` {#Math.E}
 
--   `Math.E`：常数`e`。
--   `Math.LN2`：2 的自然对数。
--   `Math.LN10`：10 的自然对数。
--   `Math.LOG2E`：以 2 为底的`e`的对数。
--   `Math.LOG10E`：以 10 为底的`e`的对数。
--   `Math.PI`：常数`π`。
--   `Math.SQRT1_2`：0.5 的平方根。
--   `Math.SQRT2`：2 的平方根。
+欧拉常数，自然对数的底数。
 
 ```js
 Math.E; // 2.718281828459045
+```
+
+### `Math.LN2` {#Math.LN2}
+
+2 的自然对数。
+
+```js
 Math.LN2; // 0.6931471805599453
+```
+
+### `Math.LN10` {#Math.LN10}
+
+10 的自然对数。
+
+```js
 Math.LN10; // 2.302585092994046
+```
+
+### `Math.LOG2E` {#Math.LOG2E}
+
+以 2 为底的 e 的对数。
+
+```js
 Math.LOG2E; // 1.4426950408889634
+```
+
+### `Math.LOG10E` {#Math.LOG10E}
+
+以 10 为底的 e 的对数。
+
+```js
 Math.LOG10E; // 0.4342944819032518
+```
+
+### `Math.PI` {#Math.PI}
+
+圆周率。
+
+```js
 Math.PI; // 3.141592653589793
+```
+
+### `Math.SQRT1_2` {#Math.SQRT1_2}
+
+1/2 的平方根。
+
+```js
 Math.SQRT1_2; // 0.7071067811865476
+```
+
+### `Math.SQRT2` {#Math.SQRT2}
+
+2 的平方根。
+
+```js
 Math.SQRT2; // 1.4142135623730951
 ```
 
-这些属性都是只读的，不能修改。
+## 静态方法 {#static-methods}
 
-## 静态方法
+### `Math.abs(x)` {#Math.abs}
 
-`Math`对象提供以下一些静态方法。
-
--   `Math.abs()`：绝对值
--   `Math.ceil()`：向上取整
--   `Math.floor()`：向下取整
--   `Math.max()`：最大值
--   `Math.min()`：最小值
--   `Math.pow()`：幂运算
--   `Math.sqrt()`：平方根
--   `Math.log()`：自然对数
--   `Math.exp()`：`e`的指数
--   `Math.round()`：四舍五入
--   `Math.random()`：随机数
-
-### Math.abs()
-
-`Math.abs`方法返回参数值的绝对值。
+返回一个数的绝对值。
 
 ```js
-Math.abs(1); // 1
-Math.abs(-1); // 1
+Math.abs(-5); // 5
+Math.abs(3); // 3
 ```
 
-### Math.max()，Math.min()
+### `Math.acos(x)` {#Math.acos}
 
-`Math.max`方法返回参数之中最大的那个值，`Math.min`返回最小的那个值。如果参数为空, `Math.min`返回`Infinity`, `Math.max`返回`-Infinity`。
+返回一个数的反余弦值。
 
 ```js
-Math.max(2, -1, 5); // 5
-Math.min(2, -1, 5); // -1
-Math.min(); // Infinity
-Math.max(); // -Infinity
+Math.acos(0); // 1.5707963267948966 (π/2)
+Math.acos(1); // 0
 ```
 
-### Math.floor()，Math.ceil()
+### `Math.acosh(x)` {#Math.acosh}
 
-`Math.floor`方法返回小于或等于参数值的最大整数（地板值）。
+返回一个数的反双曲余弦值。
 
 ```js
-Math.floor(3.2); // 3
-Math.floor(-3.2); // -4
+Math.acosh(1); // 0
+Math.acosh(2); // 1.3169578969248166
 ```
 
-`Math.ceil`方法返回大于或等于参数值的最小整数（天花板值）。
+### `Math.asin(x)` {#Math.asin}
+
+返回一个数的反正弦值。
 
 ```js
-Math.ceil(3.2); // 4
-Math.ceil(-3.2); // -3
+Math.asin(0); // 0
+Math.asin(1); // 1.5707963267948966 (π/2)
 ```
 
-这两个方法可以结合起来，实现一个总是返回数值的整数部分的函数。
+### `Math.asinh(x)` {#Math.asinh}
+
+返回一个数的反双曲正弦值。
 
 ```js
-function ToInteger(x) {
-	x = Number(x);
-	return x < 0 ? Math.ceil(x) : Math.floor(x);
-}
-
-ToInteger(3.2); // 3
-ToInteger(3.5); // 3
-ToInteger(3.8); // 3
-ToInteger(-3.2); // -3
-ToInteger(-3.5); // -3
-ToInteger(-3.8); // -3
+Math.asinh(0); // 0
+Math.asinh(1); // 0.881373587019543
 ```
 
-上面代码中，不管正数或负数，`ToInteger`函数总是返回一个数值的整数部分。
+### `Math.atan(x)` {#Math.atan}
 
-### Math.round()
-
-`Math.round`方法用于四舍五入。
+返回一个数的反正切值。
 
 ```js
-Math.round(0.1); // 0
-Math.round(0.5); // 1
-Math.round(0.6); // 1
-
-// 等同于
-Math.floor(x + 0.5);
+Math.atan(0); // 0
+Math.atan(1); // 0.7853981633974483 (π/4)
 ```
 
-注意，它对负数的处理（主要是对`0.5`的处理）。
+### `Math.atan2(y, x)` {#Math.atan2}
+
+返回 y/x 的反正切值。
 
 ```js
-Math.round(-1.1); // -1
-Math.round(-1.5); // -1
-Math.round(-1.6); // -2
+Math.atan2(90, 15); // 1.4056476493802699
+Math.atan2(15, 90); // 0.16514867741462683
 ```
 
-### Math.pow()
+### `Math.atanh(x)` {#Math.atanh}
 
-`Math.pow`方法返回以第一个参数为底数、第二个参数为指数的幂运算值。
+返回一个数的反双曲正切值。
 
 ```js
-// 等同于 2 ** 2
-Math.pow(2, 2); // 4
-// 等同于 2 ** 3
-Math.pow(2, 3); // 8
+Math.atanh(0); // 0
+Math.atanh(0.5); // 0.5493061443340548
 ```
 
-下面是计算圆面积的方法。
+### `Math.cbrt(x)` {#Math.cbrt}
+
+返回一个数的立方根。
 
 ```js
-var radius = 20;
-var area = Math.PI * Math.pow(radius, 2);
+Math.cbrt(27); // 3
+Math.cbrt(-8); // -2
 ```
 
-### Math.sqrt()
+### `Math.ceil(x)` {#Math.ceil}
 
-`Math.sqrt`方法返回参数值的平方根。如果参数是一个负值，则返回`NaN`。
+向上取整。
 
 ```js
-Math.sqrt(4); // 2
-Math.sqrt(-4); // NaN
+Math.ceil(4.2); // 5
+Math.ceil(4.8); // 5
+Math.ceil(-4.2); // -4
 ```
 
-### Math.log()
+### `Math.clz32(x)` {#Math.clz32}
 
-`Math.log`方法返回以`e`为底的自然对数值。
+返回一个 32 位整数的前导零的数量。
+
+```js
+Math.clz32(1); // 31
+Math.clz32(1000); // 22
+```
+
+### `Math.cos(x)` {#Math.cos}
+
+返回一个数的余弦值（x 为弧度）。
+
+```js
+Math.cos(0); // 1
+Math.cos(Math.PI); // -1
+```
+
+### `Math.cosh(x)` {#Math.cosh}
+
+返回一个数的双曲余弦值。
+
+```js
+Math.cosh(0); // 1
+Math.cosh(1); // 1.5430806348152437
+```
+
+### `Math.exp(x)` {#Math.exp}
+
+返回 e^x，其中 e 是欧拉常数。
+
+```js
+Math.exp(1); // 2.718281828459045
+Math.exp(0); // 1
+```
+
+### `Math.expm1(x)` {#Math.expm1}
+
+返回 e^x - 1。
+
+```js
+Math.expm1(1); // 1.718281828459045
+Math.expm1(0); // 0
+```
+
+### `Math.floor(x)` {#Math.floor}
+
+向下取整。
+
+```js
+Math.floor(4.2); // 4
+Math.floor(4.8); // 4
+Math.floor(-4.2); // -5
+```
+
+### `Math.fround(x)` {#Math.fround}
+
+返回最接近的单精度浮点数表示。
+
+```js
+Math.fround(1.5); // 1.5
+Math.fround(1.337); // 1.3370000123977661
+```
+
+### `Math.hypot([x[, y[, ...]]])` {#Math.hypot}
+
+返回所有参数平方和的平方根。
+
+```js
+Math.hypot(3, 4); // 5
+Math.hypot(5, 12); // 13
+Math.hypot(3, 4, 5); // 7.0710678118654755
+```
+
+### `Math.imul(x, y)` {#Math.imul}
+
+返回两个参数的 32 位整数乘法结果。
+
+```js
+Math.imul(2, 4); // 8
+Math.imul(-1, 8); // -8
+```
+
+### `Math.log(x)` {#Math.log}
+
+返回一个数的自然对数。
 
 ```js
 Math.log(Math.E); // 1
 Math.log(10); // 2.302585092994046
 ```
 
-如果要计算以 10 为底的对数，可以先用`Math.log`求出自然对数，然后除以`Math.LN10`；求以 2 为底的对数，可以除以`Math.LN2`。
+### `Math.log1p(x)` {#Math.log1p}
+
+返回 1 + x 的自然对数。
 
 ```js
-Math.log(100) / Math.LN10; // 2
-Math.log(8) / Math.LN2; // 3
+Math.log1p(Math.E - 1); // 1
+Math.log1p(0); // 0
 ```
 
-### Math.exp()
+### `Math.log10(x)` {#Math.log10}
 
-`Math.exp`方法返回常数`e`的参数次方。
+返回一个数以 10 为底的对数。
 
 ```js
-Math.exp(1); // 2.718281828459045
-Math.exp(3); // 20.085536923187668
+Math.log10(100000); // 5
+Math.log10(1); // 0
 ```
 
-### Math.random()
+### `Math.log2(x)` {#Math.log2}
 
-`Math.random()`返回 0 到 1 之间的一个伪随机数，可能等于 0，但是一定小于 1。
+返回一个数以 2 为底的对数。
 
 ```js
-Math.random(); // 0.7151307314634323
+Math.log2(8); // 3
+Math.log2(1); // 0
 ```
 
-任意范围的随机数生成函数如下。
+### `Math.max([x[, y[, ...]]])` {#Math.max}
+
+返回零到多个数值中的最大值。
 
 ```js
-function getRandomArbitrary(min, max) {
-	return Math.random() * (max - min) + min;
-}
-
-getRandomArbitrary(1.5, 6.5);
-// 2.4942810038223864
+Math.max(1, 2, 3); // 3
+Math.max(-1, -2, -3); // -1
+Math.max(1); // 1
 ```
 
-任意范围的随机整数生成函数如下。
+### `Math.min([x[, y[, ...]]])` {#Math.min}
+
+返回零到多个数值中的最小值。
 
 ```js
+Math.min(1, 2, 3); // 1
+Math.min(-1, -2, -3); // -3
+Math.min(1); // 1
+```
+
+### `Math.pow(x, y)` {#Math.pow}
+
+返回 x 的 y 次幂。
+
+```js
+Math.pow(2, 3); // 8
+Math.pow(4, 0.5); // 2
+Math.pow(10, 2); // 100
+```
+
+### `Math.random()` {#Math.random}
+
+返回一个 0 到 1 之间的伪随机数。
+
+```js
+Math.random(); // 0.123456789 (示例)
+Math.random(); // 0.987654321 (示例)
+
+// 生成 min 到 max 之间的随机整数
 function getRandomInt(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-getRandomInt(1, 6); // 5
+getRandomInt(1, 10); // 1 到 10 之间的随机整数
 ```
 
-返回随机字符的例子如下。
+### `Math.round(x)` {#Math.round}
+
+四舍五入到最接近的整数。
 
 ```js
-function random_str(length) {
-	var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	ALPHABET += 'abcdefghijklmnopqrstuvwxyz';
-	ALPHABET += '0123456789-_';
-	var str = '';
-	for (var i = 0; i < length; ++i) {
-		var rand = Math.floor(Math.random() * ALPHABET.length);
-		str += ALPHABET.substring(rand, rand + 1);
-	}
-	return str;
-}
-
-random_str(6); // "NdQKOr"
+Math.round(2.3); // 2
+Math.round(2.7); // 3
+Math.round(2.5); // 3
+Math.round(-2.5); // -2
 ```
 
-上面代码中，`random_str`函数接受一个整数作为参数，返回变量`ALPHABET`内的随机字符所组成的指定长度的字符串。
+### `Math.sign(x)` {#Math.sign}
 
-### 三角函数方法
+返回一个数的符号：正数返回 1，负数返回 -1，0 返回 0。
 
-`Math`对象还提供一系列三角函数方法。
+```js
+Math.sign(3); // 1
+Math.sign(-3); // -1
+Math.sign(0); // 0
+Math.sign(-0); // -0
+```
 
--   `Math.sin()`：返回参数的正弦（参数为弧度值）
--   `Math.cos()`：返回参数的余弦（参数为弧度值）
--   `Math.tan()`：返回参数的正切（参数为弧度值）
--   `Math.asin()`：返回参数的反正弦（返回值为弧度值）
--   `Math.acos()`：返回参数的反余弦（返回值为弧度值）
--   `Math.atan()`：返回参数的反正切（返回值为弧度值）
+### `Math.sin(x)` {#Math.sin}
+
+返回一个数的正弦值（x 为弧度）。
 
 ```js
 Math.sin(0); // 0
-Math.cos(0); // 1
-Math.tan(0); // 0
-
 Math.sin(Math.PI / 2); // 1
-
-Math.asin(1); // 1.5707963267948966
-Math.acos(1); // 0
-Math.atan(1); // 0.7853981633974483
 ```
 
-[参考: Math 对象 - JavaScript 教程 - 网道](https://wangdoc.com/javascript/stdlib/math)
+### `Math.sinh(x)` {#Math.sinh}
+
+返回一个数的双曲正弦值。
+
+```js
+Math.sinh(0); // 0
+Math.sinh(1); // 1.1752011936438014
+```
+
+### `Math.sqrt(x)` {#Math.sqrt}
+
+返回一个数的平方根。
+
+```js
+Math.sqrt(9); // 3
+Math.sqrt(2); // 1.4142135623730951
+Math.sqrt(0); // 0
+```
+
+### `Math.tan(x)` {#Math.tan}
+
+返回一个数的正切值（x 为弧度）。
+
+```js
+Math.tan(0); // 0
+Math.tan(Math.PI / 4); // 0.9999999999999999 (理论上是 1)
+```
+
+### `Math.tanh(x)` {#Math.tanh}
+
+返回一个数的双曲正切值。
+
+```js
+Math.tanh(0); // 0
+Math.tanh(1); // 0.7615941559557649
+```
+
+### `Math.trunc(x)` {#Math.trunc}
+
+返回一个数的整数部分。
+
+```js
+Math.trunc(13.37); // 13
+Math.trunc(42.84); // 42
+Math.trunc(-0.123); // -0
+```
