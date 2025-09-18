@@ -3,7 +3,7 @@ import { DefaultTheme } from 'vitepress'
 export default [
   {
     text: '起步',
-    link: '/js/index',
+    link: '/js/',
   },
   {
     text: '基本语法',
@@ -136,15 +136,15 @@ export default [
     text: '标准库',
     items: [
       { link: '/js/stdlib/object' },
-      { link: '/js/stdlib/attributes' },
       { link: '/js/stdlib/array' },
-      { link: '/js/stdlib/wrapper' },
       { link: '/js/stdlib/number' },
       { link: '/js/stdlib/string' },
       { link: '/js/stdlib/date' },
       { link: '/js/stdlib/math' },
       { link: '/js/stdlib/regexp' },
       { link: '/js/stdlib/json' },
+      { link: '/js/stdlib/wrapper' },
+      { link: '/js/stdlib/attributes' },
     ],
   },
   {
