@@ -144,7 +144,6 @@ export default [
       { link: '/js/stdlib/regexp' },
       { link: '/js/stdlib/json' },
       { link: '/js/stdlib/wrapper' },
-      { link: '/js/stdlib/attributes' },
     ],
   },
   {
