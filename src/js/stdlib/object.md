@@ -272,3 +272,103 @@ Object.prototype.toString.call(null); // '[object Null]'
 const obj = new Number(123);
 obj.valueOf(); // 123
 ```
+
+## 属性描述对象
+
+属性描述对象（Property Descriptor）是描述 JavaScript 对象属性特征的内部对象。
+
+### 描述对象的属性
+
+属性描述对象包含以下属性：
+
+- `value` - 属性的值，默认为 `undefined`
+- `writable` - 属性值是否可写，默认为 `true`
+- `enumerable` - 属性是否可枚举，默认为 `true`
+- `configurable` - 属性描述符是否可配置，默认为 `true`
+- `get` - 属性的 getter 函数，默认为 `undefined`
+- `set` - 属性的 setter 函数，默认为 `undefined`
+
+其中 `value`、`writable` 与 `get`、`set` 是互斥的，不能同时存在。
+
+### Object.defineProperty 详解
+
+[Object.defineProperty()](#Object.defineProperty) 方法允许精确地添加或修改对象上的属性。通过属性描述对象可以控制属性的行为。
+
+```js
+const obj = {};
+
+// 定义一个不可写的属性
+Object.defineProperty(obj, 'key', {
+  value: 'static',
+  writable: false,
+  enumerable: true,
+  configurable: false
+});
+
+console.log(obj.key); // "static"
+obj.key = 'new value';
+console.log(obj.key); // "static" (未改变)
+
+// 定义一个访问器属性
+Object.defineProperty(obj, 'computed', {
+  get: function() { 
+    return this.key + '!';
+  },
+  set: function(value) {
+    this.key = value.replace('!', '');
+  },
+  enumerable: true,
+  configurable: true
+});
+
+console.log(obj.computed); // "static!"
+obj.computed = 'dynamic!';
+console.log(obj.key); // "dynamic"
+```
+
+通过使用 [Object.defineProperties()](#Object.defineProperties) 可以同时定义多个属性：
+
+```js
+const obj = {};
+Object.defineProperties(obj, {
+  'property1': {
+    value: true,
+    writable: true
+  },
+  'property2': {
+    value: 'Hello',
+    writable: false
+  }
+});
+```
+
+获取属性描述符可以使用 [Object.getOwnPropertyDescriptor()](#Object.getOwnPropertyDescriptor)：
+
+```js
+const obj = { p: 'a' };
+const descriptor = Object.getOwnPropertyDescriptor(obj, 'p');
+// { value: "a", writable: true, enumerable: true, configurable: true }
+```
+
+### 控制对象状态
+
+属性描述符与对象状态控制方法配合使用可以实现更精细的对象控制：
+
+```js
+// 创建一个不可扩展的对象
+const obj = {};
+Object.preventExtensions(obj);
+// Object.defineProperty(obj, 'prop', { value: 1 }); // 抛出 TypeError
+
+// 创建一个密封的对象（不可添加/删除属性）
+const sealed = { prop: 1 };
+Object.seal(sealed);
+// Object.defineProperty(sealed, 'prop2', { value: 2 }); // 抛出 TypeError
+sealed.prop = 2; // 可以修改现有属性的值
+
+// 创建一个冻结的对象（不可修改）
+const frozen = { prop: 1 };
+Object.freeze(frozen);
+frozen.prop = 2; // 严格模式下会抛出 TypeError
+```
+
