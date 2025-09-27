@@ -49,6 +49,9 @@ class LoadingService {
       background: resolved.background,
       className: resolved.className,
       zIndex: resolved.zIndex,
+      onClose: () => {
+        this.map.delete(resolved.target)
+      },
       onClosed: () => {
         resolved.onClosed?.()
         if (!this.map.has(resolved.target)) {
@@ -65,17 +68,13 @@ class LoadingService {
     vnode.appContext = resolved.appContext || this.appContext || null
 
     render(vnode, container)
-
     resolved.target.appendChild(container.firstElementChild!)
     addClassName(resolved)
-
-    const vc = vnode.component!
 
     const meta = {
       close: () => {
         if (resolved.beforeClose && !resolved.beforeClose()) return
-        vc.exposed!.visible.value = false
-        this.map.delete(resolved.target)
+        vnode!.component!.exposed!.visible.value = false
       },
     }
 

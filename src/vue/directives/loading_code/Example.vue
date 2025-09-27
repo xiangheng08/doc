@@ -10,7 +10,7 @@ const handleFullScreenLoading = () => {
   const instance = service.create({ fullscreen: true, lock: true })
   setTimeout(() => {
     instance.close()
-  }, 5000)
+  }, 3000)
 }
 </script>
 

@@ -9,14 +9,11 @@ interface Props {
 defineProps<Props>()
 
 const emit = defineEmits<{
+  (e: 'close'): void
   (e: 'closed'): void
 }>()
 
 const visible = ref(true)
-
-const handleAfterLeave = () => {
-  emit('closed')
-}
 
 defineExpose({
   visible,
@@ -24,7 +21,12 @@ defineExpose({
 </script>
 
 <template>
-  <Transition appear name="loading" @after-leave="handleAfterLeave">
+  <Transition
+    appear
+    name="loading"
+    @before-leave="emit('close')"
+    @after-leave="emit('closed')"
+  >
     <div
       v-show="visible"
       :class="['loading-container', className]"
@@ -48,6 +50,7 @@ defineExpose({
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .loading-enter-active,
 .loading-leave-active {
