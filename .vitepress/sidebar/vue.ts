@@ -59,7 +59,10 @@ export default [
   },
   {
     text: 'Directives',
-    items: [{ link: '/vue/directives/slide-in' }],
+    items: [
+      { link: '/vue/directives/slide-in' },
+      { link: '/vue/directives/loading' },
+    ],
   },
   {
     text: 'Mixins',
