@@ -2,54 +2,22 @@ import path from 'node:path'
 import { existsSync } from 'node:fs'
 import { readFile, stat } from 'node:fs/promises'
 import { debounce } from '.vitepress/utils/common'
-import type { DefaultTheme, SiteConfig, Plugin, UserConfig } from 'vitepress'
-
-const isMultiSidebar = (
-  sidebar: any,
-): sidebar is DefaultTheme.SidebarMulti => {
-  return typeof sidebar === 'object' && !Array.isArray(sidebar)
-}
-
-// 匹配文章标题
-const articleTitleRegex = /^#\s*(.+)/m
-
-const getArticleTitle = (content: string) => {
-  const match = content.match(articleTitleRegex)
-  return match?.[1].trim()
-}
+import type {
+  DefaultTheme,
+  SiteConfig,
+  Plugin,
+  UserConfig,
+} from 'vitepress'
 
 type ArticleMeta = {
-  text?: string
+  /**
+   * 标题
+   */
+  title?: string
+  /**
+   * 需要更新
+   */
   needUpdate?: boolean
-}
-
-const getArticleMeta = async (fullPath: string): Promise<ArticleMeta> => {
-  const content = await readFile(fullPath, 'utf-8')
-  let text = getArticleTitle(content)
-  return {
-    text: text ? escapeHtml(text) : void 0,
-  }
-}
-
-const escapeHtml = (input: string) => {
-  const map: { [key: string]: string } = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#x27;',
-    '/': '&#x2F;',
-    '`': '',
-  }
-
-  const regex = /[&<>"'/`]/g
-
-  return input.replaceAll('\\', '').replace(regex, (match) => map[match])
-}
-
-// 比较两个 ArticleMeta 看是否需要重启服务
-const compareArticleMeta = (meta1: ArticleMeta, meta2: ArticleMeta) => {
-  return meta1.text !== meta2.text
 }
 
 interface VitePressUserConfig extends UserConfig {
@@ -65,47 +33,36 @@ export default function sidebarPlugin({
 }: SidebarPluginOptions = {}): Plugin {
   const articleMetaCache = new Map<string, ArticleMeta>()
   let srcDir = ''
+  let _restartServer: () => void
 
+  // 处理单个 sidebarItem
   const handleSidebarItem = async (item: DefaultTheme.SidebarItem) => {
-    if (!item.link) return
+    // 没有 link 属性或有 text 属性跳过
+    if (!item.link || item.text) return
 
-    if (item.link.endsWith('.md')) {
-      console.warn(`sidebar item link should not end with '.md'`)
-    }
+    const fullPath = await resolveSidebarItemLinkPath(item.link, srcDir)
 
-    let fullPath = path.join(srcDir, item.link + '.md')
+    if (!fullPath) return
 
-    if (!existsSync(fullPath)) {
-      const dir = path.join(srcDir, item.link)
-      if (existsSync(dir) && (await stat(dir)).isDirectory()) {
-        // 如果 link 是目录，则指向目录下的 index.md
-        fullPath = path.join(dir, 'index.md')
-      } else {
-        // 如果 link 指向的文件不存在，则忽略
-        return
-      }
-    }
+    const meta = articleMetaCache.get(fullPath)
 
-    if (!existsSync(fullPath)) return
-
-    const oldMeta = articleMetaCache.get(fullPath)
-
-    if (oldMeta && oldMeta.needUpdate) {
-      item.text = oldMeta.text
-    } else if (!item.text) {
+    if (meta && meta.needUpdate) {
+      item.text = meta.title
+    } else {
       // 设置 sidebar 的 text 属性
       try {
-        const meta = await getArticleMeta(fullPath)
+        const newMeta = await getArticleMeta(fullPath)
 
-        item.text = meta.text
+        item.text = newMeta.title
 
-        articleMetaCache.set(fullPath, meta)
+        articleMetaCache.set(fullPath, newMeta)
       } catch (error) {
         console.error(error)
       }
     }
   }
 
+  // 处理 sidebar
   const handleSidebar = async (sidebar: DefaultTheme.SidebarItem[]) => {
     for (const item of sidebar) {
       await handleSidebarItem(item)
@@ -141,22 +98,21 @@ export default function sidebarPlugin({
       return config
     },
     configureServer({ watcher, restart }) {
-      const _restart = debounce(() => restart(), restartWait)
-      watcher.add('**/*.md').on('all', async (type, path, Stats) => {
+      _restartServer = debounce(() => restart(), restartWait)
+
+      watcher.on('all', async (type, path) => {
         // 不是 .md 文件，或者没有处理过这个文件，则忽略
-        if (!path.endsWith('.md') && !articleMetaCache.has(path)) {
-          return
-        }
+        if (!path.endsWith('.md') && !articleMetaCache.has(path)) return
 
         if (type === 'add') {
-          _restart()
+          _restartServer()
         } else if (type === 'change') {
           const meta = await getArticleMeta(path)
           const oldMeta = articleMetaCache.get(path)
           if (!oldMeta || compareArticleMeta(meta, oldMeta)) {
             meta.needUpdate = true
             articleMetaCache.set(path, meta)
-            _restart()
+            _restartServer()
           }
         } else if (type === 'unlink') {
           articleMetaCache.delete(path)
@@ -164,4 +120,97 @@ export default function sidebarPlugin({
       })
     },
   }
+}
+
+const isMultiSidebar = (
+  sidebar: any,
+): sidebar is DefaultTheme.SidebarMulti => {
+  return typeof sidebar === 'object' && !Array.isArray(sidebar)
+}
+
+// 获取文章标题
+const getArticleTitle = (content: string) => {
+  const match = content.match(/^#\s+(.+)/m)
+  if (!match) return void 0
+
+  // 获取标题文本并去除首尾空格
+  let title = match[1].trim()
+
+  // 移除标题中的HTML标签，如<Badge>等
+  title = title.replace(/<[^>]*>/g, '')
+
+  // 处理内联代码标记，如`String` -> String
+  title = title.replace(/`([^`]+)`/g, '$1')
+
+  // 移除其他可能的标记，如*、**等
+  title = title.replace(/\*{1,2}([^*]+)\*{1,2}/g, '$1')
+
+  // 移除链接语法 [text](link) -> text
+  title = title.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+
+  // 最后去除首尾空格
+  return title.trim() || void 0
+}
+
+// 转义 HTML 字符
+const escapeHtml = (input: string) => {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    '/': '&#x2F;',
+    '`': '',
+  }
+
+  const regex = /[&<>"'/`]/g
+
+  return input.replaceAll('\\', '').replace(regex, (match) => map[match])
+}
+
+// 获取文章元数据
+const getArticleMeta = async (fullPath: string): Promise<ArticleMeta> => {
+  const content = await readFile(fullPath, 'utf-8')
+  let title = getArticleTitle(content)
+  return {
+    title: title ? escapeHtml(title) : void 0,
+  }
+}
+
+// 比较两个 ArticleMeta 看是否需要重启服务
+const compareArticleMeta = (meta1: ArticleMeta, meta2: ArticleMeta) => {
+  return meta1.title !== meta2.title
+}
+
+// 解析 SidebarItem.link 所指向的文件路径
+const resolveSidebarItemLinkPath = async (
+  link: string,
+  srcDir: string,
+) => {
+  if (!link) return
+
+  let ext = '.md'
+
+  if (link.endsWith('.md')) {
+    ext = ''
+    console.warn(`sidebar item link should not end with '.md'`)
+  }
+
+  let fullPath = path.join(srcDir, link + ext)
+
+  if (!existsSync(fullPath)) {
+    const dir = path.join(srcDir, link)
+    if (existsSync(dir) && (await stat(dir)).isDirectory()) {
+      // 如果 link 是目录，则指向目录下的 index.md
+      fullPath = path.join(dir, 'index.md')
+    } else {
+      // 如果 link 指向的文件不存在，则忽略
+      return
+    }
+  }
+
+  if (!existsSync(fullPath)) return
+
+  return fullPath
 }
