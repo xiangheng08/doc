@@ -14,6 +14,6 @@
 
 <<< ./loading_code/LoadingContent.vue
 
-<<< ./loading_code/Loading.css
+<<< ./loading_code/loading.css
 
 :::
