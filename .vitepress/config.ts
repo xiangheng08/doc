@@ -53,6 +53,12 @@ const nav: DefaultTheme.NavItem[] = [
         ],
       },
       {
+        text: '工程化',
+        items: [
+          { text: '前端工程化', link: '/front-end-engineering/' },
+        ],
+      },
+      {
         text: '实用工具和库',
         items: [
           { text: 'Axios', link: '/axios/' },

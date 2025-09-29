@@ -38,6 +38,7 @@ import docker from './docker'
 import uniapp from './uniapp'
 import algorithm from './algorithm'
 import github from './github'
+import frontEndEngineering from './front-end-engineering'
 
 export default {
   '/git/': git,
@@ -79,4 +80,5 @@ export default {
   '/uniapp/': uniapp,
   '/algorithm/': algorithm,
   '/github/': github,
+  '/front-end-engineering/': frontEndEngineering,
 } satisfies DefaultTheme.Sidebar
