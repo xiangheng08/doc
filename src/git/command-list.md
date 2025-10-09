@@ -65,9 +65,17 @@
 
 -   `git reset <file>`: 取消对文件的暂存。
 -   `git reset`: 取消对所有文件的暂存。
--   `git reset --hard <commit>`: 重置 HEAD 到指定的提交，丢弃所有改动。
+-   `git reset --soft <commit>`: 移动 HEAD 指针，不改变暂存区和工作区。
+-   `git reset --soft HEAD~1`: 场景：提交信息写错了，撤销刚刚的提交。
+-   `git reset --mixed <commit>`（默认）: 移动 HEAD 指针，并重置暂存区，保留工作区。
+-   `git reset --hard <commit>`: 移动 HEAD 指针，同时重置暂存区和工作区（慎用，此操作不可恢复）。
+-   `git reset --hard HEAD~1`: 移动 HEAD 到最近一次的提交，同时重置暂存区和工作区。
+-   `git reset --hard HEAD~2`: 移动 HEAD 到最近两次的提交，同时重置暂存区和工作区。
 -   `git checkout <file>`: 恢复文件到最近一次提交的状态。
--   `git reset --hard HEAD`：将当前分支重置为最新的提交，删除工作目录中未提交的更改。
+
+```bash
+git reset HEAD~1   # 等价于 git reset --mixed HEAD~1
+```
 
 ## 标签
 
