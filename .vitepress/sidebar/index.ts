@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'vitepress'
+import type { DefaultTheme } from 'vitepress'
 import git from './git'
 import electron from './electron'
 import elementPlus from './element-plus'
