@@ -11,6 +11,7 @@ export default [
   { link: '/ts/event-emitter' },
   { link: '/ts/currying-type' },
   { link: '/ts/dto' },
+  { link: '/ts/path-alias' },
   {
     text: 'Utils',
     items: [{ link: '/ts/utils/paste/' }],
