@@ -16,6 +16,7 @@ export default [
   { link: '/js/functions' },
   { link: '/js/tips' },
   { link: '/js/regex' },
+  { link: '/js/regexes' },
   { link: '/js/this' },
   { link: '/js/prototype-chain' },
   { link: '/js/closure' },
