@@ -125,6 +125,41 @@
 - `1200px`：大桌面 (xl)
 - `1440px`：超大屏 (xxl)
 
+```css
+/* PC设备优先 */
+@media (max-width: 1440px) {
+
+}
+@media (max-width: 1200px) {
+
+}
+@media (max-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+}
+@media (max-width: 576px) {
+
+}
+
+/* 移动设备优先 */
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1440px) {
+  
+}
+```
 
 ## viewport
 
