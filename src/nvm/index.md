@@ -2,6 +2,10 @@
 
 在工作中，我们可能同时在进行多个不同的项目开发，每个项目的需求不同，进而不同项目必须依赖不同版本的 NodeJS 运行环境，这种情况下，对于维护多个版本的 node 将会是一件非常麻烦的事情，nvm 就是为解决这个问题而产生的，他可以方便的在同一台设备上进行多个 node 版本之间切换。
 
+::: warning
+以下教程基于 [nvm v1.1.7](https://github.com/coreybutler/nvm-windows/releases/tag/1.1.7) 仅供参考，不代表实际情况，请根据实际需求和系统环境进行判断和选择。
+:::
+
 ## 下载安装
 
 ### nvm 下载
@@ -12,7 +16,7 @@
 
 ### nvm 安装
 
-如果电脑上之前已经单独安装了 node，先卸载，然后解压 nvm-setup.zip 安装包，进入解压的文件夹，双击 exe 后缀文件进行安装。
+如果电脑上之前已经单独安装了 node，**先卸载**，然后解压 nvm-setup.zip 安装包，进入解压的文件夹，双击 exe 后缀文件进行安装。
 
 ![img](./images/03637364b98aa3af5f932985e9f5a125.png)
 
@@ -41,9 +45,13 @@ nvm 默认值时国外的下载源，下载速度较慢，设置为国内的下�
 在后面添加下面两行。
 
 ```
-node_mirror: https://npm.taobao.org/mirrors/node/
-npm_mirror: https://npm.taobao.org/mirrors/npm/
+node_mirror: https://npmmirror.com/mirrors/node/
+npm_mirror: https://npmmirror.com/mirrors/npm/
 ```
+
+::: tip
+由于 `https://npm.taobao.org` 镜像地址已经失效，现已更换为 `https://npmmirror.com`，因此上方配置中的地址与图片内容不一致，请以上方文字地址为准。
+:::
 
 如下
 
