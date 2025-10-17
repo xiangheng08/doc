@@ -26,6 +26,7 @@
     "@types/minimist": "^1.2.5",
     "@types/ms": "^2.1.0",
     "@types/node": "^22.10.1",
+    "axios": "^1.12.2",
     "dotenv": "^16.4.6",
     "fast-glob": "^3.3.2",
     "markdown-it-container": "^4.0.0",
