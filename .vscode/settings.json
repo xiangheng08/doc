@@ -27,6 +27,7 @@
     "unplugin",
     "vite",
     "vitepress",
-    "vuex"
+    "vuex",
+    "webrtc"
   ]
 }

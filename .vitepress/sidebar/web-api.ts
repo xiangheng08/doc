@@ -13,4 +13,5 @@ export default [
   { link: '/web-api/url-search-params' },
   { link: '/web-api/web-share' },
   { link: '/web-api/websocket' },
+  { link: '/web-api/webrtc' },
 ] satisfies DefaultTheme.Sidebar
