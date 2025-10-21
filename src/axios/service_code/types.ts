@@ -1,16 +1,19 @@
-import { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults } from 'axios'
+import {
+  AxiosRequestConfig,
+  AxiosResponse,
+  CreateAxiosDefaults,
+} from 'axios'
 
 export interface RequestServiceConfig extends CreateAxiosDefaults {
   /**
-   * 重试默认配置
-   *
-   * @description 这里的配置将作为重试的默认配置，如果某个请求的配置有重试配置，则该配置将覆盖默认配置
-   *
-   * `onRetry` 略有不同，当重试触发时，默认配置和某个请求的配置中的 `onRetry` 都会被执行
-   *
-   * 顺序是某个请求的配置 -> 默认配置
+   * 默认重试配置
    */
   retry?: RetryConfig
+
+  /**
+   * 默认请求缓存配置
+   */
+  cache?: RequestCacheConfig
 
   /**
    * 请求队列配置
@@ -20,30 +23,44 @@ export interface RequestServiceConfig extends CreateAxiosDefaults {
 
 export interface RequestConfig<D = any> extends AxiosRequestConfig<D> {
   /**
-   * 重试配置，会覆盖默认配置
-   *
-   * `onRetry` 略有不同，当重试触发时，默认配置和某个请求的配置中的 `onRetry` 都会被执行
-   *
-   * 顺序是某个请求的配置 -> 默认配置
-   */
-  retry?: RetryConfig | boolean
-
-  /**
    * 请求优先级 0-9，值越大，优先级越高
    *
    * @default 5
    */
   priority?: number
+
+  /**
+   * 阻止重复请求策略
+   *
+   * 'cancel-new': 取消新的请求，继续使用旧的请求
+   * 'cancel-old': 取消旧的请求，使用新的请求
+   * 'link': 将新的请求链接到旧的请求，新的请求直接使用旧的请求的响应数据
+   */
+  preventDuplicate?: 'cancel-new' | 'cancel-old' | 'link'
+
+  /**
+   * 重试配置，会覆盖默认配置
+   */
+  retry?: RetryConfig | boolean
+
+  /**
+   * 请求缓存配置，会覆盖默认配置
+   */
+  cache?: RequestCacheConfig | boolean
 }
 
 export interface RetryConfig {
   /**
    * 最大重试次数
+   *
+   * @default 2
    */
   maxCount?: number
 
   /**
-   * 重试间隔时间
+   * 重试间隔时间 (ms)
+   *
+   * @default 500
    */
   delay?: number
 
@@ -56,11 +73,21 @@ export interface RetryConfig {
 
   /**
    * 是否重试
+   *
+   * 返回 true 时执行重试
+   *
+   * 执行顺序：
+   * 1. `RequestServiceConfig.retry.retryIf` 这里用于控制所有请求是否重试
+   * 2. `RequestConfig.retry.retryIf` 这里用于控制单个请求是否重试
    */
-  retryIf?: (error: any) => boolean
+  retryIf?: (error: any, count: number) => boolean
 
   /**
    * 重试事件
+   *
+   * 执行顺序：
+   * 1. `RequestServiceConfig.retry.onRetry`
+   * 2. `RequestConfig.retry.onRetry`
    */
   onRetry?: (error: any, count: number) => void
 }
