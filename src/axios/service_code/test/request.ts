@@ -2,9 +2,19 @@ import { RequestConfig, RequestService } from '..'
 
 const service = new RequestService({
   baseURL: 'http://localhost:23520',
-  timeout: 10000,
+  timeout: 3000,
   queue: {
     maxConcurrent: 6,
+  },
+  retry: {
+    retryIf() {
+      console.log('global retryIf')
+
+      return true
+    },
+    onRetry(error, retryCount, delay) {
+      console.log('global retry', retryCount, delay)
+    },
   },
 })
 
@@ -16,8 +26,12 @@ function waitAPI(ms?: number) {
   return service.get('/wait', { params: { ms } })
 }
 
-function errorAPI() {
-  return service.get('/error')
+function errorAPI(config?: RequestConfig) {
+  return service.get('/error', config)
+}
+
+function timeoutAPI() {
+  return service.get('/timeout')
 }
 
 function testQueue() {
@@ -66,13 +80,31 @@ function testPriority() {
   }
 }
 
+function testRetry() {
+  errorAPI({
+    retry: {
+      timing: 'exponential',
+      retryIf() {
+        console.log('retryIf')
+
+        return true
+      },
+      onRetry(error, retryCount, delay) {
+        console.log('retry', retryCount, delay)
+      },
+    },
+  }).catch((error) => {
+    console.log('final error')
+  })
+}
+
 // testQueue()
 // errorAPI()
 
 test()
 
 async function test() {
-  testPriority()
+  testRetry()
 }
 
 function random(min: number, max: number) {

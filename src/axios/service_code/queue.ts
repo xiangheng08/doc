@@ -2,12 +2,16 @@ import { CanceledError, Canceler } from 'axios'
 import { RequestConfig, RequestQueueConfig } from './types'
 
 export class RequestQueue {
+  static readonly DEFAULT_PRIORITY = 5
+  static readonly DEFAULT_MAX_CONCURRENT = 5
+
   private readonly pending: TaskContext[] = []
   private readonly concurrent: TaskContext[] = []
   private readonly maxConcurrent: number
 
   constructor(config: RequestQueueConfig = {}) {
-    this.maxConcurrent = config.maxConcurrent || 5
+    this.maxConcurrent =
+      config.maxConcurrent ?? RequestQueue.DEFAULT_MAX_CONCURRENT
   }
 
   private process() {
@@ -204,7 +208,7 @@ export class TaskContext<T = any> {
   ) {
     this.id = id
     this.config = config
-    this.priority = config.priority ?? 5
+    this.priority = config.priority ?? RequestQueue.DEFAULT_PRIORITY
     this.task = task
     this.cancel = cancel
     this._resolve = resolve

@@ -7,6 +7,8 @@ import {
 export interface RequestServiceConfig extends CreateAxiosDefaults {
   /**
    * 默认重试配置
+   *
+   * 配置此属性后，所有请求都会启用重试机制
    */
   retry?: RetryConfig
 
@@ -44,6 +46,11 @@ export interface RequestConfig<D = any> extends AxiosRequestConfig<D> {
   retry?: RetryConfig | boolean
 
   /**
+   * 重试次数
+   */
+  retryCount?: number
+
+  /**
    * 请求缓存配置，会覆盖默认配置
    */
   cache?: RequestCacheConfig | boolean
@@ -69,7 +76,7 @@ export interface RetryConfig {
    *
    * @default 'linear'
    */
-  timing: 'linear' | 'exponential'
+  timing?: 'linear' | 'exponential'
 
   /**
    * 是否重试
@@ -89,7 +96,7 @@ export interface RetryConfig {
    * 1. `RequestServiceConfig.retry.onRetry`
    * 2. `RequestConfig.retry.onRetry`
    */
-  onRetry?: (error: any, count: number) => void
+  onRetry?: (error: any, count: number, delay: number) => void
 }
 
 export interface RequestQueueConfig {

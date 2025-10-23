@@ -19,13 +19,12 @@ router.all('/wait', async (ctx) => {
 
 router.all('/error', async (ctx) => {
   await sleep(random(100, 500))
-  ctx.status = 500
+  ctx.status = 400
   ctx.body = 'error'
 })
 
 router.all('/timeout', async (ctx) => {
-  await sleep(random(1000, 2000))
-  ctx.body = 'ok'
+  await sleep(50000)
 })
 
 router.all('/api', async (ctx) => {
