@@ -121,14 +121,19 @@ export class RequestQueue {
           break
       }
 
-      const index = this.pending.findIndex(
-        (item) => item.priority < context.priority,
-      )
-      if (index === -1) {
-        this.pending.push(context)
-      } else {
+      if (this.pending.length > 0) {
+        let index = this.pending.length
+        for (let i = this.pending.length - 1; i > 0; i--) {
+          if (this.pending[i].priority >= context.priority) {
+            break
+          }
+          index = i
+        }
         this.pending.splice(index, 0, context)
+      } else {
+        this.pending.push(context)
       }
+
       this.process()
     })
   }
