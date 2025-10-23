@@ -113,7 +113,7 @@ export class RequestQueue {
           {
             const old = this.find(id)
             if (old) {
-              old.links.push(context)
+              old.link(context)
               this.process()
               return
             }
@@ -121,9 +121,14 @@ export class RequestQueue {
           break
       }
 
-      this.pending.push(context)
-      // 优先级排序
-      this.pending.sort((a, b) => b.priority - a.priority)
+      const index = this.pending.findIndex(
+        (item) => item.priority < context.priority,
+      )
+      if (index === -1) {
+        this.pending.push(context)
+      } else {
+        this.pending.splice(index, 0, context)
+      }
       this.process()
     })
   }
@@ -228,5 +233,9 @@ export class TaskContext<T = any> {
     }
     this.links.length = 0
     this.isFinished = true
+  }
+
+  link(content: TaskContext) {
+    this.links.push(content)
   }
 }

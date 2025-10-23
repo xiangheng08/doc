@@ -59,11 +59,22 @@ function testDuplicate() {
   }, 1000)
 }
 
+function testPriority() {
+  for (let i = 0; i < 99; i++) {
+    const priority = random(0, 9)
+    API({ priority, params: { priority } })
+  }
+}
+
 // testQueue()
 // errorAPI()
 
 test()
 
 async function test() {
-  testDuplicate()
+  testPriority()
+}
+
+function random(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
