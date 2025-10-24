@@ -39,6 +39,8 @@ import uniapp from './uniapp'
 import algorithm from './algorithm'
 import github from './github'
 import frontEndEngineering from './front-end-engineering'
+import webAssembly from './web-assembly'
+import webComponent from './web-component'
 
 export default {
   '/git/': git,
@@ -81,4 +83,6 @@ export default {
   '/algorithm/': algorithm,
   '/github/': github,
   '/front-end-engineering/': frontEndEngineering,
+  '/web-assembly/': webAssembly,
+  '/web-component/': webComponent,
 } satisfies DefaultTheme.Sidebar

@@ -32,6 +32,8 @@ const nav: DefaultTheme.NavItem[] = [
           { text: 'TypeScript', link: '/ts/intro' },
           { text: 'WebAPI', link: '/web-api/' },
           { text: 'HTTP', link: '/http/' },
+          { text: 'Web Assembly', link: '/web-assembly/' },
+          { text: 'Web Component', link: '/web-component/' },
         ],
       },
       {
