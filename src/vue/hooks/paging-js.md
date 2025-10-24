@@ -2,8 +2,8 @@
 
 > paging.js
 
-<<< ./paging.js
+<<< ./paging-js_assets/paging.js
 
 > paging.d.ts
 
-<<< ./paging.d.ts
+<<< ./paging-js_assets/paging.d.ts

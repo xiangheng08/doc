@@ -4,7 +4,7 @@
 
 通过将 `shouldLock` 参数设置为 `false`，可以仅获取函数的运行状态，而不进行锁定操作。
 
-<<< ./lock.ts
+<<< ./lock_assets/lock.ts
 
 实践：
 

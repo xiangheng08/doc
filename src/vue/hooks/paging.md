@@ -30,4 +30,4 @@ const { pager, getList, resetPage, resetParams, refresh } = usePaging({
 
 代码：
 
-<<< ./paging.ts
+<<< ./paging_assets/paging.ts
