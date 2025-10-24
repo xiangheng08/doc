@@ -13,10 +13,9 @@ export type PagingParams = {
 
 export type Params = Record<string, any>
 
-export interface Pager<
-  Item = any,
-  Extra extends Record<string, any> = {},
-> {
+export type ExtraType = Record<string, any>
+
+export interface Pager<Item = any, Extra extends ExtraType = {}> {
   /**
    * 当前页码
    */
@@ -51,7 +50,7 @@ export interface Pager<
   finished: boolean
 }
 
-export interface PagingOptions {
+export interface PagingOptions<T = any> {
   /**
    * 初始页数
    */
@@ -63,7 +62,7 @@ export interface PagingOptions {
   /**
    * 请求方法
    */
-  fetchFu: (params: Params) => Promise<any>
+  fetchFu: (params: Params) => Promise<T>
   /**
    * 请求参数
    */
@@ -88,22 +87,42 @@ export interface PagingOptions {
    * 自定义参数过滤函数
    */
   filterFn?: (params: Params) => Params
+  /**
+   * 自定义获取列表数据的方法
+   */
+  fetchList?: (res: T) => any[]
+  /**
+   * 自定义获取列表数据的总数方法
+   */
+  fetchCount?: (res: T) => number
+  /**
+   * 自定义获取列表数据的额外数据方法
+   */
+  fetchExtra?: (res: T) => any
 }
 
 export const usePaging = <
+  T = any,
   Item = any,
-  Extra extends Record<string, any> = {},
->({
-  page_no = 1,
-  page_size = 15,
-  fetchFu,
-  params = {},
-  append = false,
-  initialLoading = false,
-  initialFetch = false,
-  filterValues = [void 0],
-  filterFn = (p) => p,
-}: PagingOptions) => {
+  Extra extends ExtraType = {},
+>(
+  options: PagingOptions<T>,
+) => {
+  const {
+    page_no = 1,
+    page_size = 15,
+    fetchFu,
+    params = {},
+    append = false,
+    initialLoading = false,
+    initialFetch = false,
+    filterValues = [void 0],
+    filterFn = (p) => p,
+    fetchList = (res: any) => res.list || [],
+    fetchCount = (res: any) => res.count || 0,
+    fetchExtra = (res: any) => res.extra || {},
+  } = options
+
   // 分页数据
   const pager = reactive<Pager<Item, Extra>>({
     page_no,
@@ -117,84 +136,74 @@ export const usePaging = <
   })
 
   // 记录初始参数
-  const initParams: Params = Object.freeze(cloneDeep(getRaw(params)))
+  const __params: Params = Object.freeze(cloneDeep(getRaw(params)))
   // 记录初始 pager
-  const initPager = Object.freeze(cloneDeep(pager))
+  const _pager = Object.freeze(cloneDeep(pager))
 
-  let setLastOutdate: () => void = () => {}
+  let setLastOutdate: (() => void) | undefined
 
-  /**
-   * 请求分页接口
-   */
+  /** 请求分页接口 */
   const getList = async () => {
-    setLastOutdate()
+    setLastOutdate?.()
     let outdated = false
     setLastOutdate = () => {
       outdated = true
+      setLastOutdate = void 0
     }
 
     pager.loading = true
 
-    return fetchFu({
-      page_no: pager.page_no,
-      page_size: pager.page_size,
-      ...filterFn(filterParams(params, filterValues)),
-    })
-      .then((res: any) => {
-        if (outdated) {
-          // 保证数据是最新的，如果请求已经过期，则不处理返回数据
-          return Promise.resolve(res)
-        }
-
-        pager.count = res?.count
-        pager.extra = res?.extra
-        pager.more = pager.page_no * pager.page_size < pager.count
-        pager.finished = !pager.more
-
-        if (append) {
-          pager.list.push(...res?.list)
-        } else {
-          pager.list = res?.list
-        }
-        return Promise.resolve(res)
+    try {
+      const res = await fetchFu({
+        page_no: pager.page_no,
+        page_size: pager.page_size,
+        ...filterFn(filterParams(params, filterValues)),
       })
-      .finally(() => {
-        pager.loading = false
-      })
+
+      // 保证数据是最新的，如果请求已经过期，则不处理返回数据
+      if (outdated) return
+
+      const list = fetchList(res)
+      const count = fetchCount(res)
+      const extra = fetchExtra(res)
+
+      pager.count = count
+      pager.extra = extra
+      pager.more = pager.page_no * pager.page_size < pager.count
+      pager.finished = !pager.more
+
+      if (append) {
+        pager.list.push(...list)
+      } else {
+        pager.list = list
+      }
+    } catch (error) {
+      throw error
+    } finally {
+      pager.loading = false
+    }
   }
-  /**
-   * 重置页码
-   */
+  /** 重置页码 */
   const resetPage = () => {
-    pager.page_no = initPager.page_no
+    pager.page_no = _pager.page_no
     getList()
   }
-  /**
-   * 重置参数
-   */
+  /** 重置参数 */
   const resetParams = () => {
     if (isRef(params)) {
-      params.value = cloneDeep(initParams)
+      params.value = cloneDeep(__params)
     } else {
       // 清空 params
       for (const key in params) {
         delete params[key]
       }
-      Object.assign(params, cloneDeep(initParams))
+      Object.assign(params, cloneDeep(__params))
     }
     getList()
   }
-  /**
-   * 重置 pager
-   */
+  /** 重置 pager */
   const resetPager = () => {
-    Object.assign(pager, cloneDeep(initPager))
-  }
-  /**
-   * 刷新
-   */
-  const refresh = () => {
-    resetPager()
+    Object.assign(pager, cloneDeep(_pager))
     getList()
   }
 
@@ -202,14 +211,7 @@ export const usePaging = <
     getList()
   }
 
-  return {
-    pager,
-    getList,
-    resetPage,
-    resetParams,
-    resetPager,
-    refresh,
-  }
+  return { pager, getList, resetPage, resetParams, resetPager }
 }
 
 // 获取原始数据（辅助函数）
