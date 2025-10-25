@@ -172,6 +172,11 @@ async function getMultiSidebar() {
   const files = await fg(['**/*.js', '!index.js'], { cwd: outDir })
   for (const file of files) {
     const module = await import(pathToFileURL(join(outDir, file)).href)
+    if (!module.default) continue
+    if (!Array.isArray(module.default)) {
+      console.warn(`${file} is not a valid sidebar file`)
+      continue
+    }
     const sidebarPath = file.replace(extname(file), '')
     sidebar[`/${sidebarPath}/`] = module.default
   }

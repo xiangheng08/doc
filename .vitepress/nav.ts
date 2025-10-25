@@ -22,8 +22,7 @@ export default [
         items: [
           { text: 'Vue', link: '/vue/' },
           { text: 'React', link: '/react/' },
-          { text: 'Element UI', link: '/element-ui/' },
-          { text: 'Element Plus', link: '/element-plus/' },
+          { text: 'UI 框架', link: '/ui/element-plus/' },
           { text: 'VitePress', link: '/vitepress/' },
         ],
       },
