@@ -1,3 +1,5 @@
+import { deepClone } from './utils'
+
 export interface RequestCacheStorageConfig {
   expireTime: number
 }
@@ -30,12 +32,12 @@ export class MemoryStorage implements RequestCacheStorage {
       this.remove(key)
       return null
     }
-    return item
+    return deepClone(item.value)
   }
 
   set(key: string, value: any) {
     this.storage[key] = {
-      value,
+      value: deepClone(value),
       expireTime: Date.now() + this.expireTime,
     }
   }
@@ -67,7 +69,7 @@ export class SessionStorage implements RequestCacheStorage {
         return null
       }
 
-      return item
+      return item.value
     } catch (e) {
       return null
     }
@@ -108,7 +110,7 @@ export class LocalStorage implements RequestCacheStorage {
         return null
       }
 
-      return item
+      return item.value
     } catch (e) {
       return null
     }

@@ -167,9 +167,9 @@ export class RequestQueue {
   /**
    * 清空队列
    */
-  clear() {
+  clear(reason = 'task removed') {
     for (const context of this.pending) {
-      context.reject(new CanceledError('task removed'))
+      context.reject(new CanceledError(reason))
     }
     const count = this.pending.length
     this.pending.length = 0

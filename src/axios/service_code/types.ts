@@ -1,4 +1,5 @@
 import {
+  AxiosInterceptorManager,
   AxiosRequestConfig,
   AxiosResponse,
   CreateAxiosDefaults,
@@ -51,9 +52,23 @@ export interface RequestConfig<D = any> extends AxiosRequestConfig<D> {
   retryCount?: number
 
   /**
-   * 请求缓存配置，会覆盖默认配置
+   * 是否启用缓存
    */
-  cache?: RequestCacheConfig | boolean
+  cache?: boolean
+
+  /**
+   * 是否处理response
+   *
+   * @default true
+   */
+  handleResponse?: boolean
+
+  /**
+   * 是否携带token
+   *
+   * @default true
+   */
+  withToken?: boolean
 }
 
 export interface RetryConfig {
@@ -136,4 +151,9 @@ export interface BaseResponse<T = any> {
   data: T
   code: number
   msg: string
+}
+
+export type ServiceInterceptors = {
+  request: AxiosInterceptorManager<RequestConfig>
+  response: AxiosInterceptorManager<AxiosResponse>
 }

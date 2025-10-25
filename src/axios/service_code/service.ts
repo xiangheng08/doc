@@ -3,29 +3,31 @@ import { RequestQueue } from './queue'
 import type { AxiosInstance } from 'axios'
 import type {
   BaseResponse,
-  RequestCacheConfig,
   RequestConfig,
   RequestServiceConfig,
   RetryConfig,
+  ServiceInterceptors,
 } from './types'
 import { isFunction, isNumber, isObject, sleep } from './utils'
+import { RequestCacher } from './cache'
 
 export class RequestService {
   private readonly retryConfig?: RetryConfig
-  private readonly cacheConfig?: RequestCacheConfig
   private readonly axiosInstance: AxiosInstance
   private readonly queue: RequestQueue
+  private readonly cacher: RequestCacher
 
-  constructor(config: RequestServiceConfig) {
+  constructor(config?: RequestServiceConfig) {
     const {
       retry: retryConfig,
       queue: queueConfig,
       cache: cacheConfig,
       ...axiosConfig
-    } = config
+    } = config || {}
 
     this.axiosInstance = axios.create(axiosConfig)
     this.queue = new RequestQueue(queueConfig)
+    this.cacher = new RequestCacher(cacheConfig)
 
     if (retryConfig) {
       this.retryConfig = {
@@ -35,7 +37,10 @@ export class RequestService {
         ...retryConfig,
       }
     }
-    this.cacheConfig = cacheConfig
+  }
+
+  get interceptors() {
+    return this.axiosInstance.interceptors as ServiceInterceptors
   }
 
   /**
@@ -179,6 +184,20 @@ export class RequestService {
   }
 
   /**
+   * 取消请求
+   */
+  cancel(id: string, reason = 'canceled') {
+    this.queue.remove(id, reason)
+  }
+
+  /**
+   * 取消所有请求
+   */
+  cancelAll(reason = 'canceled') {
+    this.queue.clear(reason)
+  }
+
+  /**
    * 发起请求
    */
   async request<R extends BaseResponse = BaseResponse, D = any>(
@@ -186,6 +205,8 @@ export class RequestService {
   ): Promise<R> {
     const mergedConfig: RequestConfig = {
       priority: RequestQueue.DEFAULT_PRIORITY,
+      handleResponse: true,
+      withToken: true,
       ...config,
     }
 
@@ -198,16 +219,11 @@ export class RequestService {
       }
     }
 
-    if (mergedConfig.cache === void 0 && mergedConfig.cache === true) {
-      mergedConfig.cache = this.cacheConfig
-    } else if (isObject(mergedConfig.cache)) {
-      mergedConfig.cache = {
-        ...this.cacheConfig,
-        ...mergedConfig.cache,
-      }
-    }
-
     const id = this.generateRequestID(mergedConfig)
+
+    const cache = this.cacher.get(id)
+    // 有缓存，直接返回
+    if (cache) return cache
 
     const source = axios.CancelToken.source()
     mergedConfig.cancelToken = source.token
@@ -221,6 +237,8 @@ export class RequestService {
         task,
         source.cancel,
       )
+      // 缓存
+      this.cacher.cache(id, mergedConfig, response)
       return response
     } catch (error) {
       if (this.shouldRetry(error)) {
