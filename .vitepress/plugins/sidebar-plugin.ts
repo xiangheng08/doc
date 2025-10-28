@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { existsSync } from 'node:fs'
 import { readFile, stat } from 'node:fs/promises'
+import fg from 'fast-glob'
 import { debounce } from '.vitepress/utils/common'
 import type {
   DefaultTheme,
@@ -28,6 +29,8 @@ interface SidebarPluginOptions {
   restartWait?: number
 }
 
+const sidebarDir = path.join(import.meta.dirname, '../sidebar')
+
 export default function sidebarPlugin({
   restartWait = 200,
 }: SidebarPluginOptions = {}): Plugin {
@@ -37,6 +40,11 @@ export default function sidebarPlugin({
 
   // 处理单个 sidebarItem
   const handleSidebarItem = async (item: DefaultTheme.SidebarItem) => {
+    if (item.text) {
+      // 转义 HTML
+      item.text = escapeHtml(item.text)
+    }
+
     // 没有 link 属性或有 text 属性跳过
     if (!item.link || item.text) return
 
@@ -99,6 +107,16 @@ export default function sidebarPlugin({
     },
     configureServer({ watcher, restart }) {
       _restartServer = debounce(() => restart(), restartWait)
+
+      fg('**/*.ts', { cwd: sidebarDir, absolute: true }).then((files) => {
+        watcher.add(files)
+      })
+
+      watcher.on('all', (type, path) => {
+        if (path.startsWith(sidebarDir)) {
+          _restartServer()
+        }
+      })
 
       watcher.on('all', async (type, path) => {
         // 不是 .md 文件，或者没有处理过这个文件，则忽略
