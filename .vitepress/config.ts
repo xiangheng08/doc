@@ -1,11 +1,8 @@
 import { isProd, noSearch } from './env'
-import { fileURLToPath, URL, pathToFileURL } from 'node:url'
-import { join, extname } from 'node:path'
-import { execSync } from 'node:child_process'
+import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vitepress'
 import type { DefaultTheme, MarkdownOptions } from 'vitepress'
-import fg from 'fast-glob'
 import nav from './nav'
 
 import { withBase } from './utils/url'
@@ -20,6 +17,7 @@ import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
 import processPublicHtml from './plugins/process-public-html-plugin'
 import { processPublicHtmlBuildEndHook } from './plugins/process-public-html-plugin'
+import { buildSidebar } from './build/sidebar'
 
 // https://vitepress.dev/reference/default-theme-config
 const themeConfig: DefaultTheme.Config = {
@@ -116,7 +114,7 @@ const markdown: MarkdownOptions = {
 
 // https://vitepress.dev/reference/site-config
 export default async () => {
-  themeConfig.sidebar = await getMultiSidebar()
+  themeConfig.sidebar = await buildSidebar()
 
   return defineConfig({
     title: 'My doc',
@@ -160,26 +158,4 @@ export default async () => {
       await processPublicHtmlBuildEndHook(siteConfig)
     },
   })
-}
-
-async function getMultiSidebar() {
-  // 编译侧边栏配置文件
-  execSync('tsc -p tsconfig.sidebar.json')
-
-  const sidebar: DefaultTheme.SidebarMulti = {}
-  const outDir = join(import.meta.dirname, '/cache/sidebar')
-
-  const files = await fg(['**/*.js', '!index.js'], { cwd: outDir })
-  for (const file of files) {
-    const module = await import(pathToFileURL(join(outDir, file)).href)
-    if (!module.default) continue
-    if (!Array.isArray(module.default)) {
-      console.warn(`${file} is not a valid sidebar file`)
-      continue
-    }
-    const sidebarPath = file.replace(extname(file), '')
-    sidebar[`/${sidebarPath}/`] = module.default
-  }
-
-  return sidebar
 }

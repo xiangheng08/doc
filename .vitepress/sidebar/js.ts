@@ -228,13 +228,13 @@ export default [
   {
     text: '网页元素接口',
     items: [
-      { link: '/js/elements/a' },
-      { link: '/js/elements/img' },
-      { link: '/js/elements/form' },
-      { link: '/js/elements/input' },
-      { link: '/js/elements/button' },
-      { link: '/js/elements/option' },
-      { link: '/js/elements/video' },
+      { link: '/js/elements/a', text: '<a>' },
+      { link: '/js/elements/img', text: '<img>' },
+      { link: '/js/elements/form', text: '<form>' },
+      { link: '/js/elements/input', text: '<input>' },
+      { link: '/js/elements/button', text: '<button>' },
+      { link: '/js/elements/option', text: '<option>' },
+      { link: '/js/elements/video', text: '<video>' },
     ],
   },
   {
