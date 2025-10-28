@@ -35,5 +35,7 @@ export async function buildSidebar() {
     sidebar[`/${sidebarPath}/`] = module.default
   }
 
+  console.log('build sidebar done.')
+
   return sidebar
 }
