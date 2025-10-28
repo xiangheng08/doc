@@ -14,4 +14,5 @@ export default [
   { link: '/web-api/web-share' },
   { link: '/web-api/websocket' },
   { link: '/web-api/webrtc' },
+  { link: '/web-api/canvas' },
 ] satisfies DefaultTheme.Sidebar
