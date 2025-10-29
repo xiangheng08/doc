@@ -24,8 +24,12 @@ export async function buildSidebar() {
     },
   })
 
+  const time = Date.now()
+
   for (const file of await fg('**/*', { cwd: outDir })) {
-    const module = await import(pathToFileURL(join(outDir, file)).href)
+    const url = pathToFileURL(join(outDir, file))
+    url.searchParams.append('t', time.toString()) // 添加时间戳以免缓存
+    const module = await import(url.href)
     if (!module.default) continue
     if (!Array.isArray(module.default)) {
       console.warn(`${file} is not a valid sidebar file`)
