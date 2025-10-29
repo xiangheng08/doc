@@ -1,4 +1,4 @@
-import { existsSync, statSync } from 'node:fs'
+import { existsSync, statSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type {
   DefaultTheme,
@@ -6,16 +6,20 @@ import type {
   Plugin,
   UserConfig,
 } from 'vitepress'
+import { debounce } from '../utils/common'
+import { buildSidebar } from '.vitepress/build/sidebar'
 
 class SidebarManager {
-  /**
-   * 匹配需要转义的字符的正则
-   */
+  /** 匹配文章标题的正则 */
+  static readonly ARTICLE_TITLE_REGEX = /^#\s+(.+)/m
+
+  /** 匹配外部链接的正则 */
+  static readonly EXTERNAL_LINK_REGEX = /^https?:\/\//
+
+  /** 匹配需要转义的字符的正则 */
   static readonly ESCAPE_REGEX = /[&<>"'/]/g
 
-  /**
-   * 需要转义的字符映射
-   */
+  /** 需要转义的字符映射 */
   static readonly ESCAPE_MAP: Record<string, string> = {
     '&': '&amp;',
     '<': '&lt;',
@@ -25,23 +29,59 @@ class SidebarManager {
     '/': '&#x2F;',
   }
 
-  /**
-   * 文章元数据地图
-   */
+  /** 文章元数据地图 */
   readonly articleMetaMap = new Map<string, ArticleMeta>()
 
-  /**
-   * 文章根目录
-   */
+  /** 文章根目录 */
   declare srcDir: string
 
-  /**
-   * vitepress 配置项
-   */
+  /** vitepress 配置项 */
   declare config: VitePressUserConfig
 
-  constructor(options?: SidebarPluginOptions) {
-    const { restartWait } = options || {}
+  /**
+   * 处理 Sidebar
+   */
+  handleSidebar() {
+    const sidebar = this.config.vitepress.site.themeConfig.sidebar
+    if (!sidebar) return
+
+    const dfs = (items: DefaultTheme.SidebarItem[]) => {
+      for (const item of items) {
+        this.handleSidebarItem(item)
+        if (item.items) dfs(item.items)
+      }
+    }
+
+    if (this.isMultiSidebar(sidebar)) {
+      for (const key in sidebar) {
+        if (Array.isArray(sidebar[key])) {
+          dfs(sidebar[key])
+        } else {
+          dfs(sidebar[key].items)
+        }
+      }
+    } else {
+      dfs(sidebar)
+    }
+  }
+
+  /**
+   * 处理单个 SidebarItem
+   */
+  handleSidebarItem(item: DefaultTheme.SidebarItem) {
+    // 有 link 但没有 text
+    if (item.link && !item.text) {
+      if (this.isExternalLink(item.link)) return
+
+      const file = this.resolveLink(item.link)
+      if (!file) return
+
+      const meta = this.getArticleMeta(file, item)
+      this.articleMetaMap.set(file, meta)
+      item.text = meta.title
+    } else if (item.text) {
+      item.text = this.escapeArticleTitle(item.text)
+    }
   }
 
   /**
@@ -89,7 +129,6 @@ class SidebarManager {
     if (!link) return
 
     let ext = '.md'
-
     if (link.endsWith('.md')) {
       ext = ''
       console.warn(`sidebar item link should not end with '.md'`)
@@ -108,9 +147,48 @@ class SidebarManager {
       }
     }
 
-    if (!existsSync(fullPath)) return
+    return existsSync(fullPath) ? fullPath : void 0
+  }
 
-    return fullPath
+  /**
+   * 是否为多级侧边栏
+   */
+  isMultiSidebar(sidebar: unknown): sidebar is DefaultTheme.SidebarMulti {
+    return typeof sidebar === 'object' && !Array.isArray(sidebar)
+  }
+
+  /**
+   * 获取文章元数据
+   */
+  getArticleMeta(
+    file: string,
+    sidebarItem: DefaultTheme.SidebarItem,
+  ): ArticleMeta {
+    const content = this.readArticle(file)
+    const title = this.getArticleTitle(content)
+    return { sidebarItem, file, title }
+  }
+
+  /**
+   * 读取文章内容
+   */
+  readArticle(file: string) {
+    return readFileSync(file, 'utf-8')
+  }
+
+  /**
+   * 获取文章标题
+   */
+  getArticleTitle(content: string) {
+    const match = content.match(SidebarManager.ARTICLE_TITLE_REGEX)
+    return match ? this.escapeArticleTitle(match[1].trim()) : void 0
+  }
+
+  /**
+   * 是否为外部链接
+   */
+  isExternalLink(link: string) {
+    return SidebarManager.EXTERNAL_LINK_REGEX.test(link)
   }
 }
 
@@ -118,17 +196,61 @@ interface SidebarPluginOptions {
   restartWait?: number
 }
 
+const sidebarDir = join(import.meta.dirname, '../sidebar')
+
 function sidebarPlugin(options?: SidebarPluginOptions): Plugin {
-  const manager = new SidebarManager(options)
+  const { restartWait = 200 } = options || {}
+
+  const manager = new SidebarManager()
+  let rebuildSidebar = false
 
   return {
     name: 'vitepress-sidebar-plugin',
-    config: (config: UserConfig) => {
+    config: async (config: UserConfig) => {
       manager.config = config as VitePressUserConfig
       manager.srcDir = manager.config.vitepress.srcDir
+
+      const themeConfig = manager.config.vitepress.site.themeConfig
+
+      if (rebuildSidebar || !themeConfig.sidebar) {
+        const sidebar = await buildSidebar()
+        themeConfig.sidebar = sidebar
+        manager.articleMetaMap.clear()
+      }
+
+      manager.handleSidebar()
       return config
     },
-    configureServer({ watcher, restart }) {},
+    configureServer(server) {
+      const restartServer = debounce(() => server.restart(), restartWait)
+
+      server.watcher.add(sidebarDir)
+      server.watcher.on('all', async (type, path) => {
+        if (path.startsWith(sidebarDir)) {
+          rebuildSidebar = true
+          restartServer()
+        } else if (
+          path.endsWith('.md') &&
+          manager.articleMetaMap.has(path)
+        ) {
+          if (type === 'add') {
+            restartServer()
+          } else if (type === 'change') {
+            const content = manager.readArticle(path)
+            const title = manager.getArticleTitle(content)
+            const meta = manager.articleMetaMap.get(path)
+            if (meta && meta.title !== title) {
+              meta.title = title
+              meta.sidebarItem.text = title
+              restartServer()
+            }
+          } else if (type === 'unlink') {
+            // 文件删除，移除文件元数据
+            manager.articleMetaMap.delete(path)
+          }
+        }
+      })
+    },
   }
 }
 
@@ -138,13 +260,17 @@ interface VitePressUserConfig extends UserConfig {
 
 interface ArticleMeta {
   /**
+   * SidebarItem
+   */
+  sidebarItem: DefaultTheme.SidebarItem
+  /**
+   * MD 文件路径
+   */
+  file: string
+  /**
    * 标题
    */
   title?: string
-  /**
-   * 需要更新
-   */
-  needUpdate?: boolean
 }
 
 export default sidebarPlugin

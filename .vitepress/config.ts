@@ -12,12 +12,12 @@ import {
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
 
-import sidebarPlugin from './plugins/sidebar-plugin'
+// import sidebarPlugin from './plugins/sidebar-plugin'
+import sidebarPlugin from './plugins/sidebar-plugin2'
 import codeDemoPlugin from './md-plugins/code-demo'
 import demoDynamicImport from './plugins/demo-dynamic-import'
 import processPublicHtml from './plugins/process-public-html-plugin'
 import { processPublicHtmlBuildEndHook } from './plugins/process-public-html-plugin'
-import { buildSidebar } from './build/sidebar'
 
 // https://vitepress.dev/reference/default-theme-config
 const themeConfig: DefaultTheme.Config = {
@@ -113,49 +113,45 @@ const markdown: MarkdownOptions = {
 }
 
 // https://vitepress.dev/reference/site-config
-export default async () => {
-  themeConfig.sidebar = await buildSidebar()
+export default defineConfig({
+  title: 'My doc',
+  description: '我的文档',
+  lang: 'zh-CN',
+  srcDir: 'src',
+  base: process.env.BASE_URL,
+  head: [['link', { rel: 'icon', href: withBase('/logo.svg') }]],
+  themeConfig,
+  markdown,
+  cleanUrls: true, // 去除url中的.html
+  metaChunk: true, // 提取页面元数据到单独的 js 中
+  vite: {
+    server: {
+      port: 9527,
+    },
 
-  return defineConfig({
-    title: 'My doc',
-    description: '我的文档',
-    lang: 'zh-CN',
-    srcDir: 'src',
-    base: process.env.BASE_URL,
-    head: [['link', { rel: 'icon', href: withBase('/logo.svg') }]],
-    themeConfig,
-    markdown,
-    cleanUrls: true, // 去除url中的.html
-    metaChunk: true, // 提取页面元数据到单独的 js 中
-    vite: {
-      server: {
-        port: 9527,
-      },
-
-      resolve: {
-        alias: {
-          '@theme': fileURLToPath(new URL('./theme', import.meta.url)),
-        },
-      },
-
-      plugins: [
-        sidebarPlugin(),
-        processPublicHtml(),
-        demoDynamicImport(),
-        groupIconVitePlugin(),
-      ],
-
-      css: {
-        preprocessorOptions: {
-          scss: {
-            api: 'modern-compiler',
-          },
-        },
+    resolve: {
+      alias: {
+        '@theme': fileURLToPath(new URL('./theme', import.meta.url)),
       },
     },
 
-    async buildEnd(siteConfig) {
-      await processPublicHtmlBuildEndHook(siteConfig)
+    plugins: [
+      sidebarPlugin(),
+      processPublicHtml(),
+      demoDynamicImport(),
+      groupIconVitePlugin(),
+    ],
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
     },
-  })
-}
+  },
+
+  async buildEnd(siteConfig) {
+    await processPublicHtmlBuildEndHook(siteConfig)
+  },
+})
