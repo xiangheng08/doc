@@ -1,0 +1,3 @@
+# getErrorMessage 获取错误信息字符串
+
+<<< ./code.ts
