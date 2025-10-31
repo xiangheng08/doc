@@ -53,6 +53,19 @@ export default [
       { link: '/utils/browser/observe-intersection/' },
     ],
   },
+  {
+    text: 'Node.js 专属',
+    items: [
+      { link: '/utils/nodejs/check-port/' },
+      { link: '/utils/nodejs/delete-folder-recursive/' },
+      { link: '/utils/nodejs/is-sub-path/' },
+      { link: '/utils/nodejs/paths-equal/' },
+      { link: '/utils/nodejs/random-buffer/' },
+      { link: '/utils/nodejs/mkdir-if-not-exists/' },
+      { link: '/utils/nodejs/get-file-hash/' },
+      { link: '/utils/nodejs/sort-paths/' },
+    ]
+  },
   { link: '/utils/github/' },
   { link: '/utils/npm/' },
 ] satisfies DefaultTheme.Sidebar
