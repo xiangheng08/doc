@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'vitepress'
 
 export default [
+  { link: '/utils/sleep/' },
   { link: '/utils/debounce/' },
   { link: '/utils/throttle/' },
   { link: '/utils/throttle-and-debounce/' },
@@ -9,6 +10,11 @@ export default [
   { link: '/utils/create-expirable-promise/' },
   { link: '/utils/has-decimal/' },
   { link: '/utils/random/' },
+  { link: '/utils/semver/' },
+  { link: '/utils/has-circular-reference/' },
+  { link: '/utils/calculate-height-percentages/' },
+  { link: '/utils/trim-extra-slashes/' },
+  { link: '/utils/get-tan-deg/' },
   {
     text: '字符串处理',
     items: [
@@ -37,7 +43,14 @@ export default [
       { link: '/utils/browser/canvas-to-blob/' },
       { link: '/utils/browser/canvas-to-data-url/' },
       { link: '/utils/browser/blob-to-base64/' },
+      { link: '/utils/browser/image-to-canvas/' },
       { link: '/utils/browser/get-scroll-offset/' },
+      { link: '/utils/browser/copy-text/' },
+      { link: '/utils/browser/copy-file/' },
+      { link: '/utils/browser/copy-image/' },
+      { link: '/utils/browser/download/' },
+      { link: '/utils/browser/observe-resize/' },
+      { link: '/utils/browser/observe-intersection/' },
     ],
   },
   { link: '/utils/github/' },

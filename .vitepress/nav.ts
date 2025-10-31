@@ -152,4 +152,8 @@ export default [
       { text: '关于本站', link: '/about' },
     ],
   },
+  {
+    text: 'Utils',
+    link: "/utils/"
+  }
 ] satisfies DefaultTheme.NavItem[]

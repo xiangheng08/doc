@@ -1,5 +1,5 @@
 /**
- * @description: 格式化字节
+ * 格式化字节
  * @param bytes 字节数
  * @param decimals 小数位数
  * @returns 格式化后的字节数
