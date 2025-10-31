@@ -1,13 +1,17 @@
-export function debounce<T extends any[], R, THIS>(
-  this: THIS,
-  fn: (...args: T) => R,
-  wait?: number,
+/**
+ * 防抖
+ * @param fn 要防抖的函数
+ * @param delay 延迟时间（ms）
+ */
+export function debounce<T extends any[]>(
+  fn: (...args: T) => any,
+  delay?: number,
 ): (...args: T) => void {
-  let timeout: ReturnType<typeof setTimeout>
-  return function (this: THIS, ...args: T) {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      fn.apply(this, args)
-    }, wait)
+  let timer: ReturnType<typeof setTimeout>
+  return function (...args: T) {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn(...args)
+    }, delay)
   }
 }

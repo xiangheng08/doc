@@ -26,10 +26,18 @@ interface FormatBytesOptions {
   bits?: boolean
 }
 
-export const formatBytes = (
-  bytes: number,
-  options?: FormatBytesOptions,
-) => {
+/**
+ * 格式化字节数
+ * @param bytes 字节数
+ * @param options 格式化选项
+ * @returns 格式化后的字节数
+ *
+ * @example
+ * formatBytes(12345) // 12.06KB
+ * formatBytes(12345, { decimals: 0 }) // 12KB
+ * formatBytes(1048576, { suffix: 'bps/s', trim: true, bits: true }) // 8Mbps/s
+ */
+export function formatBytes(bytes: number, options?: FormatBytesOptions) {
   const {
     decimals = 2,
     suffix = 'B',

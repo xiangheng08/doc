@@ -1,0 +1,3 @@
+# canvasToDataURL
+
+<<< ./code.ts

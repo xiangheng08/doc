@@ -1,3 +1,7 @@
+/**
+ * 格式化用时（支持微妙）
+ * @param ms 毫秒数
+ */
 export function formatDuration(ms: number) {
   // 边界情况
   if (ms === 0) return '0ms'
