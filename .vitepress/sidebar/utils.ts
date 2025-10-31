@@ -7,18 +7,24 @@ export default [
   { link: '/utils/get-error-message/' },
   { link: '/utils/perform-task/' },
   { link: '/utils/create-expirable-promise/' },
+  { link: '/utils/has-decimal/' },
+  { link: '/utils/random/' },
   {
     text: '字符串处理',
     items: [
       { link: '/utils/format-amount/' },
       { link: '/utils/format-bytes/' },
       { link: '/utils/format-duration/' },
+      { link: '/utils/format-distance-time/' },
       { link: '/utils/add-thousands-separator/' },
     ],
   },
   {
     text: '颜色相关',
-    items: [{ link: '/utils/color-transform/' }],
+    items: [
+      { link: '/utils/color-transform/' },
+      { link: '/utils/random-color/' },
+    ],
   },
   {
     text: '浏览器专属',
