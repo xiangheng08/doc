@@ -8,12 +8,11 @@ export default [
   { link: '/utils/get-error-message/' },
   { link: '/utils/perform-task/' },
   { link: '/utils/create-expirable-promise/' },
-  { link: '/utils/has-decimal/' },
-  { link: '/utils/random/' },
   { link: '/utils/semver/' },
   { link: '/utils/has-circular-reference/' },
   { link: '/utils/calculate-height-percentages/' },
-  { link: '/utils/trim-extra-slashes/' },
+  { link: '/utils/random/' },
+  { link: '/utils/has-decimal/' },
   { link: '/utils/get-tan-deg/' },
   {
     text: '字符串处理',
@@ -23,6 +22,7 @@ export default [
       { link: '/utils/format-duration/' },
       { link: '/utils/format-distance-time/' },
       { link: '/utils/add-thousands-separator/' },
+      { link: '/utils/trim-extra-slashes/' },
     ],
   },
   {
