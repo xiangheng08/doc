@@ -1,4 +1,4 @@
-# addThousandsSeparator 添加千位分隔符
+# 添加千位分隔符
 
 ## 基础版
 

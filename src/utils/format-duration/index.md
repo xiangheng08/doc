@@ -1,4 +1,4 @@
-# formatDuration 格式化用时
+# 格式化用时
 
 ## 基础版
 
