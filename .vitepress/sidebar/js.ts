@@ -13,7 +13,6 @@ export default [
     text: '新语法',
     link: '/js/new-syntax',
   },
-  { link: '/js/functions' },
   { link: '/js/tips' },
   { link: '/js/regex' },
   { link: '/js/regexes' },

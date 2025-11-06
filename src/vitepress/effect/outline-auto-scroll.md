@@ -2,8 +2,8 @@
 
 其他模块函数：
 
-- [throttleAndDebounce](/ts/functions/#throttleAndDebounce)
-- [getScrollOffsetTop](/ts/functions/#getScrollOffset)
+- [throttleAndDebounce](/utils/throttle-and-debounce/)
+- [getScrollOffsetTop](/utils/browser/get-scroll-offset/)
 
 实现代码：
 

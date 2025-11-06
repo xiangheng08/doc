@@ -2,7 +2,6 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   { link: '/nodejs/index' },
-  { link: '/nodejs/functions' },
   { link: '/nodejs/install' },
   { link: '/nodejs/run' },
   { link: '/nodejs/develop' },
