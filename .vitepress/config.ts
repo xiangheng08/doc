@@ -74,30 +74,30 @@ const themeConfig: DefaultTheme.Config = {
   skipToContentLabel: '跳转到内容',
 }
 
-if (isProd && !noSearch) {
-  themeConfig.search = {
-    provider: 'local', // 本地搜索
-    options: {
-      translations: {
-        button: {
-          buttonText: '搜索文档',
-          buttonAriaLabel: '搜索文档',
-        },
-        modal: {
-          noResultsText: '无法找到相关结果',
-          resetButtonTitle: '清除查询条件',
-          displayDetails: '显示详细列表',
-          backButtonTitle: '清除查询条件',
-          footer: {
-            selectText: '选择',
-            navigateText: '切换',
-            closeText: '关闭',
-          },
-        },
-      },
-    },
-  }
-}
+// if (isProd && !noSearch) {
+//   themeConfig.search = {
+//     provider: 'local', // 本地搜索
+//     options: {
+//       translations: {
+//         button: {
+//           buttonText: '搜索文档',
+//           buttonAriaLabel: '搜索文档',
+//         },
+//         modal: {
+//           noResultsText: '无法找到相关结果',
+//           resetButtonTitle: '清除查询条件',
+//           displayDetails: '显示详细列表',
+//           backButtonTitle: '清除查询条件',
+//           footer: {
+//             selectText: '选择',
+//             navigateText: '切换',
+//             closeText: '关闭',
+//           },
+//         },
+//       },
+//     },
+//   }
+// }
 
 const markdown: MarkdownOptions = {
   config(md) {
