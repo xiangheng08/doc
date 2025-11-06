@@ -15,6 +15,7 @@ template.md
 template.ts
 *.temp
 *.temp.js
+*.temp.ts
 .vitepress/config.ts.timestamp-*.mjs
 
 # vscode snippets
