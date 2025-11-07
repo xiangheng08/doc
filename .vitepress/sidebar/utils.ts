@@ -14,6 +14,8 @@ export default [
   { link: '/utils/random/' },
   { link: '/utils/has-decimal/' },
   { link: '/utils/get-tan-deg/' },
+  { link: '/utils/parse-query/' },
+  { link: '/utils/pick/' },
   {
     text: '字符串处理',
     items: [
@@ -31,6 +33,10 @@ export default [
       { link: '/utils/color-transform/' },
       { link: '/utils/random-color/' },
     ],
+  },
+  {
+    text: '时间相关',
+    items: [{ link: '/utils/day-of-year/' }],
   },
   {
     text: '浏览器专属',
@@ -64,7 +70,7 @@ export default [
       { link: '/utils/nodejs/mkdir-if-not-exists/' },
       { link: '/utils/nodejs/get-file-hash/' },
       { link: '/utils/nodejs/sort-paths/' },
-    ]
+    ],
   },
   { link: '/utils/github/' },
   { link: '/utils/npm/' },
