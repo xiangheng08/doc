@@ -1,21 +1,22 @@
 import { DefaultTheme } from 'vitepress'
 
 export default [
-  { link: '/utils/sleep/' },
   { link: '/utils/debounce/' },
   { link: '/utils/throttle/' },
   { link: '/utils/throttle-and-debounce/' },
+  { link: '/utils/sleep/' },
+  { link: '/utils/random/' },
+  { link: '/utils/pick/' },
+  { link: '/utils/omit/' },
   { link: '/utils/get-error-message/' },
   { link: '/utils/perform-task/' },
   { link: '/utils/create-expirable-promise/' },
   { link: '/utils/semver/' },
   { link: '/utils/has-circular-reference/' },
   { link: '/utils/calculate-height-percentages/' },
-  { link: '/utils/random/' },
   { link: '/utils/has-decimal/' },
   { link: '/utils/get-tan-deg/' },
   { link: '/utils/parse-query/' },
-  { link: '/utils/pick/' },
   {
     text: '字符串处理',
     items: [

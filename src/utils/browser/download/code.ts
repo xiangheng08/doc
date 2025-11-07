@@ -1,7 +1,7 @@
 /**
  * 下载
  */
-export function download(url: string, filename = 'download') {
+export function download(url: string, filename = '') {
   const a = document.createElement('a')
   a.download = filename
   a.href = url
