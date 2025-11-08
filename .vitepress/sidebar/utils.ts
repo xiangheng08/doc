@@ -8,6 +8,8 @@ export default [
   { link: '/utils/random/' },
   { link: '/utils/pick/' },
   { link: '/utils/omit/' },
+  { link: '/utils/unique/' },
+  { link: '/utils/typeof/' },
   { link: '/utils/get-error-message/' },
   { link: '/utils/perform-task/' },
   { link: '/utils/create-expirable-promise/' },
