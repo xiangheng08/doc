@@ -1,44 +1,64 @@
-export type Resolve<T = unknown> = (value: T) => void
-export type Reject = (reason: any) => void
-export type Executor<T = unknown> = (
-  resolve: Resolve<T>,
-  reject: Reject,
+export type PromiseResolve<T = unknown> = (
+  value: T | PromiseLike<T>,
 ) => void
-export type State = 'pending' | 'fulfilled' | 'rejected'
-export type OnFulfilled<T = unknown> = (value: T) => T | PromiseLike<T>
-export type OnRejected = (reason: any) => any | PromiseLike<any>
-export type thenCallback = {
-  onFulfilled?: OnFulfilled<any>
-  onRejected?: OnRejected
-  resolve: Resolve<any>
-  reject: Reject
+export type PromiseReject = (reason: any) => void
+export type PromiseExecutor<T = unknown> = (
+  resolve: PromiseResolve<T>,
+  reject: PromiseReject,
+) => void
+export type PromiseState = 'pending' | 'fulfilled' | 'rejected'
+export type PromiseOnFulfilled<T = unknown> =
+  | ((value: T) => T | PromiseLike<T>)
+  | undefined
+  | null
+export type PromiseOnRejected =
+  | ((reason: any) => any | PromiseLike<any>)
+  | undefined
+  | null
+export type OnFinally = (() => void) | undefined | null
+export type PromiseThenCallback = {
+  onFulfilled?: PromiseOnFulfilled<any>
+  onRejected?: PromiseOnRejected
+  resolve: PromiseResolve<any>
+  reject: PromiseReject
 }
 
-const PENDING = 'pending'
-const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
-
 export class MyPromise<T = unknown> {
+  static readonly #PENDING = 'pending'
+  static readonly #FULFILLED = 'fulfilled'
+  static readonly #REJECTED = 'rejected'
+
   /**
    * 状态
    */
-  #state: State = 'pending'
+  #state: PromiseState
 
   /**
    * 值
    */
-  #result: T | undefined = void 0
+  #result: T | PromiseLike<T> | undefined = void 0
 
-  #thenCallbacks: thenCallback[] = []
+  #thenCallbacks: PromiseThenCallback[] = []
 
-  constructor(executor: Executor<T>) {
-    const resolve: Resolve<T> = (value) => {
-      if (this.#state === PENDING) {
-        this.#changeState(FULFILLED, value)
+  constructor(executor: PromiseExecutor<T>) {
+    if (typeof executor !== 'function') {
+      throw new TypeError('Promise resolver undefined is not a function')
+    }
+
+    this.#state = MyPromise.#PENDING
+    const resolve: PromiseResolve<T> = (value) => {
+      if (value instanceof MyPromise) {
+        // 如果 value 是 MyPromise 实例，则链接上
+        value.then(
+          (val) => this.#changeState(MyPromise.#FULFILLED, val),
+          (reason) => this.#changeState(MyPromise.#REJECTED, reason),
+        )
+      } else {
+        this.#changeState(MyPromise.#FULFILLED, value)
       }
     }
-    const reject: Reject = (reason) => {
-      this.#changeState(REJECTED, reason)
+    const reject: PromiseReject = (reason) => {
+      this.#changeState(MyPromise.#REJECTED, reason)
     }
 
     try {
@@ -48,55 +68,69 @@ export class MyPromise<T = unknown> {
     }
   }
 
-  #changeState(state: State, result: T) {
-    if (this.#state !== PENDING) return
+  #changeState(state: PromiseState, result: T | PromiseLike<T>) {
+    if (this.#state !== MyPromise.#PENDING) return
     this.#state = state
     this.#result = result
+    this.#run()
   }
 
   #handleCallback(
-    callback: OnFulfilled<any> | OnRejected | undefined,
-    resolve: Resolve<any>,
-    reject: Reject,
+    callback: PromiseOnFulfilled<any> | PromiseOnRejected,
+    resolve: PromiseResolve<any>,
+    reject: PromiseReject,
   ) {
     if (typeof callback !== 'function') {
       // callback 不是函数，状态穿透
       queueMicrotask(() => {
-        if (this.#state === FULFILLED) {
+        if (this.#state === MyPromise.#FULFILLED) {
           resolve(this.#result)
         } else {
           reject(this.#result)
         }
       })
       return
+    } else {
+      // callback 是函数
+      queueMicrotask(() => {
+        try {
+          const result = callback(this.#result)
+          if (result instanceof MyPromise) {
+            result.then(resolve, reject)
+          } else {
+            resolve(result)
+          }
+        } catch (error) {
+          reject(error)
+        }
+      })
     }
-
-    // callback 是函数
-    queueMicrotask(() => {
-      try {
-        const result = callback(this.#result)
-        resolve(result)
-      } catch (error) {
-        reject(error)
-      }
-    })
   }
 
   #run() {
-    if (this.#state === PENDING || this.#thenCallbacks.length === 0) return
+    if (
+      this.#state === MyPromise.#PENDING ||
+      this.#thenCallbacks.length === 0
+    )
+      return
+
     const { onFulfilled, onRejected, resolve, reject } =
       this.#thenCallbacks.shift()!
 
-    if (this.#state === FULFILLED) {
+    if (this.#state === MyPromise.#FULFILLED) {
       this.#handleCallback(onFulfilled, resolve, reject)
     } else {
       this.#handleCallback(onRejected, resolve, reject)
     }
+
+    queueMicrotask(() => {
+      this.#run()
+    })
   }
 
   then<TResult1 = T, TResult2 = never>(
-    onFulfilled?: OnFulfilled<TResult1>,
-    onRejected?: OnRejected,
+    onFulfilled?: PromiseOnFulfilled<TResult1>,
+    onRejected?: PromiseOnRejected,
   ) {
     return new MyPromise<TResult1 | TResult2>((resolve, reject) => {
       this.#thenCallbacks.push({
@@ -107,5 +141,24 @@ export class MyPromise<T = unknown> {
       })
       this.#run()
     })
+  }
+
+  catch<TResult = never>(
+    onRejected?: PromiseOnRejected | undefined | null,
+  ) {
+    return this.then<T, TResult>(void 0, onRejected)
+  }
+
+  finally(onFinally?: OnFinally | undefined | null) {
+    return this.then(
+      (value) => {
+        onFinally?.()
+        return value
+      },
+      (reason) => {
+        onFinally?.()
+        throw reason
+      },
+    )
   }
 }
