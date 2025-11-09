@@ -1,6 +1,6 @@
 # 起步
 
-HTML（Hypertext Markup Language）是一种标记语言，用于创建和组织网页的内容（以.html 的文件）。HTML 通过使用标签（tag）来描述文档的结构。每个 HTML 标签都是由尖括号（<>）括起来的关键字，如`<html>`，`<head>`，`<body>`等。
+HTML（Hypertext Markup Language）是一种标记语言，用于创建和组织网页的内容（以.html 的文件）。HTML 通过使用标签（tag）来描述文档的结构。每个 HTML 标签都是由尖括号（`<>`）括起来的关键字，如`<html>`，`<head>`，`<body>`等。
 
 HTML 标签通常以成对的方式出现，包括一个开始标签和一个结束标签，它们之间包围着特定的内容。例如：
 

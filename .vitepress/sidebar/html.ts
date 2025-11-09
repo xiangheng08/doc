@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'vitepress'
 
 export default [
-  { link: '/html' },
+  { link: '/html/' },
   { link: '/html/intro' },
   { link: '/html/url' },
   { link: '/html/attribute' },
