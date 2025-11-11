@@ -79,3 +79,7 @@ npx prettier . --check
 ## 配置选项
 
 Prettier 提供了少量但非常实用的配置选项，可以满足大多数项目的格式化需求。详细配置项请参考 [options](./options)。
+
+## 相关链接
+
+- [Prettier](https://prettier.io/)
