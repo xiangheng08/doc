@@ -35,4 +35,5 @@ export default [
       { link: '/front-end-engineering/monorepo/pnpm' },
     ],
   },
+  { text: 'Prettier', link: '/prettier/' },
 ] satisfies DefaultTheme.Sidebar
