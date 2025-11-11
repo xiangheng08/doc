@@ -44,6 +44,7 @@ export default [
           { text: 'Axios', link: '/axios/' },
           { text: 'ECharts', link: '/echarts/' },
           { text: 'Eslint', link: '/eslint/issues' },
+          { text: 'Day.js', link: '/dayjs/' },
         ],
       },
       {
