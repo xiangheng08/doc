@@ -64,7 +64,7 @@ dayjs().format('YYYY/MM/DD') // 2023/10/01
 
 ```js
 // 使用 localizedFormat 插件
-import localizedFormat from 'dayjs/plugin/localizedFormats'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 dayjs.extend(localizedFormat)
 
 dayjs().format('L') // 10/01/2023 (根据地区自动格式化)
