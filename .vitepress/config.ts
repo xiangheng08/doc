@@ -1,3 +1,4 @@
+import './env'
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vitepress'
