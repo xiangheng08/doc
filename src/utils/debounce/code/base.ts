@@ -8,10 +8,12 @@ export function debounce<T extends any[]>(
   delay?: number,
 ): (...args: T) => void {
   let timer: ReturnType<typeof setTimeout>
-  return function (...args: T) {
-    clearTimeout(timer)
+  return function (this: any, ...args: T) {
+    if (timer !== void 0) {
+      clearTimeout(timer)
+    }
     timer = setTimeout(() => {
-      fn(...args)
+      fn.apply(this, args)
     }, delay)
   }
 }

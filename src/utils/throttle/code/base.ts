@@ -16,10 +16,10 @@ export function throttle<T extends any[]>(
   /**
    * @param {...any} args - 传递给节流函数的参数。
    */
-  return function (...args: T) {
+  return function (this: any, ...args: T) {
     let now = Date.now()
     if ((start && !last) || now - last > delay) {
-      fn(...args)
+      fn.apply(this, args)
       last = now
     }
   }
