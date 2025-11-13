@@ -48,8 +48,8 @@ jobs:
       - name: Build with VitePress
         run: pnpm build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
         env:
-          BASE_URL: /doc
-          COPYRIGHT: Copyright © 2022-present <a href="https://github.com/xiangheng08" target="_blank" class="copyright-link">xiangheng08</a>
+          APP_BASE_URL: /doc/
+          APP_COPYRIGHT: Copyright © 2022-present <a href="https://github.com/xiangheng08" target="_blank" class="copyright-link">xiangheng08</a>
           VITE_REPOSITORY_URL: https://github.com/xiangheng08/doc
           VITE_ISSUES_URL: https://github.com/xiangheng08/doc/issues
           VITE_PR_URL: https://github.com/xiangheng08/doc/pulls

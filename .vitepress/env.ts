@@ -1,56 +1,24 @@
-/*
-  加载 env
-*/
-import dotenv from 'dotenv'
-import minimist from 'minimist'
+import { loadEnv } from 'vitepress'
 
-interface Args extends minimist.ParsedArgs {
-  readonly mode?: string
-}
-
-const args: Args = minimist(process.argv.slice(2), {
-  alias: {
-    m: 'mode',
-  },
-  string: ['m'],
-})
+const ModeMap = {
+  DEV: 'development',
+  PROD: 'production',
+} as const
 
 const commandNodeEnvMap = {
-  dev: 'development',
-  build: 'production',
-  preview: 'production',
+  dev: ModeMap.DEV,
+  build: ModeMap.PROD,
+  preview: ModeMap.PROD,
 }
 
-type Keys = keyof typeof commandNodeEnvMap
+const command = process.argv[2] as keyof typeof commandNodeEnvMap
+const mode = commandNodeEnvMap[command]
+const isDev = mode === ModeMap.DEV
+const isProd = mode === ModeMap.PROD
 
-const commandNodeEnv = commandNodeEnvMap[args._[0] as Keys]
+const env = loadEnv(mode, process.cwd(), 'APP_')
 
-if (process.env.NODE_ENV === void 0 && commandNodeEnv) {
-  /*
-    如果 NODE_ENV 的值为 undefined，则设置 NODE_ENV 的值为 commandNodeEnv
-    保证 .env[NODE_ENV] 文件被加载
-  */
-  // @ts-ignore
-  process.env.NODE_ENV = commandNodeEnv
-}
+const BASE_URL = env.APP_BASE_URL
+const COPYRIGHT = env.APP_COPYRIGHT
 
-// 加载 .env 文件
-dotenv.config()
-
-// 加载 .env[NODE_ENV] 文件
-if (process.env.NODE_ENV) {
-  dotenv.config({
-    path: `.env.${process.env.NODE_ENV}`,
-  })
-}
-
-// 加载 .env[mode] 文件
-if (args.mode) {
-  dotenv.config({
-    path: `.env.${args.mode}`,
-  })
-}
-
-export const isDev = process.env.NODE_ENV === 'development'
-export const isProd = process.env.NODE_ENV === 'production'
-export const noSearch = args.search === false
+export { command, mode, isDev, isProd, BASE_URL, COPYRIGHT }
