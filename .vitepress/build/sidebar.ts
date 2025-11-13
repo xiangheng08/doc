@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url'
 import { build } from 'rolldown'
 import fg from 'fast-glob'
 import type { DefaultTheme } from 'vitepress'
+import { isDev } from '../env'
 
 export async function buildSidebar() {
   const sidebar: DefaultTheme.SidebarMulti = {}
@@ -39,7 +40,9 @@ export async function buildSidebar() {
     sidebar[`/${sidebarPath}/`] = module.default
   }
 
-  console.log('build sidebar done.')
+  if (isDev) {
+    console.log('build sidebar done.')
+  }
 
   return sidebar
 }
