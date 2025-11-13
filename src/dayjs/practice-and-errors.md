@@ -4,7 +4,7 @@
 
 ### 1. 计算两个日期之间的差值
 
-```javascript
+```js
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -27,7 +27,7 @@ console.log(date2.to(date1)) // in 2 weeks
 
 ### 2. 格式化特定时区的时间
 
-```javascript
+```js
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -46,7 +46,7 @@ console.log(utcTime.tz('Asia/Shanghai').format()) // 中国标准时间
 
 ### 3. 处理周相关的计算
 
-```javascript
+```js
 import dayjs from 'dayjs'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import isoWeek from 'dayjs/plugin/isoWeek'
@@ -68,7 +68,7 @@ console.log(date.endOf('week').format('YYYY-MM-DD')) // 一周的结束日期
 
 ### 4. 自定义解析和格式化
 
-```javascript
+```js
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 
@@ -97,7 +97,7 @@ const parseDate = (dateString) => {
 ### 1. 忘记引入插件
 
 **错误示例：**
-```javascript
+```js
 // 没有引入 relativeTime 插件就直接使用
 import dayjs from 'dayjs'
 
@@ -107,7 +107,7 @@ console.log(date1.from(date2)) // undefined 或报错
 ```
 
 **正确做法：**
-```javascript
+```js
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
@@ -121,14 +121,14 @@ console.log(date1.from(date2)) // 2 weeks ago
 ### 2. 日期字符串格式不匹配
 
 **错误示例：**
-```javascript
+```js
 // 日期格式与输入不匹配
 const date = dayjs('01-10-2023', 'YYYY-MM-DD')
 console.log(date.isValid()) // false
 ```
 
 **正确做法：**
-```javascript
+```js
 // 使用正确的格式解析日期
 const date = dayjs('01-10-2023', 'DD-MM-YYYY')
 console.log(date.isValid()) // true
@@ -145,7 +145,7 @@ console.log(date2.isValid()) // true
 ### 3. 修改原始日期对象
 
 **错误示例：**
-```javascript
+```js
 // 以为可以直接修改日期对象
 const date = dayjs('2023-10-01')
 date.add(1, 'day') // 这不会修改原始 date 对象
@@ -153,7 +153,7 @@ console.log(date.format()) // 仍然是 2023-10-01
 ```
 
 **正确做法：**
-```javascript
+```js
 // Day.js 是不可变的，所有操作都返回新对象
 const date = dayjs('2023-10-01')
 const newDate = date.add(1, 'day') // 将返回值赋给新变量
@@ -168,7 +168,7 @@ console.log(result.format()) // 2023-08-02
 ### 4. 时区处理错误
 
 **错误示例：**
-```javascript
+```js
 // 没有使用时区插件直接处理时区
 import dayjs from 'dayjs'
 
@@ -177,7 +177,7 @@ console.log(date.format()) // 可能不会正确处理时区
 ```
 
 **正确做法：**
-```javascript
+```js
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -194,7 +194,7 @@ console.log(date.tz('America/New_York').format()) // 美国东部时间
 ### 5. 日期比较错误
 
 **错误示例：**
-```javascript
+```js
 // 直接比较两个 dayjs 对象
 const date1 = dayjs('2023-10-01')
 const date2 = dayjs('2023-10-01')
@@ -204,7 +204,7 @@ console.log(date1 == date2) // false (不同的对象)
 ```
 
 **正确做法：**
-```javascript
+```js
 // 使用 Day.js 提供的比较方法
 const date1 = dayjs('2023-10-01')
 const date2 = dayjs('2023-10-01')
