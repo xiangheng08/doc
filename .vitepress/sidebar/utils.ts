@@ -19,6 +19,7 @@ export default [
   { link: '/utils/has-decimal/' },
   { link: '/utils/get-tan-deg/' },
   { link: '/utils/parse-query/' },
+  { link: '/utils/onion-model/' },
   {
     text: '字符串处理',
     items: [
