@@ -93,6 +93,30 @@ type DeepReadonly<T> = {
 }
 ```
 
+### 获取可选属性
+
+```ts
+type GetOptional<T> = {
+  [K in keyof T as T[K] extends Required<T>[K] ? never : K]: T[K]
+}
+
+type a = { a: string; b?: number; c: boolean; d?: null }
+type b = GetOptional<a>
+// { b?: number | undefined, d?: null | undefined }
+```
+
+### 获取必选属性
+
+```ts
+type GetRequired<T> = {
+  [K in keyof T as T[K] extends Required<T>[K] ? K : never]: T[K]
+}
+
+type a = { a: string; b?: number; c: boolean; d?: null }
+type b = GetRequired<a>
+// { a: string, c: boolean }
+```
+
 ## 内置的工具类型
 
 ### `Partial<T>` 属性变可选
