@@ -214,8 +214,14 @@ Day.js 支持插件系统，可以通过插件扩展更多功能：
 显示相对时间，如 "2 小时前"：
 
 ```js
-dayjs.extend(relativeTime)
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.locale('zh-cn') // 设置语言
+dayjs.extend(relativeTime) // 引入插件
+
 dayjs().subtract(2, 'hour').fromNow() // 2 小时前
+dayjs().subtract(2, 'hour').toNow() // 2 小时内
 ```
 
 ### 是否闰年 (IsLeapYear)
