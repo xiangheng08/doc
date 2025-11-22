@@ -7,6 +7,7 @@ export default [
   { link: '/html/attribute' },
   { link: '/html/encode' },
   { link: '/html/semantic' },
+  { link: '/html/attributes' },
   {
     text: '标签',
     items: [
