@@ -28,6 +28,7 @@ export default [
       { link: '/utils/format-duration/' },
       { link: '/utils/format-distance-time/' },
       { link: '/utils/add-thousands-separator/' },
+      { link: '/utils/add-myriad-separator/' },
       { link: '/utils/trim-extra-slashes/' },
     ],
   },

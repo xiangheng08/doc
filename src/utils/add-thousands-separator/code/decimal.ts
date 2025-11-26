@@ -1,12 +1,13 @@
 /**
  * 给数字添加千位分隔符
  */
-export const addThousandsSeparator = (
+export function addThousandsSeparator(
   num: number | string,
   decimal = 0,
-) => {
+  separator = ',',
+) {
   const [int, dec = ''] = String(num).split('.')
-  const formatted = int.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  const formatted = int.replace(/\B(?=(\d{3})+(?!\d))/g, separator)
   if (decimal > 0) {
     return `${formatted}.${dec.slice(0, decimal).padEnd(decimal, '0')}`
   } else {
