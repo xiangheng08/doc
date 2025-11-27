@@ -41,7 +41,10 @@ export default [
   },
   {
     text: '时间相关',
-    items: [{ link: '/utils/day-of-year/' }],
+    items: [
+      { link: '/utils/day-of-year/' },
+      { link: '/utils/relative-day/' },
+    ],
   },
   {
     text: '浏览器专属',
@@ -79,10 +82,7 @@ export default [
   },
   {
     text: '项目实践',
-    items: [
-      { link: '/utils/token/' },
-      { link: '/utils/jsconfig-alias/' },
-    ]
+    items: [{ link: '/utils/token/' }, { link: '/utils/jsconfig-alias/' }],
   },
   { link: '/utils/github/' },
   { link: '/utils/npm/' },
