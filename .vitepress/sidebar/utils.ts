@@ -81,6 +81,7 @@ export default [
     text: '项目实践',
     items: [
       { link: '/utils/token/' },
+      { link: '/utils/jsconfig-alias/' },
     ]
   },
   { link: '/utils/github/' },
