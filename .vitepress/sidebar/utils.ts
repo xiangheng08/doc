@@ -77,6 +77,12 @@ export default [
       { link: '/utils/nodejs/sort-paths/' },
     ],
   },
+  {
+    text: '项目实践',
+    items: [
+      { link: '/utils/token/' },
+    ]
+  },
   { link: '/utils/github/' },
   { link: '/utils/npm/' },
 ] satisfies DefaultTheme.Sidebar
