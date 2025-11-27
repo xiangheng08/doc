@@ -1,6 +1,6 @@
 /**
  * 去除 url 多余的斜杠(/)
  */
-export const trimExtraSlashes = (url: string) => {
+export function trimExtraSlashes(url: string) {
   return url.replace(/(?<!:)\/\/+/g, '/')
 }
