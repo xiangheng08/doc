@@ -31,6 +31,7 @@ export default [
       { link: '/utils/add-myriad-separator/' },
       { link: '/utils/trim-extra-slashes/' },
       { link: '/utils/mask-middle/' },
+      { link: '/utils/is-mobile-device/' },
     ],
   },
   {
