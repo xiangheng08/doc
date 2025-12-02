@@ -23,4 +23,10 @@ export default [
       },
     ],
   },
+  {
+    text: 'Vant UI',
+    items: [
+      { text: '简介', link: '/ui/vant/' }
+    ]
+  },
 ] satisfies DefaultTheme.Sidebar
