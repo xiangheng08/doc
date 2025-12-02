@@ -30,6 +30,7 @@ export default [
       { link: '/utils/add-thousands-separator/' },
       { link: '/utils/add-myriad-separator/' },
       { link: '/utils/trim-extra-slashes/' },
+      { link: '/utils/mask-middle/' },
     ],
   },
   {
