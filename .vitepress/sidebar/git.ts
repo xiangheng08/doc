@@ -2,6 +2,7 @@ import { DefaultTheme } from 'vitepress'
 
 export default [
   { link: '/git/command-list' },
+  { link: '/git/commit-guidelines' },
   { link: '/git/install' },
   { link: '/git/vscode' },
   { link: '/git/pagination-shortcut' },
