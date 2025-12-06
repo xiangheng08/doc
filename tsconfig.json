@@ -20,7 +20,8 @@
     "env.d.ts",
     "src/**/*",
     ".vitepress/**/*",
-    "global-components.d.ts"
+    "global-components.d.ts",
+    "css-color-function.d.ts"
   ],
   "exclude": [
     "node_modules",

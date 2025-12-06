@@ -6,6 +6,7 @@ export default [
     items: [
       { link: '/ui/element-plus/issues' },
       { link: '/ui/element-plus/tree-select-display-full-path' },
+      { link: '/ui/element-plus/generate-theme-color/' },
       {
         text: 'Directives',
         items: [{ link: '/ui/element-plus/directives/hover-column' }],
