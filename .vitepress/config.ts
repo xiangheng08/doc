@@ -108,6 +108,10 @@ export default defineConfig({
       },
     },
 
+    build: {
+      chunkSizeWarningLimit: 2048, // 分块大小警告阈值
+    },
+
     plugins: [
       sidebarPlugin(),
       processPublicHtml(),
