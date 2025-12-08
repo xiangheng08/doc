@@ -86,6 +86,10 @@ export default [
     text: '项目实践',
     items: [{ link: '/utils/token/' }, { link: '/utils/jsconfig-alias/' }],
   },
+  {
+    text: '微信开发',
+    items: [{ link: '/utils/wechat/create-we-chat-web-auth-url/' }],
+  },
   { link: '/utils/github/' },
   { link: '/utils/npm/' },
 ] satisfies DefaultTheme.Sidebar
