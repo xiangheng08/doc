@@ -44,7 +44,7 @@ yarn add --dev --exact prettier
 
 创建一个 `.prettierignore` 文件，忽略不需要格式化的文件：
 
-```ignore [.prettierignore]
+``` [.prettierignore]
 # dependencies
 node_modules
 
