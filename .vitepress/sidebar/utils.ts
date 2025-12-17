@@ -67,6 +67,7 @@ export default [
       { link: '/utils/browser/download/' },
       { link: '/utils/browser/observe-resize/' },
       { link: '/utils/browser/observe-intersection/' },
+      { link: '/utils/browser/browser-detector/' },
     ],
   },
   {
