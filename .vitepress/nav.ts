@@ -149,6 +149,7 @@ export default [
       { text: '语义化版本规范', link: '/sem-ver' },
       { text: '笔记', link: '/note/code-point-and-code-unit' },
       { text: 'VitePress', link: '/vitepress/' },
+      { text: 'PotPlayer', link: '/potplayer/' },
       { text: 'Links', link: '/links' },
       { text: '关于本站', link: '/about' },
     ],
