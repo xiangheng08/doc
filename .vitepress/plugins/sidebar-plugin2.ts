@@ -38,6 +38,8 @@ class SidebarManager {
   /** vitepress 配置项 */
   declare config: VitePressUserConfig
 
+  isBuildMode = false
+
   /**
    * 处理 Sidebar
    */
@@ -88,12 +90,16 @@ class SidebarManager {
    * 转义文章标题
    */
   escapeArticleTitle(title: string): string {
-    SidebarManager.ESCAPE_REGEX.lastIndex = 0
 
-    title = title.replace(
-      SidebarManager.ESCAPE_REGEX,
-      (match) => SidebarManager.ESCAPE_MAP[match],
-    )
+
+    if (!this.isBuildMode) {
+      // 因为 vitepress 在构建模式下会将 sidebar.text 已纯文本展示，所以不需要处理
+      SidebarManager.ESCAPE_REGEX.lastIndex = 0
+      title = title.replace(
+        SidebarManager.ESCAPE_REGEX,
+        (match) => SidebarManager.ESCAPE_MAP[match],
+      )
+    }
 
     // 转义单行代码
     let i = 0
@@ -206,7 +212,8 @@ function sidebarPlugin(options?: SidebarPluginOptions): Plugin {
 
   return {
     name: 'vitepress-sidebar-plugin',
-    config: async (config: UserConfig) => {
+    config: async (config: UserConfig, env) => {
+      manager.isBuildMode = env.command === 'build'
       manager.config = config as VitePressUserConfig
       manager.srcDir = manager.config.vitepress.srcDir
 
