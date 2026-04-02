@@ -9,6 +9,7 @@ export function formatBytes(bytes: number, decimals = 2) {
   while (bytes > 1024) {
     bytes = bytes / 1024
     i++
+    if (i >= units.length - 1) break
   }
   return `${bytes.toFixed(dm).replace(/\.?0+$/, '')}${units[i]}B`
 }

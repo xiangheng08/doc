@@ -1,3 +1,4 @@
+// #region code
 interface FormatBytesOptions {
   /**
    * 小数位数
@@ -59,9 +60,12 @@ export function formatBytes(bytes: number, options?: FormatBytesOptions) {
   }
 
   if (bytes > 0) {
-    const i = Math.floor(Math.log(bytes) / Math.log(radix))
+    const i = Math.min(
+      Math.floor(Math.log(bytes) / Math.log(radix)),
+      units.length - 1,
+    )
     text = (bytes / Math.pow(radix, i)).toFixed(dm)
-    unit = units[i]
+    unit = units[i] || ''
   } else {
     text = bytes.toFixed(dm)
   }
@@ -72,9 +76,9 @@ export function formatBytes(bytes: number, options?: FormatBytesOptions) {
 
   return text + unit + suffix
 }
+// #endregion code
 
-// ========================= 测试 =========================
-
+// #region example
 formatBytes(12345) // 12.06KB
 formatBytes(-12345) // -12345.00B
 formatBytes(0) // 0.00B
@@ -86,3 +90,4 @@ formatBytes(1536, { trim: true }) // 1.5KB
 formatBytes(1048576, { suffix: 'B/s', trim: true }) // 1MB/s
 formatBytes(1048576, { suffix: 'bps/s', trim: true, bits: true }) // 8Mbps/s
 formatBytes(1048576, { radix: 1000 }) // 1.05MB
+// #endregion example

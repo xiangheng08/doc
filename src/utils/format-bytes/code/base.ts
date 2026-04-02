@@ -1,3 +1,4 @@
+// region code
 /**
  * 格式化字节
  * @param bytes 字节数
@@ -9,11 +10,15 @@ export function formatBytes(bytes: number, decimals = 2) {
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals
   const units = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  const i = Math.min(
+    Math.floor(Math.log(bytes) / Math.log(k)),
+    units.length - 1,
+  )
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + units[i] + 'B'
 }
+// endregion code
 
-// 测试用例
+// region example
 console.log(formatBytes(0)) // "0B"
 console.log(formatBytes(-100)) // "0B"
 console.log(formatBytes(512)) // "512B"
@@ -34,3 +39,4 @@ console.log(formatBytes(1000000, 3)) // "976.563KB"
 // 测试负小数位数（会被视为0）
 console.log(formatBytes(1500, -1)) // "1KB"
 console.log(formatBytes(1500, -2)) // "1KB"
+// #endregion example
