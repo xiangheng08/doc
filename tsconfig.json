@@ -11,6 +11,11 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "jsx": "preserve",
+
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@theme/*": [".vitepress/theme/*"]
@@ -23,8 +28,5 @@
     "global-components.d.ts",
     "css-color-function.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".vitepress/dist"
-  ]
+  "exclude": ["node_modules", ".vitepress/dist"]
 }
