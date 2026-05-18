@@ -35,6 +35,10 @@ export default [
     ],
   },
   {
+    text: 'Promise 相关',
+    items: [{ link: '/utils/with-resolvers/' }],
+  },
+  {
     text: '颜色相关',
     items: [
       { link: '/utils/color-transform/' },

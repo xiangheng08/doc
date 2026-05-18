@@ -1,0 +1,3 @@
+# Promise.withResolvers()
+
+<<< ./code.ts
