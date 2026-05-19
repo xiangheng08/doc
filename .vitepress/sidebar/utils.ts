@@ -20,6 +20,9 @@ export default [
   { link: '/utils/get-tan-deg/' },
   { link: '/utils/parse-query/' },
   { link: '/utils/onion-model/' },
+  { link: '/utils/deep-clone/' },
+  { link: '/utils/deep-freeze/' },
+  { link: '/utils/reorder-array/' },
   {
     text: '字符串处理',
     items: [
@@ -31,7 +34,6 @@ export default [
       { link: '/utils/add-myriad-separator/' },
       { link: '/utils/trim-extra-slashes/' },
       { link: '/utils/mask-middle/' },
-      { link: '/utils/is-mobile-device/' },
     ],
   },
   {
@@ -72,6 +74,8 @@ export default [
       { link: '/utils/browser/observe-resize/' },
       { link: '/utils/browser/observe-intersection/' },
       { link: '/utils/browser/browser-detector/' },
+      { link: '/utils/browser/is-mobile/' },
+      { link: '/utils/browser/is-tablet/' },
     ],
   },
   {
