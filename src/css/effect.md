@@ -270,6 +270,26 @@ html {
 }
 ```
 
+## 强制换行
+
+```css
+.p {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+```
+
+## 移动端字体缩放
+
+[text-size-adjust - CSS：层叠样式表 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Properties/text-size-adjust)
+
+```css
+p {
+  text-size-adjust: 150%;
+  -webkit-text-size-adjust: 150%;
+}
+```
+
 ## 渐变文字
 
 ```css
