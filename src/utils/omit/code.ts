@@ -1,5 +1,5 @@
 /**
- * 挑选属性
+ * 排除属性
  */
 export function omit<T extends Record<string, any>, K extends keyof T>(
   obj: T,
