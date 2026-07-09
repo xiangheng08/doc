@@ -114,6 +114,7 @@ export default [
   { text: 'Quill', link: '/quill/' },
   { text: 'Vite', link: '/vite/' },
   { text: 'Vue CLI', link: '/vue/cli' },
+  { link: '/vue/devtools/downloads' },
   { text: 'Vue DevTools', link: 'https://devtools.vuejs.org/' },
   {
     text: 'Vue - Official（VS Code）',
