@@ -13,3 +13,5 @@
   ```
 
 <a href="/vue-devtools/vue-devtools-v6.6.4.zip" download="vue-devtools-v6.6.4.zip">⬇️ 下载 vue-devtools-v6.6.4.zip</a>
+
+> 若无法下载可前往[仓库](https://github.com/xiangheng08/doc/blob/main/src/public/vue-devtools/vue-devtools.zip)下载
