@@ -76,6 +76,8 @@ export default [
       { link: '/utils/browser/browser-detector/' },
       { link: '/utils/browser/is-mobile/' },
       { link: '/utils/browser/is-tablet/' },
+      { link: '/utils/browser/get-element-index/' },
+      { link: '/utils/browser/swap-drag/' },
     ],
   },
   {

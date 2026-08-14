@@ -55,6 +55,7 @@ export default [
       { link: '/vue/hooks/paging-js' },
       { link: '/vue/hooks/appearance' },
       { link: '/vue/hooks/broadcast' },
+      { link: '/vue/hooks/swap' },
     ],
   },
   {

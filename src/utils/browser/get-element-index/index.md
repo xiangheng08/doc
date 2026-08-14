@@ -1,0 +1,3 @@
+# getElementIndex
+
+<<< ./code.ts
