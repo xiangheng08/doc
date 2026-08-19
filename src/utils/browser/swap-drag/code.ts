@@ -89,7 +89,7 @@ export interface SwapDragOptions {
    * 松手并完成排序（顺序有变化时触发）。
    * 第二个参数 `swap` 为交换动画函数，调用后播放各元素移动到新位置的动画。
    */
-  onSort?: (evt: SwapEvent, swap: SwapAnimator) => void
+  onSort?: (evt: SwapEvent, swap: SwapAnimator) => any | Promise<any>
   /**
    * 拖动结束（无论是否完成排序）时触发
    */
@@ -130,10 +130,13 @@ export class SwapDrag {
   highlightClass: string
   beforeClass: string
   afterClass: string
-  onStart: (e: DragEvent) => void
-  onMove: (evt: SwapEvent, event: DragEvent) => boolean | void
-  onSort: (evt: SwapEvent, swap: SwapAnimator) => void
-  onEnd: () => void
+  private onStart: (e: DragEvent) => void
+  private onMove: (evt: SwapEvent, event: DragEvent) => boolean | void
+  private onSort: (
+    evt: SwapEvent,
+    swap: SwapAnimator,
+  ) => any | Promise<any>
+  private onEnd: () => void
   /**
    * 当前正在拖拽的元素
    */
@@ -210,11 +213,16 @@ export class SwapDrag {
     this.clearTarget()
   }
 
-  private handleDrop = (e: DragEvent) => {
+  private handleDrop = async (e: DragEvent) => {
     if (this.disabled || !this.dragged || !this.target) return
     e.preventDefault()
     const evt = this.createSwapEvent(this.target)
-    this.onSort(evt, this.createSwap(this.recordPositions()))
+    const rects = this.recordPositions()
+    try {
+      await this.onSort(evt, this.createSwap(rects))
+    } finally {
+      rects.clear() // 清理元素，避免内存泄漏
+    }
   }
 
   private handleDragEnd = () => {
