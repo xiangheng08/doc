@@ -12,18 +12,40 @@ type Listeners<T extends { [K in keyof T]: unknown[] }> = {
 
 const listenersSymbol = Symbol('listeners')
 
-export class EventEmitter<T extends { [K in keyof T]: unknown[] } = {}> {
-  // 事件监听器映射：事件名 -> 监听器数组
-  // （使用 Symbol 私有化，同时避免属性冲突）
+/**
+ * 轻量、类型安全、零依赖的事件触发器
+ *
+ * @example
+ * ```ts
+ * interface Events {
+ *   login: [user: string]
+ * }
+ *
+ * const bus = new EventEmitter<Events>()
+ * const off = bus.on('login', (user) => console.log(`${user} 登录`))
+ *
+ * bus.emit('login', 'Alice') // Alice 登录
+ * off() // 取消监听
+ * ```
+ */
+export class EventEmitter<
+  T extends { [K in keyof T]: unknown[] } = { [name: string]: unknown[] },
+> {
+  // 事件监听器映射：事件名 -> 监听器数组（Symbol 私有化，避免属性冲突）
   private [listenersSymbol]: Listeners<T> = {}
 
   /**
-   * 监听事件
+   * 监听事件，返回取消监听函数
    * @param event 事件名
    * @param listener 事件处理函数
-   * @param context 执行上下文
+   * @param context 执行上下文，默认当前实例
    * @param once 是否只监听一次
    * @returns 取消监听函数
+   * @example
+   * ```ts
+   * const off = emitter.on('login', (user) => console.log(user))
+   * off() // 取消监听
+   * ```
    */
   on<K extends keyof T>(
     event: K,
@@ -46,11 +68,15 @@ export class EventEmitter<T extends { [K in keyof T]: unknown[] } = {}> {
   }
 
   /**
-   * 监听一次事件
+   * 监听一次事件，触发后自动移除
    * @param event 事件名
    * @param listener 事件处理函数
-   * @param context 执行上下文
+   * @param context 执行上下文，默认当前实例
    * @returns 取消监听函数
+   * @example
+   * ```ts
+   * emitter.once('ready', () => console.log('ready'))
+   * ```
    */
   once<K extends keyof T>(
     event: K,
@@ -64,6 +90,10 @@ export class EventEmitter<T extends { [K in keyof T]: unknown[] } = {}> {
    * 取消监听事件
    * @param event 事件名
    * @param listener 事件处理函数
+   * @example
+   * ```ts
+   * emitter.off('login', handler)
+   * ```
    */
   off<K extends keyof T>(
     event: K,
@@ -86,6 +116,10 @@ export class EventEmitter<T extends { [K in keyof T]: unknown[] } = {}> {
    * 触发事件
    * @param event 事件名
    * @param args 事件参数数组
+   * @example
+   * ```ts
+   * emitter.emit('login', 'Alice')
+   * ```
    */
   emit<K extends keyof T>(event: K, ...args: T[K]): void {
     const listeners = this[listenersSymbol][event]
@@ -117,17 +151,25 @@ export class EventEmitter<T extends { [K in keyof T]: unknown[] } = {}> {
 
   /**
    * 清除所有事件监听
+   * @example
+   * ```ts
+   * emitter.clear()
+   * ```
    */
   clear(): void {
     this[listenersSymbol] = {}
   }
 
   /**
-   * 等待事件触发
+   * 等待事件触发，支持条件过滤与超时
    * @param event 事件名
-   * @param predicate 事件触发条件函数
-   * @param timeout 超时时间（毫秒）
+   * @param predicate 事件触发条件函数，返回 true 时完成等待
+   * @param timeout 超时时间（毫秒），超时未触发则 reject
    * @returns 事件触发时的参数数组
+   * @example
+   * ```ts
+   * const [result] = await emitter.waitForEvent('done', (r) => r === 'ok', 1000)
+   * ```
    */
   waitForEvent<K extends keyof T>(
     event: K,

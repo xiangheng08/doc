@@ -15,30 +15,6 @@
 - **错误隔离**: 单个监听器抛出异常不会影响其他监听器的执行
 - **私有存储**: 内部监听器使用 `Symbol` 存储，天然私有且不会与实例其他属性冲突
 
-## 多环境使用
-
-本实现是纯 ES/TypeScript 代码，不依赖任何宿主环境特有的 API，因此可在任意 JavaScript 运行时中使用。
-
-## 与其他事件触发器的区别
-
-### 与 Node.js `EventEmitter` 对比
-
-- **类型安全**: Node 的事件名与参数都是字符串 + `any`，本实现用泛型把事件名与参数强绑定，编译期即可发现错误
-- **上下文绑定**: 原生支持为监听器绑定自定义 `this`，Node 需要手动 `bind`
-- **等待事件**: 内置 `waitForEvent` 以 Promise 等待事件，Node 需自行封装
-
-### 与 `mitt` 等轻量库对比
-
-- **类型安全**: `mitt` 的事件参数为 `any`，本实现通过 `EventMap` 精确约束每个事件的参数类型
-- **上下文绑定**: 支持 `context` 参数，`mitt` 不支持
-- **等待事件**: 提供 `waitForEvent`，`mitt` 没有
-
-### 与浏览器 `EventTarget` 对比
-
-- **调用方式**: 直接 `emit(event, ...args)` 传递任意参数，无需像 `EventTarget` 那样构造 `CustomEvent` 并包装数据
-- **类型安全**: 事件名与参数有类型约束，`EventTarget` 仅支持 `string` 事件名与 `Event` 对象
-- **等待事件**: 提供 `waitForEvent`，原生 `EventTarget` 没有
-
 ## 使用示例
 
 <<< ./example.ts
