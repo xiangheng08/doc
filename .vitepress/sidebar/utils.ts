@@ -23,6 +23,7 @@ export default [
   { link: '/utils/deep-clone/' },
   { link: '/utils/deep-freeze/' },
   { link: '/utils/reorder-array/' },
+  { link: '/utils/event-emitter/' },
   {
     text: '字符串处理',
     items: [
