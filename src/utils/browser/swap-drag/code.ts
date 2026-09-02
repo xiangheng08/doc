@@ -373,7 +373,7 @@ export class SwapDrag {
   /**
    * 记录容器内所有子元素当前的位置，供交换动画计算位移
    */
-  private recordPositions() {
+  recordPositions() {
     const rects = new Map<HTMLElement, DOMRect>()
     Array.from(this.container.children).forEach((el) => {
       rects.set(el as HTMLElement, el.getBoundingClientRect())
@@ -384,7 +384,7 @@ export class SwapDrag {
   /**
    * 生成交换动画函数：播放各元素从记录位置移动到当前位置的过渡动画
    */
-  private createSwap(rects: Map<HTMLElement, DOMRect>): SwapAnimator {
+  createSwap(rects: Map<HTMLElement, DOMRect>): SwapAnimator {
     return async () => {
       const animations: Animation[] = []
       for (const [el, prev] of rects) {
@@ -410,6 +410,21 @@ export class SwapDrag {
       )
       const timeout = sleep(this.animation + 50)
       return Promise.race([finished, timeout]).then(() => {})
+    }
+  }
+
+  /**
+   * 在受控作用域内执行重排，确保 `rects` 用完即清，避免 DOM 引用残留导致内存泄漏
+   *
+   * @param fn 变更回调，接收 `swap` 动画函数
+   */
+  async withSwap(fn: (swap: SwapAnimator) => any) {
+    const rects = this.recordPositions()
+    const swap = this.createSwap(rects)
+    try {
+      await fn(swap)
+    } finally {
+      rects.clear()
     }
   }
 }

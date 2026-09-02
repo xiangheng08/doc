@@ -37,8 +37,16 @@ export function useSwap(
     init()
   }
 
+  const withSwap: SwapDrag['withSwap'] = async (fn) => {
+    if (instance.value) {
+      await instance.value.withSwap(fn)
+    } else {
+      await fn(() => Promise.resolve())
+    }
+  }
+
   if (autoInit) onMounted(init)
   onUnmounted(destroy)
 
-  return { instance, isDragging, init, destroy, reinitialize }
+  return { instance, isDragging, init, destroy, reinitialize, withSwap }
 }
