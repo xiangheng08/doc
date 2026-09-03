@@ -295,7 +295,7 @@ export class SwapDrag {
   ): HTMLElement | null {
     if (!eventTarget || !(eventTarget instanceof HTMLElement)) return null
 
-    // 若指定了 handle，则 eventTarget 必须符合 handle 选择器，或其祖先元素符合 handle 选择器
+    // 指定 handle 时，目标或其祖先需匹配该选择器
     if (handle) {
       let current: HTMLElement | null = eventTarget
       let matched = false
