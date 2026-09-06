@@ -20,6 +20,7 @@ export default [
   { link: '/js/prototype-chain' },
   { link: '/js/closure' },
   { link: '/js/currying' },
+  { link: '/js/jsdoc' },
   { link: '/js/runtimes' },
   {
     text: 'JS 高阶语法',
@@ -45,7 +46,7 @@ export default [
         text: '任务队列',
         link: '/js/advanced/function/task-queue',
       },
-      { link: '/js/advanced/function/parallel-task-queue' }
+      { link: '/js/advanced/function/parallel-task-queue' },
     ],
   },
   // {
@@ -227,18 +228,18 @@ export default [
   {
     text: '网页元素接口',
     items: [
-      { link: '/js/elements/a', text: '<a>' },
-      { link: '/js/elements/img', text: '<img>' },
-      { link: '/js/elements/form', text: '<form>' },
-      { link: '/js/elements/input', text: '<input>' },
-      { link: '/js/elements/button', text: '<button>' },
-      { link: '/js/elements/option', text: '<option>' },
-      { link: '/js/elements/video', text: '<video>' },
+      { link: '/js/elements/a', text: 'a' },
+      { link: '/js/elements/img', text: 'img' },
+      { link: '/js/elements/form', text: 'form' },
+      { link: '/js/elements/input', text: 'input' },
+      { link: '/js/elements/button', text: 'button' },
+      { link: '/js/elements/option', text: 'option' },
+      { link: '/js/elements/video', text: 'video' },
     ],
   },
   {
     text: 'WebAPI',
-    link: '/web-api/'
+    link: '/web-api/',
   },
   { link: '/js/ecma-version-changelog' },
   {
